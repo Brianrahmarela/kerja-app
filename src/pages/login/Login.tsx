@@ -85,13 +85,13 @@ class Login extends React.Component<LoginProps, LoginState> {
                   validationSchema={yup.object().shape({
                     username: yup
                       .string()
-                      .required(`${this.props.t("login:form.username")}`),
+                      .required(`${this.props.t("login:error.username")}`),
                     password: yup
                       .string()
-                      .required(`${this.props.t("login:form.password")}`),
+                      .required(`${this.props.t("login:error.password")}`),
                     recaptcha: yup
                       .string()
-                      .required(`${this.props.t("login:form.recaptcha")}`),
+                      .required(`${this.props.t("login:error.recaptcha")}`),
                   })}
                   onSubmit={(values, { setSubmitting }) => {
                     postLogin(values)

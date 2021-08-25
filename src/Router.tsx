@@ -76,7 +76,11 @@ class Router extends React.Component<IProps, IState> {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Registration} />
           <Route exact path="/forgot-password" component={ForgotPassword} />
-          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route
+            exact
+            path="/reset-password/:resetKey"
+            component={ResetPassword}
+          />
           <Route exact path="/logout" component={Logout} />
           <LayoutApp path="/home" component={Home} />
           <LayoutApp path="/profile" component={AccountRoute} />

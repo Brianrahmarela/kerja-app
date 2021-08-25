@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Typography } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Typography } from "antd";
 import React from "react";
 import logo from "./../../assets/svg/logo-header.svg";
 import bgResetPassword from "./../../assets/svg/bg-reset-password.svg";
@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { withTranslation } from "react-i18next";
+import { postResetPassword } from "../../repository/AuthRepo";
+import { AxiosResponse } from "axios";
 
 export interface ResetPasswordProps {
   t: (x: any) => any;
@@ -23,6 +25,9 @@ class ResetPassword extends React.Component<
       confirmPassword: "",
     },
   };
+  componentDidMount() {
+    window.document.title = "Reset Password | KerjaApp";
+  }
   render() {
     const { t } = this.props;
     return (
@@ -69,10 +74,42 @@ class ResetPassword extends React.Component<
             <Formik
               initialValues={this.state.form}
               validationSchema={yup.object().shape({
-                username: yup.string().required("Username is required"),
-                password: yup.string().required("Username is required"),
+                newPassword: yup
+                  .string()
+                  .required(`${t("resetPassword:error.newPassword")}`),
+                confirmPassword: yup
+                  .string()
+                  .oneOf(
+                    [yup.ref("newPassword"), null],
+                    `${t("resetPassword:error.confirmPasswordSame")}`
+                  )
+                  .required(`${t("resetPassword:error.confirmPassword")}`),
               })}
-              onSubmit={(values, { setSubmitting }) => {}}
+              onSubmit={(values, { setSubmitting }) => {
+                postResetPassword(values)
+                  .then((res: AxiosResponse<any>) => {
+                    Modal.success({
+                      title: `${this.props.t("notif.success")}`,
+                      content: `${this.props.t("resetPassword:success")}`,
+                      onOk: () => {
+                        window.location.hash = "/login";
+                        Modal.destroyAll();
+                      },
+                    });
+                  })
+                  .catch((error) => {
+                    Modal.error({
+                      title: `${this.props.t("notif.failed")}`,
+                      content: error.response?.data?.message || error.message,
+                      onOk: () => {
+                        Modal.destroyAll();
+                      },
+                    });
+                  })
+                  .finally(() => {
+                    setSubmitting(false);
+                  });
+              }}
             >
               {({
                 errors,
@@ -100,7 +137,7 @@ class ResetPassword extends React.Component<
                   >
                     <Input.Password
                       size="large"
-                      name="email"
+                      name="newPassword"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       placeholder={t("resetPassword:placeholderNewPassword")}
@@ -113,17 +150,19 @@ class ResetPassword extends React.Component<
                       </span>
                     }
                     validateStatus={
-                      errors.newPassword && touched.newPassword ? "error" : ""
+                      errors.confirmPassword && touched.confirmPassword
+                        ? "error"
+                        : ""
                     }
                     help={
-                      errors.newPassword && touched.newPassword
-                        ? errors.newPassword
+                      errors.confirmPassword && touched.confirmPassword
+                        ? errors.confirmPassword
                         : null
                     }
                   >
                     <Input.Password
                       size="large"
-                      name="email"
+                      name="confirmPassword"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       placeholder={t(
@@ -143,6 +182,7 @@ class ResetPassword extends React.Component<
                           type="primary"
                           size="large"
                           style={{ width: 200 }}
+                          onClick={() => handleSubmit()}
                         >
                           {t("resetPassword:reset")}
                         </Button>

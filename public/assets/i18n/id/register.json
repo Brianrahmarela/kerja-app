@@ -10,5 +10,14 @@
   "buttonRegister": "Masuk",
   "haveaccount": "Sudah Punya akun",
   "loginLink": "Masuk",
-  "phoneCode": "62 XXXXXXXXXX"
+  "phoneCode": "62 XXXXXXXXXX",
+  "success": "Silahkan cek email anda dan lakukan aktivasi akun",
+  "error": {
+    "email": "Email tidak boleh kosong",
+    "firstName": "Nama depan tidak boleh kosong",
+    "lastName": "Nama belakang tidak boleh kosong",
+    "phone": "Nomor telephone tidak boleh kosong",
+    "password": "Kata Sandi tidak boleh kosong",
+    "recaptcha": "Google Recaptcha harus dicentang"
+  }
 }

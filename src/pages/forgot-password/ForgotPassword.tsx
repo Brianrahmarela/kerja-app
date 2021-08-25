@@ -1,6 +1,6 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Col, Form, Input, Row, Typography } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Typography } from "antd";
 import { Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,6 +10,8 @@ import * as yup from "yup";
 import { withTranslation } from "react-i18next";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
+import { postForgotPassword } from "../../repository/AuthRepo";
+import { AxiosResponse } from "axios";
 export interface ForgotPasswordProps {
   t: (x: any) => any;
 }
@@ -23,9 +25,12 @@ class ForgotPassword extends React.Component<
   state = {
     form: {
       email: "",
+      recaptcha: "",
     },
   };
-  onCaptchaChange() {}
+  componentDidMount() {
+    window.document.title = "Forgot Password | KerjaApp";
+  }
   render() {
     const { t } = this.props;
     return (
@@ -80,10 +85,39 @@ class ForgotPassword extends React.Component<
             <Formik
               initialValues={this.state.form}
               validationSchema={yup.object().shape({
-                username: yup.string().required("Username is required"),
-                password: yup.string().required("Username is required"),
+                email: yup
+                  .string()
+                  .email()
+                  .required(`${t("forgotPassword:error.email")}`),
+                recaptcha: yup
+                  .string()
+                  .required(`${t("forgotPassword:error.recaptcha")}`),
               })}
-              onSubmit={(values, { setSubmitting }) => {}}
+              onSubmit={(values, { setSubmitting }) => {
+                postForgotPassword(values)
+                  .then((res: AxiosResponse<any>) => {
+                    Modal.success({
+                      title: `${this.props.t("notif.success")}`,
+                      content: `${this.props.t("forgotPassword:success")}`,
+                      onOk: () => {
+                        window.location.hash = "/login";
+                        Modal.destroyAll();
+                      },
+                    });
+                  })
+                  .catch((error) => {
+                    Modal.error({
+                      title: `${this.props.t("notif.failed")}`,
+                      content: error.response?.data?.message || error.message,
+                      onOk: () => {
+                        Modal.destroyAll();
+                      },
+                    });
+                  })
+                  .finally(() => {
+                    setSubmitting(false);
+                  });
+              }}
             >
               {({
                 errors,
@@ -91,12 +125,14 @@ class ForgotPassword extends React.Component<
                 handleBlur,
                 handleChange,
                 handleSubmit,
+                setFieldValue,
                 isSubmitting,
               }) => (
                 <>
-                  <Row gutter={15} justify="center" align="middle">
+                  <Row gutter={15} justify="start" align="middle">
                     <Col sm={24} lg={24} xl={18}>
                       <Form.Item
+                        style={{ textAlign: "left" }}
                         validateStatus={
                           errors.email && touched.email ? "error" : ""
                         }
@@ -114,15 +150,33 @@ class ForgotPassword extends React.Component<
                       </Form.Item>
                     </Col>
                     <Col sm={24} lg={24} xl={6}>
-                      <ReCAPTCHA
-                        size="normal"
-                        sitekey={AppConfig.recaptchaKey}
-                        onChange={this.onCaptchaChange}
-                      />
+                      <Form.Item
+                        validateStatus={
+                          errors.recaptcha && touched.recaptcha ? "error" : ""
+                        }
+                        help={
+                          errors.recaptcha && touched.recaptcha
+                            ? errors.recaptcha
+                            : null
+                        }
+                      >
+                        <ReCAPTCHA
+                          size="normal"
+                          sitekey={AppConfig.recaptchaKey}
+                          onChange={(v: any) => {
+                            setFieldValue("recaptcha", v);
+                          }}
+                        />
+                      </Form.Item>
                     </Col>
                   </Row>
                   <Form.Item style={{ textAlign: "center", marginTop: 60 }}>
-                    <Button type="primary" size="large" style={{ width: 200 }}>
+                    <Button
+                      type="primary"
+                      size="large"
+                      style={{ width: 200 }}
+                      onClick={() => handleSubmit()}
+                    >
                       Masuk
                     </Button>
                   </Form.Item>

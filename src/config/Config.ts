@@ -26,8 +26,10 @@ export const AppConfig = {
   },
   url: {
     postLogin: baseUrlApi + "/ka-auth/v1/login",
-    postRegister: baseUrlApi + "/ka-auth/v1/registration",
+    postRegister: baseUrlApi + "/ka-auth/v1/register",
     getMe: baseUrlApi + "/ka-auth/v1/me",
     getLogout: baseUrlApi + "/ka-auth/v1/logout",
+    postForgotPassword: baseUrlApi + "/ka-account/v1/forgot-password",
+    postResetPassword: baseUrlApi + "/ka-account/v1/reset-password",
   },
 };

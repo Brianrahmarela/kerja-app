@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Modal, Row } from "antd";
 import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -11,6 +11,8 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
+import { postRegister } from "../../repository/AuthRepo";
+import { AxiosResponse } from "axios";
 export interface RegistrationProps {
   t: (x: any) => any;
 }
@@ -28,9 +30,12 @@ class Registration extends React.Component<
       lastName: "",
       phone: "",
       password: "",
+      recaptcha: "",
     },
   };
-  onCaptchaChange() {}
+  componentDidMount() {
+    window.document.title = "Registration | KerjaApp";
+  }
   render() {
     const { t } = this.props;
     return (
@@ -77,10 +82,52 @@ class Registration extends React.Component<
                 <Formik
                   initialValues={this.state.form}
                   validationSchema={yup.object().shape({
-                    username: yup.string().required("Username is required"),
-                    password: yup.string().required("Username is required"),
+                    email: yup
+                      .string()
+                      .email()
+                      .required(`${t("register:error.email")}`),
+                    firstName: yup
+                      .string()
+                      .required(`${t("register:error.firstName")}`),
+                    lastName: yup
+                      .string()
+                      .required(`${t("register:error.lastName")}`),
+                    phone: yup
+                      .string()
+                      .required(`${t("register:error.phone")}`),
+                    password: yup
+                      .string()
+                      .required(`${t("register:error.password")}`),
+                    recaptcha: yup
+                      .string()
+                      .required(`${t("register:error.recaptcha")}`),
                   })}
-                  onSubmit={(values, { setSubmitting }) => {}}
+                  onSubmit={(values, { setSubmitting }) => {
+                    postRegister(values)
+                      .then((res: AxiosResponse<any>) => {
+                        Modal.success({
+                          title: `${this.props.t("notif.success")}`,
+                          content: `${this.props.t("register:success")}`,
+                          onOk: () => {
+                            window.location.hash = "/login";
+                            Modal.destroyAll();
+                          },
+                        });
+                      })
+                      .catch((error) => {
+                        Modal.error({
+                          title: `${this.props.t("notif.failed")}`,
+                          content:
+                            error.response?.data?.message || error.message,
+                          onOk: () => {
+                            Modal.destroyAll();
+                          },
+                        });
+                      })
+                      .finally(() => {
+                        setSubmitting(false);
+                      });
+                  }}
                 >
                   {({
                     errors,
@@ -88,6 +135,7 @@ class Registration extends React.Component<
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    setFieldValue,
                     isSubmitting,
                   }) => (
                     <>
@@ -211,12 +259,24 @@ class Registration extends React.Component<
                           placeholder="********"
                         />
                       </Form.Item>
-                      <Form.Item style={{ textAlign: "center" }}>
+                      <Form.Item
+                        style={{ textAlign: "center" }}
+                        validateStatus={
+                          errors.recaptcha && touched.recaptcha ? "error" : ""
+                        }
+                        help={
+                          errors.recaptcha && touched.recaptcha
+                            ? errors.recaptcha
+                            : null
+                        }
+                      >
                         <div style={{ maxWidth: 304, margin: "auto" }}>
                           <ReCAPTCHA
                             size="normal"
                             sitekey={AppConfig.recaptchaKey}
-                            onChange={this.onCaptchaChange}
+                            onChange={(v: any) => {
+                              setFieldValue("recaptcha", v);
+                            }}
                           />
                         </div>
                       </Form.Item>
@@ -225,6 +285,7 @@ class Registration extends React.Component<
                           type="primary"
                           size="large"
                           style={{ width: 200 }}
+                          onClick={() => handleSubmit()}
                         >
                           Masuk
                         </Button>

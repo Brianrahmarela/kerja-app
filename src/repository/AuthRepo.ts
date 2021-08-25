@@ -8,6 +8,12 @@ export const postLogin = (payload: any) => {
 export const postRegister = (payload: any) => {
   return axios.post(AppConfig.url.postRegister, payload);
 };
+export const postForgotPassword = (payload: any) => {
+  return axios.post(AppConfig.url.postForgotPassword, payload);
+};
+export const postResetPassword = (payload: any) => {
+  return axios.post(AppConfig.url.postResetPassword, payload);
+};
 export const getLogout = () => {
   const state = store.getState();
   return axios.get(AppConfig.url.getLogout, {

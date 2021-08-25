@@ -6,7 +6,7 @@
   "buttonLogin": "Masuk",
   "doesnothave": "Belum punya akun",
   "registerLink": "Daftar",
-  "form": {
+  "error": {
     "username": "Pengguna/Surel tidak boleh kosong",
     "password": "Kata Sandi tidak boleh kosong",
     "recaptcha": "Google Recaptcha harus dicentang"
