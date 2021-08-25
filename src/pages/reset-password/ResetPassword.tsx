@@ -11,6 +11,7 @@ import { AxiosResponse } from "axios";
 
 export interface ResetPasswordProps {
   t: (x: any) => any;
+  match: any;
 }
 
 export interface ResetPasswordState {}
@@ -86,7 +87,9 @@ class ResetPassword extends React.Component<
                   .required(`${t("resetPassword:error.confirmPassword")}`),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                postResetPassword(values)
+                const payload: any = { ...values };
+                payload.resetKey = this.props.match.params.resetKey;
+                postResetPassword(payload)
                   .then((res: AxiosResponse<any>) => {
                     Modal.success({
                       title: `${this.props.t("notif.success")}`,
