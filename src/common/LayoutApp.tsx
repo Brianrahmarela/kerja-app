@@ -1,5 +1,4 @@
 import { Layout } from "antd";
-import moment from "moment";
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";

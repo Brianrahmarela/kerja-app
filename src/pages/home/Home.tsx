@@ -1,12 +1,10 @@
 import {
-  faArchive,
   faBookmark,
   faCaretDown,
   faEllipsisV,
   faImage,
   faPaperPlane,
   faPlus,
-  faReply,
   faReplyAll,
   faShare,
   faSmile,
@@ -36,7 +34,6 @@ import {
 import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
-import { encodeHashUserId } from "../../config/Util";
 
 export interface HomeProps {}
 

@@ -1,12 +1,10 @@
 import {
-  faMapMarked,
-  faMapMarkedAlt,
   faMapMarkerAlt,
   faPencilAlt,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Col, Menu, Row, Typography } from "antd";
+import { Avatar, Button, Col, Menu, Row, Typography } from "antd";
 import React from "react";
 
 export interface MenuHeaderProps {}

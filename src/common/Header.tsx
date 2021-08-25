@@ -6,11 +6,9 @@ import {
   faCaretDown,
   faCog,
   faComments,
-  faEllipsisH,
   faHamburger,
   faHome,
   faSignOutAlt,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Input, List, Menu, Popover, Row, Space, Typography } from "antd";

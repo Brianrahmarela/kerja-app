@@ -1,12 +1,6 @@
-import {
-  faEdit,
-  faMapMarked,
-  faMapMarkerAlt,
-  faPencilAlt,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Card, Col, Menu, Row, Typography } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import React from "react";
 import ProfileForm from "./ProfileForm";

@@ -1,10 +1,8 @@
 import {
   faCaretDown,
-  faComment,
   faMapMarkerAlt,
   faPencilAlt,
   faUserPlus,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +13,6 @@ import {
   Col,
   List,
   Row,
-  Space,
   Tag,
   Timeline,
   Typography,
