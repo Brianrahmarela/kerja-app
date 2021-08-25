@@ -13,7 +13,7 @@ export const AppConfig = {
   recaptchaKey:
     !process.env.NODE_ENV || process.env.NODE_ENV === "development"
       ? "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu"
-      : "6LcE5UAaAAAAAJBA5_pW_bXNjEEdft806G30DpzZ",
+      : "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu",
   hashKey: "qFaqv?TB@Sdc6Erk!9_a",
   firebaseConfig: {
     apiKey: "AIzaSyBA2UE3aQWmOgTNBcPm-ddCARC75u9uYcQ",
