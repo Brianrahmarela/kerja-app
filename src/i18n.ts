@@ -12,8 +12,8 @@ i18n
       /* translation file path */
       loadPath: "./assets/i18n/{{lng}}/{{ns}}.json",
     },
-    fallbackLng: "en",
-    debug: false,
+    fallbackLng: "id",
+    debug: true,
     /* can have multiple namespace, in case you want to divide a huge translation into smaller pieces and load them on demand */
     ns: [
       "common",
@@ -24,7 +24,7 @@ i18n
       "logout",
     ],
     defaultNS: "common",
-    keySeparator: false,
+    keySeparator: ".",
     interpolation: {
       escapeValue: false,
       formatSeparator: ",",

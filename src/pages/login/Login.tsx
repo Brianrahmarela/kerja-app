@@ -15,20 +15,28 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
+import { getMe } from "../../repository/UserRepo";
 export interface LoginProps {
   t: (x: any) => any;
+  setCurrentUser: (x: any) => void;
+  setToken: (x: any) => void;
 }
 
-export interface LoginState {}
+export interface LoginState {
+  form: any;
+}
 
 class Login extends React.Component<LoginProps, LoginState> {
   state = {
     form: {
       username: "",
       password: "",
+      recaptcha: "",
     },
   };
-  onCaptchaChange() {}
+  componentDidMount() {
+    window.document.title = "Login | KerjaApp";
+  }
   render() {
     const { t } = this.props;
     return (
@@ -75,17 +83,29 @@ class Login extends React.Component<LoginProps, LoginState> {
                 <Formik
                   initialValues={this.state.form}
                   validationSchema={yup.object().shape({
-                    username: yup.string().required("Username is required"),
-                    password: yup.string().required("Username is required"),
+                    username: yup
+                      .string()
+                      .required(`${this.props.t("login:form.username")}`),
+                    password: yup
+                      .string()
+                      .required(`${this.props.t("login:form.password")}`),
+                    recaptcha: yup
+                      .string()
+                      .required(`${this.props.t("login:form.recaptcha")}`),
                   })}
                   onSubmit={(values, { setSubmitting }) => {
                     postLogin(values)
-                      .then((res: AxiosResponse<any>) => {})
+                      .then((res: AxiosResponse<any>) => {
+                        this.props.setToken(res.data);
+                        getMe().then((res: AxiosResponse<any>) => {
+                          this.props.setCurrentUser(res.data);
+                          window.location.hash = "/home";
+                        });
+                      })
                       .catch((error) => {
                         console.log(error.response);
                         Modal.error({
                           title: `${this.props.t("common:notif.failed")}`,
-                          // content : error.response.data.message
                           content:
                             error.response?.data?.message || error.message,
                         });
@@ -101,6 +121,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    setFieldValue,
                     isSubmitting,
                   }) => (
                     <>
@@ -150,30 +171,41 @@ class Login extends React.Component<LoginProps, LoginState> {
                           placeholder="********"
                         />
                       </Form.Item>
-                      <Form.Item label=" ">
-                        <Row style={{ marginBottom: 70 }}>
-                          <Col sm={24} lg={24} xl={18}>
+                      <Row style={{ marginBottom: 70 }}>
+                        <Col sm={24} lg={24} xl={18}>
+                          <Form.Item
+                            validateStatus={
+                              errors.recaptcha && touched.recaptcha
+                                ? "error"
+                                : ""
+                            }
+                            help={
+                              errors.recaptcha && touched.recaptcha
+                                ? errors.recaptcha
+                                : null
+                            }
+                          >
                             <ReCAPTCHA
                               size="normal"
                               sitekey={AppConfig.recaptchaKey}
-                              onChange={this.onCaptchaChange}
+                              onChange={(v: any) => {
+                                setFieldValue("recaptcha", v);
+                              }}
                             />
-                          </Col>
-                          <Col sm={24} lg={24} xl={6}>
-                            <Link
-                              to="/forgot-password"
-                              className="blue-primary"
-                            >
-                              {t("login:forgotPassword")}
-                            </Link>
-                          </Col>
-                        </Row>
-                      </Form.Item>
+                          </Form.Item>
+                        </Col>
+                        <Col sm={24} lg={24} xl={6}>
+                          <Link to="/forgot-password" className="blue-primary">
+                            {t("login:forgotPassword")}
+                          </Link>
+                        </Col>
+                      </Row>
                       <Form.Item style={{ textAlign: "center" }}>
                         <Button
                           type="primary"
                           size="large"
                           style={{ width: 200 }}
+                          onClick={() => handleSubmit()}
                         >
                           {t("login:buttonLogin")}
                         </Button>

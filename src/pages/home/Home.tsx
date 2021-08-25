@@ -45,8 +45,12 @@ class Home extends React.Component<HomeProps, HomeState> {
     return (
       <div className="home-page">
         <Row gutter={15}>
-          <Col span={7}>
-            <Typography.Title level={4} className="blue-primary">
+          <Col xs={0} sm={0} md={0} lg={7}>
+            <Typography.Title
+              level={4}
+              className="blue-primary"
+              style={{ marginTop: 12 }}
+            >
               Rekomendasi
             </Typography.Title>
             <Divider style={{ marginBottom: 5 }}></Divider>
@@ -167,7 +171,7 @@ class Home extends React.Component<HomeProps, HomeState> {
               />
             </Card>
           </Col>
-          <Col span={17}>
+          <Col xs={24} sm={24} md={24} lg={17}>
             <Row>
               <Col span={24}>
                 <Space>

@@ -1,4 +1,5 @@
 import { Layout } from "antd";
+import moment from "moment";
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -6,16 +7,16 @@ import { Route } from "react-router-dom";
 import Header from "./Header";
 interface IProps {
   component: any;
-  token?: string;
-  expiredAt?: number;
   path: string;
 }
 interface IState {}
 class LayoutApp extends Component<IProps, IState> {
   render() {
-    // if (!this.props.token || this.props.expiredAt! < moment().valueOf()) {
-    //   window.location.hash = "/login";
-    // }
+    const token = window.localStorage.getItem("token");
+    const expiredAt = window.localStorage.getItem("expiredAt");
+    if (!token || (!expiredAt && Number(expiredAt) < moment().valueOf())) {
+      window.location.hash = "/login";
+    }
     const { ...rest } = this.props;
     return (
       <>

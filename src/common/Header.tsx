@@ -17,10 +17,12 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { getLogout } from "../repository/AuthRepo";
 import logo from "./../assets/svg/logo-header.svg";
 
 export interface HeaderProps {
   location: any;
+  logout: () => void;
 }
 
 export interface HeaderState {}
@@ -139,9 +141,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                   bordered={false}
                                   dataSource={["Setting", "Logout"]}
                                   renderItem={(item) => (
-                                    <List.Item>
+                                    <>
                                       {item === "Setting" && (
-                                        <>
+                                        <List.Item>
                                           <FontAwesomeIcon
                                             icon={faCog}
                                             style={{
@@ -149,10 +151,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                             }}
                                           />
                                           {item}
-                                        </>
+                                        </List.Item>
                                       )}
                                       {item === "Logout" && (
-                                        <>
+                                        <List.Item
+                                          onClick={() => this.props.logout?.()}
+                                        >
                                           <FontAwesomeIcon
                                             icon={faSignOutAlt}
                                             style={{
@@ -160,9 +164,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                             }}
                                           />
                                           {item}
-                                        </>
+                                        </List.Item>
                                       )}
-                                    </List.Item>
+                                    </>
                                   )}
                                 />
                               }
@@ -218,6 +222,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                           <Menu.Item
                             key="logout"
                             icon={<FontAwesomeIcon icon={faSignOutAlt} />}
+                            onClick={() => this.props.logout?.()}
                           >
                             Logout
                           </Menu.Item>
@@ -273,6 +278,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                           <Menu.Item
                             key="logout"
                             icon={<FontAwesomeIcon icon={faSignOutAlt} />}
+                            onClick={() => this.props.logout?.()}
                           >
                             Logout
                           </Menu.Item>
@@ -301,7 +307,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                           <Menu.Divider />
                           <Menu.Item key="notif">Notification</Menu.Item>
                           <Menu.Item key="setting">Settings</Menu.Item>
-                          <Menu.Item key="logout">Logout</Menu.Item>
+                          <Menu.Item
+                            key="logout"
+                            onClick={() => this.props.logout?.()}
+                          >
+                            Logout
+                          </Menu.Item>
                         </Menu>
                       }
                     >
@@ -325,7 +336,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch: any) => ({});
+const mapDispatchToProps = (dispatch: any) => ({
+  logout: async () => {
+    try {
+      await getLogout();
+    } catch (error) {
+    } finally {
+      window.location.hash = "/login";
+    }
+    return dispatch({ type: "LOGOUT" });
+  },
+});
 
 export default connect(
   mapStateToProps,

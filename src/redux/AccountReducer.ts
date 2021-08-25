@@ -13,6 +13,9 @@ export function accountReducer(state = INITIAL_STATE, action: any) {
         currentUser: action.payload,
       };
     case "SET_TOKEN":
+      window.localStorage.setItem("token", action.payload.token);
+      window.localStorage.setItem("refreshToken", action.payload.refreshToken);
+      window.localStorage.setItem("expiredAt", action.payload.expiredAt);
       return {
         ...state,
         token: action.payload.token,
@@ -20,6 +23,9 @@ export function accountReducer(state = INITIAL_STATE, action: any) {
         expiredAt: action.payload.expired,
       };
     case "LOGOUT": {
+      window.localStorage.removeItem("token");
+      window.localStorage.removeItem("refreshToken");
+      window.localStorage.removeItem("expiredAt");
       return {
         token: "",
         refreshToken: "",
