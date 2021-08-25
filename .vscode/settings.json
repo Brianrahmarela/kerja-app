@@ -1,0 +1,15 @@
+{
+  "workbench.colorTheme": "Abyss",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "editor.formatOnSave": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#100f29",
+    "titleBar.activeBackground": "#4845ae",
+    "statusBar.background": "#100f29"
+  }
+}

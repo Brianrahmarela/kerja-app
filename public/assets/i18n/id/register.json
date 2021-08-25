@@ -1,0 +1,14 @@
+{
+  "title": "Daftar Sekarang",
+  "email": "Surel",
+  "fullName": "Nama Lengkap",
+  "firstName": "Nama Depan",
+  "lastName": "Nama Belakang",
+  "password": "Kata Sandi",
+  "phontNumber": "Nomor Telepon/Hp",
+  "forgotPassword": "Lupa Kata Sandi",
+  "buttonRegister": "Masuk",
+  "haveaccount": "Sudah Punya akun",
+  "loginLink": "Masuk",
+  "phoneCode": "62 XXXXXXXXXX"
+}

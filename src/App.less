@@ -1,0 +1,269 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import "~antd/dist/antd.less";
+@primaryColor: #2c9be6;
+@primaryGrey: #8a8a8a;
+.blue-primary {
+  color: @primaryColor !important;
+}
+.grey-primary {
+  color: @primaryGrey !important;
+}
+.login-page,
+.registration-page {
+  .right-section {
+    padding: 45px;
+  }
+  .header-left {
+    text-align: left;
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    svg {
+      font-size: 35px;
+      color: white;
+    }
+  }
+  .header-right {
+    text-align: right;
+  }
+  .title {
+    color: @primaryColor;
+    text-align: center;
+    font-size: 34px;
+    margin-top: 80px;
+  }
+  .form {
+    padding: 50px;
+  }
+  .logo-wrapper {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+}
+.forgot-password-page {
+  .header-left {
+    text-align: left;
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    svg {
+      font-size: 35px;
+      color: @primaryColor;
+    }
+  }
+  .logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title,
+  .form {
+    width: 60%;
+    min-width: 350px;
+    margin: auto;
+    text-align: center;
+  }
+  .title {
+    margin-top: 60px;
+  }
+  .form {
+    margin-top: 50px;
+  }
+}
+.reset-password-page {
+  .logo-wrapper {
+    padding: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title,
+  .form {
+    width: 50%;
+    min-width: 350px;
+    margin: auto;
+    text-align: center;
+  }
+  .title {
+    margin-top: 60px;
+  }
+}
+.logout-page {
+  .logo-wrapper {
+    padding: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  .header {
+    background-color: white;
+  }
+  .site-layout-content {
+    background-color: #e2faff;
+    height: calc(100vh - 64px);
+  }
+  .title {
+    padding-top: 100px;
+    text-align: center;
+  }
+  .button {
+    text-align: center;
+    margin-top: 50px;
+  }
+}
+.ant-layout {
+  background-color: white;
+}
+.ant-layout-header {
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.app-header {
+  width: 100%;
+  background-color: white;
+  min-height: 64px;
+  margin: auto;
+  .logo-wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    .text-logo {
+      @media (max-width: 992px) {
+        display: none;
+        visibility: hidden;
+      }
+    }
+  }
+  .ant-menu {
+    height: 64px;
+    line-height: 60px;
+  }
+  .icon-menu {
+    line-height: 60px;
+  }
+
+  .account-menu {
+    display: inline-block;
+  }
+  .main-menu-middle {
+    width: 100%;
+    text-align: right;
+  }
+  .account-menu-mobile {
+    text-align: right;
+  }
+}
+.popover-setting {
+  .ant-popover-inner-content {
+    padding: 10px;
+  }
+  .ant-list-item {
+    padding: 8px 0 8px;
+  }
+}
+.body {
+  width: 100%;
+  padding: 15px;
+  @media (min-width: 1000px) {
+    max-width: 1000px;
+  }
+  margin: auto;
+}
+.home-page {
+  padding-top: 20px;
+  position: relative;
+}
+.recommendation-widget,
+.community-widget {
+  .ant-card-body {
+    padding: 0;
+  }
+  .ant-list-item {
+    padding: 0 0 10px 0;
+  }
+}
+.profile-header {
+  .bg-cover {
+    height: 30vh;
+    border-radius: 15px;
+    background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+  }
+  .avatar-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .avatar-border {
+    position: absolute;
+    margin: auto;
+    bottom: -40px;
+    left: 0px;
+    right: 0px;
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 80px;
+    border-width: 5px;
+    padding: 5px;
+  }
+  .name-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .ant-menu-horizontal {
+    border-bottom: 0px;
+  }
+  .underline {
+    border-bottom: 1px solid #f0f0f0;
+  }
+}
+.profile-page {
+}
+.profile-form {
+  .ant-form-item-control-input {
+  }
+}
+.profile-connection {
+}
