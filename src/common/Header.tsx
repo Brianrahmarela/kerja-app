@@ -25,11 +25,11 @@ export interface HeaderProps {
   logout: () => void;
 }
 
-export interface HeaderState {}
+export interface HeaderState { }
 
 class Header extends React.Component<HeaderProps, HeaderState> {
   state = { ready: false };
-  onSearch() {}
+  onSearch() { }
   render() {
     return (
       <Layout.Header>
@@ -256,6 +256,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                           <FontAwesomeIcon icon={faAddressCard} />
                         </Menu.Item>
                         <Menu.SubMenu
+                          key="caret"
                           title={
                             <FontAwesomeIcon
                               icon={faCaretDown}
