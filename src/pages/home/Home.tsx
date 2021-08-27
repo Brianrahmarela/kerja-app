@@ -11,6 +11,9 @@ export interface HomeState {}
 
 class Home extends React.Component<HomeProps, HomeState> {
     state = { form: {} };
+    componentDidMount() {
+        window.document.title = "Home | KerjaApp";
+    }
     render() {
         return (
             <div className="home-page">

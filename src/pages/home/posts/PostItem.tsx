@@ -1,17 +1,52 @@
-import { faBookmark, faEllipsisV, faPaperPlane, faPlus, faShare, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faCircleNotch, faEllipsisV, faPaperPlane, faPlus, faShare, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Col, Divider, Dropdown, Image, Menu, Modal, Row, Space, Tooltip, Typography } from "antd";
+import { Avatar, Button, Card, Col, Divider, Dropdown, Image, Menu, Modal, Row, Space, Spin, Tooltip, Typography } from "antd";
+import { AxiosResponse } from "axios";
 import moment from "moment";
 import React from "react";
 import ReactPlayer from "react-player";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { encodeHashUserId } from "../../../config/Util";
+import { getPostLikes, postReaction } from "../../../repository/FeedRepo";
 import Comments from "./comments/Comments";
 
 export interface PostItemProps {
     postData: any;
+    currentUser: any;
+    updatePost?: (x: any) => any;
 }
-export interface PostItemState {}
+export interface PostItemState {
+    mediaDataPreview: any[];
+    showPreview: boolean;
+    loadingLike: boolean;
+    likes: any[];
+}
 class PostItem extends React.Component<PostItemProps, PostItemState> {
+    state = {
+        mediaDataPreview: [] as any[],
+        showPreview: false,
+        loadingLike: false,
+        likes: [] as any[],
+    };
+    componentDidMount() {
+        this.getLikes(this.props.postData.id);
+    }
+    getLikes(postId: string) {
+        this.setState({ loadingLike: true });
+        getPostLikes(postId)
+            .then((res: AxiosResponse<any>) => {
+                this.setState({
+                    likes: res.data,
+                });
+            })
+            .catch((err: any) => {
+                console.log(err);
+            })
+            .finally(() => {
+                this.setState({ loadingLike: false });
+            });
+    }
     render() {
         const { postData } = this.props;
         return (
@@ -79,17 +114,57 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                     <Col span={12}>
                         <Space>
                             <Typography.Text>{postData.commentCount} Comments</Typography.Text>
-                            <Button type="link" icon={<FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: 5 }} />}>
+                            <Button
+                                type="link"
+                                icon={<FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: 5 }} />}
+                                onClick={() => {
+                                    postReaction({ postId: postData.id, type: "LIKE" }).then(() => {
+                                        const ids = postData.likes.indexOf(this.props.currentUser?.id);
+                                        if (ids !== -1) {
+                                            postData.likeCount = postData.likeCount - 1;
+                                            postData.likes.splice(ids, 1);
+                                        } else {
+                                            postData.likeCount = postData.likeCount + 1;
+                                            postData.likes.push(this.props.currentUser?.id);
+                                        }
+                                        this.props.updatePost?.(postData);
+                                        this.getLikes(this.props.postData.id);
+                                    });
+                                }}
+                            >
                                 {postData.likeCount}
                             </Button>
-                            <Avatar.Group size="small">
-                                <Avatar src={postData.photo} />
-                                <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-                                <Tooltip title="Ant User" placement="top">
-                                    <Avatar style={{ backgroundColor: "#87d068" }} />
+                            {this.state.loadingLike ? (
+                                <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />}></Spin>
+                            ) : (
+                                <Tooltip
+                                    placement="top"
+                                    title={
+                                        <>
+                                            {this.state.likes.map((v: any) => {
+                                                const hash = encodeHashUserId(v.userId);
+                                                return (
+                                                    <div style={{ display: "inline-block" }}>
+                                                        <Avatar size={20} src={v.photo} style={{ marginRight: 5 }} />
+                                                        <Link to={"/profile/" + hash}>
+                                                            {v.firstName} {v.lastName}
+                                                        </Link>
+                                                    </div>
+                                                );
+                                            })}
+                                        </>
+                                    }
+                                >
+                                    <div>
+                                        {" "}
+                                        <Avatar.Group size="small">
+                                            {this.state.likes.map((like: any) => (
+                                                <Avatar src={like.photo} />
+                                            ))}
+                                        </Avatar.Group>
+                                    </div>
                                 </Tooltip>
-                                <Avatar style={{ backgroundColor: "#1890ff" }} />
-                            </Avatar.Group>
+                            )}
                         </Space>
                     </Col>
                     <Col span={12} style={{ textAlign: "right" }}>
@@ -209,4 +284,18 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
     };
 }
 
-export default PostItem;
+const mapStateToProps = (state: any) => ({
+    currentUser: state.account.currentUser,
+    postList: state.post.postList,
+    pagination: state.post.pagination,
+    countNewPost: state.notif.countNewPost,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+    updatePost: (payload: any) =>
+        dispatch({
+            type: "UPDATE_POST",
+            payload,
+        }),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(PostItem);
