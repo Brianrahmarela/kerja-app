@@ -1,10 +1,10 @@
 import { faArrowLeft, faEllipsisH, faImages, faPaperclip, faPaperPlane, faPhone, faSearch, faSmile, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Col, Input, List, Row, Space, Typography } from "antd";
+import { Avatar, Button, Card, Col, Input, Row, Space, Typography } from "antd";
 import moment from "moment";
 import React from "react";
 import "react-chat-elements/dist/main.css";
-const { ChatList, MessageList, Input: InputChat, Button: ButtonChat, Navbar, SystemMessage, MessageBox } = require("react-chat-elements");
+const { ChatList, Navbar, SystemMessage, MessageBox } = require("react-chat-elements");
 // MessageBox component
 export interface ChatProps {}
 

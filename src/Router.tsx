@@ -16,6 +16,7 @@ import LayoutApp from "./common/LayoutApp";
 import Home from "./pages/home/Home";
 import AccountRoute from "./pages/account/AccountRoute";
 import Communication from "./pages/communication/Communication";
+import JobRoute from "./pages/job/JobRoute";
 
 const Page404 = React.lazy(() => import("./pages/errors/Page404"));
 interface IProps {
@@ -82,6 +83,7 @@ class Router extends React.Component<IProps, IState> {
                     <LayoutApp path="/home" component={Home} />
                     <LayoutApp path="/profile" component={AccountRoute} />
                     <LayoutApp path="/communication" component={Communication} />
+                    <LayoutApp path="/job" component={JobRoute} />
 
                     {/* <Route exact path="/registration" component={Registration} />
           <LayoutApp path="/home" component={Home} />
@@ -114,6 +116,6 @@ const mapStateToProps = (state: any) => ({
     token: state.account.token,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Router));
