@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, HashRouter as Router, Switch } from "react-router-dom";
-import Job from "./Job";
+import JobDetail from "./job-detail/JobDetail";
+import Job from "./job/Job";
 
 export interface JobRouteProps {}
 
@@ -12,6 +13,7 @@ class JobRoute extends React.Component<JobRouteProps, JobRouteState> {
             <Router>
                 <Switch>
                     <Route exact path="/job" component={Job} />
+                    <Route exact path="/job/job-detail" component={JobDetail} />
                 </Switch>
             </Router>
         );

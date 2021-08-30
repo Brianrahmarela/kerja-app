@@ -1,6 +1,6 @@
 import { faBookmark, faFilter, faSearch, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Card, Checkbox, Col, Form, Input, Row, Slider, Space, Typography } from "antd";
+import { Avatar, Button, Card, Checkbox, Col, Form, Input, Row, Slider, Space, Typography } from "antd";
 import React from "react";
 
 export interface JobProps {}
@@ -251,6 +251,9 @@ class Job extends React.Component<JobProps, JobState> {
                                     </Form.Item>
                                     <Form.Item label="Status Pekerjaan">
                                         <Input></Input>
+                                    </Form.Item>
+                                    <Form.Item style={{ textAlign: "right" }}>
+                                        <Button type="primary">Cari</Button>
                                     </Form.Item>
                                 </Form>
                             </Card>
