@@ -273,3 +273,35 @@
 }
 .profile-connection {
 }
+.chat-component {
+    height: calc(100vh - 180px);
+    .ant-card-body {
+        padding: 0;
+    }
+    .ant-card-body,
+    .ant-card-body > .ant-row,
+    .ant-card-body > .ant-row > .ant-col {
+        height: 100%;
+    }
+    .chatlist {
+        border-right: 1px solid #f0f0f0;
+        padding: 15px;
+    }
+    .chat-list {
+        height: calc(100% - 100px);
+    }
+    .top-chatlist {
+        .ant-btn-link {
+            color: rgba(0, 0, 0, 0.85);
+        }
+    }
+    .message-list {
+        height: calc(100% - 120px);
+        overflow-y: auto;
+    }
+    .search-chatlist {
+        .ant-col {
+            padding: 15px;
+        }
+    }
+}
