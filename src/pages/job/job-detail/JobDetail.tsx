@@ -1,6 +1,6 @@
-import { faArrowLeft, faBookmark, faCheck, faMailBulk, faMapMarkerAlt, faPencilAlt, faPhone, faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faBookmark, faCheck, faMailBulk, faMapMarkerAlt, faPhone, faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Breadcrumb, Button, Card, Col, Divider, Menu, Row, Space, Typography } from "antd";
+import { Avatar, Breadcrumb, Button, Card, Col, Divider, Row, Space, Typography } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
