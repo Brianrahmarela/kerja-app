@@ -10,6 +10,9 @@ export interface JobFormProps {}
 export interface JobFormState {}
 
 class JobForm extends React.Component<JobFormProps, JobFormState> {
+    componentDidMount() {
+        window.document.title = "Apply Job | KerjaApp";
+    }
     render() {
         return (
             <div className="page-job-form">

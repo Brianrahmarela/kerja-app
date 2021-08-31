@@ -9,6 +9,9 @@ export interface JobDetailProps {}
 export interface JobDetailState {}
 
 class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
+    componentDidMount() {
+        window.document.title = "Job Detail | KerjaApp";
+    }
     render() {
         return (
             <div className="page-job-detail">

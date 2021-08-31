@@ -8,6 +8,9 @@ export interface JobProps {}
 export interface JobState {}
 
 class Job extends React.Component<JobProps, JobState> {
+    componentDidMount() {
+        window.document.title = "Job | KerjaApp";
+    }
     render() {
         return (
             <>
