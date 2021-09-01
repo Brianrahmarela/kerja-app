@@ -1,6 +1,13 @@
 import axios from "axios";
 import { AppConfig } from "../config/Config";
 const token = window.localStorage.getItem("token");
+export const postFeed = (payload: any) => {
+    return axios.post(AppConfig.url.postPosting, payload, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
 export const getFeed = (params: any) => {
     return axios.get(AppConfig.url.getFeed, {
         headers: {

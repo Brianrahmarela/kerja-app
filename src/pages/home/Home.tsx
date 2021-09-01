@@ -4,14 +4,17 @@ import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Space, Typography
 import React from "react";
 import { Link } from "react-router-dom";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
+import NewPost from "./posts/NewPost";
 import Posts from "./posts/Posts";
 
 export interface HomeProps {}
 
-export interface HomeState {}
+export interface HomeState {
+    showNewPost: boolean;
+}
 
 class Home extends React.Component<HomeProps, HomeState> {
-    state = { form: {} };
+    state = { showNewPost: false };
     componentDidMount() {
         window.document.title = "Home | KerjaApp";
     }
@@ -87,8 +90,25 @@ class Home extends React.Component<HomeProps, HomeState> {
                     </Col>
                 </Row>
                 <Affix offsetBottom={20}>
-                    <Button shape="circle" size="large" type="primary" style={{ position: "fixed", bottom: 20, right: 20 }} icon={<FontAwesomeIcon icon={faPlus} />} />
+                    <Button
+                        shape="circle"
+                        size="large"
+                        type="primary"
+                        style={{ position: "fixed", bottom: 20, right: 20 }}
+                        icon={<FontAwesomeIcon icon={faPlus} />}
+                        onClick={() => this.setState({ showNewPost: true })}
+                    />
                 </Affix>
+                {this.state.showNewPost && (
+                    <NewPost
+                        visible={this.state.showNewPost}
+                        setVisible={() => {
+                            this.setState({
+                                showNewPost: false,
+                            });
+                        }}
+                    />
+                )}
             </div>
         );
     }
