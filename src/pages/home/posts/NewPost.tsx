@@ -1,4 +1,4 @@
-import { faCamera, faFile, faGlobe, faImages, faPhotoVideo, faSmile, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faFile, faGlobe, faImages, faPhotoVideo, faSmile, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row, Select, Typography, Avatar, Modal, Input, Space, Button, Upload } from "antd";
 import { AxiosResponse } from "axios";
