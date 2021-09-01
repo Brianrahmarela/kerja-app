@@ -1,7 +1,8 @@
-import { faFile, faGlobe, faImages, faPhotoVideo, faSmile, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faFile, faGlobe, faImages, faPhotoVideo, faSmile, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Col, Row, Select, Typography, Avatar, Modal, Input, Space, Button } from "antd";
+import { Col, Row, Select, Typography, Avatar, Modal, Input, Space, Button, Upload } from "antd";
 import { AxiosResponse } from "axios";
+import imageCompression from "browser-image-compression";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -10,7 +11,7 @@ import { postFeed } from "../../../repository/FeedRepo";
 
 export interface NewPostProps {
     visible: boolean;
-    setVisible: () => void;
+    closeModal: () => void;
     postList?: any[];
     pagination: any;
     setPostList?: (x: any) => void;
@@ -19,11 +20,15 @@ export interface NewPostProps {
 export interface NewPostState {
     form: any;
     loading: boolean;
+    showUploader: boolean;
+    uploadingProgress: number;
 }
 
 class NewPost extends React.Component<NewPostProps, NewPostState> {
     state = {
         loading: false,
+        showUploader: false,
+        uploadingProgress: 0,
         form: {
             post: "",
             postType: "TEXT",
@@ -49,7 +54,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
         });
         postFeed(payload)
             .then((res: AxiosResponse<any>) => {
-                this.props.setVisible();
+                this.props.closeModal();
                 this.props.setPostList?.({
                     postList: [res.data].concat(this.props.postList),
                     pagination: {
@@ -82,12 +87,39 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                 <Modal
                     visible={visible}
                     title="Buat Postingan"
+                    onCancel={() => {
+                        this.setState(
+                            {
+                                form: {
+                                    post: "",
+                                    postType: "TEXT",
+                                    publicStatus: "FRIENDS",
+                                    medias: [],
+                                },
+                            },
+                            () => {
+                                this.props.closeModal();
+                            }
+                        );
+                    }}
                     footer={[
                         <Row justify="space-between">
                             <Col span={16} style={{ textAlign: "left" }}>
                                 <Space>
-                                    <Button type="link" icon={<FontAwesomeIcon icon={faImages} style={{ color: "grey", fontSize: 18 }} />}></Button>
-                                    <Button type="link" icon={<FontAwesomeIcon icon={faPhotoVideo} style={{ color: "grey", fontSize: 18 }} />}></Button>
+                                    <Button
+                                        type="link"
+                                        icon={<FontAwesomeIcon icon={faImages} style={{ color: "grey", fontSize: 18 }} />}
+                                        onClick={() => {
+                                            this.setState({ showUploader: true });
+                                        }}
+                                    ></Button>
+                                    <Button
+                                        type="link"
+                                        icon={<FontAwesomeIcon icon={faPhotoVideo} style={{ color: "grey", fontSize: 18 }} />}
+                                        onClick={() => {
+                                            this.setState({ showUploader: true });
+                                        }}
+                                    ></Button>
                                     <Button type="link" icon={<FontAwesomeIcon icon={faSmile} style={{ color: "grey", fontSize: 18 }} />}></Button>
                                     <Button type="link" icon={<FontAwesomeIcon icon={faFile} style={{ color: "grey", fontSize: 18 }} />}></Button>
                                 </Space>
@@ -130,15 +162,15 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                 }
                             >
                                 <Select.Option value={"PUBLIC"}>
-                                    <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5 }} />
+                                    <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5, color: "grey" }} />
                                     Public
                                 </Select.Option>
                                 <Select.Option value={"FRIENDS"}>
-                                    <FontAwesomeIcon icon={faUsers} style={{ marginRight: 5 }} />
+                                    <FontAwesomeIcon icon={faUsers} style={{ marginRight: 5, color: "grey" }} />
                                     Friends
                                 </Select.Option>
                                 <Select.Option value={"ONLY_ME"}>
-                                    <FontAwesomeIcon icon={faUserLock} style={{ marginRight: 5 }} />
+                                    <FontAwesomeIcon icon={faUserLock} style={{ marginRight: 5, color: "grey" }} />
                                     Only Me
                                 </Select.Option>
                             </Select>
@@ -160,6 +192,82 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                             ></Input.TextArea>
                         </Col>
                     </Row>
+                    {this.state.showUploader && (
+                        <div style={{ marginTop: 10 }}>
+                            <Upload
+                                listType="picture-card"
+                                accept="video/*,image/*"
+                                fileList={this.state.form.medias}
+                                customRequest={async (option: any) => {
+                                    // console.log('compressing...')
+                                    const _this = this;
+                                    _this.setState({ uploadingProgress: 0, loading: true });
+                                    console.log(option);
+
+                                    const metadata = {
+                                        name: option.file.name,
+                                        mimeType: option.file.type,
+                                    };
+                                    _this.setState({ uploadingProgress: 5 });
+                                    const form = new FormData();
+
+                                    if (option.file.type.indexOf("image") !== -1) {
+                                        const compressed: any = await imageCompression(option.file, {
+                                            maxSizeMB: 0.5,
+                                            maxWidthOrHeight: 1200,
+                                            useWebWorker: true,
+                                        });
+                                        form.append("file", compressed, compressed.name);
+                                    } else {
+                                        form.append("file", option.file, option.file.name);
+                                    }
+                                    // console.log('compressed ', compressed, option)
+                                    form.append(
+                                        "metadata",
+                                        new Blob([JSON.stringify(metadata)], {
+                                            type: "application/json",
+                                        })
+                                    );
+
+                                    const request = new XMLHttpRequest();
+                                    request.open("POST", AppConfig.url.postStatusPhoto);
+                                    const token = window.localStorage.getItem("token");
+                                    request.setRequestHeader("Authorization", "Bearer " + token);
+                                    request.upload.addEventListener("progress", function (e) {
+                                        // upload progress as percentage
+                                        let percent_completed = Math.floor((e.loaded / e.total) * 100);
+                                        _this.setState({
+                                            uploadingProgress: percent_completed,
+                                        });
+                                        option.onProgress({ percent: percent_completed });
+                                    });
+                                    request.addEventListener("load", function () {
+                                        if (request.status === 200) {
+                                            console.log(request);
+                                            option.onSuccess(request.response);
+                                        } else {
+                                            const error = new Error("Some error");
+                                            option.onError({ error });
+                                        }
+                                    });
+                                    request.send(form);
+                                }}
+                                onChange={(e: any) => {
+                                    console.log(e);
+
+                                    this.setState({
+                                        form: {
+                                            ...this.state.form,
+                                            medias: e.fileList,
+                                        },
+                                        loading: false,
+                                    });
+                                }}
+                            >
+                                <Button icon={<FontAwesomeIcon icon={faPhotoVideo} style={{ color: "grey" }} />} />
+                            </Upload>
+                        </div>
+                    )}
                 </Modal>
             </>
         );

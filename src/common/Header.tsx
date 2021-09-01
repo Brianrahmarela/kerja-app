@@ -95,10 +95,18 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                                             <Menu.Item key="1">
                                                                 <Link to="/home">Beranda</Link>
                                                             </Menu.Item>
-                                                            <Menu.Item key="2">Jobs</Menu.Item>
-                                                            <Menu.Item key="3">Learning</Menu.Item>
-                                                            <Menu.Item key="4">Communication</Menu.Item>
-                                                            <Menu.Item key="5">My Work</Menu.Item>
+                                                            <Menu.Item key="2">
+                                                                <Link to="/job">Jobs</Link>
+                                                            </Menu.Item>
+                                                            <Menu.Item key="3">
+                                                                <Link to="/learning">Learning</Link>
+                                                            </Menu.Item>
+                                                            <Menu.Item key="4">
+                                                                <Link to="/communication">Communication</Link>
+                                                            </Menu.Item>
+                                                            <Menu.Item key="5">
+                                                                <Link to="/my-work">My Work</Link>
+                                                            </Menu.Item>
                                                         </Menu>
                                                     </div>
                                                 </div>
@@ -220,20 +228,31 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                         <div style={{ width: 350, marginLeft: "auto" }}>
                                             <Menu theme="light" mode="horizontal" selectedKeys={[this.state.selectedMenu]}>
                                                 <Menu.Item key="1">
-                                                    <FontAwesomeIcon icon={faHome} />
+                                                    <Link to="/home">
+                                                        <FontAwesomeIcon icon={faHome} />
+                                                    </Link>
                                                 </Menu.Item>
                                                 <Menu.Item key="2">
-                                                    <FontAwesomeIcon icon={faBriefcase} />
+                                                    <Link to="/job">
+                                                        <FontAwesomeIcon icon={faBriefcase} />
+                                                    </Link>
                                                 </Menu.Item>
                                                 <Menu.Item key="3">
-                                                    <FontAwesomeIcon icon={faBook} />
+                                                    <Link to="/learning">
+                                                        <FontAwesomeIcon icon={faBook} />
+                                                    </Link>
                                                 </Menu.Item>
                                                 <Menu.Item key="4">
-                                                    <FontAwesomeIcon icon={faComments} />
+                                                    <Link to="/communication">
+                                                        <FontAwesomeIcon icon={faComments} />
+                                                    </Link>
                                                 </Menu.Item>
                                                 <Menu.Item key="5">
-                                                    <FontAwesomeIcon icon={faAddressCard} />
+                                                    <Link to="/my-work">
+                                                        <FontAwesomeIcon icon={faAddressCard} />
+                                                    </Link>
                                                 </Menu.Item>
+
                                                 <Menu.SubMenu key="caret" title={<FontAwesomeIcon icon={faCaretDown} style={{ width: 30 }} />}>
                                                     <Menu.Item key="notif" icon={<FontAwesomeIcon icon={faBell} />}>
                                                         Notification
@@ -256,11 +275,21 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                             placement="topRight"
                                             content={
                                                 <Menu theme="light" mode="vertical" style={{ border: 0, width: "100%" }} selectedKeys={[this.state.selectedMenu]}>
-                                                    <Menu.Item key="1">Beranda</Menu.Item>
-                                                    <Menu.Item key="2">Jobs</Menu.Item>
-                                                    <Menu.Item key="3">Learning</Menu.Item>
-                                                    <Menu.Item key="4">Communication</Menu.Item>
-                                                    <Menu.Item key="5">My Work</Menu.Item>
+                                                    <Menu.Item key="1">
+                                                        <Link to="/home">Beranda</Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item key="2">
+                                                        <Link to="/job">Jobs</Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item key="3">
+                                                        <Link to="/learning">Learning</Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item key="4">
+                                                        <Link to="/communication">Communication</Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item key="5">
+                                                        <Link to="/my-work">My Work</Link>
+                                                    </Menu.Item>
                                                     <Menu.Divider />
                                                     <Menu.Item key="notif">Notification</Menu.Item>
                                                     <Menu.Item key="setting">Settings</Menu.Item>

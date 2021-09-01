@@ -102,7 +102,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                 {this.state.showNewPost && (
                     <NewPost
                         visible={this.state.showNewPost}
-                        setVisible={() => {
+                        closeModal={() => {
                             this.setState({
                                 showNewPost: false,
                             });
