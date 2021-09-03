@@ -1,4 +1,4 @@
-let baseUrl = "http://kerjaapp.xyz:7777";
+let baseUrl = "http://localhost:7777";
 
 // uat / prod
 if (process.env.NODE_ENV === "production") {

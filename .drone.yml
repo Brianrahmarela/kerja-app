@@ -1,103 +1,103 @@
 kind: pipeline
 type: docker
 name: build from source
-# trigger:
-#   branch:
-#     - master
-#   event:
-#     - push
-steps:
-  - name: build app
-    image: node:14
-    commands:
-      - npm i
-      - npm run build
-
-  # - name: removing folders
-  #   image: appleboy/drone-ssh
-  #   environment:
-  #     PASSWORD:
-  #       from_secret: docker_password
-  #     USERNAME:
-  #       from_secret: docker_username
-  #     REPO:
-  #       from_secret: docker_repo
-  #   settings:
-  #     host:
-  #       from_secret: ssh_host
-  #     username:
-  #       from_secret: ssh_username
-  #     password:
-  #       from_secret: ssh_password
-  #     port: 22
-  #     envs: [USERNAME, PASSWORD, REPO]
-  #     script:
-  #       - set -e
-  #       - cd /var/www/html/kerjaapp-ui
-  #       - rm -rf kerjaapp-ui || echo Not Found
-  #       - mkdir kerjaapp-ui
-
-  # - name: scp docker compose.yml
-  #   image: appleboy/drone-scp
-  #   settings:
-  #     host:
-  #       from_secret: ssh_host
-  #     username:
-  #       from_secret: ssh_username
-  #     password:
-  #       from_secret: ssh_password
-  #     port: 22
-  #     target: /var/www/html
-  #     source: build
-
-  - name: build docker
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo:
-        from_secret: docker_repo
-      tags:
+trigger:
+    branch:
         - uat
+    event:
+        - push
+steps:
+    - name: build app
+      image: node:14
+      commands:
+          - npm i
+          - npm run build
 
-  - name: scp docker compose.yml
-    image: appleboy/drone-scp
-    settings:
-      host:
-        from_secret: ssh_host
-      username:
-        from_secret: ssh_username
-      password:
-        from_secret: ssh_password
-      port: 22
-      target: ~/app/kerjaapp/ui
-      source: compose.yml
+    # - name: removing folders
+    #   image: appleboy/drone-ssh
+    #   environment:
+    #     PASSWORD:
+    #       from_secret: docker_password
+    #     USERNAME:
+    #       from_secret: docker_username
+    #     REPO:
+    #       from_secret: docker_repo
+    #   settings:
+    #     host:
+    #       from_secret: ssh_host
+    #     username:
+    #       from_secret: ssh_username
+    #     password:
+    #       from_secret: ssh_password
+    #     port: 22
+    #     envs: [USERNAME, PASSWORD, REPO]
+    #     script:
+    #       - set -e
+    #       - cd /var/www/html/kerjaapp-ui
+    #       - rm -rf kerjaapp-ui || echo Not Found
+    #       - mkdir kerjaapp-ui
 
-  - name: deploying app
-    image: appleboy/drone-ssh
-    environment:
-      PASSWORD:
-        from_secret: docker_password
-      USERNAME:
-        from_secret: docker_username
-      REPO:
-        from_secret: docker_repo
-    settings:
-      host:
-        from_secret: ssh_host
-      username:
-        from_secret: ssh_username
-      password:
-        from_secret: ssh_password
-      port: 22
-      envs: [USERNAME, PASSWORD, REPO]
-      script:
-        - set -e
-        - cd ~/app/kerjaapp/ui
-        - docker ps -q --filter "name=ka_ui" | grep -q . && docker stop ka_ui || echo Not Found
-        - docker ps -q --filter "name=ka_ui" | grep -q . && docker rm ka_ui || echo Not Found
-        - docker login -u $USERNAME -p $PASSWORD docker.io
-        - docker pull $REPO:uat
-        - docker-compose up -d
+    # - name: scp docker compose.yml
+    #   image: appleboy/drone-scp
+    #   settings:
+    #     host:
+    #       from_secret: ssh_host
+    #     username:
+    #       from_secret: ssh_username
+    #     password:
+    #       from_secret: ssh_password
+    #     port: 22
+    #     target: /var/www/html
+    #     source: build
+
+    - name: build docker
+      image: plugins/docker
+      settings:
+          username:
+              from_secret: docker_username
+          password:
+              from_secret: docker_password
+          repo:
+              from_secret: docker_repo
+          tags:
+              - uat
+
+    - name: scp docker compose.yml
+      image: appleboy/drone-scp
+      settings:
+          host:
+              from_secret: ssh_host
+          username:
+              from_secret: ssh_username
+          password:
+              from_secret: ssh_password
+          port: 22
+          target: ~/app/kerjaapp/ui
+          source: compose.yml
+
+    - name: deploying app
+      image: appleboy/drone-ssh
+      environment:
+          PASSWORD:
+              from_secret: docker_password
+          USERNAME:
+              from_secret: docker_username
+          REPO:
+              from_secret: docker_repo
+      settings:
+          host:
+              from_secret: ssh_host
+          username:
+              from_secret: ssh_username
+          password:
+              from_secret: ssh_password
+          port: 22
+          envs: [USERNAME, PASSWORD, REPO]
+          script:
+              - set -e
+              - cd ~/app/kerjaapp/ui
+              - docker ps -q --filter "name=ka_ui" | grep -q . && docker stop ka_ui || echo Not Found
+              - docker ps -q --filter "name=ka_ui" | grep -q . && docker rm ka_ui || echo Not Found
+              - docker login -u $USERNAME -p $PASSWORD docker.io
+              - docker pull $REPO:uat
+              - docker-compose up -d

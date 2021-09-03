@@ -2,19 +2,20 @@ import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Space, Typography } from "antd";
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
 import NewPost from "./posts/NewPost";
 import Posts from "./posts/Posts";
 
-export interface HomeProps {}
-
-export interface HomeState {
-    showNewPost: boolean;
+export interface HomeProps {
+    isEdited?: boolean;
+    setEditedPost?: (x: any) => void;
 }
 
+export interface HomeState {}
+
 class Home extends React.Component<HomeProps, HomeState> {
-    state = { showNewPost: false };
     componentDidMount() {
         window.document.title = "Home | KerjaApp";
     }
@@ -96,22 +97,35 @@ class Home extends React.Component<HomeProps, HomeState> {
                         type="primary"
                         style={{ position: "fixed", bottom: 20, right: 20 }}
                         icon={<FontAwesomeIcon icon={faPlus} />}
-                        onClick={() => this.setState({ showNewPost: true })}
-                    />
-                </Affix>
-                {this.state.showNewPost && (
-                    <NewPost
-                        visible={this.state.showNewPost}
-                        closeModal={() => {
-                            this.setState({
-                                showNewPost: false,
+                        onClick={() => {
+                            this.props.setEditedPost?.({
+                                isEdited: true,
+                                editedPost: {
+                                    post: "",
+                                    postType: "TEXT",
+                                    publicStatus: "FRIENDS",
+                                    medias: [],
+                                },
                             });
                         }}
                     />
-                )}
+                </Affix>
+                {this.props.isEdited && <NewPost visible={this.props.isEdited} />}
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = (state: any) => ({
+    isEdited: state.post.isEdited,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+    setEditedPost: (payload: any) =>
+        dispatch({
+            type: "SET_EDIT_POST",
+            payload,
+        }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

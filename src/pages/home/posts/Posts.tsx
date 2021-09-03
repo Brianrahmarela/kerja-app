@@ -67,7 +67,8 @@ class Posts extends React.Component<PostsProps, PostsState> {
                     hasMore: newPostingList.length < res.data.total,
                 });
             })
-            .catch(() => {
+            .catch((e) => {
+                console.log(e.response);
                 this.setState({ hasMore: false });
             })
             .finally(() => {

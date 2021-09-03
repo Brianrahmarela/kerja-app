@@ -11,10 +11,11 @@ import { postFeed } from "../../../repository/FeedRepo";
 
 export interface NewPostProps {
     visible: boolean;
-    closeModal: () => void;
     postList?: any[];
     pagination: any;
     setPostList?: (x: any) => void;
+    setEditedPost?: (x: any) => void;
+    editedPost?: any;
 }
 
 export interface NewPostState {
@@ -36,6 +37,9 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
             medias: [],
         },
     };
+    componentDidMount() {
+        this.setState({ form: this.props.editedPost });
+    }
     postStatus = () => {
         const { post, postType, publicStatus, medias } = this.state.form;
         const payload: any = {
@@ -44,7 +48,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
             publicStatus,
             medias: medias.map((v: any) => {
                 return {
-                    url: AppConfig.baseUrlApi + "/media/v1/file?source-id=karirapp-post&id=" + v.response.id,
+                    url: AppConfig.baseUrlApi + "/thrm-media/v1/file?source-id=karirapp-post&id=" + v.response.id,
                     mediaType: v.type,
                 };
             }),
@@ -54,7 +58,15 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
         });
         postFeed(payload)
             .then((res: AxiosResponse<any>) => {
-                this.props.closeModal();
+                this.props.setEditedPost?.({
+                    isEdited: false,
+                    editedPost: {
+                        post: "",
+                        postType: "TEXT",
+                        publicStatus: "FRIENDS",
+                        medias: [],
+                    },
+                });
                 this.props.setPostList?.({
                     postList: [res.data].concat(this.props.postList),
                     pagination: {
@@ -98,7 +110,15 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                 },
                             },
                             () => {
-                                this.props.closeModal();
+                                this.props.setEditedPost?.({
+                                    isEdited: false,
+                                    editedPost: {
+                                        post: "",
+                                        postType: "TEXT",
+                                        publicStatus: "FRIENDS",
+                                        medias: [],
+                                    },
+                                });
                             }
                         );
                     }}
@@ -110,14 +130,26 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                         type="link"
                                         icon={<FontAwesomeIcon icon={faImages} style={{ color: "grey", fontSize: 18 }} />}
                                         onClick={() => {
-                                            this.setState({ showUploader: true });
+                                            this.setState({
+                                                showUploader: true,
+                                                form: {
+                                                    ...this.state.form,
+                                                    postType: "MEDIA",
+                                                },
+                                            });
                                         }}
                                     ></Button>
                                     <Button
                                         type="link"
                                         icon={<FontAwesomeIcon icon={faPhotoVideo} style={{ color: "grey", fontSize: 18 }} />}
                                         onClick={() => {
-                                            this.setState({ showUploader: true });
+                                            this.setState({
+                                                showUploader: true,
+                                                form: {
+                                                    ...this.state.form,
+                                                    postType: "MEDIA",
+                                                },
+                                            });
                                         }}
                                     ></Button>
                                     <Button type="link" icon={<FontAwesomeIcon icon={faSmile} style={{ color: "grey", fontSize: 18 }} />}></Button>
@@ -278,12 +310,18 @@ const mapStateToProps = (state: any) => ({
     currentUser: state.account.currentUser,
     postList: state.post.postList,
     pagination: state.post.pagination,
+    editedPost: state.post.editedPost,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
     setPostList: (payload: any) =>
         dispatch({
             type: "SET_POST_LIST",
+            payload,
+        }),
+    setEditedPost: (payload: any) =>
+        dispatch({
+            type: "SET_EDIT_POST",
             payload,
         }),
 });

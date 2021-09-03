@@ -15,6 +15,7 @@ export interface PostItemProps {
     postData: any;
     currentUser: any;
     updatePost?: (x: any) => any;
+    setEditedPost?: (x: any) => any;
 }
 export interface PostItemState {
     mediaDataPreview: any[];
@@ -80,7 +81,15 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                         <Dropdown
                             overlay={
                                 <Menu>
-                                    <Menu.Item key="set-post:1" onClick={() => {}}>
+                                    <Menu.Item
+                                        key="set-post:1"
+                                        onClick={() => {
+                                            this.props.setEditedPost?.({
+                                                isEdited: true,
+                                                editedPost: postData,
+                                            });
+                                        }}
+                                    >
                                         Edit
                                     </Menu.Item>
                                     <Menu.Item
@@ -141,10 +150,10 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                                     placement="top"
                                     title={
                                         <>
-                                            {this.state.likes.map((v: any) => {
+                                            {this.state.likes.map((v: any, index: number) => {
                                                 const hash = encodeHashUserId(v.userId);
                                                 return (
-                                                    <div style={{ display: "inline-block" }}>
+                                                    <div key={index} style={{ display: "inline-block" }}>
                                                         <Avatar size={20} src={v.photo} style={{ marginRight: 5 }} />
                                                         <Link to={"/profile/" + hash}>
                                                             {v.firstName} {v.lastName}
@@ -156,10 +165,9 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                                     }
                                 >
                                     <div>
-                                        {" "}
                                         <Avatar.Group size="small">
-                                            {this.state.likes.map((like: any) => (
-                                                <Avatar src={like.photo} />
+                                            {this.state.likes.map((like: any, index: number) => (
+                                                <Avatar key={index} src={like.photo} />
                                             ))}
                                         </Avatar.Group>
                                     </div>
@@ -295,6 +303,11 @@ const mapDispatchToProps = (dispatch: any) => ({
     updatePost: (payload: any) =>
         dispatch({
             type: "UPDATE_POST",
+            payload,
+        }),
+    setEditedPost: (payload: any) =>
+        dispatch({
+            type: "SET_EDIT_POST",
             payload,
         }),
 });
