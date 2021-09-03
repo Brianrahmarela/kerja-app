@@ -18,7 +18,6 @@ import { AppConfig } from "../../config/Config";
 import { getMe } from "../../repository/UserRepo";
 export interface LoginProps {
     t: (x: any) => any;
-    setCurrentUser: (x: any) => void;
     setToken: (x: any) => any;
 }
 
@@ -84,12 +83,8 @@ class Login extends React.Component<LoginProps, LoginState> {
                                         postLogin(values)
                                             .then((res: AxiosResponse<any>) => {
                                                 console.log(values);
-                                                this.props.setToken(res.data).then(() => {
-                                                    getMe().then((res: AxiosResponse<any>) => {
-                                                        this.props.setCurrentUser(res.data);
-                                                        window.location.hash = "/home";
-                                                    });
-                                                });
+                                                this.props.setToken(res.data);
+                                                window.location.hash = "/home";
                                             })
                                             .catch((error) => {
                                                 console.log(error.response);
@@ -212,7 +207,6 @@ const mapDispatchToProps = (dispatch: any) => ({
             type: "SET_TOKEN",
             payload,
         }),
-    setCurrentUser: (x: any) => dispatch({ type: "SET_CURRENT_USER", payload: x }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Login));
