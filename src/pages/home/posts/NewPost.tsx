@@ -12,7 +12,7 @@ import { postFeed } from "../../../repository/FeedRepo";
 export interface NewPostProps {
     visible: boolean;
     postList?: any[];
-    pagination: any;
+    pagination?: any;
     setPostList?: (x: any) => void;
     setEditedPost?: (x: any) => void;
     editedPost?: any;

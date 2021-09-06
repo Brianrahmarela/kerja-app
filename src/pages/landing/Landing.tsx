@@ -1,6 +1,7 @@
 import { Button, Col, Row } from "antd";
 import React from "react";
 import { withTranslation } from "react-i18next";
+import TopMenu from "./part/TopMenu";
 
 export interface LandingPageProps {
     t: (x: any) => any;
@@ -8,13 +9,13 @@ export interface LandingPageProps {
 
 export interface LandingPageState {
     ready: boolean;
-    change: string;
+    title: string;
 }
 
 class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
     state = {
         ready: false,
-        change: "",
+        title: "ini title dari landing page",
     };
     componentDidMount() {
         window.document.title = "KerjaApp";
@@ -40,6 +41,7 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
                 >
                     ini button
                 </Button>
+                <TopMenu judul={this.state.title} />
             </div>
         );
     }
