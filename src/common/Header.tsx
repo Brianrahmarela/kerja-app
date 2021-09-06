@@ -222,7 +222,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                         </div>
                                     </div>
                                 </Col>
-                                {/* middle menu */}
+                                {/* middle screen */}
                                 <Col xs={0} sm={0} md={24} lg={0} xl={0}>
                                     <div className="main-menu-middle">
                                         <div style={{ width: 350, marginLeft: "auto" }}>

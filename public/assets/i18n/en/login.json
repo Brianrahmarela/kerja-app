@@ -1,3 +1,14 @@
 {
-  "title": "Hello React"
+    "title": "Login",
+    "username": "Username/Email",
+    "password": "Password",
+    "forgotPassword": "Lupa Kata Sandi",
+    "buttonLogin": "Masuk",
+    "doesnothave": "Belum punya akun",
+    "registerLink": "Daftar",
+    "error": {
+        "username": "Pengguna/Surel tidak boleh kosong",
+        "password": "Kata Sandi tidak boleh kosong",
+        "recaptcha": "Google Recaptcha harus dicentang"
+    }
 }

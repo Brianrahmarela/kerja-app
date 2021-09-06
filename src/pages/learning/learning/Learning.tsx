@@ -5,6 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "react-slideshow-image/dist/styles.css";
 const { Slide } = require("react-slideshow-image");
+
 export interface LearningProps {}
 
 export interface LearningState {}
