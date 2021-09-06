@@ -78,7 +78,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                     </div>
                                 </Col>
                                 <Col xs={21} sm={21} md={20} lg={14} xl={15}>
-                                    <Input.Search placeholder="Search" onSearch={this.onSearch} style={{ paddingTop: 15 }} />
+                                    <Input placeholder="Search" style={{ borderRadius: 20 }} />
                                 </Col>
                             </Row>
                         </Col>

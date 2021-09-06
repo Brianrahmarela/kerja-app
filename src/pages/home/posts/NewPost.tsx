@@ -1,6 +1,6 @@
-import { faFile, faGlobe, faImages, faPhotoVideo, faSmile, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faFile, faGlobe, faImages, faMapMarkerAlt, faPhotoVideo, faSearch, faSmile, faTimes, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Col, Row, Select, Typography, Avatar, Modal, Input, Space, Button, Upload } from "antd";
+import { Col, Row, Select, Typography, Avatar, Modal, Input, Space, Button, Upload, List } from "antd";
 import { AxiosResponse } from "axios";
 import imageCompression from "browser-image-compression";
 import React from "react";
@@ -16,12 +16,14 @@ export interface NewPostProps {
     setPostList?: (x: any) => void;
     setEditedPost?: (x: any) => void;
     editedPost?: any;
+    currentUser?: any;
 }
 
 export interface NewPostState {
     form: any;
     loading: boolean;
     showUploader: boolean;
+    pickLocation: boolean;
     uploadingProgress: number;
 }
 
@@ -29,29 +31,47 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
     state = {
         loading: false,
         showUploader: false,
+        pickLocation: false,
         uploadingProgress: 0,
         form: {
             post: "",
             postType: "TEXT",
-            publicStatus: "FRIENDS",
+            privacyStatus: "FRIENDS",
             medias: [],
+            longitude: 0.0,
+            latitude: 0.0,
         },
     };
     componentDidMount() {
-        this.setState({ form: this.props.editedPost });
+        this.setState({
+            form: {
+                ...this.props.editedPost,
+                medias: this.props.editedPost.medias.map((v: any, i: number) => {
+                    return {
+                        ...v,
+                        type: v.mediaType,
+                    };
+                }),
+            },
+            showUploader: this.props.editedPost?.postType === "MEDIA" ? true : false,
+        });
     }
+
     postStatus = () => {
-        const { post, postType, publicStatus, medias } = this.state.form;
+        const { post, postType, privacyStatus, medias, longitude, latitude } = this.state.form;
         const payload: any = {
             post,
             postType,
-            publicStatus,
+            privacyStatus,
             medias: medias.map((v: any) => {
                 return {
                     url: AppConfig.baseUrlApi + "/thrm-media/v1/file?source-id=karirapp-post&id=" + v.response.id,
                     mediaType: v.type,
+                    name: v.name,
                 };
             }),
+            longitude,
+            latitude,
         };
         this.setState({
             loading: true,
@@ -63,8 +83,10 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                     editedPost: {
                         post: "",
                         postType: "TEXT",
-                        publicStatus: "FRIENDS",
+                        privacyStatus: "FRIENDS",
                         medias: [],
+                        longitude: 0.0,
+                        latitude: 0.0,
                     },
                 });
                 this.props.setPostList?.({
@@ -75,14 +97,15 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                     },
                 });
             })
-
             .then(() => {
                 this.setState({
                     form: {
                         post: "",
                         postType: "TEXT",
-                        publicStatus: "FRIENDS",
+                        privacyStatus: "FRIENDS",
                         medias: [],
+                        longitude: 0.0,
+                        latitude: 0.0,
                     },
                 });
             })
@@ -93,7 +116,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
             });
     };
     render() {
-        const { visible } = this.props;
+        const { visible, currentUser } = this.props;
         return (
             <>
                 <Modal
@@ -105,8 +128,10 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                 form: {
                                     post: "",
                                     postType: "TEXT",
-                                    publicStatus: "FRIENDS",
+                                    privacyStatus: "FRIENDS",
                                     medias: [],
+                                    longitude: 0.0,
+                                    latitude: 0.0,
                                 },
                             },
                             () => {
@@ -115,8 +140,10 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                     editedPost: {
                                         post: "",
                                         postType: "TEXT",
-                                        publicStatus: "FRIENDS",
+                                        privacyStatus: "FRIENDS",
                                         medias: [],
+                                        longitude: 0.0,
+                                        latitude: 0.0,
                                     },
                                 });
                             }
@@ -168,27 +195,35 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                         <Col span={16}>
                             <Row align="middle">
                                 <Col flex={"70px"}>
-                                    <Avatar size={50} />
+                                    <Avatar size={50} src={currentUser.photo} />
                                 </Col>
                                 <Col flex={"auto"}>
                                     <Typography.Title level={5} style={{ marginBottom: 0 }}>
-                                        shela on 7
+                                        {currentUser.firstName} {currentUser.lastName}
                                     </Typography.Title>
-                                    <Typography.Text className="blue-primary" style={{ fontSize: 10 }}>
-                                        shela on 7
+                                    <Typography.Text
+                                        className="blue-primary"
+                                        style={{ fontSize: 10, cursor: "pointer" }}
+                                        onClick={() => {
+                                            this.setState({
+                                                pickLocation: true,
+                                            });
+                                        }}
+                                    >
+                                        Tambah Lokasi
                                     </Typography.Text>
                                 </Col>
                             </Row>
                         </Col>
                         <Col span={8} style={{ textAlign: "right" }}>
                             <Select
-                                value="FRIENDS"
+                                value={this.state.form.privacyStatus}
                                 size="small"
                                 onChange={(e) =>
                                     this.setState({
                                         form: {
                                             ...this.state.form,
-                                            publicStatus: e,
+                                            privacyStatus: e,
                                         },
                                     })
                                 }
@@ -211,6 +246,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                     <Row>
                         <Col span={24}>
                             <Input.TextArea
+                                value={this.state.form.post}
                                 style={{ marginTop: 20, border: 0 }}
                                 placeholder="Apa yang anda pikirkan?"
                                 onChange={(e) =>
@@ -226,6 +262,21 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                     </Row>
                     {this.state.showUploader && (
                         <div style={{ marginTop: 10 }}>
+                            <div style={{ textAlign: "right" }}>
+                                <Button
+                                    type="link"
+                                    icon={<FontAwesomeIcon icon={faTimes} style={{ color: "grey" }} />}
+                                    onClick={() => {
+                                        this.setState({
+                                            showUploader: false,
+                                            form: {
+                                                ...this.state.form,
+                                                medias: [],
+                                            },
+                                        });
+                                    }}
+                                />
+                            </div>
                             <Upload
                                 listType="picture-card"
                                 accept="video/*,image/*"
@@ -301,7 +352,46 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                         </div>
                     )}
                 </Modal>
+                {this.state.pickLocation && this.renderPickLocation()}
             </>
+        );
+    }
+
+    renderPickLocation() {
+        return (
+            <Modal
+                visible={this.state.pickLocation}
+                title={<div style={{ textAlign: "center" }}>Cari Lokasi</div>}
+                onCancel={() =>
+                    this.setState({
+                        pickLocation: false,
+                    })
+                }
+            >
+                <Input placeholder="Cari" prefix={<FontAwesomeIcon icon={faSearch} />} style={{ width: "100%", borderRadius: 20, color: "grey" }} />
+                <List
+                    dataSource={[
+                        {
+                            title: "Ant Design Title 1",
+                        },
+                        {
+                            title: "Ant Design Title 2",
+                        },
+                        {
+                            title: "Ant Design Title 3",
+                        },
+                        {
+                            title: "Ant Design Title 4",
+                        },
+                    ]}
+                    size="small"
+                    renderItem={(item: any, i: number) => (
+                        <List.Item key={i}>
+                            <List.Item.Meta avatar={<Avatar shape="square" icon={<FontAwesomeIcon icon={faMapMarkerAlt} />} />} title={<div>{item.title}</div>} description="Ant Design, a design language  " />
+                        </List.Item>
+                    )}
+                ></List>
+            </Modal>
         );
     }
 }

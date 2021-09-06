@@ -103,8 +103,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 editedPost: {
                                     post: "",
                                     postType: "TEXT",
-                                    publicStatus: "FRIENDS",
+                                    privacyStatus: "FRIENDS",
                                     medias: [],
+                                    longitude: 0.0,
+                                    latitude: 0.0,
                                 },
                             });
                         }}

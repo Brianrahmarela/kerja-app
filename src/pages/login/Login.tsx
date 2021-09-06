@@ -15,7 +15,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
-import { getMe } from "../../repository/UserRepo";
 export interface LoginProps {
     t: (x: any) => any;
     setToken: (x: any) => any;

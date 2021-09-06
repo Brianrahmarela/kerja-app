@@ -6,6 +6,8 @@ import { getFeed } from "../../../repository/FeedRepo";
 import InfiniteScroll from "react-infinite-scroller";
 import { connect } from "react-redux";
 import PostItem from "./PostItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 export interface PostsProps {
     t?: (x: any) => void;
@@ -93,7 +95,7 @@ class Posts extends React.Component<PostsProps, PostsState> {
                         </List.Item>
                     )}
                 >
-                    {this.state.loading && this.state.hasMore && <Spin />}
+                    {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />}
                 </List>
             </InfiniteScroll>
         );
