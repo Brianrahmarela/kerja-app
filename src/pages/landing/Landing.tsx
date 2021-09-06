@@ -1,7 +1,8 @@
-import { Button, Col, Row } from "antd";
+// import { Button, Col, Row } from "antd";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import TopMenu from "./part/TopMenu";
+
 
 export interface LandingPageProps {
     t: (x: any) => any;
@@ -28,20 +29,10 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
 
         return (
             <div className="landing-page">
-                <Row>
-                    <Col>
-                        <div>{t("landing:topMenu")}</div>
-                    </Col>
-                </Row>
+
                 <div className="color-style">{t("landing:title")}</div>
-                <Button
-                    onClick={() => {
-                        this.postForm("asdf");
-                    }}
-                >
-                    ini button
-                </Button>
                 <TopMenu judul={this.state.title} />
+
             </div>
         );
     }
