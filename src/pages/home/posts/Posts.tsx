@@ -90,7 +90,7 @@ class Posts extends React.Component<PostsProps, PostsState> {
                         emptyText: <Card>No Post</Card>,
                     }}
                     renderItem={(post: any, i: number) => (
-                        <List.Item key={post.id + i} style={{ padding: 0 }}>
+                        <List.Item key={post.id + i} style={{ padding: 0, marginBottom: 15 }}>
                             <PostItem postData={post} />
                         </List.Item>
                     )}
