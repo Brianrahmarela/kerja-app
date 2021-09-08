@@ -25,12 +25,12 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
         console.log("post");
     }
     render() {
-        const { t } = this.props;
+        // const { t } = this.props;
 
         return (
             <div className="landing-page">
 
-                <div className="color-style">{t("landing:title")}</div>
+                {/* <div className="color-style">{t("landing:title")}</div> */}
                 <TopMenu judul={this.state.title} />
 
             </div>
