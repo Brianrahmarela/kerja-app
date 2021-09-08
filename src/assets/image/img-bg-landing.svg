@@ -1,0 +1,35 @@
+<svg id="Group_344" data-name="Group 344" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1536.5" height="788.259" viewBox="0 0 1536.5 788.259">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-15.462" y1="-5.36" x2="-16.174" y2="-6.2" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.216" stop-color="#fff" stop-opacity="0.761"/>
+      <stop offset="0.604" stop-color="#fff" stop-opacity="0.357"/>
+      <stop offset="0.874" stop-color="#fff" stop-opacity="0.098"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.247" y1="0.864" x2="1.152" y2="-0.44" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0979cc"/>
+      <stop offset="0.23" stop-color="#2ea7e8"/>
+      <stop offset="0.347" stop-color="#3ebaf4"/>
+      <stop offset="0.653" stop-color="#228bdf"/>
+      <stop offset="0.695" stop-color="#2792e2"/>
+      <stop offset="0.885" stop-color="#3db4f3"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.929" y1="1.006" x2="0.217" y2="0.166" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="0.929" y1="1.006" x2="0.217" y2="0.166" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-5" x1="38.941" y1="0.739" x2="0.884" y2="0.185" xlink:href="#linear-gradient"/>
+  </defs>
+  <rect id="Rectangle_584" data-name="Rectangle 584" width="1536" height="787" fill="#fff"/>
+  <g id="Group_343" data-name="Group 343" transform="translate(303.366)">
+    <circle id="Ellipse_231" data-name="Ellipse 231" cx="1.859" cy="1.859" r="1.859" transform="translate(1065.312 134.634)" fill="#fff" opacity="0.44"/>
+    <ellipse id="Ellipse_122" data-name="Ellipse 122" cx="2.993" cy="2.993" rx="2.993" ry="2.993" transform="translate(820.897 102.979)" opacity="0.44" fill="url(#linear-gradient)"/>
+    <path id="Path_381" data-name="Path 381" d="M187.6-3.041S347.094,184.021,534.686,186.717C692.793,188.989,711.6,217.994,749.123,346.5c19.082,65.361,22.441,200.54,213.826,249.965,141.836,36.63,252.683-115.924,324.578,3.595,45.71,75.989,128.261,30.554,128.261,30.554V-.235Z" transform="translate(-187.601 4.352)" fill="#caefff"/>
+    <path id="Subtraction_14" data-name="Subtraction 14" d="M0,0S145.179,152.27,300.3,144.841s218.763,77.064,228.706,164.34c7.974,69.985-20.882,223.762,167.054,274.828,139.282,37.845,277.43-2.786,348.03,120.7,44.887,78.511,95.46,81.706,95.46,81.706V0Z" transform="translate(93.083 1.311)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse_126" data-name="Ellipse 126" cx="11.077" cy="11.077" rx="11.077" ry="11.077" transform="translate(226.8)" fill="url(#linear-gradient-3)"/>
+    <ellipse id="Ellipse_226" data-name="Ellipse 226" cx="3.458" cy="3.458" rx="3.458" ry="3.458" transform="translate(616.288 130.435)" opacity="0.29" fill="url(#linear-gradient-4)"/>
+    <circle id="Ellipse_227" data-name="Ellipse 227" cx="6.042" cy="6.042" r="6.042" transform="translate(570.782 36.1)" fill="#fff" opacity="0.44"/>
+    <circle id="Ellipse_230" data-name="Ellipse 230" cx="2.789" cy="2.789" r="2.789" transform="translate(1166.634 98.381)" fill="#fff" opacity="0.44"/>
+    <rect id="Rectangle_292" data-name="Rectangle 292" width="3.187" height="239.542" rx="1.594" transform="matrix(0.716, -0.698, 0.698, 0.716, 903.879, 6.732)" opacity="0.39" fill="url(#linear-gradient-5)"/>
+    <rect id="Rectangle_583" data-name="Rectangle 583" width="3.187" height="170.754" rx="1.594" transform="matrix(0.716, -0.698, 0.698, 0.716, 334.055, 2.224)" opacity="0.721" fill="url(#linear-gradient-5)"/>
+  </g>
+</svg>
