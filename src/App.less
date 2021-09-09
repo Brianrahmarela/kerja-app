@@ -61,7 +61,7 @@
         background: #fff;
     }
     .ant-col {
-        background-color: @primaryColor;
+        background-color: none;
     }
     .color-style {
         background-color: blue;
@@ -89,7 +89,358 @@
             height: 730px !important;
         }
     }
+    .rowtextlanding {
+        // background-color: gold;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        position: absolute;
+        top: 300px;
+        left: 10%;
+        @media (min-width: 280px) {
+            top: 120px;
+        }
+        @media (min-width: 576px) {
+            top: 125px;
+        }
+        @media (min-width: 768px) {
+            top: 160px;
+        }
+        @media (min-width: 992px) {
+            top: 200px;
+        }
+        @media (min-width: 1200px) {
+            top: 250px;
+        }
+    }
+    .rowiluspeoplelanding {
+        // background-color: gold;
+        width: 50%;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        position: absolute;
+        top: 400px;
+        left: 40%;
+        @media (min-width: 280px) {
+            top: 100px;
+            height: 350px;
+            left: 45%;
+        }
+        @media (min-width: 576px) {
+            top: 100px;
+            height: 350px;
+            left: 45%;
+        }
+        @media (min-width: 768px) {
+            top: 150px;
+        }
+        @media (min-width: 992px) {
+            top: 220px;
+        }
+        @media (min-width: 1200px) {
+            top: 250px;
+        }
+    }
+    #titlelanding {
+        margin: 0;
+        padding: 0;
+        color: black;
+        font-size: 76px;
+        font-weight: 500;
+        @media (min-width: 280px) {
+            font-size: 32px;
+        }
+        @media (min-width: 576px) {
+            font-size: 32px;
+        }
+        @media (min-width: 768px) {
+            font-size: 42px;
+        }
+        @media (min-width: 992px) {
+            font-size: 62px;
+        }
+        @media (min-width: 1200px) {
+            font-size: 72px;
+        }
+    }
+
+    #subtitlelanding {
+        font-family: "Open Sans";
+        margin: 0;
+        padding: 0;
+        color: #53575e;
+        font-size: 16px;
+        font-weight: 400;
+        @media (min-width: 280px) {
+            font-size: 14px;
+        }
+        @media (min-width: 576px) {
+            font-size: 14px;
+        }
+        @media (min-width: 992px) {
+            font-size: 16px;
+        }
+    }
+
+    .ant-carousel .slick-slide {
+        text-align: center;
+        height: 100%;
+        line-height: 160px;
+        // background: black;
+        overflow: hidden;
+        margin: 0 !important;
+        padding: 0 !important;
+        @media (min-width: 280px) {
+            height: 170px;
+        }
+        @media (min-width: 420px) {
+            height: 200px;
+        }
+        @media (min-width: 500px) {
+            height: 230px;
+        }
+        @media (min-width: 576px) {
+            height: 260px;
+        }
+        @media (min-width: 768px) {
+            height: 100%;
+        }
+        @media (min-width: 992px) {
+            height: 100%;
+        }
+    }
+    .ant-carousel .slick-slide img {
+        display: inline-block;
+        width: 80%;
+        @media (min-width: 768px) {
+            margin-bottom: 40px;
+        }
+    }
+    // .bannerimg{
+    // 	width: 70%;
+    // }
+
+    .ant-carousel .slick-prev {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        z-index: 1;
+        width: 64px;
+        height: 64px;
+        background-image: url(./assets/svg/prev.svg) !important;
+
+        @media (min-width: 280px) {
+            transform: scale(0.4);
+            left: 0%;
+            top: 35%;
+        }
+        @media (min-width: 420px) {
+            left: 0%;
+            top: 35%;
+        }
+        @media (min-width: 768px) {
+            transform: scale(0.7);
+            left: 5%;
+            top: 40%;
+        }
+        @media (min-width: 992px) {
+            transform: scale(0.9);
+            left: 7%;
+        }
+        @media (min-width: 1200px) {
+            transform: scale(1);
+            left: 10%;
+        }
+    }
+
+    .ant-carousel .slick-next {
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        z-index: 0;
+        width: 64px;
+        height: 64px;
+        background-image: url(./assets/svg/next.svg) !important;
+
+        @media (min-width: 280px) {
+            transform: scale(0.4);
+            right: 0%;
+            top: 35%;
+        }
+        @media (min-width: 420px) {
+            right: 0%;
+            top: 35%;
+        }
+        @media (min-width: 768px) {
+            transform: scale(0.7);
+            right: 5%;
+            top: 40%;
+        }
+        @media (min-width: 992px) {
+            transform: scale(0.9);
+            right: 7%;
+        }
+        @media (min-width: 1200px) {
+            transform: scale(1);
+            right: 10%;
+        }
+    }
+    .ant-carousel .slick-dots {
+        z-index: 0;
+    }
+
+    .ant-carousel .slick-dots li.slick-active button {
+        background: @primary-color;
+    }
+
+    .ant-carousel .slick-dots li button {
+        background: #cfcfcf;
+    }
+
+    .ant-carousel .slick-dots-bottom {
+        bottom: -10px;
+        @media (min-width: 768px) {
+        }
+    }
+    .containerImgExp {
+        position: relative;
+        background: #f0fcff;
+        @media (min-width: 280px) {
+            height: 507px;
+        }
+        @media (min-width: 500px) {
+            height: 577px;
+        }
+        @media (min-width: 768px) {
+            height: 617px;
+        }
+        @media (min-width: 992px) {
+            height: 644px;
+        }
+    }
+
+    #productexplore {
+        position: absolute;
+        width: 100vw !important;
+        bottom: 0;
+    }
+    #ilusproductexplore {
+        position: absolute;
+        bottom: 0;
+
+        @media (min-width: 280px) {
+            transform: scale(0.6);
+        }
+        @media (min-width: 500px) {
+            transform: scale(0.7);
+        }
+        @media (min-width: 992px) {
+            transform: scale(0.7);
+        }
+        @media (min-width: 1200px) {
+            transform: scale(0.8);
+        }
+    }
+    .rowproductExpComp {
+        position: absolute;
+        // top: 0;
+        top: 10%;
+        // margin: auto !important;
+    }
+    .titleproductexp {
+        font-size: 28px;
+        text-align: center;
+        @media (min-width: 280px) {
+            font-size: 22px !important;
+        }
+        @media (min-width: 768px) {
+            font-size: 28px !important;
+        }
+        @media (min-width: 992px) {
+            font-size: 30px !important;
+        }
+    }
+
+    .stroketitle {
+        border-bottom: 6px solid @primary-color;
+        width: 15%;
+        margin-bottom: 40.8px;
+    }
+
+    .textproductexp {
+        font-size: 16px;
+        font-family: "Open Sans";
+        text-align: center;
+
+        @media (min-width: 280px) {
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            font-size: 14px;
+        }
+        @media (min-width: 992px) {
+            font-size: 16px;
+        }
+    }
+    .spaceCardProduct {
+        @media (min-width: 280px) {
+            margin-bottom: 20px;
+            margin-right: 0;
+        }
+        @media (min-width: 455px) {
+            margin-right: 20px;
+        }
+        @media (min-width: 768px) {
+            margin-right: 20px;
+        }
+        @media (min-width: 992px) {
+            margin-right: 72px;
+        }
+    }
+    .each-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cardcus {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        width: 318px;
+    }
+    #imgcust {
+        width: 100vw !important;
+    }
+    .containerImgCus {
+        // position: relative;
+        margin-top: 30px;
+        background: #f0fcff;
+        // width: 100vw !important;
+        // height: 2000px;
+        // background-image: url(./assets/image/cloud.svg) !important;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+    }
+    .titleunduh {
+        font-size: 36px;
+        color: @primary-color;
+        @media (min-width: 280px) {
+            font-size: 28px;
+        }
+        @media (min-width: 768px) {
+            font-size: 36px;
+        }
+    }
+    .textunduh {
+        font-size: 28px;
+        @media (min-width: 280px) {
+            font-size: 21px;
+        }
+        @media (min-width: 768px) {
+            font-size: 28px;
+        }
+    }
 }
+
 .login-page,
 .registration-page {
     .right-section {
