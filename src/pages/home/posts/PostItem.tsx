@@ -60,7 +60,7 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                                 <Avatar size={45} src={postData.photo} shape="circle" />
                             </Col>
                             <Col flex="auto">
-                                <Link to={"/profile/ "} style={{ color: "rgba(0, 0, 0, 0.85)" }}>
+                                <Link to={"/profile/" + encodeHashUserId(postData.userId)} style={{ color: "rgba(0, 0, 0, 0.85)" }}>
                                     <span style={{ display: "block", fontWeight: 500 }}>
                                         {postData.firstName} {postData.lastName}
                                     </span>
