@@ -104,5 +104,6 @@ export const AppConfig = {
         postNotificationAsRead: baseUrlApi + "/notification/v1/notification-set-read",
         getActivationUser: baseUrlApi + "/ka-account/v1/activate-user/",
         getNotificationCheck: baseUrlApi + "/notification/v1/notification-check/",
+        postJobApplicationAttachment: baseUrlApi + "/ka-employer/v1/include-file",
     },
 };

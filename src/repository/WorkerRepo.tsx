@@ -1,5 +1,4 @@
 import { AppConfig } from "../config/Config";
-import { store } from "../redux/ConfigureStore";
 import axios from "../config/Axios";
 export const getMyResume = () => {
     const token = window.localStorage.getItem("token");
