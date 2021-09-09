@@ -1,313 +1,313 @@
 .App {
-	text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-	height: 40vmin;
-	pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-	background-color: #282c34;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-	color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @import "~antd/dist/antd.less";
 @primaryColor: #2c9be6;
 @primaryGrey: #8a8a8a;
 .blue-primary {
-	color: @primaryColor !important;
+    color: @primaryColor !important;
 }
 .grey-primary {
-	color: @primaryGrey !important;
+    color: @primaryGrey !important;
 }
 
 .landing-page {
-	.ant-avatar {
-		background: none;
-	}
-	.logo {
-		float: left;
-		width: 125px;
-		height: 31px;
-		margin: 16px 24px 16px 0;
-	}
-	.site-layout .site-layout-background {
-		background: #fff;
-	}
-	.ant-col {
-		background-color: @primaryColor;
-	}
-	.color-style {
-		background-color: blue;
-	}
-	#imglanding {
-		width: 100vw !important;
-		@media (min-width: 280px) {
-			margin-bottom: 100px;
-		}
-		@media (min-width: 576px) {
-			margin-bottom: 80px !important;
-		}
-		@media (min-width: 768px) {
-			margin-bottom: 50px !important;
-		}
-		@media (min-width: 992px) {
-			margin-bottom: 30px !important;
-		}
-		@media (min-width: 1200px) {
-			margin-bottom: 80px !important;
-			height: 600px !important;
-		}
-		@media (min-width: 1400px) {
-			margin-bottom: 120px !important;
-			height: 730px !important;
-		}
-	}
+    .ant-avatar {
+        background: none;
+    }
+    .logo {
+        float: left;
+        width: 125px;
+        height: 31px;
+        margin: 16px 24px 16px 0;
+    }
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+    .ant-col {
+        background-color: @primaryColor;
+    }
+    .color-style {
+        background-color: blue;
+    }
+    #imglanding {
+        width: 100vw !important;
+        @media (min-width: 280px) {
+            margin-bottom: 100px;
+        }
+        @media (min-width: 576px) {
+            margin-bottom: 80px !important;
+        }
+        @media (min-width: 768px) {
+            margin-bottom: 50px !important;
+        }
+        @media (min-width: 992px) {
+            margin-bottom: 30px !important;
+        }
+        @media (min-width: 1200px) {
+            margin-bottom: 80px !important;
+            height: 600px !important;
+        }
+        @media (min-width: 1400px) {
+            margin-bottom: 120px !important;
+            height: 730px !important;
+        }
+    }
 }
 .login-page,
 .registration-page {
-	.right-section {
-		padding: 45px 45px 0;
-	}
-	.header-left {
-		text-align: left;
-		position: absolute;
-		top: 45px;
-		left: 45px;
-		svg {
-			font-size: 35px;
-			color: white;
-		}
-	}
-	.header-right {
-		text-align: right;
-	}
-	.title {
-		color: @primaryColor;
-		text-align: center;
-		font-size: 34px;
-		margin-top: 80px;
-	}
-	.form {
-		padding: 40px 40px 0;
-	}
-	.logo-wrapper {
-		display: flex;
-		justify-content: right;
-		align-items: center;
-	}
+    .right-section {
+        padding: 45px 45px 0;
+    }
+    .header-left {
+        text-align: left;
+        position: absolute;
+        top: 45px;
+        left: 45px;
+        svg {
+            font-size: 35px;
+            color: white;
+        }
+    }
+    .header-right {
+        text-align: right;
+    }
+    .title {
+        color: @primaryColor;
+        text-align: center;
+        font-size: 34px;
+        margin-top: 80px;
+    }
+    .form {
+        padding: 40px 40px 0;
+    }
+    .logo-wrapper {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
 }
 .forgot-password-page {
-	.header-left {
-		text-align: left;
-		position: absolute;
-		top: 45px;
-		left: 45px;
-		svg {
-			font-size: 35px;
-			color: @primaryColor;
-		}
-	}
-	.logo-wrapper {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.title,
-	.form {
-		width: 60%;
-		min-width: 350px;
-		margin: auto;
-		text-align: center;
-	}
-	.title {
-		margin-top: 60px;
-	}
-	.form {
-		margin-top: 50px;
-	}
+    .header-left {
+        text-align: left;
+        position: absolute;
+        top: 45px;
+        left: 45px;
+        svg {
+            font-size: 35px;
+            color: @primaryColor;
+        }
+    }
+    .logo-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title,
+    .form {
+        width: 60%;
+        min-width: 350px;
+        margin: auto;
+        text-align: center;
+    }
+    .title {
+        margin-top: 60px;
+    }
+    .form {
+        margin-top: 50px;
+    }
 }
 .reset-password-page {
-	.logo-wrapper {
-		padding: 45px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.title,
-	.form {
-		width: 50%;
-		min-width: 350px;
-		margin: auto;
-		text-align: left;
-	}
-	.title {
-		margin-top: 60px;
-	}
+    .logo-wrapper {
+        padding: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title,
+    .form {
+        width: 50%;
+        min-width: 350px;
+        margin: auto;
+        text-align: left;
+    }
+    .title {
+        margin-top: 60px;
+    }
 }
 .logout-page {
-	.logo-wrapper {
-		padding: 15px;
-		display: flex;
-		justify-content: left;
-		align-items: center;
-	}
-	.header {
-		background-color: white;
-	}
-	.site-layout-content {
-		background-color: #e2faff;
-		height: calc(100vh - 64px);
-	}
-	.title {
-		padding-top: 100px;
-		text-align: center;
-	}
-	.button {
-		text-align: center;
-		margin-top: 50px;
-	}
+    .logo-wrapper {
+        padding: 15px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    .header {
+        background-color: white;
+    }
+    .site-layout-content {
+        background-color: #e2faff;
+        height: calc(100vh - 64px);
+    }
+    .title {
+        padding-top: 100px;
+        text-align: center;
+    }
+    .button {
+        text-align: center;
+        margin-top: 50px;
+    }
 }
 .ant-layout {
-	background-color: white;
+    background-color: white;
 }
 .ant-layout-header {
-	background-color: white;
-	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .app-header {
-	width: 100%;
-	background-color: white;
-	min-height: 64px;
-	margin: auto;
-	.logo-wrapper {
-		display: flex;
-		justify-content: left;
-		align-items: center;
-		.text-logo {
-			@media (max-width: 992px) {
-				display: none;
-				visibility: hidden;
-			}
-		}
-	}
-	.ant-menu {
-		height: 64px;
-		line-height: 60px;
-	}
-	.icon-menu {
-		line-height: 60px;
-	}
+    width: 100%;
+    background-color: white;
+    min-height: 64px;
+    margin: auto;
+    .logo-wrapper {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        .text-logo {
+            @media (max-width: 992px) {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+    .ant-menu {
+        height: 64px;
+        line-height: 60px;
+    }
+    .icon-menu {
+        line-height: 60px;
+    }
 
-	.account-menu {
-		display: inline-block;
-	}
-	.main-menu-middle {
-		width: 100%;
-		text-align: right;
-	}
-	.account-menu-mobile {
-		text-align: right;
-	}
+    .account-menu {
+        display: inline-block;
+    }
+    .main-menu-middle {
+        width: 100%;
+        text-align: right;
+    }
+    .account-menu-mobile {
+        text-align: right;
+    }
 }
 .popover-setting {
-	.ant-popover-inner-content {
-		padding: 10px;
-	}
-	.ant-list-item {
-		padding: 8px 0 8px;
-	}
+    .ant-popover-inner-content {
+        padding: 10px;
+    }
+    .ant-list-item {
+        padding: 8px 0 8px;
+    }
 }
 .body {
-	width: 100%;
-	padding: 15px;
-	@media (min-width: 1000px) {
-		max-width: 1000px;
-	}
-	margin: auto;
+    width: 100%;
+    padding: 15px;
+    @media (min-width: 1000px) {
+        max-width: 1000px;
+    }
+    margin: auto;
 }
 .home-page {
-	padding-top: 20px;
-	position: relative;
-	.ant-comment-inner {
-		padding: 0px 0px 5px;
-	}
-	.ant-comment-actions {
-		margin-top: 0px;
-	}
+    padding-top: 20px;
+    position: relative;
+    .ant-comment-inner {
+        padding: 0px 0px 5px;
+    }
+    .ant-comment-actions {
+        margin-top: 0px;
+    }
 }
 .recommendation-widget,
 .community-widget {
-	.ant-card-body {
-		padding: 0;
-	}
-	.ant-list-item {
-		padding: 0 0 10px 0;
-	}
+    .ant-card-body {
+        padding: 0;
+    }
+    .ant-list-item {
+        padding: 0 0 10px 0;
+    }
 }
 .profile-header {
-	.bg-cover {
-		height: 30vh;
-		border-radius: 15px;
-		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
-	}
-	.avatar-wrapper {
-		width: 100%;
-		height: 100%;
-		position: relative;
-	}
-	.avatar-border {
-		position: absolute;
-		margin: auto;
-		bottom: -40px;
-		left: 0px;
-		right: 0px;
-		width: 150px;
-		height: 150px;
-		background-color: white;
-		border-radius: 80px;
-		border-width: 5px;
-		padding: 5px;
-	}
-	.name-wrapper {
-		width: 100%;
-		height: 100%;
-		position: relative;
-	}
-	.ant-menu-horizontal {
-		border-bottom: 0px;
-	}
-	.underline {
-		border-bottom: 1px solid #f0f0f0;
-	}
+    .bg-cover {
+        height: 30vh;
+        border-radius: 15px;
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+    }
+    .avatar-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .avatar-border {
+        position: absolute;
+        margin: auto;
+        bottom: -40px;
+        left: 0px;
+        right: 0px;
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        border-radius: 80px;
+        border-width: 5px;
+        padding: 5px;
+    }
+    .name-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .ant-menu-horizontal {
+        border-bottom: 0px;
+    }
+    .underline {
+        border-bottom: 1px solid #f0f0f0;
+    }
 }
 // .profile-page {
 // }
@@ -318,103 +318,108 @@
 // .profile-connection {
 // }
 .chat-component {
-	height: calc(100vh - 180px);
-	.ant-card-body {
-		padding: 0;
-	}
-	.ant-card-body,
-	.ant-card-body > .ant-row,
-	.ant-card-body > .ant-row > .ant-col {
-		height: 100%;
-	}
-	.chatlist {
-		border-right: 1px solid #f0f0f0;
-		padding: 15px;
-	}
-	.chat-list {
-		height: calc(100% - 100px);
-	}
-	.top-chatlist {
-		.ant-btn-link {
-			color: rgba(0, 0, 0, 0.85);
-		}
-	}
-	.message-list {
-		height: calc(100% - 120px);
-		overflow-y: auto;
-	}
-	.search-chatlist {
-		.ant-col {
-			padding: 15px;
-		}
-	}
+    height: calc(100vh - 180px);
+    .ant-card-body {
+        padding: 0;
+    }
+    .ant-card-body,
+    .ant-card-body > .ant-row,
+    .ant-card-body > .ant-row > .ant-col {
+        height: 100%;
+    }
+    .chatlist {
+        border-right: 1px solid #f0f0f0;
+        padding: 15px;
+    }
+    .chat-list {
+        height: calc(100% - 100px);
+    }
+    .top-chatlist {
+        .ant-btn-link {
+            color: rgba(0, 0, 0, 0.85);
+        }
+    }
+    .message-list {
+        height: calc(100% - 120px);
+        overflow-y: auto;
+    }
+    .search-chatlist {
+        .ant-col {
+            padding: 15px;
+        }
+    }
+}
+.job-page {
+    svg.svg-inline--fa path {
+        color: @primaryColor;
+    }
 }
 .page-job-detail {
-	position: relative;
-	.bg-cover-left {
-		border-radius: 20px 20px 0 0;
-		text-align: center;
-		padding: 30px 0 30px;
-		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
-		.ant-typography {
-			color: white;
-		}
-	}
-	.bg-cover-right {
-		border-radius: 20px 20px 0 0;
-		height: 125px;
-		width: 100%;
-		position: absolute;
-		top: 0px;
-		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
-	}
-	.right-content {
-		padding: 30px;
-		top: 42px;
-		padding-bottom: 60px;
-		position: relative;
-		.ant-avatar {
-			background-color: white;
-			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-			-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-			-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-		}
-	}
-	.footer-content {
-		padding: 30px;
-	}
+    position: relative;
+    .bg-cover-left {
+        border-radius: 20px 20px 0 0;
+        text-align: center;
+        padding: 30px 0 30px;
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+        .ant-typography {
+            color: white;
+        }
+    }
+    .bg-cover-right {
+        border-radius: 20px 20px 0 0;
+        height: 125px;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+    }
+    .right-content {
+        padding: 30px;
+        top: 42px;
+        padding-bottom: 60px;
+        position: relative;
+        .ant-avatar {
+            background-color: white;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+    }
+    .footer-content {
+        padding: 30px;
+    }
 }
 .page-job-form {
-	.bg-header {
-		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
-		border-radius: 20px 20px 20px 20px;
-		.ant-typography {
-			color: white;
-		}
-	}
+    .bg-header {
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+        border-radius: 20px 20px 20px 20px;
+        .ant-typography {
+            color: white;
+        }
+    }
 }
 .learning-page {
-	.bg-cover {
-		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
-		height: 240px;
-		padding-bottom: 30px;
-	}
-	.header-form {
-		text-align: center;
+    .bg-cover {
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+        height: 240px;
+        padding-bottom: 30px;
+    }
+    .header-form {
+        text-align: center;
 
-		.ant-typography {
-			color: white;
-		}
-	}
-	.react-slideshow-container {
-		.default-nav {
-			background: #2c9be6;
-			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-			-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-			-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-			svg > path {
-				fill: #ffffff;
-			}
-		}
-	}
+        .ant-typography {
+            color: white;
+        }
+    }
+    .react-slideshow-container {
+        .default-nav {
+            background: #2c9be6;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            svg > path {
+                fill: #ffffff;
+            }
+        }
+    }
 }

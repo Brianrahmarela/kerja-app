@@ -1,30 +1,147 @@
 import { faArrowLeft, faBookmark, faCheck, faMailBulk, faMapMarkerAlt, faPhone, faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Breadcrumb, Button, Card, Col, Divider, Row, Space, Typography } from "antd";
+import { AxiosResponse } from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import { getJobVacationDetail } from "../../../repository/JobRepo";
+import ReactHtmlParser from "react-html-parser";
+import { encodeHashUserId } from "../../../config/Util";
 
-export interface JobDetailProps {}
+export interface JobDetailProps {
+    match: any;
+}
 
-export interface JobDetailState {}
+export interface JobDetailState {
+    id: number;
+    jobName: string;
+    specialization: string;
+    positionLevel: string;
+    role: string;
+    photoRequired: boolean;
+    jobType: string;
+    skill: string;
+    salaryMin: number;
+    salaryMax: number;
+    showSalary: boolean;
+    status: string;
+    publishDate: any;
+    expiredDate: any;
+    jobDetail: string;
+    gender: string;
+    allAge: boolean;
+    ageMin: number;
+    ageMax: number;
+    education: string;
+    educationMajor: string;
+    grade: string;
+    gradeAbove: number;
+    marritalStatus: string;
+    location: string;
+    longitude: string;
+    latitude: string;
+    experienced: boolean;
+    experienceYear: number;
+    freshGraduate: boolean;
+    contactEmail: string;
+    userId: number;
+    tnc: string;
+    organization: {
+        description: string;
+        name: string;
+        logo: string;
+        address: string;
+        longitude: string;
+        latitude: string;
+        industry: string;
+        organtizationMember: string;
+        phone: string;
+        status: string;
+        email: string;
+        taxId: string;
+        province: string;
+        city: string;
+        country: string;
+    };
+}
 
 class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
+    state = {
+        id: 0,
+        jobName: "",
+        specialization: "",
+        positionLevel: "",
+        role: "",
+        photoRequired: false,
+        jobType: "",
+        skill: "",
+        salaryMin: 0,
+        salaryMax: 0,
+        showSalary: false,
+        status: "",
+        publishDate: "0001-01-01T00:00:00Z",
+        expiredDate: "0001-01-01T00:00:00Z",
+        jobDetail: "",
+        gender: "",
+        allAge: false,
+        ageMin: 0,
+        ageMax: 0,
+        education: "",
+        educationMajor: "",
+        grade: "",
+        gradeAbove: 0,
+        marritalStatus: "",
+        location: "",
+        longitude: "",
+        latitude: "",
+        experienced: false,
+        experienceYear: 0,
+        freshGraduate: false,
+        contactEmail: "",
+        userId: 0,
+        tnc: "",
+        organization: {
+            description: "",
+            name: "",
+            logo: "",
+            address: "",
+            longitude: "",
+            latitude: "",
+            industry: "",
+            organtizationMember: "",
+            phone: "",
+            status: "",
+            email: "",
+            taxId: "",
+            province: "",
+            city: "",
+            country: "",
+        },
+    };
     componentDidMount() {
         window.document.title = "Job Detail | KerjaApp";
+        this.getData();
+    }
+    getData() {
+        const jobid = this.props.match.params.jobid;
+        getJobVacationDetail(jobid).then((res: AxiosResponse<any>) => {
+            this.setState(res.data);
+        });
     }
     render() {
+        const { organization } = this.state;
         return (
             <div className="page-job-detail">
                 <Row>
                     <Col>
                         <Breadcrumb>
                             <Breadcrumb.Item>
-                                <Link to="/">
+                                <Link to="/home">
                                     <FontAwesomeIcon icon={faArrowLeft} />
                                 </Link>
                             </Breadcrumb.Item>
                             <Breadcrumb.Item>
-                                <Link to="/">Lowongan Pekerjaan</Link>
+                                <Link to="/job">Lowongan Pekerjaan</Link>
                             </Breadcrumb.Item>
                             <Breadcrumb.Item>Deskripsi Pekerjaan</Breadcrumb.Item>
                         </Breadcrumb>
@@ -34,11 +151,11 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                     <Col span={8}>
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-left">
-                                <Avatar size={100} style={{ marginBottom: 20 }} />
-                                <Typography.Title level={5}>Lorem Boutique</Typography.Title>
+                                <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
+                                <Typography.Title level={5}>{organization.name}</Typography.Title>
                                 <Typography.Text>
                                     <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                    Jakarta, Indonesia
+                                    {organization.province}, {organization.country}
                                 </Typography.Text>
                                 <div style={{ marginTop: 15 }}>
                                     <Button icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>Ikuti</Button>
@@ -47,26 +164,23 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                             <div style={{ padding: 24 }}>
                                 <Typography.Title level={5}>Tentang Perusahaan</Typography.Title>
 
-                                <Typography.Paragraph>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita.
-                                </Typography.Paragraph>
+                                <Typography.Paragraph>{organization.description}</Typography.Paragraph>
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faMailBulk} style={{ marginRight: 5 }} />
-                                        loremboutique.com
+                                        {organization.email}
                                     </Typography.Text>
                                 </div>
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faPhone} style={{ marginRight: 5 }} />
-                                        0878112233445
+                                        {organization.phone}
                                     </Typography.Text>
                                 </div>
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                        Jl. Tebet Raya No.38, Jakarta Selatan, DKI Jakarta
+                                        {organization.address}
                                     </Typography.Text>
                                 </div>
                             </div>
@@ -79,10 +193,10 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                 <Avatar size={100} style={{ marginBottom: 20 }} />
                                 <Row align="bottom">
                                     <Col span={12}>
-                                        <Typography.Title level={5}>Lorem Boutique</Typography.Title>
+                                        <Typography.Title level={5}>{this.state.jobName}</Typography.Title>
                                         <Typography.Text>
                                             <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                            Jakarta, Indonesia
+                                            {this.state.location.split(",").join(", ")}
                                         </Typography.Text>
                                         <div style={{ marginTop: 15 }}>
                                             <Button icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>Ikuti</Button>
@@ -96,7 +210,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                             <Button type="primary" icon={<FontAwesomeIcon icon={faBookmark} style={{ marginRight: 5 }} />}>
                                                 Arsip
                                             </Button>
-                                            <Button type="primary" icon={<FontAwesomeIcon icon={faCheck} style={{ marginRight: 5 }} />}>
+                                            <Button type="primary" href={"#/job/apply/" + encodeHashUserId(this.state.id)} icon={<FontAwesomeIcon icon={faCheck} style={{ marginRight: 5 }} />}>
                                                 Lamar
                                             </Button>
                                         </Space>
@@ -105,36 +219,32 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                 <Row>
                                     <Col span={24}>
                                         <Typography.Title level={5} style={{ marginTop: 30 }}>
-                                            Lorem Boutique
+                                            Job Detail
                                         </Typography.Title>
-                                        <ul>
-                                            <li>Minimum Bachelor Degree majoring Fashion Design or Fashion Merchandising from reputable university</li>
-                                            <li>Minimum 1 years experiences in fashion retail industry Having graphic design skills (Illustrator, Photoshop)</li>
-                                            <li>Good interpersonal with excellent coordination skill</li>
-                                            <li>
-                                                Up-to-date in Fashion Trends● Active, Creative and Used to tight time schedule● Excellent skill in Fashion Design, Fabrics, Textille, Graphics Design and Pattern
-                                                Making● Understand Production Planning Process, Mood Board, Sample
-                                            </li>
-                                        </ul>
+                                        <div>{ReactHtmlParser(this.state.jobDetail)}</div>
                                     </Col>
                                     <Col span={24}>
                                         <Typography.Title level={5} style={{ marginTop: 30 }}>
-                                            Lorem Boutique
+                                            Spesification
                                         </Typography.Title>
                                         <Row>
                                             <Col span={12}>
-                                                <ul>
-                                                    <li>Minimum Bachelor Degree majoring Fashion Design or Fashion Merchandising from reputable university</li>
-                                                    <li>Minimum 1 years experiences in fashion retail industry Having graphic design skills (Illustrator, Photoshop)</li>
-                                                    <li>Good interpersonal with excellent coordination skill</li>
-                                                </ul>
+                                                <div>
+                                                    <Typography.Text strong>Jenis Pekerjaan</Typography.Text>: {this.state.jobType.replace("_", " ")}
+                                                </div>
+
+                                                <div>
+                                                    <Typography.Text strong>Status Pernikahan</Typography.Text>: {this.state.marritalStatus.replace("_", " ")}
+                                                </div>
                                             </Col>
                                             <Col span={12}>
-                                                <ul>
-                                                    <li>Minimum Bachelor Degree majoring Fashion Design or Fashion Merchandising from reputable university</li>
-                                                    <li>Minimum 1 years experiences in fashion retail industry Having graphic design skills (Illustrator, Photoshop)</li>
-                                                    <li>Good interpersonal with excellent coordination skill</li>
-                                                </ul>
+                                                <div>
+                                                    <Typography.Text strong>Jenis Pekerjaan</Typography.Text>: {this.state.jobType.replace("_", " ")}
+                                                </div>
+
+                                                <div>
+                                                    <Typography.Text strong>Status Pernikahan</Typography.Text>: {this.state.marritalStatus.replace("_", " ")}
+                                                </div>
                                             </Col>
                                         </Row>
                                     </Col>
@@ -151,7 +261,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                             <Button type="link" icon={<FontAwesomeIcon icon={faBookmark} style={{ marginRight: 5 }} />}>
                                                 Arsip
                                             </Button>
-                                            <Button type="primary" icon={<FontAwesomeIcon icon={faCheck} style={{ marginRight: 5 }} />}>
+                                            <Button type="primary" href={"#/job/apply/" + encodeHashUserId(this.state.id)} icon={<FontAwesomeIcon icon={faCheck} style={{ marginRight: 5 }} />}>
                                                 Lamar
                                             </Button>
                                         </Space>

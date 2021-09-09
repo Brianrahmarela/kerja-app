@@ -15,8 +15,8 @@ class JobRoute extends React.Component<JobRouteProps, JobRouteState> {
             <Router>
                 <Switch>
                     <Route exact path="/job" component={Job} />
-                    <Route exact path="/job/job-detail" component={JobDetail} />
-                    <Route exact path="/job/apply" component={JobForm} />
+                    <Route exact path="/job/job-detail/:jobid" component={JobDetail} />
+                    <Route exact path="/job/apply/:jobid" component={JobForm} />
                     <Route exact path="/job/my-job-application" component={MyJobApplication} />
                 </Switch>
             </Router>
