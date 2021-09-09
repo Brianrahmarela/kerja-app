@@ -1,6 +1,5 @@
-// import React, { Component } from 'react';
+import React from "react";
 import { withTranslation } from "react-i18next";
-
 import bgLanding from '../../../assets/image/img-bg-landing.svg';
 import { Image, Typography, Row, Col, Button, Space } from 'antd';
 import IlusPeople from '../../../assets/image/ilus-people.svg';
@@ -8,13 +7,11 @@ import Banner from '../part/Banner';
 import ProductExp from '../part/ProductExp';
 import ProductFeatures from '../part/ProductFeatures';
 import CustomerStories from '../part/CustomerStories';
-import React from "react";
 
 const { Title, Text } = Typography;
 export interface ContainerProps {
   t: (x: any) => any;
 }
-
 export interface ContainerState {
   pageReady: boolean;
 }
@@ -31,7 +28,7 @@ export class Container extends React.Component<ContainerProps, ContainerState>{
         />
         <Row className="rowtextlanding">
           <Col xs={10} sm={6} md={7} xl={7} xxl={7}>
-            <Title id="titlelanding">{t("landing:title")}</Title>
+            <Title id="titlelanding" style={{ fontFamily: 'Poppins' }}>{t("landing:title")}</Title>
           </Col>
           <Col xs={14} xl={17} xxl={17}></Col>
           <Row style={{ marginTop: 20 }}>
@@ -41,8 +38,8 @@ export class Container extends React.Component<ContainerProps, ContainerState>{
               </Col>
               <Col>
                 <div className="site-button-ghost-wrapper">
-                  <Button size={'large'} type="primary" ghost>
-                    Mulai
+                  <Button type="primary" ghost style={{ fontFamily: 'Poppins', fontWeight: 400, borderRadius: 8, }} id="btnmulai">
+                    {t("landing:start")}
                   </Button>
                 </div>
               </Col>
@@ -60,12 +57,11 @@ export class Container extends React.Component<ContainerProps, ContainerState>{
         <Banner />
         <ProductExp />
         <ProductFeatures />
-        <CustomerStories />
+        <CustomerStories t={t} />
       </div>
     )
   }
 }
 
-// export default Container
 export default withTranslation()(Container);
 

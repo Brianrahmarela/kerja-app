@@ -3,16 +3,13 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import TopMenu from "./part/TopMenu";
 
-
 export interface LandingPageProps {
     t: (x: any) => any;
 }
-
 export interface LandingPageState {
     ready: boolean;
     title: string;
 }
-
 class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
     state = {
         ready: false,
@@ -32,7 +29,6 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
 
                 {/* <div className="color-style">{t("landing:title")}</div> */}
                 <TopMenu judul={this.state.title} />
-
             </div>
         );
     }

@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+
 .App {
 	text-align: center;
 }
@@ -48,6 +51,18 @@
 }
 
 .landing-page {
+	.totopbtn {
+		height: 40px;
+		width: 40px;
+		align-items: center;
+		// line-height: "40px";
+		border-radius: 200px;
+		background-color: white;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		color: "#fff";
+		// text-align: "center";
+		// font-size: 14;
+	}
 	.ant-avatar {
 		background: none;
 	}
@@ -149,7 +164,7 @@
 		font-size: 76px;
 		font-weight: 500;
 		@media (min-width: 280px) {
-			font-size: 32px;
+			font-size: 31.5px;
 		}
 		@media (min-width: 576px) {
 			font-size: 32px;
@@ -182,7 +197,25 @@
 			font-size: 16px;
 		}
 	}
-
+	#btnmulai {
+		font-family: "Poppins";
+		font-weight: 400;
+		border-radius: 8;
+		@media (min-width: 280px) {
+			font-size: 16px;
+			padding: 0px 13px 0px 13px;
+		}
+		@media (min-width: 768px) {
+			font-size: 22px;
+			text-align: center;
+			padding: 2px 18px 35px 18px;
+		}
+		@media (min-width: 992px) {
+			font-size: 26px;
+			text-align: center;
+			padding: 5px 24px 45px 24px;
+		}
+	}
 	.ant-carousel .slick-slide {
 		text-align: center;
 		height: 100%;
@@ -349,6 +382,9 @@
 		// margin: auto !important;
 	}
 	.titleproductexp {
+		font-family: "Poppins";
+		font-weight: 500;
+		// color: #53575e;
 		font-size: 28px;
 		text-align: center;
 		@media (min-width: 280px) {
@@ -406,9 +442,58 @@
 	.cardcus {
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 		width: 318px;
+		@media (min-width: 280px) {
+			width: 248px;
+			// height: 348px;
+		}
+		@media (min-width: 768px) {
+			width: 318px;
+			// height: 348px;
+		}
 	}
 	#imgcust {
 		width: 100vw !important;
+	}
+	.imgslidecus {
+		@media (min-width: 280px) {
+			transform: scale(0.8);
+			margin: 0px;
+			padding: 0px;
+		}
+		@media (min-width: 768px) {
+			transform: scale(1);
+			margin-bottom: 20px;
+		}
+	}
+	#nameslidecus {
+		@media (min-width: 280px) {
+			margin: 0px !important;
+			font-size: 24px;
+		}
+		@media (min-width: 768px) {
+			margin-top: 25px;
+			font-size: 30px;
+		}
+	}
+	.jabatancus {
+		color: @primaryColor;
+		@media (min-width: 280px) {
+			margin: 0px !important;
+			font-size: 14px;
+		}
+		@media (min-width: 768px) {
+			margin-top: 25px;
+			font-size: 15px;
+		}
+	}
+	.descriptioncus {
+		color: #1a1a1a;
+		@media (min-width: 280px) {
+			font-size: 13px;
+		}
+		@media (min-width: 768px) {
+			font-size: 15px;
+		}
 	}
 	.containerImgCus {
 		// position: relative;
@@ -420,23 +505,98 @@
 		// background-repeat: no-repeat;
 		// background-size: cover;
 	}
+
+	.react-slideshow-container .default-nav {
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		// background-color: @primaryColor;
+	}
+	.ant-rate {
+		color: #ffbc00;
+	}
 	.titleunduh {
 		font-size: 36px;
 		color: @primary-color;
 		@media (min-width: 280px) {
-			font-size: 28px;
+			font-size: 24px;
 		}
 		@media (min-width: 768px) {
+			font-size: 30px;
+		}
+		@media (min-width: 992px) {
 			font-size: 36px;
 		}
 	}
 	.textunduh {
 		font-size: 28px;
 		@media (min-width: 280px) {
-			font-size: 21px;
+			font-size: 18px;
 		}
 		@media (min-width: 768px) {
+			font-size: 22px;
+		}
+		@media (min-width: 992px) {
 			font-size: 28px;
+		}
+	}
+	.btngoogle {
+		@media (min-width: 280px) {
+			width: 200px;
+			height: 70px;
+		}
+		@media (min-width: 768px) {
+			height: 85px;
+			width: 244px;
+		}
+		@media (min-width: 992px) {
+			height: 95px;
+			width: 284px;
+		}
+	}
+	.btnappstore {
+		@media (min-width: 280px) {
+			width: 200px;
+			height: 70px;
+		}
+		@media (min-width: 768px) {
+			height: 85px;
+			width: 244px;
+		}
+		@media (min-width: 992px) {
+			height: 95px;
+			width: 284px;
+		}
+	}
+
+	.footerleft {
+		@media (min-width: 280px) {
+			font-size: 15px !important;
+		}
+		@media (min-width: 992px) {
+			font-size: 18px !important;
+		}
+	}
+	.footercenter {
+		@media (min-width: 280px) {
+			font-size: 15px !important;
+		}
+		@media (min-width: 992px) {
+			font-size: 18px !important;
+		}
+	}
+	.footerright {
+		@media (min-width: 280px) {
+			font-size: 15px !important;
+		}
+		@media (min-width: 992px) {
+			font-size: 18px !important;
+		}
+	}
+	.copyright {
+		@media (min-width: 280px) {
+			font-size: 14px !important;
+		}
+		@media (min-width: 992px) {
+			font-size: 16px !important;
 		}
 	}
 }
