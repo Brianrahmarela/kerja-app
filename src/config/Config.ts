@@ -81,6 +81,8 @@ export const AppConfig = {
         getCompanhyFollow: baseUrlApi + "/ka-employer/v1/company-follow/",
         getUserSuggestion: baseUrlApi + "/ka-account/v1/user-suggestion",
         postFollowUser: baseUrlApi + "/ka-account/v1/follow-user",
+        postUserSetting: baseUrlApi + "/ka-account/v1/user-setting",
+        getUserSetting: baseUrlApi + "/ka-account/v1/user-setting",
         getFollowRequest: baseUrlApi + "/ka-account/v1/following-request",
         postAcceptRequest: baseUrlApi + "/ka-account/v1/follow-accept",
         postAcceptReject: baseUrlApi + "/ka-account/v1/follow-reject",

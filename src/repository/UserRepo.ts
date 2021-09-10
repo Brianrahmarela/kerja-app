@@ -27,3 +27,19 @@ export const postFollowUser = (payload: any) => {
         },
     });
 };
+export const postUserSetting = (payload: any) => {
+    const token = window.localStorage.getItem("token");
+    return axios.post(AppConfig.url.postUserSetting, payload, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
+export const getUserSetting = () => {
+    const token = window.localStorage.getItem("token");
+    return axios.get(AppConfig.url.getUserSetting, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};

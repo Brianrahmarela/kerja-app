@@ -1,9 +1,11 @@
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Col, Form, Button, Select, Space, Switch, Card } from "antd";
+import { Col, Form, Button, Select, Space, Switch, Card, message, Modal } from "antd";
 import Checkbox from "antd/lib/checkbox/Checkbox";
+import { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import React from "react";
+import { getUserSetting, postUserSetting } from "../../../repository/UserRepo";
 
 interface MySettingFormProps {}
 
@@ -16,11 +18,25 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
         form: {
             searchable: true,
             seeConnection: "ALL",
-            allowedPrivacy: [] as any[],
+            allowedPrivacy: [] as any,
             notification: "",
             language: "id",
         },
     };
+    componentDidMount() {
+        this.getData();
+    }
+
+    getData() {
+        getUserSetting().then((res: AxiosResponse<any>) => {
+            this.setState({
+                form: {
+                    ...res.data,
+                    allowedPrivacy: res.data.allowedPrivacy ? JSON.parse(res.data.allowedPrivacy) : [],
+                },
+            });
+        });
+    }
     render() {
         return (
             <>
@@ -30,25 +46,22 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                             enableReinitialize
                             initialValues={this.state.form}
                             onSubmit={(values, { setSubmitting }) => {
-                                // const payload: any = { ...values };
-                                // payload.allowedPrivacy = JSON.stringify(values.allowedPrivacy);
-                                // postPrivacySetting(payload)
-                                //     .then((res: AxiosResponse<any>) => {
-                                //         notification.success({
-                                //             message: "Success",
-                                //         });
-                                //         this.props.switchEditMode();
-                                //     })
-                                //     .catch((error) => {
-                                //         Modal.error({
-                                //             title: `Error`,
-                                //             // content : error.response.data.message
-                                //             content: error.response?.data?.message || error.message || "-",
-                                //         });
-                                //     })
-                                //     .finally(() => {
-                                //         setSubmitting(false);
-                                //     });
+                                const payload: any = { ...values };
+                                payload.allowedPrivacy = JSON.stringify(values.allowedPrivacy);
+                                postUserSetting(payload)
+                                    .then((res: AxiosResponse<any>) => {
+                                        this.getData();
+                                    })
+                                    .catch((error) => {
+                                        Modal.error({
+                                            title: `Error`,
+                                            // content : error.response.data.message
+                                            content: error.response?.data?.message || error.message || "-",
+                                        });
+                                    })
+                                    .finally(() => {
+                                        setSubmitting(false);
+                                    });
                             }}
                         >
                             {({ values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit, setFieldTouched, setFieldValue }) => (
@@ -77,13 +90,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="name"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Name
@@ -95,13 +110,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="email"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Email
@@ -113,13 +130,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="age"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Age
@@ -131,13 +150,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="lastJob"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Last Job
@@ -149,13 +170,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="phoneNo"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Phone No
@@ -167,13 +190,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="country"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Country
@@ -185,13 +210,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="education"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Last Education
@@ -203,13 +230,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="address"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Resident Address
@@ -221,13 +250,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="workLoc"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Work Location
@@ -239,13 +270,15 @@ class MySettingForm extends React.Component<MySettingFormProps, MySettingFormSta
                                                 value="gender"
                                                 onChange={(e) => {
                                                     const cloned = { ...values };
-                                                    const index = cloned.allowedPrivacy.indexOf(e.target.value);
+                                                    const allowedPrivacy: any[] = cloned.allowedPrivacy;
+                                                    const index = allowedPrivacy.indexOf(e.target.value);
+
                                                     if (index === -1 && e.target.checked) {
-                                                        cloned.allowedPrivacy.push(e.target.value);
+                                                        allowedPrivacy.push(e.target.value);
                                                     } else if (index !== -1 && e.target.checked === false) {
-                                                        cloned.allowedPrivacy.splice(index, 1);
+                                                        allowedPrivacy.splice(index, 1);
                                                     }
-                                                    setFieldValue("allowedPrivacy", cloned.allowedPrivacy);
+                                                    setFieldValue("allowedPrivacy", allowedPrivacy);
                                                 }}
                                             >
                                                 Gender
