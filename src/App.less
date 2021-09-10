@@ -49,7 +49,10 @@
 .grey-primary {
 	color: @primaryGrey !important;
 }
-
+.required {
+	color: red;
+	margin-left: 3px;
+}
 .landing-page {
 	.mobilehidden {
 		@media (min-width: 280px) {
@@ -828,6 +831,8 @@
 		height: 30vh;
 		border-radius: 15px;
 		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+		background-repeat: no-repeat;
+		background-size: 100%;
 	}
 	.avatar-wrapper {
 		width: 100%;
@@ -837,15 +842,14 @@
 	.avatar-border {
 		position: absolute;
 		margin: auto;
-		bottom: -40px;
+		bottom: -50px;
 		left: 0px;
 		right: 0px;
 		width: 150px;
 		height: 150px;
-		background-color: white;
-		border-radius: 80px;
-		border-width: 5px;
-		padding: 5px;
+		.ant-avatar {
+			border: 7px solid white;
+		}
 	}
 	.name-wrapper {
 		width: 100%;

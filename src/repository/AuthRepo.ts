@@ -24,3 +24,11 @@ export const getLogout = () => {
         },
     });
 };
+export const getBgProfile = () => {
+    const token = window.localStorage.getItem("token");
+    return axios.get(AppConfig.url.getBgProfile, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
