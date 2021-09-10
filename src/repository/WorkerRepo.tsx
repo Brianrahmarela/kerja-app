@@ -17,6 +17,7 @@ export const getPersonal = () => {
     });
 };
 export const getHeaderPersonal = (encodedId: string) => {
+    console.log(encodedId);
     const token = window.localStorage.getItem("token");
     return axios.get(AppConfig.url.getHeaderPersonalInfo + encodedId, {
         headers: {

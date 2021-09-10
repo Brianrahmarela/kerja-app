@@ -18,6 +18,7 @@ import AccountRoute from "./pages/account/AccountRoute";
 import Communication from "./pages/communication/Communication";
 import JobRoute from "./pages/job/JobRoute";
 import Learning from "./pages/learning/learning/Learning";
+import ProfileRoute from "./pages/profile/ProfileRoute";
 
 const Page404 = React.lazy(() => import("./pages/errors/Page404"));
 interface IProps {
@@ -82,7 +83,8 @@ class Router extends React.Component<IProps, IState> {
                     <Route exact path="/reset-password/:resetKey" component={ResetPassword} />
                     <Route exact path="/logout" component={Logout} />
                     <LayoutApp path="/home" component={Home} />
-                    <LayoutApp path="/profile" component={AccountRoute} />
+                    <LayoutApp path="/profile" component={ProfileRoute} />
+                    <LayoutApp path="/account" component={AccountRoute} />
                     <LayoutApp path="/communication" component={Communication} />
                     <LayoutApp path="/job" component={JobRoute} />
                     <LayoutApp path="/learning" component={Learning} />

@@ -1,10 +1,12 @@
 import { Component } from "react";
 import { Route, HashRouter as Router, Switch } from "react-router-dom";
-import Connection from "./connection/Connection";
-import Feed from "./feed/Feed";
 import MenuHeader from "./MenuHeader";
-import MyProfile from "./profile/Profile";
-import Work from "./work/Work";
+import MyEvent from "./my-event/MyEvent";
+import JobAppliedDetail from "./my-job-application/JobAppliedDetail";
+import MyJobApplication from "./my-job-application/MyJobApplication";
+import MyProfile from "./my-profile/MyProfile";
+import MyResume from "./my-resume/MyResume";
+import MySettingForm from "./my-setting/MySettingForm";
 
 interface IProps {}
 interface IState {}
@@ -18,10 +20,14 @@ class AccountRoute extends Component<IProps, IState> {
                 <MenuHeader />
                 <Router>
                     <Switch>
-                        <Route exact path="/profile/work/:userHashId" component={Work} />
-                        <Route exact path="/profile/connection/:userHashId" component={Connection} />
-                        <Route exact path="/profile/feed/:userHashId" component={Feed} />
-                        <Route exact path="/profile/:userHashId" component={MyProfile} />
+                        <Switch>
+                            <Route exact path="/account" component={MyProfile} />
+                            <Route path="/account/my-resume" component={MyResume} />
+                            <Route exact path="/account/settings" component={MySettingForm} />
+                            <Route exact path="/account/my-job-application" component={MyJobApplication} />
+                            <Route exact path="/account/my-job-application/:id" component={JobAppliedDetail} />
+                            <Route exact path="/account/my-event" component={MyEvent} />
+                        </Switch>
                     </Switch>
                 </Router>
             </div>
