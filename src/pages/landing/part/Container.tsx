@@ -27,13 +27,13 @@ export class Container extends React.Component<ContainerProps, ContainerState>{
           id="imglanding"
         />
         <Row className="rowtextlanding">
-          <Col xs={10} sm={6} md={7} xl={7} xxl={7}>
+          <Col xs={12} sm={7} md={7} lg={10} xl={7} xxl={7}>
             <Title id="titlelanding" style={{ fontFamily: 'Poppins' }}>{t("landing:title")}</Title>
           </Col>
-          <Col xs={14} xl={17} xxl={17}></Col>
+          <Col xs={12} xl={17} xxl={17}></Col>
           <Row style={{ marginTop: 20 }}>
             <Space size={24.3} direction="vertical">
-              <Col xs={17} sm={13} lg={11} span={9}>
+              <Col xs={17} md={10} sm={13} lg={11} span={9}>
                 <Text id="subtitlelanding">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </Text>
               </Col>
               <Col>

@@ -54,6 +54,26 @@
     margin-left: 3px;
 }
 .landing-page {
+    .mobilehidden {
+        @media (min-width: 280px) {
+            display: none;
+            position: "fixed";
+        }
+        @media (min-width: 576px) {
+            display: block;
+        }
+    }
+    .drawerhidden {
+        @media (min-width: 576px) {
+            display: none;
+        }
+    }
+    .btnmobile {
+        color: @primaryColor;
+        background: none;
+        border-style: none;
+        // margin-left: 40%;
+    }
     .totopbtn {
         height: 40px;
         width: 40px;
