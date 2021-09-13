@@ -2,6 +2,7 @@ import axios from "axios";
 // import { AppConfig } from "./Config";
 // import { store } from "../redux/ConfigureStore";
 // interceptoor ini berguna ketika token sudah EXPIRED jadi otomatis renew token dan retry submisison
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 axios.interceptors.response.use(
     (response) => {
         return response;
