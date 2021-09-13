@@ -153,7 +153,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-left">
                                 <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
-                                <Typography.Title level={5}>{organization.name}</Typography.Title>
+                                <Typography.Title level={4}>{organization.name}</Typography.Title>
                                 <Typography.Text>
                                     <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                     {organization.province}, {organization.country}
@@ -163,7 +163,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                 </div>
                             </div>
                             <div style={{ padding: 24 }}>
-                                <Typography.Title level={5}>Tentang Perusahaan</Typography.Title>
+                                <Typography.Title level={4}>Tentang Perusahaan</Typography.Title>
 
                                 <Typography.Paragraph>{organization.description}</Typography.Paragraph>
                                 <div>
@@ -182,7 +182,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5 }} />
                                         {(organization.website && (
-                                            <a href={"http://" + organization.website} target="_blank">
+                                            <a href={"http://" + organization.website} target="_blank" rel="noreferrer">
                                                 {organization.website}
                                             </a>
                                         )) ||
@@ -206,6 +206,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                 <Row align="bottom">
                                     <Col span={12}>
                                         <Typography.Title level={5}>{this.state.jobName}</Typography.Title>
+                                        <Typography.Title level={4}>{organization.name}</Typography.Title>
                                         <Typography.Text>
                                             <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                             {this.state.location.split(",").join(", ")}

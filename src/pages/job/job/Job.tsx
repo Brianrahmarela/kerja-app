@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { encodeHashUserId } from "../../../config/Util";
 import { getSearchJob } from "../../../repository/JobRepo";
-
+var CurrencyFormat = require("react-currency-format");
 export interface JobProps {
     currentUser?: any;
 }
@@ -124,9 +124,26 @@ class Job extends React.Component<JobProps, JobState> {
                                                                     <Typography.Text>Status Pekerjaan : {job.jobType.replace("_", " ")}</Typography.Text>
                                                                 </div>
                                                                 {job.showSalary && (
-                                                                    <div>
-                                                                        <Typography.Text>Gaji : Rp 3.000.000 - Rp 5.000.000</Typography.Text>
-                                                                    </div>
+                                                                    <Space>
+                                                                        <Typography.Text>
+                                                                            Gaji :{" "}
+                                                                            <CurrencyFormat
+                                                                                value={job.salaryMin}
+                                                                                displayType={"text"}
+                                                                                thousandSeparator={true}
+                                                                                prefix={"Rp."}
+                                                                                renderText={(value: any) => <>{value}</>}
+                                                                            />
+                                                                            <span> - </span>
+                                                                            <CurrencyFormat
+                                                                                value={job.salaryMax}
+                                                                                displayType={"text"}
+                                                                                thousandSeparator={true}
+                                                                                prefix={"Rp."}
+                                                                                renderText={(value: any) => <>{value}</>}
+                                                                            />
+                                                                        </Typography.Text>
+                                                                    </Space>
                                                                 )}
                                                             </Col>
                                                             <Col span={6} style={{ textAlign: "center" }}>
@@ -192,7 +209,7 @@ class Job extends React.Component<JobProps, JobState> {
                                                     <Input value={values.position} name="position" prefix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} />
                                                 </Form.Item>
                                                 <Form.Item label="Gaji">
-                                                    <Slider min={1} max={20} />
+                                                    <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />
                                                 </Form.Item>
                                                 <Form.Item>
                                                     <Checkbox
