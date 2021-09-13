@@ -6,8 +6,9 @@ import { Route, Switch, Link } from "react-router-dom";
 import logoHeader from "../../../assets/svg/logo-kerjaapp.svg";
 import ToTop from "../../../assets/svg/totop.svg";
 import FooterMenu from "../part/FooterMenu";
-import { BackTop, Image, Row, Col, Drawer, Button } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { BackTop, Image, Row, Col, Drawer, Button } from 'antd';
+import { DownOutlined, } from '@ant-design/icons';
+import logo from "../../../assets/svg/logo-header.svg";
 
 const Container = React.lazy(() => import("./Container"));
 
@@ -60,8 +61,8 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                             </Col>
                         </Row>
                     </BackTop>
-                    <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }}>
-                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]} className="mobilehidden">
+                    <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0 }} >
+                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden">
                             <Menu.Item key="1">
                                 <Link to="/">
                                     <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
@@ -85,16 +86,26 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                 </Link>
                             </Menu.Item>
                         </Menu>
-                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
-                            <Menu.Item key="1">
+                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']} >
+                            <Menu.Item key="0">
+
                                 <div className="drawerhidden">
                                     <Button type="primary" onClick={this.showDrawer} className="btnmobile">
                                         <FontAwesomeIcon icon={faBars} style={{ fontSize: 21 }} />
                                     </Button>
-                                    <Drawer title="Basic Drawer" placement="right" onClose={this.onClose} visible={this.state.visible}>
-                                        <p>Some contents...</p>
-                                        <p>Some contents...</p>
-                                        <p>Some contents...</p>
+                                    <Drawer title={<img style={{ padding: 0, margin: 0, }}
+                                        src={logo}
+                                        alt="logoheader"
+                                        id="logoheader"
+                                        height={32}
+                                    />} placement="right" onClose={this.onClose} visible={this.state.visible}>
+                                        <Menu.Item key="3">
+                                            <Link to="/login" style={{ fontFamily: 'Poppins' }}>Login</Link>
+                                        </Menu.Item>
+
+                                        <Menu.Item key="4">
+                                            <Link to="/signup" style={{ fontFamily: 'Poppins' }}>Sign Up</Link>
+                                        </Menu.Item>
                                     </Drawer>
                                 </div>
                             </Menu.Item>
