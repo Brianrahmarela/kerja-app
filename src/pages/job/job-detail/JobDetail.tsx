@@ -1,4 +1,4 @@
-import { faArrowLeft, faBookmark, faCheck, faMailBulk, faMapMarkerAlt, faPhone, faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faBookmark, faCheck, faGlobe, faMailBulk, faMapMarkerAlt, faPhone, faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Breadcrumb, Button, Card, Col, Divider, Row, Space, Typography } from "antd";
 import { AxiosResponse } from "axios";
@@ -101,21 +101,22 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
         userId: 0,
         tnc: "",
         organization: {
-            description: "",
+            description: "-",
             name: "",
             logo: "",
-            address: "",
+            address: "-",
             longitude: "",
             latitude: "",
             industry: "",
             organtizationMember: "",
-            phone: "",
+            phone: "-",
             status: "",
-            email: "",
+            email: "-",
             taxId: "",
             province: "",
             city: "",
             country: "",
+            website: "-",
         },
     };
     componentDidMount() {
@@ -168,19 +169,30 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faMailBulk} style={{ marginRight: 5 }} />
-                                        {organization.email}
+                                        {(organization.email && <a href={"email:" + organization.email}>{organization.email}</a>) || "-"}
                                     </Typography.Text>
                                 </div>
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faPhone} style={{ marginRight: 5 }} />
-                                        {organization.phone}
+                                        {(organization.phone && <a href={"tel:" + organization.phone}>{organization.phone}</a>) || "-"}
+                                    </Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>
+                                        <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5 }} />
+                                        {(organization.website && (
+                                            <a href={"http://" + organization.website} target="_blank">
+                                                {organization.website}
+                                            </a>
+                                        )) ||
+                                            "-"}
                                     </Typography.Text>
                                 </div>
                                 <div>
                                     <Typography.Text>
                                         <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                        {organization.address}
+                                        {organization.address || "-"}
                                     </Typography.Text>
                                 </div>
                             </div>
@@ -190,7 +202,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-right"></div>
                             <div className="right-content">
-                                <Avatar size={100} style={{ marginBottom: 20 }} />
+                                <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
                                 <Row align="bottom">
                                     <Col span={12}>
                                         <Typography.Title level={5}>{this.state.jobName}</Typography.Title>
