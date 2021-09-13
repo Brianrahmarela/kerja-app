@@ -1,14 +1,20 @@
 import { Layout, Menu, Avatar } from "antd";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBars, faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import logoHeader from "../../../assets/svg/logo-kerjaapp.svg";
+import logoMobile from "../../../assets/svg/logo-mobile.svg";
+import LoginIcon from "../../../assets/svg/login-icon.svg";
+import SignUpIcon from "../../../assets/svg/signup-icon.svg";
+import ArrowDown from "../../../assets/svg/arrow-down.svg";
+import HamburgerIcon from "../../../assets/svg/hamburger-icon.svg";
 import ToTop from "../../../assets/svg/totop.svg";
 import FooterMenu from "../part/FooterMenu";
-import { BackTop, Image, Row, Col, Drawer, Button } from 'antd';
+import { BackTop, Image, Row, Col, Drawer, Button, Space } from 'antd';
 import { DownOutlined, } from '@ant-design/icons';
-import logo from "../../../assets/svg/logo-header.svg";
+
+// import logo from "../../../assets/svg/logo-header.svg";
 
 const Container = React.lazy(() => import("./Container"));
 
@@ -91,21 +97,63 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
 
                                 <div className="drawerhidden">
                                     <Button type="primary" onClick={this.showDrawer} className="btnmobile">
-                                        <FontAwesomeIcon icon={faBars} style={{ fontSize: 21 }} />
+                                        {/* <FontAwesomeIcon icon={faBars} style={{ fontSize: 21 }} /> */}
+                                        <img style={{ padding: 0, margin: 0, }}
+                                            src={HamburgerIcon}
+                                            alt="logohamburger"
+                                            id="logohamburger"
+                                            height={22}
+
+                                        />
                                     </Button>
                                     <Drawer title={<img style={{ padding: 0, margin: 0, }}
-                                        src={logo}
+                                        src={logoMobile}
                                         alt="logoheader"
                                         id="logoheader"
                                         height={32}
-                                    />} placement="right" onClose={this.onClose} visible={this.state.visible}>
-                                        <Menu.Item key="3">
-                                            <Link to="/login" style={{ fontFamily: 'Poppins' }}>Login</Link>
-                                        </Menu.Item>
 
-                                        <Menu.Item key="4">
-                                            <Link to="/signup" style={{ fontFamily: 'Poppins' }}>Sign Up</Link>
-                                        </Menu.Item>
+                                    />} placement="right" onClose={this.onClose} visible={this.state.visible} headerStyle={{ padding: '65px 115px 19px 33px' }}
+                                        bodyStyle={{ padding: '20px 0 20px 12px' }} style={{ listStyleType: 'none', }}>
+                                        <Space size={20} direction="vertical">
+                                            <SubMenu key="sub1" icon={<img src={ArrowDown} alt="arrowdown" style={{ marginRight: 12, padding: 0, }} height={22} />} title="Indonesia">
+
+                                                <Menu.Item key="1">English</Menu.Item>
+                                            </SubMenu>
+                                            <Menu.Item key="2">
+                                                <Link to="/login" style={{ fontFamily: 'Poppins' }}>
+                                                    <Row justify="start" align="middle">
+                                                        <Space size={20}>
+                                                            <Col >
+                                                                {/* <FontAwesomeIcon icon={faSignInAlt} style={{ fontSize: 21 }} /> */}
+                                                                <img src={LoginIcon} alt="loginicon" style={{ margin: 0, padding: 0 }} height={24} />
+                                                            </Col>
+                                                            <Col >
+                                                                Login
+                                                            </Col>
+                                                        </Space>
+                                                    </Row>
+
+                                                </Link>
+                                            </Menu.Item>
+
+                                            <Menu.Item key="3">
+                                                <Link to="/signup" style={{ fontFamily: 'Poppins' }}>
+                                                    <Row justify="start" align="middle">
+                                                        <Space size={18}>
+                                                            <Col >
+                                                                {/* <FontAwesomeIcon icon={faUserPlus} style={{ fontSize: 21 }} /> */}
+                                                                <img src={SignUpIcon} alt="signupicon" style={{ margin: 0, padding: 0 }} height={24} />
+                                                            </Col>
+                                                            <Col >
+                                                                Sign Up
+                                                            </Col>
+                                                        </Space>
+                                                    </Row>
+
+                                                </Link>
+                                            </Menu.Item>
+                                        </Space>
+
                                     </Drawer>
                                 </div>
                             </Menu.Item>

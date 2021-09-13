@@ -64,27 +64,22 @@
 		}
 	}
 	@media (max-width: 576px) {
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
-		// .ant-menu-horizontal:not(.ant-menu-dark)
-		// 	> .ant-menu-submenu-selected::after {
-		// 	border-bottom: 0 solid;
-		// }
 		.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
 		.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
 			border-bottom: 0 solid;
 		}
 	}
+	.ant-menu-item a {
+		/* color: rgba(0, 0, 0, 0.85); */
+		color: #686e7b;
+	}
+
 	.drawerhidden {
 		@media (min-width: 576px) {
 			display: none;
 		}
 	}
+
 	.btnmobile {
 		color: @primaryColor;
 		background: none;
