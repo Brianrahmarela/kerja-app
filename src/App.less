@@ -906,12 +906,25 @@
 .page-job-detail {
 	position: relative;
 	.bg-cover-left {
+		position: relative;
 		border-radius: 20px 20px 0 0;
 		text-align: center;
 		padding: 30px 0 30px;
 		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
 		.ant-typography {
-			color: white;
+			z-index: 2;
+			position: relative;
+		}
+		&::before {
+			background-color: rgba(240, 240, 240, 0.6);
+			width: 100%;
+			border-radius: 20px 20px 0 0;
+			height: 100%;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: -0;
 		}
 	}
 	.bg-cover-right {
@@ -921,6 +934,17 @@
 		position: absolute;
 		top: 0px;
 		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+		&::before {
+			background-color: rgba(240, 240, 240, 0.6);
+			width: 100%;
+			border-radius: 20px 20px 0 0;
+			height: 100%;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: -0;
+		}
 	}
 	.right-content {
 		padding: 30px;
@@ -942,8 +966,17 @@
 	.bg-header {
 		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
 		border-radius: 20px 20px 20px 20px;
-		.ant-typography {
-			color: white;
+		position: relative;
+		&::before {
+			background-color: rgba(240, 240, 240, 0.6);
+			width: 100%;
+			border-radius: 20px 20px 20px 20px;
+			height: 100%;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: -0;
 		}
 	}
 }
@@ -952,12 +985,25 @@
 		background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
 		height: 240px;
 		padding-bottom: 30px;
+		border-radius: 20px;
+		position: relative;
+		&::before {
+			border-radius: 20px;
+			background-color: rgba(240, 240, 240, 0.6);
+			width: 100%;
+			height: 100%;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: -0;
+		}
 	}
 	.header-form {
 		text-align: center;
 
 		.ant-typography {
-			color: white;
+			color: rgb(17, 17, 17);
 		}
 	}
 	.react-slideshow-container {

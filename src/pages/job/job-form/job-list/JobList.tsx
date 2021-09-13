@@ -78,12 +78,12 @@ class JobList extends React.Component<JobListProps, JobListState> {
                         emptyText: <Card>No Post</Card>,
                     }}
                     renderItem={(job: any, i: number) => (
-                        <List.Item key={job.id + i} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
+                        <List.Item key={job.id + job.jobName + i} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
                             <Link to={"/job/job-detail/" + encodeHashUserId(job.id)}>
                                 <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20 }}>
                                     <Row align="middle" gutter={20}>
                                         <Col span={7} style={{ textAlign: "center" }}>
-                                            <Avatar size={64} />
+                                            <Avatar size={64} src={job.organization.logo} />
                                         </Col>
                                         <Col span={15}>
                                             <Typography.Title level={5}>{job.jobName}</Typography.Title>

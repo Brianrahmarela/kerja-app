@@ -73,7 +73,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                         <div className="bg-header">
                             <Row align="middle">
                                 <Col span={5} style={{ textAlign: "center", paddingTop: 50, paddingBottom: 50 }}>
-                                    <Avatar size={90} />
+                                    <Avatar size={90} src={this.state.jobData?.organization.logo} />
                                 </Col>
                                 <Col span={19}>
                                     <Typography.Title level={3}>{this.state.jobData?.jobName}</Typography.Title>
