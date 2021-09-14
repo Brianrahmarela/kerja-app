@@ -2,7 +2,7 @@ import { Button, Col, Divider, Form, Input, Modal, Row } from "antd";
 import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { postLogin, postLoginGoogle } from "../../repository/AuthRepo";
+import { postLogin, postLoginFacebook, postLoginGoogle } from "../../repository/AuthRepo";
 import { AxiosResponse } from "axios";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
@@ -17,7 +17,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
-
 export interface LoginProps {
     t: (x: any) => any;
     setToken: (x: any) => any;
@@ -47,7 +46,21 @@ class Login extends React.Component<LoginProps, LoginState> {
             .catch((error) => {
                 console.log(error.response);
                 Modal.error({
-                    title: `${this.props.t("common:notif.failed")}`,
+                    title: `${this.props.t("common:notif.failed")}a`,
+                    content: error.response?.data?.message || error.message,
+                });
+            });
+    }
+    loginFacebook(payload: any) {
+        postLoginFacebook(payload)
+            .then((res: AxiosResponse<any>) => {
+                this.props.setToken(res.data);
+                window.location.hash = "/home";
+            })
+            .catch((error) => {
+                console.log(error.response);
+                Modal.error({
+                    title: `${this.props.t("common:notif.failed")}x`,
                     content: error.response?.data?.message || error.message,
                 });
             });
@@ -167,10 +180,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                                                                 this.loginGoogle(e);
                                                             }}
                                                             onFailure={(error: any) => {
-                                                                Modal.error({
-                                                                    title: `${this.props.t("common:notif.failed")}`,
-                                                                    content: error.response?.data?.message || error.message,
-                                                                });
+                                                                console.log(error);
                                                             }}
                                                             cookiePolicy={"single_host_origin"}
                                                             render={(props: any) => (
@@ -179,7 +189,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                                                                     type="primary"
                                                                     ghost
                                                                     size="large"
-                                                                    style={{ width: "100%" }}
+                                                                    style={{ width: 150 }}
                                                                     icon={
                                                                         <img
                                                                             alt="google"
@@ -200,35 +210,30 @@ class Login extends React.Component<LoginProps, LoginState> {
                                                     <Col span={12}>
                                                         <FacebookLogin
                                                             appId={AppConfig.fbClient}
-                                                            autoLoad={true}
+                                                            autoLoad={false}
                                                             fields="name,email,picture"
-                                                            onClick={(e) => {
-                                                                console.log(e);
+                                                            onClick={(e: any) => {}}
+                                                            callback={(e: any) => {
+                                                                const name: string[] = e.name.split(" ");
+                                                                const payload: any = {
+                                                                    ...e,
+                                                                    firstName: name[0],
+                                                                    lastName: name[1],
+                                                                    photo: e.picture?.data?.url,
+                                                                };
+                                                                this.loginFacebook(payload);
                                                             }}
-                                                            callback={(e) => {
-                                                                console.log(e);
+                                                            textButton="Facebook"
+                                                            size="small"
+                                                            cssClass="ant-btn-background-ghost ant-btn-primary ant-btn ant-btn-lg ant-btn-background-ghost"
+                                                            buttonStyle={{
+                                                                backgroundImage: "url(" + facebookLogo + ")",
+                                                                backgroundSize: 20,
+                                                                backgroundRepeat: "no-repeat",
+                                                                backgroundPosition: "25px center",
+                                                                paddingLeft: 55,
                                                             }}
-                                                        >
-                                                            <Button
-                                                                type="primary"
-                                                                ghost
-                                                                size="large"
-                                                                style={{ width: "100%" }}
-                                                                icon={
-                                                                    <img
-                                                                        alt="google"
-                                                                        src={facebookLogo}
-                                                                        style={{
-                                                                            width: "20px",
-                                                                            height: "20px",
-                                                                            marginRight: 5,
-                                                                        }}
-                                                                    />
-                                                                }
-                                                            >
-                                                                Facebook
-                                                            </Button>
-                                                        </FacebookLogin>
+                                                        ></FacebookLogin>
                                                     </Col>
                                                 </Row>
                                             </Form.Item>
