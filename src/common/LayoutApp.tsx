@@ -22,9 +22,9 @@ class LayoutApp extends Component<IProps, IState> {
     render() {
         const token = window.localStorage.getItem("token");
         const expiredAt = window.localStorage.getItem("expiredAt");
-        // if (!token || (!expiredAt && Number(expiredAt) < moment().valueOf())) {
-        //     window.location.hash = "/login";
-        // }
+        if (!token || (!expiredAt && Number(expiredAt) < moment().valueOf())) {
+            window.location.hash = "/login";
+        }
         const { ...rest } = this.props;
         return (
             <>
