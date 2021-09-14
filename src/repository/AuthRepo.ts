@@ -24,6 +24,9 @@ export const getLogout = () => {
         },
     });
 };
+export const postLoginGoogle = (payload: any) => {
+    return axios.post(AppConfig.url.postLoginGoogle, payload);
+};
 export const getBgProfile = () => {
     const token = window.localStorage.getItem("token");
     return axios.get(AppConfig.url.getBgProfile, {

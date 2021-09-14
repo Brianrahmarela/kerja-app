@@ -11,6 +11,8 @@ export const AppConfig = {
     baseUrlApi,
     baseUrlWs,
     recaptchaKey: !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu" : "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu",
+    gClient: "201582228511-fo3fn13el0tbo25rii16m6ii2tamit0e.apps.googleusercontent.com",
+    fbClient: "350634888438686",
     hashKey: "qFaqv?TB@Sdc6Erk!9_a",
     firebaseConfig: {
         apiKey: "AIzaSyBA2UE3aQWmOgTNBcPm-ddCARC75u9uYcQ",
@@ -23,6 +25,7 @@ export const AppConfig = {
     },
     url: {
         postLogin: baseUrlApi + "/ka-auth/v1/login",
+        postLoginGoogle: baseUrlApi + "/ka-auth/v1/login-google",
         postRegister: baseUrlApi + "/ka-auth/v1/register",
         getMe: baseUrlApi + "/ka-auth/v1/me",
         getLogout: baseUrlApi + "/ka-auth/v1/logout",

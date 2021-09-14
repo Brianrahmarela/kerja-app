@@ -2,7 +2,7 @@ import { Button, Col, Divider, Form, Input, Modal, Row } from "antd";
 import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { postLogin } from "../../repository/AuthRepo";
+import { postLogin, postLoginGoogle } from "../../repository/AuthRepo";
 import { AxiosResponse } from "axios";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
@@ -15,6 +15,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AppConfig } from "../../config/Config";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
+
 export interface LoginProps {
     t: (x: any) => any;
     setToken: (x: any) => any;
@@ -34,6 +37,20 @@ class Login extends React.Component<LoginProps, LoginState> {
     };
     componentDidMount() {
         window.document.title = "Login | KerjaApp";
+    }
+    loginGoogle(payload: any) {
+        postLoginGoogle(payload)
+            .then((res: AxiosResponse<any>) => {
+                this.props.setToken(res.data);
+                window.location.hash = "/home";
+            })
+            .catch((error) => {
+                console.log(error.response);
+                Modal.error({
+                    title: `${this.props.t("common:notif.failed")}`,
+                    content: error.response?.data?.message || error.message,
+                });
+            });
     }
     render() {
         const { t } = this.props;
@@ -143,46 +160,75 @@ class Login extends React.Component<LoginProps, LoginState> {
                                             <Form.Item>
                                                 <Row gutter={25}>
                                                     <Col span={12} style={{ textAlign: "right" }}>
-                                                        <Button
-                                                            type="primary"
-                                                            ghost
-                                                            size="large"
-                                                            style={{ width: "100%" }}
-                                                            icon={
-                                                                <img
-                                                                    alt="google"
-                                                                    src={googleLogo}
-                                                                    style={{
-                                                                        width: "20px",
-                                                                        height: "20px",
-                                                                        marginRight: 5,
-                                                                    }}
-                                                                />
-                                                            }
-                                                        >
-                                                            Google
-                                                        </Button>
+                                                        <GoogleLogin
+                                                            clientId={AppConfig.gClient}
+                                                            buttonText="Log in with Google"
+                                                            onSuccess={(e: any) => {
+                                                                this.loginGoogle(e);
+                                                            }}
+                                                            onFailure={(error: any) => {
+                                                                Modal.error({
+                                                                    title: `${this.props.t("common:notif.failed")}`,
+                                                                    content: error.response?.data?.message || error.message,
+                                                                });
+                                                            }}
+                                                            cookiePolicy={"single_host_origin"}
+                                                            render={(props: any) => (
+                                                                <Button
+                                                                    onClick={props.onClick}
+                                                                    type="primary"
+                                                                    ghost
+                                                                    size="large"
+                                                                    style={{ width: "100%" }}
+                                                                    icon={
+                                                                        <img
+                                                                            alt="google"
+                                                                            src={googleLogo}
+                                                                            style={{
+                                                                                width: "20px",
+                                                                                height: "20px",
+                                                                                marginRight: 5,
+                                                                            }}
+                                                                        />
+                                                                    }
+                                                                >
+                                                                    Google
+                                                                </Button>
+                                                            )}
+                                                        ></GoogleLogin>
                                                     </Col>
                                                     <Col span={12}>
-                                                        <Button
-                                                            type="primary"
-                                                            ghost
-                                                            size="large"
-                                                            style={{ width: "100%" }}
-                                                            icon={
-                                                                <img
-                                                                    alt="google"
-                                                                    src={facebookLogo}
-                                                                    style={{
-                                                                        width: "20px",
-                                                                        height: "20px",
-                                                                        marginRight: 5,
-                                                                    }}
-                                                                />
-                                                            }
+                                                        <FacebookLogin
+                                                            appId={AppConfig.fbClient}
+                                                            autoLoad={true}
+                                                            fields="name,email,picture"
+                                                            onClick={(e) => {
+                                                                console.log(e);
+                                                            }}
+                                                            callback={(e) => {
+                                                                console.log(e);
+                                                            }}
                                                         >
-                                                            Facebook
-                                                        </Button>
+                                                            <Button
+                                                                type="primary"
+                                                                ghost
+                                                                size="large"
+                                                                style={{ width: "100%" }}
+                                                                icon={
+                                                                    <img
+                                                                        alt="google"
+                                                                        src={facebookLogo}
+                                                                        style={{
+                                                                            width: "20px",
+                                                                            height: "20px",
+                                                                            marginRight: 5,
+                                                                        }}
+                                                                    />
+                                                                }
+                                                            >
+                                                                Facebook
+                                                            </Button>
+                                                        </FacebookLogin>
                                                     </Col>
                                                 </Row>
                                             </Form.Item>
