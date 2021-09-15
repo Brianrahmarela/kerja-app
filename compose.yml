@@ -1,9 +1,9 @@
 version: "3.7"
 services:
-  karirapp-ui:
-    container_name: ka_ui
-    ports:
-      - "9999:80"
-    image: talenthrms/karirapp_ui_web:uat
-    env_file:
-      - ./env
+    karirapp-ui:
+        container_name: ka_ui
+        ports:
+            - "8989:80"
+        image: talenthrms/karirapp_ui_web:uat
+        env_file:
+            - ./env

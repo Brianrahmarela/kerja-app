@@ -1,4 +1,4 @@
-let baseUrl = "http://kerjaapp.xyz:7777";
+let baseUrl = "http://localhost:7777";
 
 // uat / prod
 if (process.env.NODE_ENV === "production") {
@@ -12,7 +12,7 @@ export const AppConfig = {
     baseUrlWs,
     recaptchaKey: !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu" : "6LeecDsaAAAAAP6cBwmX-WFAqpgdWGMBbDJe0Jbu",
     gClient: "201582228511-fo3fn13el0tbo25rii16m6ii2tamit0e.apps.googleusercontent.com",
-    fbClient: "350634888438686",
+    fbClient: "375754160965541",
     hashKey: "qFaqv?TB@Sdc6Erk!9_a",
     firebaseConfig: {
         apiKey: "AIzaSyBA2UE3aQWmOgTNBcPm-ddCARC75u9uYcQ",
@@ -26,6 +26,7 @@ export const AppConfig = {
     url: {
         postLogin: baseUrlApi + "/ka-auth/v1/login",
         postLoginGoogle: baseUrlApi + "/ka-auth/v1/login-google",
+        postLoginFacebook: baseUrlApi + "/ka-auth/v1/login-facebook",
         postRegister: baseUrlApi + "/ka-auth/v1/register",
         getMe: baseUrlApi + "/ka-auth/v1/me",
         getLogout: baseUrlApi + "/ka-auth/v1/logout",
@@ -67,7 +68,8 @@ export const AppConfig = {
         getMyResume: baseUrlApi + "/ka-jobseeker/v1/my-resume",
 
         postJobVacation: baseUrlApi + "/ka-employer/v1/job-vacation",
-        getJobVacationDetail: baseUrlApi + "/ka-employer/v1/job-vacation",
+        getJobVacationDetail: baseUrlApi + "/ka-employer/v1/job-vacation-detail",
+        getJobVacationDetailSlug: baseUrlApi + "/ka-employer/v1/job-vacation",
         getJobVacation: baseUrlApi + "/ka-employer/v1/search-job-vacation",
         postJobApplication: baseUrlApi + "/ka-employer/v1/submit-job-application",
         getMyApplicationJob: baseUrlApi + "/ka-employer/v1/my-job-application",

@@ -67,7 +67,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                             <span
                                                 className="blue-primary text-logo"
                                                 style={{
-                                                    fontSize: 24,
+                                                    fontSize: 22,
                                                     lineHeight: 0.5,
                                                     fontWeight: 500,
                                                 }}
@@ -90,7 +90,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                         <Row justify="end">
                                             <Col flex="auto">
                                                 <div style={{ textAlign: "right", height: 64 }}>
-                                                    <div style={{ width: 495, marginLeft: "auto" }}>
+                                                    <div style={{ width: 550, marginLeft: "auto" }}>
                                                         <Menu theme="light" mode="horizontal" selectedKeys={[this.state.selectedMenu]}>
                                                             <Menu.Item key="1">
                                                                 <Link to="/home">Beranda</Link>

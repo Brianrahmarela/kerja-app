@@ -1,12 +1,12 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import bgLanding from '../../../assets/image/img-bg-landing.svg';
-import { Image, Typography, Row, Col, Button, Space } from 'antd';
-import IlusPeople from '../../../assets/image/ilus-people.svg';
-import Banner from '../part/Banner';
-import ProductExp from '../part/ProductExp';
-import ProductFeatures from '../part/ProductFeatures';
-import CustomerStories from '../part/CustomerStories';
+import bgLanding from "../../../assets/image/img-bg-landing.svg";
+import { Image, Typography, Row, Col, Button, Space } from "antd";
+import IlusPeople from "../../../assets/image/ilus-people.svg";
+import Banner from "../part/Banner";
+import ProductExp from "../part/ProductExp";
+import ProductFeatures from "../part/ProductFeatures";
+import CustomerStories from "../part/CustomerStories";
 
 const { Title, Text } = Typography;
 export interface ContainerProps {
@@ -15,7 +15,7 @@ export interface ContainerProps {
 export interface ContainerState {
   pageReady: boolean;
 }
-export class Container extends React.Component<ContainerProps, ContainerState>{
+export class Container extends React.Component<ContainerProps, ContainerState> {
   render() {
     const { t } = this.props;
 
@@ -68,4 +68,3 @@ export class Container extends React.Component<ContainerProps, ContainerState>{
 }
 
 export default withTranslation()(Container);
-
