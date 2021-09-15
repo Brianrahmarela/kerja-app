@@ -5,7 +5,6 @@ import logoHeader from "../assets/svg/logo-kerjaapp.svg";
 import logoMobile from "../assets/svg/logo-mobile.svg";
 import HamburgerIcon from "../assets/svg/hamburger-icon.svg";
 import IconNotif from "../assets/svg/header-notification.svg";
-import IconSettings from "../assets/svg/header-settings.svg";
 import SvgSettings from "../assets/svg/SvgSettings";
 import SvgBeranda from "../assets/svg/SvgBeranda";
 import SvgJobs from "../assets/svg/SvgJobs";
