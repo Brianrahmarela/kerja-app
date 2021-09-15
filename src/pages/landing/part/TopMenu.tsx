@@ -1,10 +1,9 @@
-import { Layout, Menu, Avatar } from "antd";
+import { Layout, Menu } from "antd";
 // import { faBars, faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
-import logoHeader from "../../../assets/svg/logo-kerjaapp.svg";
-import logoMobile from "../../../assets/svg/logo-mobile.svg";
+// import logoMobile from "../../../assets/svg/logo-mobile.svg";
 import LoginIcon from "../../../assets/svg/login-icon.svg";
 import SignUpIcon from "../../../assets/svg/signup-icon.svg";
 import ArrowDown from "../../../assets/svg/arrow-down.svg";
@@ -14,6 +13,7 @@ import FooterMenu from "../part/FooterMenu";
 import { BackTop, Image, Row, Col, Drawer, Button, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { withTranslation } from "react-i18next";
+import logo from "./../../../assets/svg/logo-header.svg";
 
 // import logo from "../../../assets/svg/logo-header.svg";
 
@@ -87,9 +87,21 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                     </BackTop>
                     <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }}>
                         <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden">
-                            <Menu.Item key="1">
+                            <Menu.Item key="1" className="logo-home">
                                 <Link to="/">
-                                    <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
+                                    <div className="logo-wrapper">
+                                        <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
+                                        <span
+                                            className="blue-primary text-logo"
+                                            style={{
+                                                fontSize: 18,
+                                                lineHeight: 0.5,
+                                                fontWeight: 500,
+                                            }}
+                                        >
+                                            KerjaApp
+                                        </span>
+                                    </div>
                                 </Link>
                             </Menu.Item>
                             <SubMenu key="2" style={{ fontFamily: "Poppins" }} icon={<DownOutlined />} title={this.state.language}>
@@ -129,13 +141,30 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                         <img style={{ padding: 0, margin: 0 }} src={HamburgerIcon} alt="logohamburger" id="logohamburger" height={22} />
                                     </Button>
                                     <Drawer
-                                        title={<img style={{ padding: 0, margin: 0 }} src={logoMobile} alt="logoheader" id="logoheader" height={32} />}
+                                        title={
+                                            <Link to="/">
+                                                <div className="logo-wrapper">
+                                                    <img alt="logo" src={logo} style={{ width: 45, height: 45, marginRight: 5 }} />
+                                                    <span
+                                                        className="blue-primary text-logo"
+                                                        style={{
+                                                            fontSize: 28,
+                                                            lineHeight: 0.5,
+                                                            fontWeight: 500,
+                                                        }}
+                                                    >
+                                                        KerjaApp
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                        }
                                         placement="right"
                                         onClose={this.onClose}
                                         visible={this.state.visible}
                                         headerStyle={{ padding: "65px 115px 19px 33px" }}
                                         bodyStyle={{ padding: "20px 0 20px 12px" }}
                                         style={{ listStyleType: "none" }}
+                                        className="drawer-landing"
                                     >
                                         <Space size={20} direction="vertical">
                                             <SubMenu key="sub1" icon={<img src={ArrowDown} alt="arrowdown" style={{ marginRight: 12, padding: 0 }} height={22} />} title="Indonesia">

@@ -39,15 +39,23 @@
         transform: rotate(360deg);
     }
 }
+@font-face {
+    font-family: "fabadaregular";
+    src: url("./assets/fonts/fabada-regular-webfont.woff2") format("woff2"), url("./assets/fonts/fabada-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
 
 @import "~antd/dist/antd.less";
-@primaryColor: #2c9be6;
+@primary-color: #2c9be6;
 @primaryGrey: #8a8a8a;
 
 @poppins: "Poppins";
 @opensans: "Open Sans";
+@fabada: "fabadaregular";
+@font-family: @poppins;
 .blue-primary {
-    color: @primaryColor !important;
+    color: @primary-color !important;
 }
 .grey-primary {
     color: @primaryGrey !important;
@@ -56,7 +64,34 @@
     color: red;
     margin-left: 3px;
 }
+.drawer-landing {
+    .ant-drawer-header {
+        .logo-wrapper {
+            display: flex;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            width: 100%;
+            span {
+                font-family: @fabada !important;
+            }
+        }
+    }
+}
 .landing-page {
+    .logo-home {
+        height: 64px;
+        padding-top: 15px !important;
+    }
+    .logo-wrapper {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        span {
+            font-family: @fabada;
+        }
+    }
+
     .mobilehidden {
         height: 64px;
         border-bottom: 0px transparent;
@@ -86,7 +121,7 @@
     }
 
     .btnmobile {
-        color: @primaryColor;
+        color: @primary-color;
         background: none;
         border-style: none;
         box-shadow: none;
@@ -445,7 +480,7 @@
 
     .textproductexp {
         font-size: 16px;
-        font-family: "Open Sans";
+        font-family: @opensans;
         text-align: center;
 
         @media (min-width: 280px) {
@@ -515,7 +550,7 @@
         }
     }
     .jabatancus {
-        color: @primaryColor;
+        color: @primary-color;
         @media (min-width: 280px) {
             margin: 0px !important;
             font-size: 14px;
@@ -547,7 +582,7 @@
 
     .react-slideshow-container .default-nav {
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        // background-color: @primaryColor;
+        // background-color: @primary-color;
     }
     .ant-rate {
         color: #ffbc00;
@@ -659,7 +694,7 @@
         text-align: right;
     }
     .title {
-        color: @primaryColor;
+        color: @primary-color;
         text-align: center;
         font-size: 34px;
         margin-top: 80px;
@@ -673,6 +708,9 @@
         display: flex;
         justify-content: right;
         align-items: center;
+        span {
+            font-family: @fabada;
+        }
     }
 }
 
@@ -684,13 +722,16 @@
         left: 45px;
         svg {
             font-size: 35px;
-            color: @primaryColor;
+            color: @primary-color;
         }
     }
     .logo-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
+        span {
+            font-family: @fabada;
+        }
     }
     .title,
     .form {
@@ -712,6 +753,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        span {
+            font-family: @fabada;
+        }
     }
     .title,
     .form {
@@ -730,6 +774,9 @@
         display: flex;
         justify-content: left;
         align-items: center;
+        span {
+            font-family: @fabada;
+        }
     }
     .header {
         background-color: white;
@@ -765,6 +812,9 @@
         display: flex;
         justify-content: left;
         align-items: center;
+        span {
+            font-family: @fabada;
+        }
         .text-logo {
             @media (max-width: 992px) {
                 display: none;
@@ -776,6 +826,9 @@
         display: flex;
         justify-content: left;
         align-items: center;
+    }
+    .ant-btn {
+        font-family: @poppins;
     }
     .ant-menu {
         height: 64px;
@@ -910,7 +963,7 @@
 }
 .job-page {
     svg.svg-inline--fa path {
-        color: @primaryColor;
+        color: @primary-color;
     }
 }
 .page-job-detail {
