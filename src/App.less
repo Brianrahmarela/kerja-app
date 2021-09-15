@@ -43,6 +43,9 @@
 @import "~antd/dist/antd.less";
 @primaryColor: #2c9be6;
 @primaryGrey: #8a8a8a;
+
+@poppins: "Poppins";
+@opensans: "Open Sans";
 .blue-primary {
     color: @primaryColor !important;
 }
@@ -218,7 +221,7 @@
     }
 
     #subtitlelanding {
-        font-family: "Open Sans";
+        font-family: @opensans;
         margin: 0;
         padding: 0;
         color: #53575e;
@@ -235,7 +238,7 @@
         }
     }
     #btnmulai {
-        font-family: "Poppins";
+        font-family: @poppins;
         font-weight: 400;
         border-radius: 8;
         @media (min-width: 280px) {
@@ -419,7 +422,7 @@
         // margin: auto !important;
     }
     .titleproductexp {
-        font-family: "Poppins";
+        font-family: @poppins;
         font-weight: 500;
         // color: #53575e;
         font-size: 28px;
