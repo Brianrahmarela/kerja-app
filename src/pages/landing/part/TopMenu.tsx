@@ -159,12 +159,8 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                             </Menu.Item>
                         </Menu>
                     </Header>
-                    {/* <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0 }} >
-                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}> */}
-                    {/* </Menu>
-                    </Header> */}
 
-                    <Content className="site-layout" style={{ padding: "0", marginTop: 64 }}>
+                    <Content className="site-layout" style={{ padding: 0, marginTop: 64 }}>
                         <div className="site-layout-background" style={{ margin: 0, padding: 0, minHeight: 380 }}>
                             <React.Suspense fallback={<div>Loading...</div>}>
                                 <Switch>

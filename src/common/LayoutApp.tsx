@@ -6,13 +6,14 @@ import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import { getMe } from "../repository/UserRepo";
-import Header from "./Header";
+// import Header from "./Header";
+import HeaderV2 from "./HeaderV2";
 interface IProps {
     component: any;
     path: string;
     setCurrentUser: (x: any) => void;
 }
-interface IState {}
+interface IState { }
 class LayoutApp extends Component<IProps, IState> {
     componentDidMount() {
         getMe().then((res: AxiosResponse<any>) => {
@@ -29,8 +30,9 @@ class LayoutApp extends Component<IProps, IState> {
         return (
             <>
                 <Layout className="dashboard">
-                    <Header location={this.props.path} />
-                    <Layout.Content className="body">
+                    {/* <Header location={this.props.path} /> */}
+                    <HeaderV2 />
+                    <Layout.Content className="body" style={{ marginTop: 50 }}>
                         <Route {...rest} render={(props) => <Component {...props} />} />
                     </Layout.Content>
                 </Layout>

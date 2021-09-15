@@ -13,7 +13,7 @@ export interface HomeProps {
     setEditedPost?: (x: any) => void;
 }
 
-export interface HomeState {}
+export interface HomeState { }
 
 class Home extends React.Component<HomeProps, HomeState> {
     componentDidMount() {
