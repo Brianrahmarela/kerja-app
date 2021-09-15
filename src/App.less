@@ -58,6 +58,8 @@
 }
 .landing-page {
     .mobilehidden {
+        height: 64px;
+        border-bottom: 0px transparent;
         @media (min-width: 280px) {
             display: none;
             position: "fixed";
@@ -673,6 +675,7 @@
         align-items: center;
     }
 }
+
 .forgot-password-page {
     .header-left {
         text-align: left;
@@ -768,6 +771,11 @@
                 visibility: hidden;
             }
         }
+    }
+    .logo-wrapper-no-auth {
+        display: flex;
+        justify-content: left;
+        align-items: center;
     }
     .ant-menu {
         height: 64px;

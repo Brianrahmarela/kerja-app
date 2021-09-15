@@ -7,13 +7,10 @@ import moment from "moment";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getSearchJob } from "../../../../repository/JobRepo";
 var CurrencyFormat = require("react-currency-format");
-export interface JobProps {
-    currentUser?: any;
-}
+export interface JobProps {}
 
 export interface JobState {
     hasMore: boolean;
@@ -79,7 +76,6 @@ class Job extends React.Component<JobProps, JobState> {
             });
     };
     render() {
-        const { currentUser } = this.props;
         const { jobs } = this.state;
         return (
             <div className="job-page">
@@ -87,7 +83,7 @@ class Job extends React.Component<JobProps, JobState> {
                     <Col span={16}>
                         <Row justify="space-around">
                             <Col span={12}>
-                                <Typography.Text>Rekomendasi Untukmu, {currentUser?.firstName}</Typography.Text>
+                                <Typography.Text>Rekomendasi pekerjaan untuk mu</Typography.Text>
                             </Col>
                             <Col span={12} style={{ textAlign: "right" }}>
                                 <FontAwesomeIcon icon={faBookmark} /> My Job
@@ -109,10 +105,12 @@ class Job extends React.Component<JobProps, JobState> {
                                                         <Row justify="space-around">
                                                             <Col span={18}>
                                                                 <div>
-                                                                    <Typography.Text>{job.jobName}</Typography.Text>
+                                                                    <Typography.Title level={4}>{job.jobName}</Typography.Title>
                                                                 </div>
                                                                 <div>
-                                                                    <Typography.Title level={5}>{job.organization.name}</Typography.Title>
+                                                                    <Typography.Title level={5} className="blue-primary">
+                                                                        {job.organization.name}
+                                                                    </Typography.Title>
                                                                 </div>
                                                                 <div>
                                                                     {job.location.split(",").map((v: string) => (
@@ -254,10 +252,4 @@ class Job extends React.Component<JobProps, JobState> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
-    currentUser: state.account.currentUser,
-});
-
-const mapDispatchToProps = (dispatch: any) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Job));
+export default withTranslation()(Job);

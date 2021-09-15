@@ -1,4 +1,4 @@
-let baseUrl = "https://b574-182-1-113-23.ngrok.io";
+let baseUrl = "http://localhost:7777";
 
 // uat / prod
 if (process.env.NODE_ENV === "production") {
