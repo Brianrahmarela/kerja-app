@@ -3,10 +3,7 @@ import { Layout, Menu } from "antd";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
-// import logoMobile from "../../../assets/svg/logo-mobile.svg";
-import LoginIcon from "../../../assets/svg/login-icon.svg";
-import SignUpIcon from "../../../assets/svg/signup-icon.svg";
-import ArrowDown from "../../../assets/svg/arrow-down.svg";
+
 import HamburgerIcon from "../../../assets/svg/hamburger-icon.svg";
 import ToTop from "../../../assets/svg/totop.svg";
 import FooterMenu from "../part/FooterMenu";
@@ -14,6 +11,11 @@ import { BackTop, Image, Row, Col, Drawer, Button, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { withTranslation } from "react-i18next";
 import logo from "./../../../assets/svg/logo-header.svg";
+import logoMobile from "../../../assets/svg/logo-mobile.svg";
+import SvgLandingLogin from "../../../assets/svg/SvgLandingLogin";
+import SvgLandingSignUp from "../../../assets/svg/SvgLandingSignUp";
+import SvgLandingArrow from "../../../assets/svg/SvgLandingArrow";
+
 
 // import logo from "../../../assets/svg/logo-header.svg";
 
@@ -137,66 +139,59 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                             <Menu.Item key="0">
                                 <div className="drawerhidden">
                                     <Button type="primary" onClick={this.showDrawer} className="btnmobile">
-                                        {/* <FontAwesomeIcon icon={faBars} style={{ fontSize: 21 }} /> */}
                                         <img style={{ padding: 0, margin: 0 }} src={HamburgerIcon} alt="logohamburger" id="logohamburger" height={22} />
                                     </Button>
-                                    <Drawer
-                                        title={
-                                            <Link to="/">
-                                                <div className="logo-wrapper">
-                                                    <img alt="logo" src={logo} style={{ width: 45, height: 45, marginRight: 5 }} />
-                                                    <span
-                                                        className="blue-primary text-logo"
-                                                        style={{
-                                                            fontSize: 28,
-                                                            lineHeight: 0.5,
-                                                            fontWeight: 500,
-                                                        }}
-                                                    >
-                                                        KerjaApp
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                        }
-                                        placement="right"
-                                        onClose={this.onClose}
-                                        visible={this.state.visible}
-                                        headerStyle={{ padding: "65px 115px 19px 33px" }}
-                                        bodyStyle={{ padding: "20px 0 20px 12px" }}
-                                        style={{ listStyleType: "none" }}
-                                        className="drawer-landing"
-                                    >
-                                        <Space size={20} direction="vertical">
-                                            <SubMenu key="sub1" icon={<img src={ArrowDown} alt="arrowdown" style={{ marginRight: 12, padding: 0 }} height={22} />} title="Indonesia">
-                                                <Menu.Item key="1">English</Menu.Item>
-                                            </SubMenu>
-                                            <Menu.Item key="2">
-                                                <Link to="/login" style={{ fontFamily: "Poppins" }}>
-                                                    <Row justify="start" align="middle">
-                                                        <Space size={20}>
-                                                            <Col>
-                                                                {/* <FontAwesomeIcon icon={faSignInAlt} style={{ fontSize: 21 }} /> */}
-                                                                <img src={LoginIcon} alt="loginicon" style={{ margin: 0, padding: 0 }} height={24} />
-                                                            </Col>
-                                                            <Col>Login</Col>
-                                                        </Space>
-                                                    </Row>
-                                                </Link>
-                                            </Menu.Item>
 
-                                            <Menu.Item key="3">
-                                                <Link to="/signup" style={{ fontFamily: "Poppins" }}>
-                                                    <Row justify="start" align="middle">
-                                                        <Space size={18}>
-                                                            <Col>
-                                                                {/* <FontAwesomeIcon icon={faUserPlus} style={{ fontSize: 21 }} /> */}
-                                                                <img src={SignUpIcon} alt="signupicon" style={{ margin: 0, padding: 0 }} height={24} />
-                                                            </Col>
-                                                            <Col>Sign Up</Col>
-                                                        </Space>
-                                                    </Row>
-                                                </Link>
-                                            </Menu.Item>
+                                    <Drawer title={<img style={{ padding: 0, margin: 0, }}
+                                        src={logoMobile}
+                                        alt="logoheader"
+                                        id="logoheader"
+                                        height={26}
+                                    />} placement="right" onClose={this.onClose} visible={this.state.visible} headerStyle={{ padding: '65px 115px 19px 33px' }}
+                                        bodyStyle={{ padding: '40px 0 20px 0px', }} style={{ listStyleType: 'none', }}>
+
+                                        <Space size={43} direction="vertical" style={{ marginLeft: 12 }}>
+                                            <div className="svg-hover-submenu" >
+                                                {/* <SubMenu key="sub1" icon={<img src={ArrowDown} alt="arrowdown" style={{ marginLeft: 3, marginRight: 6, padding: 0 }} height={14} />} title="Indonesia" className="submenu"> */}
+                                                <SubMenu key="sub1" icon={<span><SvgLandingArrow /></span>} title="Indonesia" className="submenu" style={{ marginRight: 14, marginLeft: 3, }}>
+
+                                                    <Menu.Item key="1" style={{ marginLeft: 5, }}>English</Menu.Item>
+                                                </SubMenu>
+                                            </div>
+                                            <div className="svg-hover-menu" >
+                                                <Menu.Item key="2" style={{ padding: 0, marginLeft: 24 }}>
+                                                    <Link to="/login" style={{ fontFamily: 'Poppins' }}>
+                                                        <Row justify="start" align="middle">
+                                                            <Space size={14}>
+                                                                <Col >
+                                                                    <SvgLandingLogin />
+                                                                </Col>
+                                                                <Col >
+                                                                    Login
+                                                                </Col>
+                                                            </Space>
+                                                        </Row>
+
+                                                    </Link>
+                                                </Menu.Item>
+                                            </div>
+                                            <div className="svg-hover-menu" >
+                                                <Menu.Item key="3" style={{ padding: 0, marginLeft: 24 }}>
+                                                    <Link to="/register" style={{ fontFamily: 'Poppins' }}>
+                                                        <Row justify="start" align="middle">
+                                                            <Space size={14}>
+                                                                <Col >
+                                                                    <SvgLandingSignUp />
+                                                                </Col>
+                                                                <Col >
+                                                                    Sign Up
+                                                                </Col>
+                                                            </Space>
+                                                        </Row>
+
+                                                    </Link>
+                                                </Menu.Item>
+                                            </div>
                                         </Space>
                                     </Drawer>
                                 </div>
