@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:7777";
+let baseUrl = "https://b574-182-1-113-23.ngrok.io";
 
 // uat / prod
 if (process.env.NODE_ENV === "production") {
@@ -68,7 +68,8 @@ export const AppConfig = {
         getMyResume: baseUrlApi + "/ka-jobseeker/v1/my-resume",
 
         postJobVacation: baseUrlApi + "/ka-employer/v1/job-vacation",
-        getJobVacationDetail: baseUrlApi + "/ka-employer/v1/job-vacation",
+        getJobVacationDetail: baseUrlApi + "/ka-employer/v1/job-vacation-detail",
+        getJobVacationDetailSlug: baseUrlApi + "/ka-employer/v1/job-vacation",
         getJobVacation: baseUrlApi + "/ka-employer/v1/search-job-vacation",
         postJobApplication: baseUrlApi + "/ka-employer/v1/submit-job-application",
         getMyApplicationJob: baseUrlApi + "/ka-employer/v1/my-job-application",

@@ -75,6 +75,7 @@
         "@types/i18next-xhr-backend": "^1.4.2",
         "@types/react-facebook-login": "^4.1.4",
         "@types/react-google-recaptcha": "^2.1.2",
+        "@types/react-helmet": "^6.1.2",
         "@types/react-html-parser": "^2.0.2",
         "@types/react-router-dom": "^5.1.8"
     }

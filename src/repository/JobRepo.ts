@@ -2,11 +2,7 @@ import { AppConfig } from "../config/Config";
 import axios from "../config/Axios";
 
 export const getSearchJob = (params: any) => {
-    const token = window.localStorage.getItem("token");
     return axios.get(AppConfig.url.getJobVacation, {
-        headers: {
-            Authorization: "Bearer " + token,
-        },
         params,
     });
 };
@@ -53,6 +49,9 @@ export const getJobVacationDetail = (id: any) => {
             Authorization: "Bearer " + token,
         },
     });
+};
+export const getJobVacationDetailSlug = (slug: any) => {
+    return axios.get(AppConfig.url.getJobVacationDetailSlug + "/" + slug);
 };
 export const postApplicationWidthraw = (payload: any) => {
     const token = window.localStorage.getItem("token");
