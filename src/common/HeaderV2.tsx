@@ -67,104 +67,114 @@ export class HeaderV2 extends Component {
       <Row >
         <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins" }} >
 
-          {/* DESKTOP MENU*/}
+          {/* TABLET & DESKTOP MENU*/}
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden2">
             <Row justify="space-between">
-              <Col md={9} lg={6} xl={8} style={{ marginLeft: 26, backgroundColor: "turquoise" }} >
+              {/* //col md left */}
+              <Col md={10} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, backgroundColor: "turquoise" }} >
+                {/* <Col md={12} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, }} > */}
                 <Row>
-                  <Space size={10}>
+                  <Col md={9} lg={11} xl={11}>
+                    <Menu.Item key="1">
+                      <Link to="/home">
+                        <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
+                      </Link>
+                    </Menu.Item>
 
-                    <Col md={12} xl={4}>
-                      <Menu.Item key="1">
-                        <Link to="/home">
-                          <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
-                        </Link>
-                      </Menu.Item>
-
-                    </Col>
-                    <Col md={12} xl={20}>
-                      <Menu.Item key="2">
-                        <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17 }} id="searchbtn" />
-                      </Menu.Item>
-
-                    </Col>
-                  </Space>
+                  </Col>
+                  <Col md={10} lg={12} xl={12}>
+                    <Menu.Item key="2">
+                      <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" />
+                    </Menu.Item>
+                  </Col>
                 </Row>
               </Col>
 
-              <Col >
+              {/* col center lg menu beranda-mywork muncul di lg. hidden di md */}
+              <Col md={13} lg={16} xl={17} xxl={17} style={{ backgroundColor: "grey" }}>
+                {/* <Col md={10} lg={16} xl={17} xxl={17} > */}
                 <Row justify="end">
-                  <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2">
-                    <Row>
+                  <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2">
+                    {/* <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, }} className="tablethidden2"> */}
+                    <Row justify="end">
                       <Space size={20}>
-                        <div className="svg-hover-menu" >
-                          <Menu.Item key="3">
-                            <Link to="/home" style={{ fontFamily: 'Poppins' }}>
-                              <Row justify="start" align="middle">
-                                <Space size={20}>
-                                  <Col >
-                                    {/* <SvgBeranda /> */}
-                                  </Col>
-                                  <Col >
-                                    Beranda
-                                  </Col>
-                                </Space>
-                              </Row>
-
+                        <Col>
+                          <div className="svg-hover-menu" >
+                            <Menu.Item key="3">
+                              <Link to="/home" style={{ fontFamily: 'Poppins' }}>
+                                <Row justify="start" align="middle">
+                                  Beranda
+                                </Row>
+                              </Link>
+                            </Menu.Item>
+                          </div>
+                        </Col>
+                        <Col>
+                          <Menu.Item key="4">
+                            <Link to="/job">
+                              Jobs
                             </Link>
                           </Menu.Item>
-                        </div>
-
-                        <Menu.Item key="4">
-                          <Link to="/job">
-                            Jobs
-                          </Link>
-                        </Menu.Item>
-                        <Menu.Item key="5">
-                          <Link to="/learning">
-                            Learning
-                          </Link>
-                        </Menu.Item>
-                        <Menu.Item key="6">
-                          <Link to="/communication">
-                            Communication
-                          </Link>
-                        </Menu.Item>
-                        <Menu.Item key="7">
-                          <Link to="/my-work">
-                            My Work
-                          </Link>
-                        </Menu.Item>
+                        </Col>
+                        <Col>
+                          <Menu.Item key="5">
+                            <Link to="/learning">
+                              Learning
+                            </Link>
+                          </Menu.Item>
+                        </Col>
+                        <Col>
+                          <Menu.Item key="6">
+                            <Link to="/communication">
+                              Communication
+                            </Link>
+                          </Menu.Item>
+                        </Col>
+                        <Col>
+                          <Menu.Item key="7">
+                            <Link to="/my-work">
+                              My Work
+                            </Link>
+                          </Menu.Item>
+                        </Col>
                       </Space>
-
                     </Row>
                   </Col>
 
-                  <Col style={{ marginRight: 26, backgroundColor: "yellow" }}>
-                    <Row>
-
-                      <Row align="middle">
-                        <Space size={14}>
+                  <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, backgroundColor: "yellow" }}>
+                    {/* <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, }}> */}
+                    <Row align="middle" justify="start">
+                      <Space size={14}>
+                        <Col>
                           <div className="svg-hover-menu" >
-                            <Menu.Item key="5" style={{ padding: 0, marginLeft: 34 }} className="logout">
+                            <Menu.Item key="5" style={{ padding: 0, }} className="settings">
                               <Link to="/settings" style={{ fontFamily: 'Poppins' }}>
-                                <Row justify="start" align="middle">
+                                <Row align="middle">
                                   <SvgSettings fill="#686E7B" />
                                 </Row>
                               </Link>
                             </Menu.Item>
                           </div>
-                          {/* <Button type="text" onClick={this.onClickSettings}><Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<Image src={IconSettings} preview={false} height={21} />} /></Button> */}
+
+                        </Col>
+                        <Col>
 
                           <Badge count={2} >
-                            <Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
+                            <Avatar shape="circle" style={{ backgroundColor: "transparent", }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
                           </Badge>
-                        </Space>
+                        </Col>
+                        <Col>
+                          <Avatar shape="circle" style={{ backgroundColor: "transparent", marginLeft: 5 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} />
+
+                        </Col>
+                        <Col>
+                          <Text style={{ color: "#2b9be6", fontFamily: "Poppins", fontWeight: 400, fontSize: 15, }} className="textprofile">Hei Sheila!</Text>
+
+                        </Col>
+                      </Space>
 
 
-                        <Avatar shape="circle" style={{ backgroundColor: "transparent", marginLeft: 22, padding: 0 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} />
-                        <Text style={{ color: "#2b9be6", fontFamily: "Poppins", fontWeight: 400, fontSize: 15, marginLeft: 17 }}>Hei Sheila!</Text>
-                      </Row>
+
                     </Row>
                   </Col>
                 </Row>
@@ -254,7 +264,7 @@ export class HeaderV2 extends Component {
                   </div>
                   <div className="svg-hover-menu" >
                     <Menu.Item key="5" style={{ padding: 0, marginLeft: 24 }} >
-                      <Link to="/mywork" style={{ fontFamily: 'Poppins' }}>
+                      <Link to="/my-work" style={{ fontFamily: 'Poppins' }}>
                         <Row justify="start" align="middle">
                           <Space size={14}>
                             <Col >
