@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider } from 'antd';
+import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider, Tooltip } from 'antd';
 import { Link, } from "react-router-dom";
 import logoHeader from "../assets/svg/logo-kerjaapp.svg";
 import logoMobile from "../assets/svg/logo-mobile.svg";
@@ -12,9 +12,9 @@ import SvgLearning from "../assets/svg/SvgLearning";
 import SvgCommunication from "../assets/svg/SvgCommunication";
 import SvgMyWork from "../assets/svg/SvgMyWork";
 import SvgLogOut from "../assets/svg/SvgLogOut";
+import SvgSearch from "../assets/svg/SvgSearch";
 import HeaderAvatar from "../assets/image/header-avatar.png";
 // import Icon from '@ant-design/icons';
-
 
 const { Search } = Input;
 const { Header, } = Layout;
@@ -67,7 +67,7 @@ export class HeaderV2 extends Component {
       <Row >
         <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins" }} >
 
-          {/* DESKTOP MENU*/}
+          {/* TABLET MENU*/}
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden2">
             <Row justify="space-between">
               <Col md={9} lg={6} xl={8} style={{ marginLeft: 26, backgroundColor: "turquoise" }} >
@@ -94,7 +94,8 @@ export class HeaderV2 extends Component {
 
               <Col >
                 <Row justify="end">
-                  <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2">
+                  {/* <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2"> */}
+                  <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} >
                     <Row>
                       <Space size={20}>
                         <div className="svg-hover-menu" >
@@ -175,131 +176,166 @@ export class HeaderV2 extends Component {
           </Menu>
 
           {/* MOBILE MENU*/}
-          <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']} >
+          <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="drawerhidden2">
+            {/* <div className=""> */}
             <Menu.Item key="0">
 
-              <div className="drawerhidden2">
-                <Button type="default" onClick={this.showDrawer} className="btnmobile">
-                  {/* <FontAwesomeIcon icon={faBars} style={{ fontSize: 21 }} /> */}
-                  <img style={{ padding: 0, margin: 0, }}
-                    src={HamburgerIcon}
-                    alt="logohamburger"
-                    id="logohamburger"
-                    height={22}
-
-                  />
-                </Button>
-                <Drawer title={<img style={{ padding: 0, margin: 0, }}
-                  src={logoMobile}
-                  alt="logoheader"
-                  id="logoheader"
-                  height={26}
-                />} placement="right" onClose={this.onClose} visible={this.state.visible} headerStyle={{ padding: '65px 115px 19px 33px' }}
-                  bodyStyle={{ padding: '40px 0 20px 0px', }} style={{ listStyleType: 'none', }}>
-                  <Space size={43} direction="vertical" style={{ marginLeft: 12 }}>
-                    <div className="svg-hover-menu">
-                      <Menu.Item key="2" style={{ padding: 0, marginLeft: 24 }}>
-                        <Link to="/home" style={{ fontFamily: 'Poppins' }}>
-                          <Row justify="start" align="middle">
-                            <Space size={14}>
-                              <Col >
-                                <SvgBeranda />
-                              </Col>
-                              <Col >
-                                Beranda
-                              </Col>
-                            </Space>
-                          </Row>
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div className="svg-hover-menu" >
-                      <Menu.Item key="3" style={{ padding: 0, marginLeft: 24 }}>
-                        <Link to="/jobs" style={{ fontFamily: 'Poppins' }}>
-                          <Row justify="start" align="middle">
-                            <Space size={14}>
-                              <Col >
-                                <SvgJobs />
-                              </Col>
-                              <Col >
-                                Jobs
-                              </Col>
-                            </Space>
-                          </Row>
-
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div className="svg-hover-menu" >
-                      <Menu.Item key="4" style={{ padding: 0, marginLeft: 24 }}>
-                        <Link to="/learning" style={{ fontFamily: 'Poppins' }}>
-                          <Row justify="start" align="middle">
-                            <Space size={14}>
-                              <Col >
-                                <SvgLearning />
-                              </Col>
-                              <Col >
-                                Learning
-                              </Col>
-                            </Space>
-                          </Row>
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div className="svg-hover-menu" >
-                      <Menu.Item key="5" style={{ padding: 0, marginLeft: 24 }}>
-                        <Link to="/communication" style={{ fontFamily: 'Poppins' }}>
-                          <Row justify="start" align="middle">
-                            <Space size={14}>
-                              <Col >
-                                <SvgCommunication />
-                              </Col>
-                              <Col >
-                                Communication
-                              </Col>
-                            </Space>
-                          </Row>
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div className="svg-hover-menu" >
-                      <Menu.Item key="5" style={{ padding: 0, marginLeft: 24 }} >
-                        <Link to="/mywork" style={{ fontFamily: 'Poppins' }}>
-                          <Row justify="start" align="middle">
-                            <Space size={14}>
-                              <Col >
-                                <SvgMyWork fill="#686E7B" />
-                              </Col>
-                              <Col >
-                                My Work
-                              </Col>
-                            </Space>
-                          </Row>
-                        </Link>
-                      </Menu.Item>
-                    </div>
-
-                  </Space>
-                  <Divider />
-                  <div className="svg-hover-menu-logout" >
-                    <Menu.Item key="5" style={{ padding: 0, marginLeft: 34 }} className="logout">
-                      <Link to="/logout" style={{ fontFamily: 'Poppins' }}>
+              <Drawer title={<img style={{ padding: 0, margin: 0, }}
+                src={logoMobile}
+                alt="logoheader"
+                id="logoheader"
+                height={26}
+              />} placement="right" onClose={this.onClose} visible={this.state.visible} headerStyle={{ padding: '65px 115px 19px 33px' }}
+                bodyStyle={{ padding: '40px 0 20px 0px', }} style={{ listStyleType: 'none', }}>
+                <Space size={43} direction="vertical" style={{ marginLeft: 12 }}>
+                  <div className="svg-hover-menu">
+                    <Menu.Item key="2" style={{ padding: 0, marginLeft: 24 }}>
+                      <Link to="/home" style={{ fontFamily: 'Poppins' }}>
                         <Row justify="start" align="middle">
                           <Space size={14}>
                             <Col >
-                              <SvgLogOut fill="#E83232" />
+                              <SvgBeranda />
                             </Col>
                             <Col >
-                              Log Out
+                              Beranda
                             </Col>
                           </Space>
                         </Row>
                       </Link>
                     </Menu.Item>
                   </div>
-                </Drawer>
-              </div>
+                  <div className="svg-hover-menu" >
+                    <Menu.Item key="3" style={{ padding: 0, marginLeft: 24 }}>
+                      <Link to="/jobs" style={{ fontFamily: 'Poppins' }}>
+                        <Row justify="start" align="middle">
+                          <Space size={14}>
+                            <Col >
+                              <SvgJobs />
+                            </Col>
+                            <Col >
+                              Jobs
+                            </Col>
+                          </Space>
+                        </Row>
+
+                      </Link>
+                    </Menu.Item>
+                  </div>
+                  <div className="svg-hover-menu" >
+                    <Menu.Item key="4" style={{ padding: 0, marginLeft: 24 }}>
+                      <Link to="/learning" style={{ fontFamily: 'Poppins' }}>
+                        <Row justify="start" align="middle">
+                          <Space size={14}>
+                            <Col >
+                              <SvgLearning />
+                            </Col>
+                            <Col >
+                              Learning
+                            </Col>
+                          </Space>
+                        </Row>
+                      </Link>
+                    </Menu.Item>
+                  </div>
+                  <div className="svg-hover-menu" >
+                    <Menu.Item key="5" style={{ padding: 0, marginLeft: 24 }}>
+                      <Link to="/communication" style={{ fontFamily: 'Poppins' }}>
+                        <Row justify="start" align="middle">
+                          <Space size={14}>
+                            <Col >
+                              <SvgCommunication />
+                            </Col>
+                            <Col >
+                              Communication
+                            </Col>
+                          </Space>
+                        </Row>
+                      </Link>
+                    </Menu.Item>
+                  </div>
+                  <div className="svg-hover-menu" >
+                    <Menu.Item key="5" style={{ padding: 0, marginLeft: 24 }} >
+                      <Link to="/mywork" style={{ fontFamily: 'Poppins' }}>
+                        <Row justify="start" align="middle">
+                          <Space size={14}>
+                            <Col >
+                              <SvgMyWork fill="#686E7B" />
+                            </Col>
+                            <Col >
+                              My Work
+                            </Col>
+                          </Space>
+                        </Row>
+                      </Link>
+                    </Menu.Item>
+                  </div>
+
+                </Space>
+                <Divider />
+                <div className="svg-hover-menu-logout" >
+                  <Menu.Item key="5" style={{ padding: 0, marginLeft: 34 }} className="logout">
+                    <Link to="/logout" style={{ fontFamily: 'Poppins' }}>
+                      <Row justify="start" align="middle">
+                        <Space size={14}>
+                          <Col >
+                            <SvgLogOut fill="#E83232" />
+                          </Col>
+                          <Col >
+                            Log Out
+                          </Col>
+                        </Space>
+                      </Row>
+                    </Link>
+                  </Menu.Item>
+                </div>
+              </Drawer>
             </Menu.Item>
+
+            <Row justify="space-between" >
+              <Col style={{ marginLeft: 3 }}>
+                <Row align="middle">
+                  <Col>
+
+                    <Button type="default" onClick={this.showDrawer} className="btnmobile">
+                      <img style={{ padding: 0, margin: 0, }}
+                        src={HamburgerIcon}
+                        alt="logohamburger"
+                        id="logohamburger"
+                        height={22}
+                      />
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Avatar shape="square" size="default" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logomobilehome" />
+                  </Col>
+                </Row>
+              </Col>
+              <Col style={{ marginRight: 20 }}>
+                <Row align="middle">
+                  <Space size={10}>
+
+                    <Col>
+                      <Tooltip title="search">
+                        <Button shape="circle" icon={<SvgSearch />} size="large" style={{ boxShadow: 'none', border: '0 solid', backgroundColor: 'transparent', }} />
+                      </Tooltip>
+                    </Col>
+                    <Col>
+                      <Badge count={2} >
+                        <Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
+                      </Badge>
+
+                    </Col>
+                    <Col>
+
+                      {/* <Avatar shape="circle" style={{ backgroundColor: "transparent", marginLeft: 22, padding: 0 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} /> */}
+                    </Col>
+                  </Space>
+                </Row>
+              </Col>
+            </Row>
+            {/* </div> */}
+
+
           </Menu>
         </Header>
 

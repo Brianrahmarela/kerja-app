@@ -89,7 +89,6 @@
 		background: none;
 		border-style: none;
 		box-shadow: none;
-		// margin-left: 40%;
 	}
 
 	.totopbtn {
@@ -640,6 +639,14 @@
 	margin: 16px 24px 16px 0;
 	background-color: transparent;
 }
+.logomobilehome {
+	float: left;
+	// transform: scale(1);
+	width: 109.91px;
+	height: 25.32px;
+	margin-top: 3px;
+	background-color: transparent;
+}
 
 .mobilehidden2 {
 	@media (min-width: 280px) {
@@ -676,10 +683,18 @@
 }
 
 .drawerhidden2 {
+	// @media (min-width: 768px) {
+	// 	display: none !important;
+	// }
+	@media (min-width: 280px) {
+		display: block;
+		position: "fixed";
+	}
 	@media (min-width: 768px) {
-		display: none !important;
+		display: none;
 	}
 }
+
 #searchbtn {
 	border-radius: 8px;
 }
