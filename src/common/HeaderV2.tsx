@@ -67,7 +67,7 @@ export class HeaderV2 extends Component {
       <Row >
         <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins" }} >
 
-          {/* TABLET MENU*/}
+          {/* DESKTOP MENU*/}
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden2">
             <Row justify="space-between">
               <Col md={9} lg={6} xl={8} style={{ marginLeft: 26, backgroundColor: "turquoise" }} >
@@ -94,8 +94,7 @@ export class HeaderV2 extends Component {
 
               <Col >
                 <Row justify="end">
-                  {/* <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2"> */}
-                  <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} >
+                  <Col span={14} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2">
                     <Row>
                       <Space size={20}>
                         <div className="svg-hover-menu" >
