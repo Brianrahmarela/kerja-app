@@ -91,8 +91,8 @@ class Login extends React.Component<LoginProps, LoginState> {
                         <div className="header-right">
                             <div className="logo-wrapper">
                                 <Link to="/" className="logo-wrapper">
-                                    <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
-                                    <span className="blue-primary" style={{ fontSize: 24, lineHeight: 0.5, fontWeight: 500 }}>
+                                    <img alt="logo" src={logo} style={{ width: 40, height: 40, marginRight: 5 }} />
+                                    <span className="blue-primary" style={{ fontSize: 30, lineHeight: 0.5, fontWeight: 500 }}>
                                         KerjaApp
                                     </span>
                                 </Link>
