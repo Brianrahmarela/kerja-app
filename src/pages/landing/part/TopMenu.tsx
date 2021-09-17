@@ -62,6 +62,22 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
         } else {
             this.changeLanguage("en");
         }
+        window.addEventListener("scroll", this.handleScroll);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll);
+    }
+    handleScroll(event: any) {
+        const header: any = window.document.querySelector(".header-landing");
+        const show: boolean = window.scrollY > 100;
+        console.log(show);
+        if (show) {
+            header.classList.add("header-fix");
+            console.log("show");
+        } else {
+            console.log("hide");
+            header.classList.remove("header-fix");
+        }
     }
     setVisible(arg: boolean) {
         console.log(arg);
@@ -73,7 +89,6 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     onClose = () => {
         this.setVisible(false);
     };
-
     render() {
         return (
             <>
@@ -86,7 +101,7 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                             </Col>
                         </Row>
                     </BackTop>
-                    <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }}>
+                    <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }} className="header-landing">
                         <Row className="desktop-menu" justify="space-between">
                             <Col span={8}>
                                 <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden">
@@ -113,7 +128,7 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                 <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden" style={{ textAlign: "right" }}>
                                     <SubMenu
                                         key="2"
-                                        style={{ fontFamily: "Poppins", color: "white" }}
+                                        style={{ fontFamily: "Poppins" }}
                                         title={
                                             <>
                                                 {this.state.language} <FontAwesomeIcon icon={faCaretDown} style={{ fontSize: 18, marginLeft: 8 }} />
