@@ -95,28 +95,14 @@
             font-family: @fabada;
         }
     }
-    @-o-keyframes fadeIt {
-        0% {
-            background-color: #ffffff;
-        }
-        100% {
-            background-color: transparent;
-        }
-    }
-    @keyframes fadeIt {
-        0% {
-            background-color: #ffffff;
-        }
-
-        100% {
-            background-color: transparent;
-        }
-    }
 
     .header-fix {
         background-color: #ffffff !important;
-        -o-animation: fadeIt 1s ease-in-out;
-        animation: fadeIt 1s ease-in-out;
+        -webkit-transition: background-color 400ms ease-in-out;
+        -moz-transition: background-color 400ms ease-in-out;
+        -o-transition: background-color 400ms ease-in-out;
+        -ms-transition: background-color 400ms ease-in-out;
+        transition: background-color 400ms ease-in-out;
 
         .ant-menu-title-content {
             color: rgba(0, 0, 0, 0.85) !important;
