@@ -86,53 +86,62 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                         </Row>
                     </BackTop>
                     <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }}>
-                        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden">
-                            <Menu.Item key="1" className="logo-home">
-                                <Link to="/">
-                                    <div className="logo-wrapper">
-                                        <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
-                                        <span
-                                            className="blue-primary text-logo"
-                                            style={{
-                                                fontSize: 18,
-                                                lineHeight: 0.5,
-                                                fontWeight: 500,
+                        <Row className="desktop-menu" justify="space-between">
+                            <Col span={8}>
+                                <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden">
+                                    <Menu.Item key="1" className="logo-home">
+                                        <Link to="/">
+                                            <div className="logo-wrapper">
+                                                <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
+                                                <span
+                                                    className="blue-primary text-logo"
+                                                    style={{
+                                                        fontSize: 18,
+                                                        lineHeight: 0.5,
+                                                        fontWeight: 500,
+                                                    }}
+                                                >
+                                                    KerjaApp
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    </Menu.Item>
+                                </Menu>
+                            </Col>
+                            <Col span={16}>
+                                <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden" style={{ textAlign: "right" }}>
+                                    <SubMenu key="2" style={{ fontFamily: "Poppins" }} icon={<DownOutlined />} title={this.state.language}>
+                                        <Menu.Item
+                                            key="English"
+                                            onClick={() => {
+                                                this.changeLanguage("en");
                                             }}
                                         >
-                                            KerjaApp
-                                        </span>
-                                    </div>
-                                </Link>
-                            </Menu.Item>
-                            <SubMenu key="2" style={{ fontFamily: "Poppins" }} icon={<DownOutlined />} title={this.state.language}>
-                                <Menu.Item
-                                    key="English"
-                                    onClick={() => {
-                                        this.changeLanguage("en");
-                                    }}
-                                >
-                                    English
-                                </Menu.Item>
-                                <Menu.Item
-                                    key="Indo"
-                                    onClick={() => {
-                                        this.changeLanguage("id");
-                                    }}
-                                >
-                                    Indonesia
-                                </Menu.Item>
-                            </SubMenu>
-                            <Menu.Item key="3">
-                                <Link to="/login" style={{ fontFamily: "Poppins" }}>
-                                    Login
-                                </Link>
-                            </Menu.Item>
-                            <Menu.Item key="4">
-                                <Link to="/signup" style={{ fontFamily: "Poppins" }}>
-                                    Sign Up
-                                </Link>
-                            </Menu.Item>
-                        </Menu>
+                                            ENGLISH
+                                        </Menu.Item>
+                                        <Menu.Item
+                                            key="Indo"
+                                            onClick={() => {
+                                                this.changeLanguage("id");
+                                            }}
+                                        >
+                                            INDONESIA
+                                        </Menu.Item>
+                                    </SubMenu>
+                                    <Menu.Item key="3">
+                                        <Button type="primary" href="#/login" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2" }}>
+                                            Login
+                                        </Button>
+                                    </Menu.Item>
+                                    <Menu.Item key="4">
+                                        <Button type="primary" href="/signup" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2" }}>
+                                            Sign Up
+                                        </Button>
+                                    </Menu.Item>
+                                </Menu>
+                            </Col>
+                        </Row>
+
                         <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
                             <Menu.Item key="0">
                                 <div className="drawerhidden">
@@ -176,12 +185,12 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                                             <SvgLandingArrow />
                                                         </span>
                                                     }
-                                                    title="Indonesia"
+                                                    title="INDONESIA"
                                                     className="submenu"
                                                     style={{ marginRight: 14, marginLeft: 3 }}
                                                 >
                                                     <Menu.Item key="1" style={{ marginLeft: 5 }}>
-                                                        English
+                                                        ENGLISH
                                                     </Menu.Item>
                                                 </SubMenu>
                                             </div>
@@ -220,7 +229,7 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                         </Menu>
                     </Header>
 
-                    <Content className="site-layout" style={{ padding: 0, marginTop: 64 }}>
+                    <Content className="site-layout" style={{ padding: 0 }}>
                         <div className="site-layout-background" style={{ margin: 0, padding: 0, minHeight: 380 }}>
                             <React.Suspense fallback={<div>Loading...</div>}>
                                 <Switch>
