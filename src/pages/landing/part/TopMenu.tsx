@@ -108,13 +108,14 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                     <Menu.Item key="1" className="logo-home">
                                         <Link to="/">
                                             <div className="logo-wrapper">
-                                                <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
+                                                <img alt="logo" src={logo} style={{ width: 45, height: 45, marginRight: 5 }} />
                                                 <span
                                                     className="blue-primary text-logo"
                                                     style={{
-                                                        fontSize: 18,
+                                                        fontSize: 32,
                                                         lineHeight: 0.5,
                                                         fontWeight: 500,
+                                                        marginLeft: 5,
                                                     }}
                                                 >
                                                     KerjaApp
