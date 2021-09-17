@@ -14,6 +14,8 @@ import logo from "./../../../assets/svg/logo-header.svg";
 import SvgLandingLogin from "../../../assets/svg/SvgLandingLogin";
 import SvgLandingSignUp from "../../../assets/svg/SvgLandingSignUp";
 import SvgLandingArrow from "../../../assets/svg/SvgLandingArrow";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 // import logo from "../../../assets/svg/logo-header.svg";
 
@@ -37,7 +39,7 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     state = {
         pageReady: false,
         visible: false,
-        language: "Indonesia",
+        language: "INDONESIA",
         menu: (
             <Menu>
                 <Menu.Item onClick={() => this.changeLanguage("en")}>English</Menu.Item>
@@ -47,10 +49,10 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     changeLanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);
         if (lang === "id") {
-            this.setState({ language: "Indonesia" });
+            this.setState({ language: "INDONESIA" });
             localStorage.setItem("lang", "id");
         } else {
-            this.setState({ language: "English" });
+            this.setState({ language: "ENGLISH" });
             localStorage.setItem("lang", "en");
         }
     }
@@ -110,7 +112,15 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                             </Col>
                             <Col span={16}>
                                 <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden" style={{ textAlign: "right" }}>
-                                    <SubMenu key="2" style={{ fontFamily: "Poppins" }} icon={<DownOutlined />} title={this.state.language}>
+                                    <SubMenu
+                                        key="2"
+                                        style={{ fontFamily: "Poppins", color: "white" }}
+                                        title={
+                                            <>
+                                                {this.state.language} <FontAwesomeIcon icon={faCaretDown} style={{ fontSize: 18, marginLeft: 8 }} />
+                                            </>
+                                        }
+                                    >
                                         <Menu.Item
                                             key="English"
                                             onClick={() => {
@@ -129,12 +139,12 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                                         </Menu.Item>
                                     </SubMenu>
                                     <Menu.Item key="3">
-                                        <Button type="primary" href="#/login" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2" }}>
+                                        <Button type="primary" href="#/login" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2", borderRadius: 7 }}>
                                             Login
                                         </Button>
                                     </Menu.Item>
                                     <Menu.Item key="4">
-                                        <Button type="primary" href="/signup" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2" }}>
+                                        <Button type="primary" href="/signup" style={{ fontFamily: "Poppins", color: "white", backgroundColor: "#55b9f2", borderRadius: 7 }}>
                                             Sign Up
                                         </Button>
                                     </Menu.Item>

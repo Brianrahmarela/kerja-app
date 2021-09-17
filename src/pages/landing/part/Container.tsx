@@ -22,7 +22,7 @@ export class Container extends React.Component<ContainerProps, ContainerState> {
         return (
             <div id="container1">
                 <div id="container2">
-                    <Image style={{ padding: 0, margin: "0px 0px 70px 0px" }} src={bgLanding} preview={false} id="imglanding" />
+                    <Image style={{ padding: 0, margin: "-2px 0px 70px 0px" }} src={bgLanding} preview={false} id="imglanding" />
                     <Row className="rowtextlanding">
                         <Col xs={12} sm={7} md={7} lg={10} xl={7} xxl={7}>
                             <Title id="titlelanding" style={{ fontFamily: "Poppins" }}>

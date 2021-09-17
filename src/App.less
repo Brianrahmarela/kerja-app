@@ -103,6 +103,11 @@
             .ant-menu {
                 background-color: transparent;
             }
+            .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+            .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
+            .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after {
+                border-bottom: 0px transparent !important;
+            }
             .ant-menu-submenu-active,
             .ant-menu-submenu-title:hover,
             .ant-menu-item-active,
