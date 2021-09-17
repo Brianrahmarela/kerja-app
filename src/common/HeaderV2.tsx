@@ -19,14 +19,12 @@ import HeaderAvatar from "../assets/image/header-avatar.png";
 const { Search } = Input;
 const { Header, } = Layout;
 const { Text, } = Typography;
-// const { SubMenu } = Menu;
 
 export interface TopMenuState {
   pageReady: boolean;
   menu: any;
   visible: boolean;
   valSearch: "",
-
 }
 
 export class HeaderV2 extends Component {
@@ -71,8 +69,8 @@ export class HeaderV2 extends Component {
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden2">
             <Row justify="space-between">
               {/* //col md left */}
-              <Col md={10} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, backgroundColor: "turquoise" }} >
-                {/* <Col md={12} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, }} > */}
+              {/* <Col md={10} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, backgroundColor: "turquoise" }} > */}
+              <Col md={10} lg={7} xl={6} xxl={6} style={{ marginLeft: 26, }} >
                 <Row>
                   <Col md={9} lg={11} xl={11}>
                     <Menu.Item key="1">
@@ -80,7 +78,6 @@ export class HeaderV2 extends Component {
                         <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
                       </Link>
                     </Menu.Item>
-
                   </Col>
                   <Col md={10} lg={12} xl={12}>
                     <Menu.Item key="2">
@@ -91,11 +88,11 @@ export class HeaderV2 extends Component {
               </Col>
 
               {/* col center lg menu beranda-mywork muncul di lg. hidden di md */}
-              <Col md={13} lg={16} xl={17} xxl={17} style={{ backgroundColor: "grey" }}>
-                {/* <Col md={10} lg={16} xl={17} xxl={17} > */}
+              {/* <Col md={13} lg={16} xl={17} xxl={17} style={{ backgroundColor: "grey" }}> */}
+              <Col md={13} lg={16} xl={17} xxl={17} >
                 <Row justify="end">
-                  <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2">
-                    {/* <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, }} className="tablethidden2"> */}
+                  {/* <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, backgroundColor: "violet" }} className="tablethidden2"> */}
+                  <Col lg={15} xl={12} xxl={12} style={{ marginRight: 26, }} className="tablethidden2">
                     <Row justify="end">
                       <Space size={20}>
                         <Col>
@@ -140,9 +137,9 @@ export class HeaderV2 extends Component {
                       </Space>
                     </Row>
                   </Col>
-
-                  <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, backgroundColor: "yellow" }}>
-                    {/* <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, }}> */}
+                  {/* 
+                  <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, backgroundColor: "yellow" }}> */}
+                  <Col lg={5} xl={6} xxl={5} style={{ marginRight: 26, padding: 0, }}>
                     <Row align="middle" justify="start">
                       <Space size={14}>
                         <Col>
@@ -155,40 +152,29 @@ export class HeaderV2 extends Component {
                               </Link>
                             </Menu.Item>
                           </div>
-
                         </Col>
                         <Col>
-
                           <Badge count={2} >
                             <Avatar shape="circle" style={{ backgroundColor: "transparent", }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
                           </Badge>
                         </Col>
                         <Col>
                           <Avatar shape="circle" style={{ backgroundColor: "transparent", marginLeft: 5 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} />
-
                         </Col>
-                        <Col>
-                          <Text style={{ color: "#2b9be6", fontFamily: "Poppins", fontWeight: 400, fontSize: 15, }} className="textprofile">Hei Sheila!</Text>
-
+                        <Col xs={0} lg={0} xl={24}>
+                          <Text style={{ color: "#2b9be6", fontFamily: "Poppins", fontWeight: 400, fontSize: 15, }} >Hei Sheila!</Text>
                         </Col>
                       </Space>
-
-
-
                     </Row>
                   </Col>
                 </Row>
               </Col>
-
-
             </Row>
           </Menu>
 
-          {/* MOBILE MENU*/}
+          {/* MOBILE - TABLET MENU*/}
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="drawerhidden2">
-            {/* <div className=""> */}
             <Menu.Item key="0">
-
               <Drawer title={<img style={{ padding: 0, margin: 0, }}
                 src={logoMobile}
                 alt="logoheader"
@@ -226,7 +212,6 @@ export class HeaderV2 extends Component {
                             </Col>
                           </Space>
                         </Row>
-
                       </Link>
                     </Menu.Item>
                   </div>
@@ -278,7 +263,6 @@ export class HeaderV2 extends Component {
                       </Link>
                     </Menu.Item>
                   </div>
-
                 </Space>
                 <Divider />
                 <div className="svg-hover-menu-logout" >
@@ -304,7 +288,6 @@ export class HeaderV2 extends Component {
               <Col style={{ marginLeft: 3 }}>
                 <Row align="middle">
                   <Col>
-
                     <Button type="default" onClick={this.showDrawer} className="btnmobile">
                       <img style={{ padding: 0, margin: 0, }}
                         src={HamburgerIcon}
@@ -317,39 +300,42 @@ export class HeaderV2 extends Component {
                   <Col>
                     <Avatar shape="square" size="default" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logomobilehome" />
                   </Col>
+                  <Col xs={0} md={8}>
+                    <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" />
+                  </Col>
                 </Row>
               </Col>
-              <Col style={{ marginRight: 20 }}>
-                <Row align="middle">
-                  <Space size={10}>
-
-                    <Col>
-                      <Tooltip title="search">
-                        <Button shape="circle" icon={<SvgSearch />} size="large" style={{ boxShadow: 'none', border: '0 solid', backgroundColor: 'transparent', }} />
-                      </Tooltip>
-                    </Col>
-                    <Col>
-                      <Badge count={2} >
-                        <Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
-                      </Badge>
-
-                    </Col>
-                    <Col>
-
-                      {/* <Avatar shape="circle" style={{ backgroundColor: "transparent", marginLeft: 22, padding: 0 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} /> */}
-                    </Col>
-                  </Space>
+              {/* <Col xs={6} md={8} style={{ marginRight: 20, backgroundColor: "red" }}> */}
+              <Col xs={6} md={8} style={{ marginRight: 20, }}>
+                {/* <Row align="middle" justify="end" style={{ backgroundColor: "grey" }}> */}
+                <Row align="middle" justify="end" >
+                  <Col xs={4} md={0} style={{ marginRight: 30 }}>
+                    <Tooltip title="search">
+                      <Button shape="circle" icon={<SvgSearch />} size="large" style={{ boxShadow: 'none', border: '0 solid', backgroundColor: 'transparent', }} />
+                    </Tooltip>
+                  </Col>
+                  {/* <Col xs={0} md={4} style={{ backgroundColor: "yellow", marginRight: 0 }}> */}
+                  <Col xs={0} md={4} style={{ marginRight: 0 }}>
+                    <div className="svg-hover-menu" style={{ color: "blue", }}>
+                      <Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<SvgSettings fill="#686E7B" />} />
+                    </div>
+                  </Col>
+                  {/* <Col xs={8} md={4} style={{ backgroundColor: "green", }}> */}
+                  <Col xs={8} md={4} >
+                    <Badge count={2} >
+                      <Avatar shape="circle" style={{ backgroundColor: "transparent", margin: 0, padding: 0 }} size="small" icon={<Image src={IconNotif} preview={false} height={21} />} />
+                    </Badge>
+                  </Col>
+                  {/* <Col xs={0} md={4} style={{ backgroundColor: "red" }}> */}
+                  <Col xs={0} md={4} >
+                    <Avatar shape="circle" style={{ backgroundColor: "transparent", padding: 0 }} size="large" icon={<Image src={HeaderAvatar} preview={false} />} />
+                  </Col>
                 </Row>
               </Col>
             </Row>
-            {/* </div> */}
-
-
           </Menu>
         </Header>
-
       </Row>
-
     )
   }
 }

@@ -8,7 +8,7 @@ import HamburgerIcon from "../../../assets/svg/hamburger-icon.svg";
 import ToTop from "../../../assets/svg/totop.svg";
 import FooterMenu from "../part/FooterMenu";
 import { BackTop, Image, Row, Col, Drawer, Button, Space } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+// import { DownOutlined } from "@ant-design/icons";
 import { withTranslation } from "react-i18next";
 import logo from "./../../../assets/svg/logo-header.svg";
 import SvgLandingLogin from "../../../assets/svg/SvgLandingLogin";
