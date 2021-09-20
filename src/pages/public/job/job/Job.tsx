@@ -80,7 +80,80 @@ class Job extends React.Component<JobProps, JobState> {
         return (
             <div className="job-page">
                 <Row gutter={15} style={{ marginTop: 15 }}>
-                    <Col span={16}>
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { push: 16, span: 8 }, xs: { push: 0, span: 24 } }} style={{ marginBottom: 20 }}>
+                        <div>
+                            <FontAwesomeIcon icon={faFilter} style={{ marginRight: 10 }} />
+                            Filter Pencarian
+                        </div>
+                        <div style={{ marginTop: 15 }}>
+                            <Card>
+                                <Form layout="vertical">
+                                    <Formik
+                                        initialValues={this.state.pagination}
+                                        onSubmit={(values, { resetForm, setSubmitting }) => {
+                                            this.setState(
+                                                {
+                                                    jobs: [],
+                                                    pagination: {
+                                                        ...this.state.pagination,
+                                                        ...values,
+                                                        page: 1,
+                                                        total: 0,
+                                                    },
+                                                },
+                                                () => {
+                                                    this.loadMore(1);
+                                                }
+                                            );
+                                        }}
+                                    >
+                                        {({ values, handleBlur, handleChange, setFieldValue, errors, handleSubmit }) => (
+                                            <>
+                                                <Form.Item label="Posisi">
+                                                    <Input value={values.position} name="position" prefix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} />
+                                                </Form.Item>
+                                                <Form.Item label="Gaji">
+                                                    <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />
+                                                </Form.Item>
+                                                <Form.Item>
+                                                    <Checkbox
+                                                        checked={values.salaryAbove20 === "true"}
+                                                        onChange={(e) => {
+                                                            setFieldValue("salaryAbove:20", e.target.checked);
+                                                        }}
+                                                    >
+                                                        Diatas 20jt
+                                                    </Checkbox>
+                                                </Form.Item>
+                                                <Form.Item label="Lokasi">
+                                                    <Input value={values.location} name="location" onBlur={handleBlur} onChange={handleChange}></Input>
+                                                </Form.Item>
+                                                <Form.Item label="Status Pekerjaan">
+                                                    <Select
+                                                        value={values.status}
+                                                        onChange={(e) => {
+                                                            setFieldValue("status", e);
+                                                        }}
+                                                    >
+                                                        <Select.Option value="">ALL</Select.Option>
+                                                        <Select.Option value="FULL_TIME">FULL TIME</Select.Option>
+                                                        <Select.Option value="PART_TIME">PART TIME</Select.Option>
+                                                        <Select.Option value="INTERNSHIP">INTERNSHIP</Select.Option>
+                                                    </Select>
+                                                </Form.Item>
+                                                <Form.Item style={{ textAlign: "right" }}>
+                                                    <Button type="primary" onClick={() => handleSubmit()}>
+                                                        Cari
+                                                    </Button>
+                                                </Form.Item>
+                                            </>
+                                        )}
+                                    </Formik>
+                                </Form>
+                            </Card>
+                        </div>
+                    </Col>
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { pull: 8, span: 16 }, xs: { push: 0, span: 24 } }}>
                         <Row justify="space-around">
                             <Col span={12}>
                                 <Typography.Text>Rekomendasi pekerjaan untuk mu</Typography.Text>
@@ -172,79 +245,6 @@ class Job extends React.Component<JobProps, JobState> {
                                 </InfiniteScroll>
                             </Col>
                         </Row>
-                    </Col>
-                    <Col span={8}>
-                        <div>
-                            <FontAwesomeIcon icon={faFilter} style={{ marginRight: 10 }} />
-                            Filter Pencarian
-                        </div>
-                        <div style={{ marginTop: 15 }}>
-                            <Card>
-                                <Form layout="vertical">
-                                    <Formik
-                                        initialValues={this.state.pagination}
-                                        onSubmit={(values, { resetForm, setSubmitting }) => {
-                                            this.setState(
-                                                {
-                                                    jobs: [],
-                                                    pagination: {
-                                                        ...this.state.pagination,
-                                                        ...values,
-                                                        page: 1,
-                                                        total: 0,
-                                                    },
-                                                },
-                                                () => {
-                                                    this.loadMore(1);
-                                                }
-                                            );
-                                        }}
-                                    >
-                                        {({ values, handleBlur, handleChange, setFieldValue, errors, handleSubmit }) => (
-                                            <>
-                                                <Form.Item label="Posisi">
-                                                    <Input value={values.position} name="position" prefix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} />
-                                                </Form.Item>
-                                                <Form.Item label="Gaji">
-                                                    <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />
-                                                </Form.Item>
-                                                <Form.Item>
-                                                    <Checkbox
-                                                        checked={values.salaryAbove20 === "true"}
-                                                        onChange={(e) => {
-                                                            setFieldValue("salaryAbove:20", e.target.checked);
-                                                        }}
-                                                    >
-                                                        Diatas 20jt
-                                                    </Checkbox>
-                                                </Form.Item>
-                                                <Form.Item label="Lokasi">
-                                                    <Input value={values.location} name="location" onBlur={handleBlur} onChange={handleChange}></Input>
-                                                </Form.Item>
-                                                <Form.Item label="Status Pekerjaan">
-                                                    <Select
-                                                        value={values.status}
-                                                        onChange={(e) => {
-                                                            setFieldValue("status", e);
-                                                        }}
-                                                    >
-                                                        <Select.Option value="">ALL</Select.Option>
-                                                        <Select.Option value="FULL_TIME">FULL TIME</Select.Option>
-                                                        <Select.Option value="PART_TIME">PART TIME</Select.Option>
-                                                        <Select.Option value="INTERNSHIP">INTERNSHIP</Select.Option>
-                                                    </Select>
-                                                </Form.Item>
-                                                <Form.Item style={{ textAlign: "right" }}>
-                                                    <Button type="primary" onClick={() => handleSubmit()}>
-                                                        Cari
-                                                    </Button>
-                                                </Form.Item>
-                                            </>
-                                        )}
-                                    </Formik>
-                                </Form>
-                            </Card>
-                        </div>
                     </Col>
                 </Row>
             </div>
