@@ -153,7 +153,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                     </Col>
                 </Row>
                 <Row gutter={[20, 15]} style={{ marginTop: 15 }}>
-                    <Col span={8}>
+                    <Col span={8} push={16}>
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-left">
                                 <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
@@ -202,7 +202,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                             </div>
                         </Card>
                     </Col>
-                    <Col span={16}>
+                    <Col span={16} pull={8}>
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-right"></div>
                             <div className="right-content">
