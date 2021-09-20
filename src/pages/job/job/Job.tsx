@@ -1,6 +1,6 @@
-import { faBookmark, faCircleNotch, faFilter, faSearch, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faCircleNotch, faFilter, faSearch, } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Checkbox, Col, Form, Input, List, Row, Select, Slider, Space, Spin, Tag, Typography } from "antd";
+import { Button, Card, Checkbox, Col, Form, Input, List, Row, Select, Slider, Space, Spin, Typography } from "antd";
 import { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import moment from "moment";
@@ -8,10 +8,15 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { encodeHashUserId } from "../../../config/Util";
+// import { Link } from "react-router-dom";
+// import { encodeHashUserId } from "../../../config/Util";
 import { getSearchJob } from "../../../repository/JobRepo";
-var CurrencyFormat = require("react-currency-format");
+import SvgTime from "../../../assets/svg/time.svg";
+
+// var CurrencyFormat = require("react-currency-format");
+const { Search } = Input;
+const { Text } = Typography;
+
 export interface JobProps {
     currentUser?: any;
 }
@@ -22,6 +27,7 @@ export interface JobState {
     scrolled: boolean;
     jobs: any[];
     pagination: any;
+    valSearch: any;
 }
 
 class Job extends React.Component<JobProps, JobState> {
@@ -29,7 +35,24 @@ class Job extends React.Component<JobProps, JobState> {
         hasMore: true,
         loading: false,
         scrolled: false,
-        jobs: [] as any[],
+        jobs: [
+            {
+                "id": 1,
+                "Jobtitle": "Fashion Designer",
+                "company": "Lorem Ipsum",
+                "appliedon": "45 minutes ago",
+                "position": "Full time",
+                "status": "Interview",
+            },
+            {
+                "id": 2,
+                "Jobtitle": "Merchandiser",
+                "company": "Colin Fashion",
+                "appliedon": "10/08/2021",
+                "position": "Full time",
+                "status": "On Process",
+            }
+        ] as any[],
         pagination: {
             page: 1,
             total: 0,
@@ -39,7 +62,12 @@ class Job extends React.Component<JobProps, JobState> {
             salary: "",
             salaryAbove20: "",
         },
+        valSearch: "",
+
     };
+    onSearch = (valSearch: string) => {
+        console.log("val search:", valSearch);
+    }
     componentDidMount() {
         window.document.title = "Job | KerjaApp";
     }
@@ -84,11 +112,50 @@ class Job extends React.Component<JobProps, JobState> {
         const { jobs } = this.state;
         return (
             <div className="job-page">
+                <Row gutter={15} style={{ marginTop: 15 }} justify="space-around" align="middle">
+                    <Col span={16}>
+                        <Row align="middle">
+                            <Space size={9}>
+                                <Col>
+                                    <Text className="JobTitle">Hi, </Text>
+                                </Col>
+                                <Col>
+                                    <Text className="JobTitle2">Sheyla! {currentUser?.firstName}</Text>{currentUser?.firstName}
+                                </Col>
+                            </Space>
+                        </Row>
+                    </Col>
+                    <Col span={8} style={{ textAlign: "right" }}>
+                        {/* <FontAwesomeIcon icon={faBookmark} /> My Job */}
+                        <Search
+                            placeholder=""
+                            allowClear
+                            enterButton="Search Job"
+                            size="middle"
+                            onSearch={this.onSearch}
+                            suffix={<FontAwesomeIcon icon={faSearch} />}
+                        />
+                    </Col>
+                </Row>
                 <Row gutter={15} style={{ marginTop: 15 }}>
                     <Col span={16}>
                         <Row justify="space-around">
                             <Col span={12}>
-                                <Typography.Text>Rekomendasi Untukmu, {currentUser?.firstName}</Typography.Text>
+                                <Row align="middle">
+                                    <Space size={9}>
+                                        <Col>
+                                            <img style={{ padding: 0, margin: 0, }}
+                                                src={SvgTime}
+                                                alt="logohamburger"
+                                                id="logohamburger"
+                                                height={22}
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Text style={{ fontSize: 18, color: "#53575E" }}>My Last Applied Job </Text>
+                                        </Col>
+                                    </Space>
+                                </Row>
                             </Col>
                             <Col span={12} style={{ textAlign: "right" }}>
                                 <FontAwesomeIcon icon={faBookmark} /> My Job
@@ -104,70 +171,21 @@ class Job extends React.Component<JobProps, JobState> {
                                             emptyText: <Card>No Post</Card>,
                                         }}
                                         renderItem={(job: any, i: number) => (
-                                            <List.Item key={job.id + i} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
-                                                <Card style={{ width: "100%" }}>
-                                                    <Link to={"/job/job-detail/" + encodeHashUserId(job.id)}>
-                                                        <Row justify="space-around">
-                                                            <Col span={18}>
-                                                                <div>
-                                                                    <Typography.Text>{job.jobName}</Typography.Text>
-                                                                </div>
-                                                                <div>
-                                                                    <Typography.Title level={5}>{job.organization.name}</Typography.Title>
-                                                                </div>
-                                                                <div>
-                                                                    {job.location.split(",").map((v: string) => (
-                                                                        <Tag>{v}</Tag>
-                                                                    ))}
-                                                                </div>
-                                                                <div style={{ marginTop: 5 }}>
-                                                                    <Typography.Text>Status Pekerjaan : {job.jobType.replace("_", " ")}</Typography.Text>
-                                                                </div>
-                                                                {job.showSalary && (
-                                                                    <Space>
-                                                                        <Typography.Text>
-                                                                            Gaji :{" "}
-                                                                            <CurrencyFormat
-                                                                                value={job.salaryMin}
-                                                                                displayType={"text"}
-                                                                                thousandSeparator={true}
-                                                                                prefix={"Rp."}
-                                                                                renderText={(value: any) => <>{value}</>}
-                                                                            />
-                                                                            <span> - </span>
-                                                                            <CurrencyFormat
-                                                                                value={job.salaryMax}
-                                                                                displayType={"text"}
-                                                                                thousandSeparator={true}
-                                                                                prefix={"Rp."}
-                                                                                renderText={(value: any) => <>{value}</>}
-                                                                            />
-                                                                        </Typography.Text>
-                                                                    </Space>
-                                                                )}
-                                                            </Col>
-                                                            <Col span={6} style={{ textAlign: "center" }}>
-                                                                <Avatar size={65} src={job.organization.logo} />
-                                                            </Col>
-                                                        </Row>
-                                                    </Link>
-                                                    <div style={{ textAlign: "right" }}>
-                                                        <Space>
-                                                            <Typography.Text>Diposting {moment(job.publishDate).fromNow()}</Typography.Text>
-                                                            <span>|</span>
-                                                            <div>
-                                                                <FontAwesomeIcon icon={faBookmark} style={{ marginRight: 10 }} />
-                                                                Arsip
-                                                            </div>
-                                                            <span>|</span>
-                                                            <div>
-                                                                <FontAwesomeIcon icon={faShare} style={{ marginRight: 10 }} />
-                                                                Bagikan
-                                                            </div>
-                                                        </Space>
-                                                    </div>
-                                                </Card>
-                                            </List.Item>
+
+                                            <div>
+                                                <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
+                                                    <Card style={{ width: "100%" }}>
+
+                                                        <p>{job.id}</p>
+                                                        <p>{job.Jobtitle}</p>
+                                                        <p>{job.company}</p>
+                                                        <p>{job.appliedon}</p>
+                                                        <p>{job.position}</p>
+                                                        <p>{job.status}</p>
+                                                    </Card>
+                                                </List.Item>
+                                            </div>
+
                                         )}
                                     >
                                         {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />}
@@ -262,3 +280,4 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Job));
+

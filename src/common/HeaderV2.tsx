@@ -201,7 +201,7 @@ export class HeaderV2 extends Component {
                   </div>
                   <div className="svg-hover-menu" >
                     <Menu.Item key="3" style={{ padding: 0, marginLeft: 24 }}>
-                      <Link to="/jobs" style={{ fontFamily: 'Poppins' }}>
+                      <Link to="/job" style={{ fontFamily: 'Poppins' }}>
                         <Row justify="start" align="middle">
                           <Space size={14}>
                             <Col >
