@@ -173,15 +173,32 @@ class Job extends React.Component<JobProps, JobState> {
                                         renderItem={(job: any, i: number) => (
 
                                             <div>
-                                                <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
+                                                <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
                                                     <Card style={{ width: "100%" }}>
+                                                        <Row justify="space-between">
+                                                            <Col span={4}>
+                                                                <p>{job.Jobtitle}</p>
 
-                                                        <p>{job.id}</p>
-                                                        <p>{job.Jobtitle}</p>
-                                                        <p>{job.company}</p>
-                                                        <p>{job.appliedon}</p>
-                                                        <p>{job.position}</p>
-                                                        <p>{job.status}</p>
+                                                            </Col>
+                                                            <Col span={4}>
+                                                                <p>{job.company}</p>
+
+                                                            </Col>
+                                                            <Col span={4}>
+                                                                <p>{job.appliedon}</p>
+
+                                                            </Col>
+                                                            <Col span={4}>
+                                                                <p>{job.position}</p>
+
+                                                            </Col>
+                                                            <Col span={4}>
+                                                                <p>{job.status}</p>
+
+                                                            </Col>
+
+                                                            {/* <p>{job.id}</p> */}
+                                                        </Row>
                                                     </Card>
                                                 </List.Item>
                                             </div>
