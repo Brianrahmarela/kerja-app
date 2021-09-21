@@ -86,7 +86,8 @@
 	overflow: hidden;
 	.logo-home {
 		height: 64px;
-		padding-top: 7px !important;
+		padding-top: 8px !important;
+		padding-left: 20px;
 	}
 	.logo-wrapper {
 		display: flex;
@@ -1060,6 +1061,10 @@
 		align-items: center;
 		span {
 			font-family: @fabada;
+			@media (max-width: 600px) {
+				display: none;
+				visibility: hidden;
+			}
 		}
 	}
 	.ant-btn {

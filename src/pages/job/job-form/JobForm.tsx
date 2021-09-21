@@ -49,7 +49,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
     render() {
         const jobid = this.props.match.params.jobid;
         return (
-            <div className="page-job-form">
+            <div className="page-job-form" style={{ marginTop: 20 }}>
                 <Row>
                     <Col>
                         <Breadcrumb>
@@ -75,7 +75,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                                 <Col span={5} style={{ textAlign: "center", paddingTop: 50, paddingBottom: 50 }}>
                                     <Avatar size={90} src={this.state.jobData?.organization.logo} />
                                 </Col>
-                                <Col span={19}>
+                                <Col span={18}>
                                     <Typography.Title level={3}>{this.state.jobData?.jobName}</Typography.Title>
                                     <div>
                                         <Typography.Text>{this.state.jobData?.jobType.replace("_", " ")}</Typography.Text>
@@ -90,11 +90,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                     </Col>
                 </Row>
                 <Row gutter={[20, 20]} style={{ marginTop: 15 }}>
-                    <Col span={8}>
-                        <Typography.Title level={5}>See more another job by</Typography.Title>
-                        <JobList />
-                    </Col>
-                    <Col span={16}>
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { push: 8, span: 16 }, xs: { push: 0, span: 24 } }}>
                         <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20 }}>
                             <Form layout="vertical">
                                 <Formik
@@ -266,6 +262,11 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                                 </Formik>
                             </Form>
                         </Card>
+                    </Col>
+
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { pull: 16, span: 8 }, xs: { push: 0, span: 24 } }}>
+                        <Typography.Title level={5}>See more another job by</Typography.Title>
+                        <JobList />
                     </Col>
                 </Row>
             </div>

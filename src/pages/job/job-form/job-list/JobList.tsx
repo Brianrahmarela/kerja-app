@@ -79,23 +79,23 @@ class JobList extends React.Component<JobListProps, JobListState> {
                     }}
                     renderItem={(job: any, i: number) => (
                         <List.Item key={job.id + job.jobName + i} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
-                            <Link to={"/job/job-detail/" + encodeHashUserId(job.id)}>
-                                <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20 }}>
+                            <Link to={"/job/job-detail/" + encodeHashUserId(job.id)} style={{ width: "100%" }}>
+                                <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20, paddingLeft: 10, paddingRight: 10 }}>
                                     <Row align="middle" gutter={20}>
-                                        <Col span={7} style={{ textAlign: "center" }}>
+                                        <Col xs={5} sm={4} md={7} style={{ textAlign: "center", position: "relative" }}>
                                             <Avatar size={64} src={job.organization.logo} />
                                         </Col>
-                                        <Col span={15}>
-                                            <Typography.Title level={5}>{job.jobName}</Typography.Title>
+                                        <Col xs={17} sm={17} md={14}>
+                                            <Typography.Title style={{ fontSize: 14 }}>{job.jobName}</Typography.Title>
                                             <div>
                                                 <Typography.Text>{job.positionLevel}</Typography.Text>
                                             </div>
-                                            <Typography.Text>
+                                            <Typography.Text style={{ fontSize: 10 }}>
                                                 <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                                 {job.location.split(",").join(", ")}
                                             </Typography.Text>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col xs={2} sm={1} md={3}>
                                             <FontAwesomeIcon icon={faChevronRight} />
                                         </Col>
                                     </Row>

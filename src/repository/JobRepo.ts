@@ -43,12 +43,7 @@ export const getJobBookmark = (params: any) => {
     });
 };
 export const getJobVacationDetail = (id: any) => {
-    const token = window.localStorage.getItem("token");
-    return axios.get(AppConfig.url.getJobVacationDetail + "/" + id, {
-        headers: {
-            Authorization: "Bearer " + token,
-        },
-    });
+    return axios.get(AppConfig.url.getJobVacationDetail + "/" + id, {});
 };
 export const getJobVacationDetailSlug = (slug: any) => {
     return axios.get(AppConfig.url.getJobVacationDetailSlug + "/" + slug);

@@ -103,29 +103,27 @@ class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                     </BackTop>
                     <Header style={{ position: "fixed", zIndex: 2, width: "100%", padding: 0, margin: 0 }} className="header-landing">
                         <Row className="desktop-menu" justify="space-between">
-                            <Col span={8}>
-                                <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden">
-                                    <Menu.Item key="1" className="logo-home">
-                                        <Link to="/">
-                                            <div className="logo-wrapper">
-                                                <img alt="logo" src={logo} style={{ width: 45, height: 45, marginRight: 5 }} />
-                                                <span
-                                                    className="blue-primary text-logo"
-                                                    style={{
-                                                        fontSize: 32,
-                                                        lineHeight: 0.5,
-                                                        fontWeight: 500,
-                                                        marginLeft: 5,
-                                                    }}
-                                                >
-                                                    KerjaApp
-                                                </span>
-                                            </div>
-                                        </Link>
-                                    </Menu.Item>
-                                </Menu>
+                            <Col span={6}>
+                                <div className="logo-home mobilehidden">
+                                    <Link to="/">
+                                        <div className="logo-wrapper">
+                                            <img alt="logo" src={logo} style={{ width: 45, height: 45, marginRight: 5 }} />
+                                            <span
+                                                className="blue-primary text-logo"
+                                                style={{
+                                                    fontSize: 32,
+                                                    lineHeight: 0.5,
+                                                    fontWeight: 500,
+                                                    marginLeft: 5,
+                                                }}
+                                            >
+                                                KerjaApp
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </div>
                             </Col>
-                            <Col span={16}>
+                            <Col span={18}>
                                 <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden" style={{ textAlign: "right" }}>
                                     <SubMenu
                                         key="2"
