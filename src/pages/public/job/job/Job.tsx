@@ -110,7 +110,7 @@ class Job extends React.Component<JobProps, JobState> {
                                         {({ values, handleBlur, handleChange, setFieldValue, errors, handleSubmit }) => (
                                             <>
                                                 <Form.Item label="Posisi">
-                                                    <Input value={values.position} name="position" prefix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} />
+                                                    <Input autoFocus value={values.position} name="position" prefix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} />
                                                 </Form.Item>
                                                 <Form.Item label="Gaji">
                                                     <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />

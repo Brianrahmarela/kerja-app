@@ -15,14 +15,14 @@ class PublicHeader extends React.Component<PublicHeaderProps, PublicHeaderState>
             <Layout.Header>
                 <div className="app-header">
                     <Row className="header " justify="space-between" align="middle">
-                        <Col xs={10} sm={12} md={10} lg={9} xl={8} xxl={6}>
+                        <Col xs={5} sm={11} md={10} lg={9} xl={8} xxl={6}>
                             <Row gutter={20}>
                                 <Col span={24}>
                                     <div className="logo-wrapper-no-auth">
                                         <Link to="/" className="logo-wrapper-no-auth">
-                                            <img alt="logo" src={logo} style={{ width: 30, height: 30, marginRight: 5 }} />
+                                            <img alt="logo" src={logo} style={{ width: 40, height: 40, marginRight: 5 }} />
                                             <span
-                                                className="blue-primary text-logo"
+                                                className="blue-primary text-logo "
                                                 style={{
                                                     fontSize: 24,
                                                     lineHeight: 0.5,
@@ -36,7 +36,7 @@ class PublicHeader extends React.Component<PublicHeaderProps, PublicHeaderState>
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={14} sm={12} md={14} lg={15} xl={16} xxl={18}>
+                        <Col xs={19} sm={13} md={14} lg={15} xl={16} xxl={18}>
                             <Row>
                                 {/* menu large desktop  */}
                                 <Col span={24} className="menu-large">

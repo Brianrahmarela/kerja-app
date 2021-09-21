@@ -49,7 +49,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
     render() {
         const jobid = this.props.match.params.jobid;
         return (
-            <div className="page-job-form">
+            <div className="page-job-form" style={{ marginTop: 20 }}>
                 <Row>
                     <Col>
                         <Breadcrumb>
@@ -75,7 +75,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                                 <Col span={5} style={{ textAlign: "center", paddingTop: 50, paddingBottom: 50 }}>
                                     <Avatar size={90} src={this.state.jobData?.organization.logo} />
                                 </Col>
-                                <Col span={19}>
+                                <Col span={18}>
                                     <Typography.Title level={3}>{this.state.jobData?.jobName}</Typography.Title>
                                     <div>
                                         <Typography.Text>{this.state.jobData?.jobType.replace("_", " ")}</Typography.Text>

@@ -82,15 +82,15 @@ class JobList extends React.Component<JobListProps, JobListState> {
                             <Link to={"/job/job-detail/" + encodeHashUserId(job.id)}>
                                 <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20 }}>
                                     <Row align="middle" gutter={20}>
-                                        <Col span={7} style={{ textAlign: "center" }}>
+                                        <Col span={7} style={{ textAlign: "center", position: "relative" }}>
                                             <Avatar size={64} src={job.organization.logo} />
                                         </Col>
                                         <Col span={15}>
-                                            <Typography.Title level={5}>{job.jobName}</Typography.Title>
+                                            <Typography.Title style={{ fontSize: 14 }}>{job.jobName}</Typography.Title>
                                             <div>
                                                 <Typography.Text>{job.positionLevel}</Typography.Text>
                                             </div>
-                                            <Typography.Text>
+                                            <Typography.Text style={{ fontSize: 10 }}>
                                                 <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                                 {job.location.split(",").join(", ")}
                                             </Typography.Text>
