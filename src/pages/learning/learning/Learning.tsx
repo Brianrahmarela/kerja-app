@@ -13,7 +13,7 @@ export interface LearningState {}
 class Learning extends React.Component<LearningProps, LearningState> {
     render() {
         return (
-            <div className="learning-page">
+            <div className="learning-page" style={{ marginTop: 25 }}>
                 <Row justify="center" align="bottom" className="bg-cover">
                     <Col className="header-form" span={24}>
                         <div>

@@ -13,43 +13,6 @@ steps:
           - npm i
           - npm run build
 
-    # - name: removing folders
-    #   image: appleboy/drone-ssh
-    #   environment:
-    #     PASSWORD:
-    #       from_secret: docker_password
-    #     USERNAME:
-    #       from_secret: docker_username
-    #     REPO:
-    #       from_secret: docker_repo
-    #   settings:
-    #     host:
-    #       from_secret: ssh_host
-    #     username:
-    #       from_secret: ssh_username
-    #     password:
-    #       from_secret: ssh_password
-    #     port: 22
-    #     envs: [USERNAME, PASSWORD, REPO]
-    #     script:
-    #       - set -e
-    #       - cd /var/www/html/kerjaapp-ui
-    #       - rm -rf kerjaapp-ui || echo Not Found
-    #       - mkdir kerjaapp-ui
-
-    # - name: scp docker compose.yml
-    #   image: appleboy/drone-scp
-    #   settings:
-    #     host:
-    #       from_secret: ssh_host
-    #     username:
-    #       from_secret: ssh_username
-    #     password:
-    #       from_secret: ssh_password
-    #     port: 22
-    #     target: /var/www/html
-    #     source: build
-
     - name: build docker
       image: plugins/docker
       settings:
@@ -62,7 +25,7 @@ steps:
           tags:
               - uat
 
-    - name: scp docker compose.yml
+    - name: scp docker docker-compose.yml
       image: appleboy/drone-scp
       settings:
           host:
@@ -73,7 +36,7 @@ steps:
               from_secret: ssh_password
           port: 22
           target: ~/app/kerjaapp/ui
-          source: compose.yml
+          source: docker-compose.yml
 
     - name: deploying app
       image: appleboy/drone-ssh
