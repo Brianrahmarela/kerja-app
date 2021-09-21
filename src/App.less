@@ -830,9 +830,9 @@
 	content: "";
 	background: #686e7b;
 	width: 2px;
-	height: 11px;
+	height: 10px;
 	position: absolute;
-	top: -4px;
+	top: -3px;
 	right: -2px;
 	transform: rotate(135deg);
 }
@@ -840,9 +840,11 @@
 .search > div > input {
 	font-size: 12px;
 	background: transparent;
-	width: 20px;
-	height: 20px;
+	width: 21px;
+	height: 21px;
 	padding: 8px;
+	// padding: 4px 4px 4px 28px;
+
 	border: solid 2px #686e7b;
 	outline: none;
 	border-radius: 35px;
@@ -865,14 +867,19 @@
 .search > div > input::-ms-input-placeholder {
 	color: #686e7b;
 }
-
-.search > div > input:focus,
-.search > div > input:valid {
+.txtmyjob {
+	font-size: 16px;
+	line-height: 16px;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.search > div > input:focus {
 	width: 150px;
+	height: 32px;
+
 	position: absolute;
-	overflow: hidden;
 	right: 0;
-	top: -17px;
+	top: -22px;
 	bottom: 0;
 }
 
@@ -1194,6 +1201,17 @@
 	svg.svg-inline--fa path {
 		color: @primary-color;
 	}
+	.ant-card-body {
+		padding: 18px;
+	}
+	.cardEvent:hover {
+		box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+			rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	}
+	.cardRecomen:hover {
+		box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+			rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	}
 	margin-top: 49px;
 	.JobTitle {
 		font-size: 24px;
@@ -1218,6 +1236,20 @@
 	.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
 		border-top-left-radius: 5px;
 		border-bottom-left-radius: 5px;
+	}
+	.cardEvent {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.btndaftar {
+		border-radius: 6px;
+		font-family: "Open Sans";
+		font-size: 15px;
+		font-weight: 500;
+	}
+	.btndaftar:hover {
+		box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+			rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 	}
 }
 .page-job-detail {
