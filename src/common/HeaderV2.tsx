@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider, Tooltip } from 'antd';
+import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider, } from 'antd';
 import { Link, } from "react-router-dom";
 import logoHeader from "../assets/svg/logo-kerjaapp.svg";
 import logoMobile from "../assets/svg/logo-mobile.svg";
@@ -12,7 +12,8 @@ import SvgLearning from "../assets/svg/SvgLearning";
 import SvgCommunication from "../assets/svg/SvgCommunication";
 import SvgMyWork from "../assets/svg/SvgMyWork";
 import SvgLogOut from "../assets/svg/SvgLogOut";
-import SvgSearch from "../assets/svg/SvgSearch";
+import LogoHeaderMobile from "../assets/svg/logo-header.svg";
+// import SvgSearch from "../assets/svg/SvgSearch";
 import HeaderAvatar from "../assets/image/header-avatar.png";
 // import Icon from '@ant-design/icons';
 
@@ -63,7 +64,7 @@ export class HeaderV2 extends Component {
   render() {
     return (
       <Row >
-        <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins" }} >
+        <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins", }} >
 
           {/* TABLET & DESKTOP MENU*/}
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} className="mobilehidden2">
@@ -298,7 +299,8 @@ export class HeaderV2 extends Component {
                     </Button>
                   </Col>
                   <Col>
-                    <Avatar shape="square" size="default" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logomobilehome" />
+                    {/* <Avatar shape="square" size="default" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logomobilehome" /> */}
+                    <Avatar shape="square" size="small" icon={<img src={LogoHeaderMobile} alt="logoheadermobile" />} className="logomobilehomenotext" />
                   </Col>
                   <Col xs={0} md={8}>
                     <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" />
@@ -309,10 +311,15 @@ export class HeaderV2 extends Component {
               <Col xs={6} md={8} style={{ marginRight: 20, }}>
                 {/* <Row align="middle" justify="end" style={{ backgroundColor: "grey" }}> */}
                 <Row align="middle" justify="end" >
-                  <Col xs={4} md={0} style={{ marginRight: 30 }}>
-                    <Tooltip title="search">
+                  <Col xs={4} md={0} >
+                    <div className="search">
+                      <div>
+                        <input type="text" placeholder="Search . . ." required />
+                      </div>
+                    </div>
+                    {/* <Tooltip title="search">
                       <Button shape="circle" icon={<SvgSearch />} size="large" style={{ boxShadow: 'none', border: '0 solid', backgroundColor: 'transparent', }} />
-                    </Tooltip>
+                    </Tooltip> */}
                   </Col>
                   {/* <Col xs={0} md={4} style={{ backgroundColor: "yellow", marginRight: 0 }}> */}
                   <Col xs={0} md={4} style={{ marginRight: 0 }}>
