@@ -132,7 +132,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
     render() {
         const { organization } = this.state;
         return (
-            <div className="page-job-detail">
+            <div className="page-job-detail" style={{ marginTop: 20 }}>
                 <Row>
                     <Col>
                         <Breadcrumb>
@@ -149,73 +149,28 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                     </Col>
                 </Row>
                 <Row gutter={[20, 15]} style={{ marginTop: 15 }}>
-                    <Col span={8}>
-                        <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
-                            <div className="bg-cover-left">
-                                <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
-                                <Typography.Title level={4}>{organization.name}</Typography.Title>
-                                <Typography.Text>
-                                    <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                    {organization.province}, {organization.country}
-                                </Typography.Text>
-                                <div style={{ marginTop: 15 }}>
-                                    <Button icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>Ikuti</Button>
-                                </div>
-                            </div>
-                            <div style={{ padding: 24 }}>
-                                <Typography.Title level={4}>Tentang Perusahaan</Typography.Title>
-
-                                <Typography.Paragraph>{organization.description}</Typography.Paragraph>
-                                <div>
-                                    <Typography.Text>
-                                        <FontAwesomeIcon icon={faMailBulk} style={{ marginRight: 5 }} />
-                                        {(organization.email && <a href={"email:" + organization.email}>{organization.email}</a>) || "-"}
-                                    </Typography.Text>
-                                </div>
-                                <div>
-                                    <Typography.Text>
-                                        <FontAwesomeIcon icon={faPhone} style={{ marginRight: 5 }} />
-                                        {(organization.phone && <a href={"tel:" + organization.phone}>{organization.phone}</a>) || "-"}
-                                    </Typography.Text>
-                                </div>
-                                <div>
-                                    <Typography.Text>
-                                        <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5 }} />
-                                        {(organization.website && (
-                                            <a href={"http://" + organization.website} target="_blank" rel="noreferrer">
-                                                {organization.website}
-                                            </a>
-                                        )) ||
-                                            "-"}
-                                    </Typography.Text>
-                                </div>
-                                <div>
-                                    <Typography.Text>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
-                                        {organization.address || "-"}
-                                    </Typography.Text>
-                                </div>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={16}>
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { push: 8, span: 16 }, xs: { push: 0, span: 24 } }}>
                         <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
                             <div className="bg-cover-right"></div>
                             <div className="right-content">
                                 <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
                                 <Row align="bottom">
-                                    <Col span={12}>
+                                    <Col span={20}>
                                         <Typography.Title level={5}>{this.state.jobName}</Typography.Title>
                                         <Typography.Title level={4}>{organization.name}</Typography.Title>
                                         <Typography.Text>
                                             <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                             {this.state.location.split(",").join(", ")}
                                         </Typography.Text>
+                                    </Col>
+                                </Row>
+                                <Row align="bottom">
+                                    <Col span={6}>
                                         <div style={{ marginTop: 15 }}>
                                             <Button icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>Ikuti</Button>
                                         </div>
                                     </Col>
-                                    <Col span={12}>
+                                    <Col span={18} style={{ textAlign: "right" }}>
                                         <Space>
                                             <Button type="primary" icon={<FontAwesomeIcon icon={faShare} style={{ marginRight: 5 }} />}>
                                                 Bagikan
@@ -280,6 +235,56 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
                                         </Space>
                                     </Col>
                                 </Row>
+                            </div>
+                        </Card>
+                    </Col>
+
+                    <Col {...{ sm: { push: 0, span: 24 }, md: { pull: 16, span: 8 }, xs: { push: 0, span: 24 } }}>
+                        <Card bodyStyle={{ padding: 0, borderRadius: 20 }} style={{ borderRadius: 20 }}>
+                            <div className="bg-cover-left">
+                                <Avatar size={100} style={{ marginBottom: 20 }} src={organization.logo} />
+                                <Typography.Title level={4}>{organization.name}</Typography.Title>
+                                <Typography.Text>
+                                    <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
+                                    {organization.province}, {organization.country}
+                                </Typography.Text>
+                                <div style={{ marginTop: 15 }}>
+                                    <Button icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>Ikuti</Button>
+                                </div>
+                            </div>
+                            <div style={{ padding: 24 }}>
+                                <Typography.Title level={4}>Tentang Perusahaan</Typography.Title>
+
+                                <Typography.Paragraph>{organization.description}</Typography.Paragraph>
+                                <div>
+                                    <Typography.Text>
+                                        <FontAwesomeIcon icon={faMailBulk} style={{ marginRight: 5 }} />
+                                        {(organization.email && <a href={"email:" + organization.email}>{organization.email}</a>) || "-"}
+                                    </Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>
+                                        <FontAwesomeIcon icon={faPhone} style={{ marginRight: 5 }} />
+                                        {(organization.phone && <a href={"tel:" + organization.phone}>{organization.phone}</a>) || "-"}
+                                    </Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>
+                                        <FontAwesomeIcon icon={faGlobe} style={{ marginRight: 5 }} />
+                                        {(organization.website && (
+                                            <a href={"http://" + organization.website} target="_blank" rel="noreferrer">
+                                                {organization.website}
+                                            </a>
+                                        )) ||
+                                            "-"}
+                                    </Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
+                                        {organization.address || "-"}
+                                    </Typography.Text>
+                                </div>
                             </div>
                         </Card>
                     </Col>
