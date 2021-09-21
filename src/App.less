@@ -741,7 +741,10 @@
 	margin-top: 3px;
 	background-color: transparent;
 }
-
+.logomobilehomenotext {
+	width: 30px;
+	height: 30px;
+}
 .mobilehidden2 {
 	@media (min-width: 0px) {
 		display: none;
@@ -816,6 +819,61 @@
 	> .ant-input-group-addon:last-child
 	.ant-input-search-button {
 	border-radius: 8px;
+}
+
+.search > div {
+	display: inline-block;
+	position: relative;
+}
+
+.search > div:after {
+	content: "";
+	background: #686e7b;
+	width: 2px;
+	height: 11px;
+	position: absolute;
+	top: -4px;
+	right: -2px;
+	transform: rotate(135deg);
+}
+
+.search > div > input {
+	font-size: 12px;
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	padding: 8px;
+	border: solid 2px #686e7b;
+	outline: none;
+	border-radius: 35px;
+	transition: width 0.5s;
+	position: absolute;
+	right: 0;
+	top: -17px;
+	bottom: 0;
+}
+
+.search > div > input::placeholder {
+	color: #686e7b;
+	opacity: 1;
+}
+
+.search > div > input::-ms-placeholder {
+	color: #686e7b;
+}
+
+.search > div > input::-ms-input-placeholder {
+	color: #686e7b;
+}
+
+.search > div > input:focus,
+.search > div > input:valid {
+	width: 150px;
+	position: absolute;
+	overflow: hidden;
+	right: 0;
+	top: -17px;
+	bottom: 0;
 }
 
 .ant-menu-item {
