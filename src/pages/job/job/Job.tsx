@@ -186,7 +186,7 @@ class Job extends React.Component<JobProps, JobState> {
         const { jobsRecomendation } = this.state;
         return (
             <div className="job-page">
-                <Row style={{ marginTop: 15 }} justify="space-around" align="middle">
+                <Row style={{ marginTop: 64 }} justify="space-around" align="middle">
                     <Col xs={24} md={13}>
                         <Row align="middle" style={{ marginBottom: 10 }}>
                             <Space size={9}>
@@ -357,40 +357,63 @@ class Job extends React.Component<JobProps, JobState> {
                                                     <Card style={{ width: "100%", fontFamily: "Open Sans", color: "#53575E" }} className="listmylastapplied">
                                                         <Row justify="space-between" >
                                                             <Col xs={24} md={4} >
-                                                                {/* <p>{job}</p> */}
-                                                                <p>Job Title: {job.Jobtitle}</p>
+                                                                <Row>
+                                                                    <Col>
+                                                                        <p className="listtitleMobile">Job Title :</p>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <p> {job.Jobtitle}</p>
+                                                                    </Col>
+                                                                </Row>
                                                             </Col>
                                                             <Col xs={24} md={4} >
-                                                                <p>Company: {job.company}</p>
+                                                                <Row>
+                                                                    <Col>
+                                                                        <p className="listtitleMobile">Company :</p>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <p> {job.company}</p>
+                                                                    </Col>
+                                                                </Row>
                                                             </Col>
                                                             <Col xs={24} md={4} >
-                                                                <p>Applied On: {job.appliedon}</p>
+                                                                <Row>
+                                                                    <Col>
+                                                                        <p className="listtitleMobile">Applied On :</p>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <p> {job.appliedon}</p>
+                                                                    </Col>
+                                                                </Row>
                                                             </Col>
                                                             <Col xs={24} md={4} >
-                                                                <p>Position: {job.position}</p>
+                                                                <Row>
+                                                                    <Col>
+                                                                        <p className="listtitleMobile">Position :</p>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <p> {job.position}</p>
+                                                                    </Col>
+                                                                </Row>
                                                             </Col>
                                                             <Col xs={24} md={4} >
                                                                 {job.status === "Interview" ? (
                                                                     <Row align="middle">
-                                                                        <Space size={9}>
-                                                                            <Col>
-                                                                                <p>Status: </p>
-                                                                            </Col>
-                                                                            <Col>
-                                                                                <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white" }}>{job.status}</Button>
-                                                                            </Col>
-                                                                        </Space>
+                                                                        <Col style={{ marginRight: 3 }}>
+                                                                            <p className="listtitleMobile">Status : </p>
+                                                                        </Col>
+                                                                        <Col>
+                                                                            <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white", border: '0px' }} >{job.status}</Button>
+                                                                        </Col>
                                                                     </Row>
                                                                 ) : (
                                                                     <Row align="middle">
-                                                                        <Space size={9}>
-                                                                            <Col>
-                                                                                <p>Status: </p>
-                                                                            </Col>
-                                                                            <Col>
-                                                                                <Button type="primary" className="btnmobilemylast" >{job.status}</Button>
-                                                                            </Col>
-                                                                        </Space>
+                                                                        <Col style={{ marginRight: 3 }}>
+                                                                            <p className="listtitleMobile">Status: </p>
+                                                                        </Col>
+                                                                        <Col>
+                                                                            <Button type="primary" className="btnmobilemylast" >{job.status}</Button>
+                                                                        </Col>
                                                                     </Row>
                                                                 )
                                                                 }
@@ -437,84 +460,91 @@ class Job extends React.Component<JobProps, JobState> {
                                     }}
                                     renderItem={(jobRecomendation: any, i: number) => (
                                         <Space direction="vertical" style={{ paddingRight: 10, paddingBottom: 10, fontFamily: 'Open Sans' }}>
-                                            <Card style={{ width: 187, height: '100%', borderRadius: 8 }} bordered={true} className="cardRecomen">
-                                                <Space size={12} direction="vertical">
-                                                    <Row justify="space-between">
-                                                        <Col span={19}>
-                                                            <Row style={{ fontSize: 13, fontWeight: 600 }}>
-                                                                {jobRecomendation.Jobtitle}
-                                                            </Row>
-                                                            <Row style={{ fontSize: 11, color: "#53575E" }}>
-                                                                {jobRecomendation.name}
-                                                            </Row>
-                                                        </Col>
-                                                        <Col span={5}><Image src={ImgRecomendation} preview={false} /></Col>
-                                                    </Row>
-                                                    <Divider style={{ margin: 0, padding: 0, }} />
+                                            <Card style={{ height: '100%', borderRadius: 8 }} bordered={true} className="cardRecomen">
+                                                <Row justify="space-between">
+                                                    <Col xs={20} md={19}>
+                                                        <Row className="jobtitleMobile">
+                                                            {jobRecomendation.Jobtitle}
+                                                        </Row>
+                                                        <Row className="jobrecomenMobile">
+                                                            {jobRecomendation.name}
+                                                        </Row>
+                                                    </Col>
+                                                    <Col xs={4} md={5}><Image src={ImgRecomendation} preview={false} className="imgrecomenMobile" /></Col>
+                                                </Row>
+                                                <Divider style={{ margin: '12px 0px', padding: 0, }} />
+                                                <Space size={8} direction="vertical" style={{ width: '100%' }}>
                                                     <Row>
                                                         <Space size={6}>
                                                             <Col>
                                                                 <img style={{ padding: 0, margin: 0, }}
                                                                     src={SvgPlace}
                                                                     alt="place"
-                                                                    height={13}
+                                                                    className="imgplaceMobile"
                                                                 />
                                                             </Col>
-                                                            <Col style={{ color: '#53575E', fontSize: 10, paddingTop: 2 }}>
+                                                            <Col className="placeMobile">
                                                                 {jobRecomendation.place}
                                                             </Col>
                                                         </Space>
                                                     </Row>
-                                                    <Row>
-                                                        <Col>
+                                                    <Row justify="start">
+                                                        <Col md={24} style={{ marginRight: 5 }}>
                                                             <Row >
-                                                                <Text style={{ color: '#53575E', fontSize: 10, }}>
+                                                                <Text className="statusMobile">
                                                                     Status Pekerjaan :
                                                                 </Text>
                                                             </Row>
-                                                            <Row style={{ color: '#2C9BE6', fontSize: 10 }}>
+                                                        </Col>
+                                                        <Col md={24}>
+                                                            <Row className="statusvalMobile">
                                                                 {jobRecomendation.status}
                                                             </Row>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row style={{ color: '#53575E', fontSize: 10 }}>
-                                                        <Row>
-                                                            Gaji :
-                                                        </Row>
-                                                        <Row>
-                                                            <Text style={{ color: '#2C9BE6', fontSize: 10 }}>
-                                                                {jobRecomendation.gaji}
-                                                            </Text>
-                                                        </Row>
-                                                    </Row>
-
-                                                    <Row justify="space-between">
-                                                        <Col style={{ fontSize: 10, fontWeight: 300 }}>
-                                                            {jobRecomendation.time}
 
                                                         </Col>
-                                                        <Col>
+                                                    </Row>
+                                                    <Row justify="start" style={{ color: '#53575E', fontSize: 10, }} align="top">
+
+                                                        <Col md={24} style={{ marginRight: 5 }}>
                                                             <Row >
-                                                                <Space size={9}>
-                                                                    <Col>
-                                                                        <img style={{ padding: 0, margin: 0, }}
-                                                                            src={SvgSaved}
-                                                                            alt="saved"
-                                                                            height={16}
-                                                                        />
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <img style={{ padding: 0, margin: 0, }}
-                                                                            src={SvgShare}
-                                                                            alt="share"
-                                                                            height={16}
-                                                                        />
-                                                                    </Col>
-                                                                </Space>
+                                                                <Text className="statusMobile">
+                                                                    Gaji :
+                                                                </Text>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col md={24}>
+                                                            <Row className="statusvalMobile">
+                                                                {jobRecomendation.gaji}
                                                             </Row>
                                                         </Col>
                                                     </Row>
                                                 </Space>
+
+                                                <Row justify="space-between" style={{ marginTop: 20 }}>
+                                                    <Col className="timeMobile">
+                                                        {jobRecomendation.time}
+                                                    </Col>
+                                                    <Col>
+                                                        <Row >
+                                                            <Space size={9}>
+                                                                <Col>
+                                                                    <img
+                                                                        src={SvgSaved}
+                                                                        alt="saved"
+                                                                        className="btnsaveMobile"
+                                                                    />
+                                                                </Col>
+                                                                <Col>
+                                                                    <img
+                                                                        src={SvgShare}
+                                                                        alt="share"
+                                                                        className="btnsaveMobile"
+                                                                    />
+                                                                </Col>
+                                                            </Space>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
                                             </Card>
                                         </Space>
                                     )}

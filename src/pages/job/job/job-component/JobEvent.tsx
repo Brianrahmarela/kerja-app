@@ -106,7 +106,7 @@ class JobEvent extends React.Component<JobProps, JobState> {
   render() {
     const { jobEvent, ellipsis } = this.state;
     return (
-      <div className="job-page">
+      <div >
         <Row gutter={15} style={{ marginTop: 15 }} justify="start" align="middle">
           <Col>
             <Text className="subtitlejob">Job Event</Text>
@@ -122,7 +122,7 @@ class JobEvent extends React.Component<JobProps, JobState> {
               }}
               renderItem={(jobEvent: any, i: number) => (
                 <Space direction="vertical" style={{ paddingRight: 30, paddingBottom: 10, fontFamily: 'Open Sans' }}>
-                  <Card style={{ width: 293, height: '100%', borderRadius: 10, margin: 0, padding: 0 }} bordered={true} className="cardEvent">
+                  <Card style={{ height: '100%', borderRadius: 10, margin: 0, padding: 0 }} bordered={true} className="cardEvent">
                     <Space size={12} direction="vertical">
                       <Row>
                         <Image style={{ padding: 0, margin: "0px" }} src={Banner1} preview={false} />
