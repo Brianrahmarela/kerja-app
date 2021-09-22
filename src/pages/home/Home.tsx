@@ -1,9 +1,8 @@
-import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Typography } from "antd";
+import { Affix, Button, Col, Divider, Row, Typography } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
 import NewPost from "./posts/NewPost";
 import Posts from "./posts/Posts";
