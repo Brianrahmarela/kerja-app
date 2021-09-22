@@ -29,6 +29,7 @@ class JobList extends React.Component<JobListProps, JobListState> {
             page: 1,
             total: 0,
             q: "",
+            size: 5,
         },
     };
     loadMore = (e: any) => {

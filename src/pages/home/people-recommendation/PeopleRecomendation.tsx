@@ -62,11 +62,13 @@ class PeopleRecommendation extends React.Component<PeopleRecommendationProps, Pe
                                         <div>
                                             {item.firstName} {item.lastName}
                                         </div>
-                                        <div className="grey-primary" style={{ fontSize: 12 }}>
-                                            CEO Kopi Jawa
-                                        </div>
+                                        {item.lastPosition && (
+                                            <div className="grey-primary" style={{ fontSize: 12 }}>
+                                                {item.lastPosition} - {item.lastCompany}
+                                            </div>
+                                        )}
                                         <div className="grey-primary" style={{ fontSize: 10 }}>
-                                            73 rb Pengikut
+                                            {item.follower} Pengikut
                                         </div>
                                     </Col>
                                     <Col>

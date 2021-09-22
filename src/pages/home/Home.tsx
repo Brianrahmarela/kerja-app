@@ -29,7 +29,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </Typography.Title>
                         <Divider style={{ marginBottom: 5 }}></Divider>
                         <PeopleRecommendation />
-                        <Card className="community-widget" bordered={false}>
+                        {/* <Card className="community-widget" bordered={false}>
                             <List
                                 header="Komunitas"
                                 footer={
@@ -72,6 +72,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 )}
                             />
                         </Card>
+                    */}
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={17}>
                         {/* <Row>

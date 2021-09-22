@@ -91,7 +91,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
                 </Row>
                 <Row gutter={[20, 20]} style={{ marginTop: 15 }}>
                     <Col {...{ sm: { push: 0, span: 24 }, md: { push: 8, span: 16 }, xs: { push: 0, span: 24 } }}>
-                        <Card style={{ width: "100%", borderRadius: 20 }} bodyStyle={{ borderRadius: 20 }}>
+                        <Card style={{ width: "100%", borderRadius: 20, marginTop: 33 }} bodyStyle={{ borderRadius: 20 }}>
                             <Form layout="vertical">
                                 <Formik
                                     enableReinitialize
