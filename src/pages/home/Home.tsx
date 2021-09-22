@@ -1,6 +1,6 @@
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Space, Typography } from "antd";
+import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Typography } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ export interface HomeProps {
     setEditedPost?: (x: any) => void;
 }
 
-export interface HomeState { }
+export interface HomeState {}
 
 class Home extends React.Component<HomeProps, HomeState> {
     componentDidMount() {
@@ -74,7 +74,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </Card>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={17}>
-                        <Row>
+                        {/* <Row>
                             <Col span={24}>
                                 <Space>
                                     <Avatar size="large"></Avatar>
@@ -86,7 +86,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 </Space>
                             </Col>
                         </Row>
-                        <Divider />
+                        <Divider /> */}
                         <Posts />
                     </Col>
                 </Row>
