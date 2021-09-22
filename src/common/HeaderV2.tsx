@@ -314,7 +314,7 @@ export class HeaderV2 extends Component {
                   <Col xs={4} md={0} >
                     <div className="search">
                       <div>
-                        <input type="text" placeholder="Search . . ." required />
+                        <input type="text" placeholder="Search . . ." />
                       </div>
                     </div>
                     {/* <Tooltip title="search">
