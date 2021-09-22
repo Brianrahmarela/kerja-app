@@ -12,26 +12,23 @@ import SvgLearning from "../assets/svg/SvgLearning";
 import SvgCommunication from "../assets/svg/SvgCommunication";
 import SvgMyWork from "../assets/svg/SvgMyWork";
 import SvgLogOut from "../assets/svg/SvgLogOut";
+import SearchIcon from "../assets/svg/search-icon-header.svg";
 import LogoHeaderMobile from "../assets/svg/logo-header.svg";
-// import SvgSearch from "../assets/svg/SvgSearch";
 import HeaderAvatar from "../assets/image/header-avatar.png";
-// import Icon from '@ant-design/icons';
 
-const { Search } = Input;
 const { Header, } = Layout;
 const { Text, } = Typography;
-
 export interface TopMenuState {
   pageReady: boolean;
   menu: any;
   visible: boolean;
-  valSearch: "",
+  valSearch: any,
 }
-
 export class HeaderV2 extends Component {
   state = {
     pageReady: false,
     visible: false,
+    valSearch: "",
     menu: (
       <Menu>
         <Menu.Item>
@@ -56,12 +53,18 @@ export class HeaderV2 extends Component {
   onSearch = (valSearch: string) => {
     console.log(valSearch);
   }
+  onChangeHandle = (e: any) => {
+    this.setState({ valSearch: e.target.value });
+  }
+
   onClickSettings = (e: any) => {
     console.log(e, "onClickSettings works");
   }
 
-
   render() {
+    const { valSearch } = this.state;
+    console.log('state search user: ', valSearch);
+
     return (
       <Row >
         <Header style={{ position: 'fixed', zIndex: 2, width: '100%', padding: 0, margin: 0, fontFamily: "Poppins", }} >
@@ -82,7 +85,16 @@ export class HeaderV2 extends Component {
                   </Col>
                   <Col md={10} lg={12} xl={12}>
                     <Menu.Item key="2">
-                      <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" />
+                      {/* <Search placeholder="Search job..." onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" /> */}
+                      <Input placeholder="Cari Pekerjaan" prefix={<img src={SearchIcon}
+                        alt="share"
+                        height={19}
+                      />}
+                        style={{ borderRadius: 5, }}
+                        onChange={this.onChangeHandle}
+                      />
+
+
                     </Menu.Item>
                   </Col>
                 </Row>
@@ -286,7 +298,7 @@ export class HeaderV2 extends Component {
             </Menu.Item>
 
             <Row justify="space-between" >
-              <Col style={{ marginLeft: 3 }}>
+              <Col xs={10} md={12} style={{ marginLeft: 3, }} >
                 <Row align="middle">
                   <Col>
                     <Button type="default" onClick={this.showDrawer} className="btnmobile">
@@ -302,8 +314,16 @@ export class HeaderV2 extends Component {
                     {/* <Avatar shape="square" size="default" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logomobilehome" /> */}
                     <Avatar shape="square" size="small" icon={<img src={LogoHeaderMobile} alt="logoheadermobile" />} className="logomobilehomenotext" />
                   </Col>
-                  <Col xs={0} md={8}>
-                    <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" />
+                  <Col xs={0} md={2}></Col>
+                  <Col xs={0} md={14}>
+                    {/* <Search placeholder="Search job" onSearch={this.onSearch} height={80} style={{ lineHeight: 80, marginTop: 17, marginLeft: 10 }} id="searchbtn" /> */}
+                    <Input placeholder="Cari Pekerjaan" prefix={<img src={SearchIcon}
+                      alt="share"
+                      height={19}
+                    />}
+                      style={{ borderRadius: 5, }}
+                      onChange={this.onChangeHandle}
+                    />
                   </Col>
                 </Row>
               </Col>
@@ -314,12 +334,10 @@ export class HeaderV2 extends Component {
                   <Col xs={4} md={0} >
                     <div className="search">
                       <div>
-                        <input type="text" placeholder="Search . . ." />
+                        <Input type="text" placeholder="Search . . ." onChange={this.onChangeHandle}
+                        />
                       </div>
                     </div>
-                    {/* <Tooltip title="search">
-                      <Button shape="circle" icon={<SvgSearch />} size="large" style={{ boxShadow: 'none', border: '0 solid', backgroundColor: 'transparent', }} />
-                    </Tooltip> */}
                   </Col>
                   {/* <Col xs={0} md={4} style={{ backgroundColor: "yellow", marginRight: 0 }}> */}
                   <Col xs={0} md={4} style={{ marginRight: 0 }}>

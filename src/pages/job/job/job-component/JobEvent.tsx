@@ -1,5 +1,5 @@
 
-import { Button, Card, Image, Col, List, Row, Space, Typography, Divider } from "antd";
+import { Button, Card, Image, Col, List, Row, Space, Typography, Divider, } from "antd";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
@@ -9,6 +9,7 @@ import SvgSaved from "../../../../assets/svg/saved-icon.svg";
 import SvgShare from "../../../../assets/svg/share-icon.svg";
 import Banner1 from "../../../../assets/image/banner1-job-event.png";
 import SvgCalendar from "../../../../assets/svg/calendar-icon.svg";
+import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
 
 const { Paragraph, Text } = Typography;
 
@@ -108,7 +109,7 @@ class JobEvent extends React.Component<JobProps, JobState> {
       <div className="job-page">
         <Row gutter={15} style={{ marginTop: 15 }} justify="start" align="middle">
           <Col>
-            <Text style={{ fontSize: 18, color: "#53575E", fontWeight: 500 }}>Job Event</Text>
+            <Text className="subtitlejob">Job Event</Text>
           </Col>
         </Row>
         <Row style={{ padding: '15px 0px 0px 0px', }} >
@@ -207,6 +208,20 @@ class JobEvent extends React.Component<JobProps, JobState> {
             >
               {/* {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />} */}
             </List>
+            <Row>
+              <Button type="link" block style={{ marginBottom: 49, marginTop: 22 }}>
+                <Space size={9} style={{ color: "#53575E", }}>
+
+                  Lainnya
+                  <img style={{ padding: 0, margin: 0, }}
+                    src={SvgLainnya}
+                    alt="share"
+                    height={5}
+                  />
+                </Space>
+
+              </Button>
+            </Row>
           </InfiniteScroll>
 
         </Row>
