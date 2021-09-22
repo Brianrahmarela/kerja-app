@@ -16,12 +16,15 @@ export interface PeopleRecommendationState {
 class PeopleRecommendation extends React.Component<PeopleRecommendationProps, PeopleRecommendationState> {
     state = {
         suggestions: [] as any[],
-        pagination: {},
+        pagination: {
+            size: 5,
+        },
     };
     componentDidMount() {
         this.loadData();
     }
     loadData() {
+        console.log(this.state.pagination);
         getUserSuggestion(this.state.pagination).then((res: AxiosResponse<any>) => {
             this.setState({
                 suggestions: res.data.content,
@@ -51,7 +54,7 @@ class PeopleRecommendation extends React.Component<PeopleRecommendationProps, Pe
                     renderItem={(item) => (
                         <List.Item style={{ alignItems: "flex-start" }}>
                             <Col flex={"40px"} style={{ paddingLeft: 0 }}>
-                                <Avatar size={"large"}></Avatar>
+                                <Avatar size={"large"} src={item.photo || "https://www.bh-bims.org/wp-content/uploads/2017/02/profile-placeholder.gif"}></Avatar>
                             </Col>
                             <Col flex="auto">
                                 <Row justify="space-between" align="top">
@@ -59,11 +62,13 @@ class PeopleRecommendation extends React.Component<PeopleRecommendationProps, Pe
                                         <div>
                                             {item.firstName} {item.lastName}
                                         </div>
-                                        <div className="grey-primary" style={{ fontSize: 12 }}>
-                                            CEO Kopi Jawa
-                                        </div>
+                                        {item.lastPosition && (
+                                            <div className="grey-primary" style={{ fontSize: 12 }}>
+                                                {item.lastPosition} - {item.lastCompany}
+                                            </div>
+                                        )}
                                         <div className="grey-primary" style={{ fontSize: 10 }}>
-                                            73 rb Pengikut
+                                            {item.follower} Pengikut
                                         </div>
                                     </Col>
                                     <Col>

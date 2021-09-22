@@ -1,9 +1,8 @@
-import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Affix, Avatar, Button, Card, Col, Divider, List, Row, Space, Typography } from "antd";
+import { Affix, Button, Col, Divider, Row, Typography } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
 import NewPost from "./posts/NewPost";
 import Posts from "./posts/Posts";
@@ -13,7 +12,7 @@ export interface HomeProps {
     setEditedPost?: (x: any) => void;
 }
 
-export interface HomeState { }
+export interface HomeState {}
 
 class Home extends React.Component<HomeProps, HomeState> {
     componentDidMount() {
@@ -29,7 +28,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </Typography.Title>
                         <Divider style={{ marginBottom: 5 }}></Divider>
                         <PeopleRecommendation />
-                        <Card className="community-widget" bordered={false}>
+                        {/* <Card className="community-widget" bordered={false}>
                             <List
                                 header="Komunitas"
                                 footer={
@@ -72,9 +71,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 )}
                             />
                         </Card>
+                    */}
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={17}>
-                        <Row>
+                        {/* <Row>
                             <Col span={24}>
                                 <Space>
                                     <Avatar size="large"></Avatar>
@@ -86,7 +86,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 </Space>
                             </Col>
                         </Row>
-                        <Divider />
+                        <Divider /> */}
                         <Posts />
                     </Col>
                 </Row>

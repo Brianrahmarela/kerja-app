@@ -1,4 +1,4 @@
-import { faBookmark, faCircleNotch, faEllipsisV, faPaperPlane, faPlus, faShare, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faChevronDown, faCircleNotch, faEllipsisV, faPaperPlane, faPlus, faShare, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Button, Card, Col, Divider, Dropdown, Image, Menu, Modal, Row, Space, Spin, Tooltip, Typography } from "antd";
 import { AxiosResponse } from "axios";
@@ -120,7 +120,7 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
 
                 {/* likes button  */}
                 <Row justify="space-between">
-                    <Col span={12}>
+                    <Col xs={20} sm={9}>
                         <Space>
                             <Typography.Text>{postData.commentCount} Comments</Typography.Text>
                             <Button
@@ -175,7 +175,7 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                             )}
                         </Space>
                     </Col>
-                    <Col span={12} style={{ textAlign: "right" }}>
+                    <Col xs={0} sm={15} style={{ textAlign: "right" }}>
                         <Space align="end">
                             <Button type="link" icon={<FontAwesomeIcon icon={faShare} style={{ marginRight: 5 }} />}>
                                 Share
@@ -187,6 +187,31 @@ class PostItem extends React.Component<PostItemProps, PostItemState> {
                                 Send
                             </Button>
                         </Space>
+                    </Col>
+                    <Col xs={4} sm={0} style={{ textAlign: "right" }}>
+                        <Dropdown
+                            overlay={
+                                <Menu>
+                                    <Menu.Item key="set-post:1">
+                                        <Button type="link" icon={<FontAwesomeIcon icon={faShare} style={{ marginRight: 5 }} />}>
+                                            Share
+                                        </Button>
+                                    </Menu.Item>
+                                    <Menu.Item key="set-post:2">
+                                        <Button type="link" icon={<FontAwesomeIcon icon={faBookmark} style={{ marginRight: 5 }} />}>
+                                            Archive
+                                        </Button>
+                                    </Menu.Item>
+                                    <Menu.Item key="set-post:3">
+                                        <Button type="link" icon={<FontAwesomeIcon icon={faPaperPlane} style={{ marginRight: 5 }} />}>
+                                            Send
+                                        </Button>
+                                    </Menu.Item>
+                                </Menu>
+                            }
+                        >
+                            <Button type="link" icon={<FontAwesomeIcon icon={faChevronDown} style={{ marginRight: 5 }} />}></Button>
+                        </Dropdown>
                     </Col>
                 </Row>
                 {/* e: likes button  */}

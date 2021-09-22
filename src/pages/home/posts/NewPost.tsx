@@ -192,7 +192,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                     ]}
                 >
                     <Row justify="space-between" align="top">
-                        <Col span={16}>
+                        <Col span={15}>
                             <Row align="middle">
                                 <Col flex={"70px"}>
                                     <Avatar size={50} src={currentUser.photo} />
@@ -215,7 +215,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col span={8} style={{ textAlign: "right" }}>
+                        <Col span={9} style={{ textAlign: "right" }}>
                             <Select
                                 value={this.state.form.privacyStatus}
                                 size="small"
