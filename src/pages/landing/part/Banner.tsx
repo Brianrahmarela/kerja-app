@@ -15,7 +15,7 @@ export interface BannerState {
 export class Banner extends Component {
   render() {
     return (
-      <div style={{ marginTop: 30, paddingBottom: 10 }}>
+      <div className="bannertop">
         <Carousel arrows={true} style={{ marginTop: 30, paddingBottom: 10 }}>
           <Row justify="center">
             <Col>

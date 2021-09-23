@@ -97,6 +97,22 @@
 			font-family: @fabada;
 		}
 	}
+	.bannertop {
+		// background-color: greenyellow;
+		margin-bottom: 30px;
+
+		@media (min-width: 280px) {
+			margin-top: 90px;
+		}
+
+		@media (min-width: 400px) {
+			margin-top: 80px;
+		}
+
+		@media (min-width: 768px) {
+			margin-top: 80px;
+		}
+	}
 
 	.header-fix {
 		background-color: #ffffff !important;
@@ -221,25 +237,30 @@
 }
 #imglanding {
 	width: 100vw !important;
+
 	@media (min-width: 280px) {
 		margin-bottom: 100px;
+		position: relative;
+		top: 65px !important;
 	}
-	@media (min-width: 576px) {
-		margin-bottom: 80px !important;
+	@media (min-width: 561px) {
+		margin-bottom: 60px;
+		position: static;
+		top: 0px;
 	}
 	@media (min-width: 768px) {
-		margin-bottom: 50px !important;
+		margin-bottom: 50px;
 	}
 	@media (min-width: 992px) {
 		margin-bottom: 30px !important;
 	}
 	@media (min-width: 1200px) {
-		margin-bottom: 80px !important;
-		height: 600px !important;
+		margin-bottom: 100px;
+		// height: 600px !important;
 	}
 	@media (min-width: 1400px) {
-		margin-bottom: 120px !important;
-		height: 730px !important;
+		margin-bottom: 20px;
+		height: 730px;
 	}
 }
 .rowtextlanding {
