@@ -43,6 +43,7 @@ export const AppConfig = {
         postPersonalInfo: baseUrlApi + "/ka-jobseeker/v1/my-profile",
         getPersonalInfo: baseUrlApi + "/ka-jobseeker/v1/my-profile",
         getHeaderPersonalInfo: baseUrlApi + "/ka-jobseeker/v1/header-info/",
+        getSidePersonalInfo: baseUrlApi + "/ka-jobseeker/v1/side-info/",
         getProfile: baseUrlApi + "/ka-auth/v1/profile",
         getPositionTitle: baseUrlApi + "/ka-jobseeker/v1/position-titles",
         getExperiences: baseUrlApi + "/ka-jobseeker/v1/experiences",
