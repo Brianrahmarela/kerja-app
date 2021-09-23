@@ -7,6 +7,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getSearchJob } from "../../../repository/JobRepo";
 import SvgTime from "../../../assets/svg/time.svg";
@@ -38,6 +39,7 @@ export interface JobState {
 }
 
 class Job extends React.Component<JobProps, JobState> {
+
     state = {
         hasMore: true,
         loading: false,
@@ -235,9 +237,11 @@ class Job extends React.Component<JobProps, JobState> {
                             <Col xs={9} md={12} style={{ textAlign: "right" }}>
                                 <Row align="middle" justify="end">
                                     <Col>
-                                        <Button type="primary" icon={<img src={SvgMyJob} alt="logokerjaapp" style={{ marginRight: 7, }} />} className="txtmyjob">
+
+                                        <Link to={`/job/my-jobs-applied`} >  <Button type="primary" icon={<img src={SvgMyJob} alt="logokerjaapp" style={{ marginRight: 7, }} />} className="txtmyjob">
                                             My Job
-                                        </Button>
+                                        </Button></Link>
+
                                     </Col>
                                 </Row>
                             </Col>
