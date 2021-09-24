@@ -1,6 +1,6 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faImages, faNewspaper, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Affix, Button, Col, Divider, Row, Typography } from "antd";
+import { Avatar, Card, Col, Divider, Input, Row, Space, Typography } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
@@ -28,90 +28,82 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </Typography.Title>
                         <Divider style={{ marginBottom: 5 }}></Divider>
                         <PeopleRecommendation />
-                        {/* <Card className="community-widget" bordered={false}>
-                            <List
-                                header="Komunitas"
-                                footer={
-                                    <>
-                                        <Link to="">
-                                            Lainnya <FontAwesomeIcon icon={faCaretDown} />
-                                        </Link>
-                                    </>
-                                }
-                                size="small"
-                                split={false}
-                                dataSource={[
-                                    "Racing car sprays burning fuel into crowd.",
-                                    "Japanese princess to wed commoner.",
-                                    "Australian walks 100km after outback crash.",
-                                    "Man charged over missing wedding girl.",
-                                    "Los Angeles battles huge wildfires.",
-                                ]}
-                                renderItem={() => (
-                                    <List.Item style={{ alignItems: "flex-start" }}>
-                                        <Col flex={"40px"} style={{ paddingLeft: 0 }}>
-                                            <Avatar size={"large"}></Avatar>
-                                        </Col>
-                                        <Col flex="auto">
-                                            <Row justify="space-between" align="top">
-                                                <Col>
-                                                    <div>Silviana Juli</div>
-                                                    <div className="grey-primary" style={{ fontSize: 10 }}>
-                                                        73 rb Pengikut
-                                                    </div>
-                                                </Col>
-                                                <Col>
-                                                    <Button type="link" style={{ fontSize: 12 }} icon={<FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />}>
-                                                        Gabung
-                                                    </Button>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    </List.Item>
-                                )}
-                            />
-                        </Card>
-                    */}
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={17}>
-                        {/* <Row>
-                            <Col span={24}>
-                                <Space>
-                                    <Avatar size="large"></Avatar>
-                                    <Avatar size="large"></Avatar>
-                                    <Avatar size="large"></Avatar>
-                                    <Avatar size="large"></Avatar>
-                                    <Avatar size="large"></Avatar>
-                                    <Avatar size="large"></Avatar>
-                                </Space>
-                            </Col>
-                        </Row>
-                        <Divider /> */}
+                        <Card
+                            style={{ marginBottom: 20 }}
+                            onClick={() => {
+                                this.props.setEditedPost?.({
+                                    isEdited: true,
+                                    editedPost: {
+                                        post: "",
+                                        postType: "TEXT",
+                                        privacyStatus: "FRIENDS",
+                                        medias: [],
+                                        longitude: 0.0,
+                                        latitude: 0.0,
+                                    },
+                                });
+                            }}
+                        >
+                            <Row>
+                                <Col span={4} style={{ textAlign: "center" }}>
+                                    <Avatar size={65} src="http://localhost:7777/api/thrm-media/v1/file?forceImage=true&source-id=karirapp-bg-profile&id=rOBDR3xXzjv2jObwjqJgvL2o4b0YVa" />
+                                </Col>
+                                <Col span={20}>
+                                    <Input style={{ height: 65, borderRadius: 10 }} placeholder="Write something..." readOnly />
+                                    <Row justify="space-between" align="middle" style={{ padding: 20, paddingBottom: 0 }}>
+                                        <Col
+                                            style={{
+                                                verticalAlign: "middle",
+                                                alignContent: "center",
+                                                display: "flex",
+                                            }}
+                                            onClick={() => {
+                                                this.setState({
+                                                    showUploader: true,
+                                                    postType: "MEDIA",
+                                                });
+                                            }}
+                                        >
+                                            <Space>
+                                                <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+                                                <span>Foto/Gambar</span>
+                                            </Space>
+                                        </Col>
+                                        <Col
+                                            style={{
+                                                verticalAlign: "middle",
+                                                alignContent: "center",
+                                                display: "flex",
+                                            }}
+                                        >
+                                            <Space>
+                                                <FontAwesomeIcon icon={faVideo} style={{ fontSize: 20 }} />
+                                                <span>Video</span>
+                                            </Space>
+                                        </Col>
+                                        <Col
+                                            style={{
+                                                verticalAlign: "middle",
+                                                alignContent: "center",
+                                                display: "flex",
+                                            }}
+                                        >
+                                            <Space>
+                                                <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: 20 }} />
+                                                <span>Write Articel</span>
+                                            </Space>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                        </Card>
+
                         <Posts />
                     </Col>
                 </Row>
-                <Affix offsetBottom={20}>
-                    <Button
-                        shape="circle"
-                        size="large"
-                        type="primary"
-                        style={{ position: "fixed", bottom: 20, right: 20 }}
-                        icon={<FontAwesomeIcon icon={faPlus} />}
-                        onClick={() => {
-                            this.props.setEditedPost?.({
-                                isEdited: true,
-                                editedPost: {
-                                    post: "",
-                                    postType: "TEXT",
-                                    privacyStatus: "FRIENDS",
-                                    medias: [],
-                                    longitude: 0.0,
-                                    latitude: 0.0,
-                                },
-                            });
-                        }}
-                    />
-                </Affix>
+
                 {this.props.isEdited && <NewPost visible={this.props.isEdited} />}
             </div>
         );

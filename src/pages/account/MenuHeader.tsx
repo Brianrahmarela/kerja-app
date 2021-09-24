@@ -1,4 +1,4 @@
-import { faCamera, faPencilAlt, faUsers, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faMapMarkerAlt, faPencilAlt, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Button, Col, Menu, Modal, Row, Typography, Upload } from "antd";
 import { AxiosResponse } from "axios";
@@ -77,7 +77,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
         const { personalInfo, bgProfile } = this.state;
         console.log(bgProfile);
         return (
-            <div className="profile-header" style={{ marginBottom: 20 }}>
+            <div className="profile-header" style={{ marginBottom: 20, marginTop: 20 }}>
                 <Row className="bg-cover" style={{ backgroundImage: bgProfile ? `url(${bgProfile})` : "`url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg)" }}>
                     <Col span={6}>
                         <div className="avatar-wrapper">
@@ -153,10 +153,10 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                     <Col span={10}>
                         <div className="name-wrapper">
                             <div style={{ position: "absolute", bottom: 15 }}>
-                                <Typography.Title level={2} style={{ color: "white" }}>
+                                <Typography.Title level={2}>
                                     {personalInfo?.firstName} {personalInfo?.lastName}
                                 </Typography.Title>
-                                <span style={{ color: "white" }}>Join on {moment(personalInfo?.createdAt).format("ll")}</span>
+                                <span>Join on {moment(personalInfo?.createdAt).format("ll")}</span>
                             </div>
                         </div>
                     </Col>
@@ -221,7 +221,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faPencilAlt} style={{ color: "white" }} />
+                                <FontAwesomeIcon icon={faPencilAlt} />
                             </Upload>
                         </Button>
                     </Col>
@@ -229,11 +229,11 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                 <Row>
                     <Col offset={5} span={8} className="underline">
                         <Menu mode="horizontal">
-                            <Menu.Item key="location" icon={<FontAwesomeIcon icon={faUsers} />}>
-                                {personalInfo?.follower || 0} followers
+                            <Menu.Item key="location" icon={<FontAwesomeIcon icon={faMapMarkerAlt} />}>
+                                {personalInfo?.region || "-"}
                             </Menu.Item>
-                            <Menu.Item key="follower" icon={<FontAwesomeIcon icon={faUserShield} />}>
-                                {personalInfo?.following || 0} following
+                            <Menu.Item key="follower" icon={<FontAwesomeIcon icon={faUsers} />}>
+                                {personalInfo?.follower || 0} follower
                             </Menu.Item>
                         </Menu>
                     </Col>
@@ -246,13 +246,13 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                             <div style={{ marginLeft: "auto" }}>
                                 <Menu mode="horizontal" style={{ justifyContent: "flex-end" }}>
                                     <Menu.Item key="about">
-                                        <Link to={"/account/"}>Account</Link>
+                                        <Link to={"/account/"}>Post</Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting">
-                                        <Link to={"/account/settings"}>Settings</Link>
+                                        <Link to={"/account/my-profile"}>About me</Link>
                                     </Menu.Item>
                                     <Menu.Item key="me">
-                                        <Link to={"/account/my-resume"}>My Resume</Link>
+                                        <Link to={"/account/my-network"}>My Network</Link>
                                     </Menu.Item>
                                 </Menu>
                             </div>

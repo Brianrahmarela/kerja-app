@@ -25,6 +25,15 @@ export const getHeaderPersonal = (encodedId: string) => {
         },
     });
 };
+export const getSidePersonal = (encodedId: string) => {
+    console.log(encodedId);
+    const token = window.localStorage.getItem("token");
+    return axios.get(AppConfig.url.getSidePersonalInfo + encodedId, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
 export const postPersonal = (payload: any) => {
     const token = window.localStorage.getItem("token");
     return axios.post(AppConfig.url.postPersonalInfo, payload, {
