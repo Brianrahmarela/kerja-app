@@ -5,7 +5,7 @@ import { AxiosResponse } from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { encodeHashUserId } from "../../../config/Util";
-import { getHeaderPersonal, getSidePersonal } from "../../../repository/WorkerRepo";
+import { getSidePersonal } from "../../../repository/WorkerRepo";
 import NewPost from "../../home/posts/NewPost";
 import Posts from "./posts/Posts";
 

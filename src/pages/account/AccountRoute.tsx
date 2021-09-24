@@ -1,13 +1,8 @@
 import { Component } from "react";
 import { Route, HashRouter as Router, Switch } from "react-router-dom";
 import MenuHeader from "./MenuHeader";
-import MyEvent from "./my-event/MyEvent";
-import JobAppliedDetail from "./my-job-application/JobAppliedDetail";
-import MyJobApplication from "./my-job-application/MyJobApplication";
 import MyPost from "./my-post/MyPost";
-import MyProfile from "./my-profile/MyProfile";
-import MyResume from "./my-resume/MyResume";
-import MySettingForm from "./my-setting/MySettingForm";
+import MyProfileRoute from "./my-profile/MyProfileRoute";
 
 interface IProps {}
 interface IState {}
@@ -23,12 +18,7 @@ class AccountRoute extends Component<IProps, IState> {
                     <Switch>
                         <Switch>
                             <Route exact path="/account" component={MyPost} />
-                            <Route exact path="/account/po" component={MyProfile} />
-                            <Route path="/account/my-resume" component={MyResume} />
-                            <Route exact path="/account/settings" component={MySettingForm} />
-                            <Route exact path="/account/my-job-application" component={MyJobApplication} />
-                            <Route exact path="/account/my-job-application/:id" component={JobAppliedDetail} />
-                            <Route exact path="/account/my-event" component={MyEvent} />
+                            <Route path="/account/my-profile" component={MyProfileRoute} />
                         </Switch>
                     </Switch>
                 </Router>

@@ -49,12 +49,13 @@
 
 @primary-color: #2c9be6;
 @primary-grey: #8a8a8a;
+@border-grey: #9d9d9d;
 
 @poppins: "Poppins";
 @opensans: "Open sans";
 @fabada: "fabadaregular";
 @font-family: @poppins;
-
+@border-radius-base: 3px;
 .blue-primary {
     color: @primary-color !important;
 }
@@ -1143,6 +1144,18 @@
         background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
         background-repeat: no-repeat;
         background-size: 100%;
+        position: relative;
+        &::before {
+            background-color: rgba(240, 240, 240, 0.6);
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+            height: 100%;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            z-index: -0;
+        }
     }
     .avatar-wrapper {
         width: 100%;
@@ -1563,6 +1576,18 @@
             svg > path {
                 fill: #ffffff;
             }
+        }
+    }
+}
+.profile-page {
+    .floating-menu > li {
+        border: 1px solid @border-grey !important;
+        border-radius: 10px !important;
+    }
+    .floating-menu {
+        border-right: 0 transparent;
+        .ant-menu-sub.ant-menu-inline {
+            background-color: transparent;
         }
     }
 }

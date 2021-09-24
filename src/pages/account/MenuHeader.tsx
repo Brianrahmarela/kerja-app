@@ -153,10 +153,10 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                     <Col span={10}>
                         <div className="name-wrapper">
                             <div style={{ position: "absolute", bottom: 15 }}>
-                                <Typography.Title level={2} style={{ color: "white" }}>
+                                <Typography.Title level={2}>
                                     {personalInfo?.firstName} {personalInfo?.lastName}
                                 </Typography.Title>
-                                <span style={{ color: "white" }}>Join on {moment(personalInfo?.createdAt).format("ll")}</span>
+                                <span>Join on {moment(personalInfo?.createdAt).format("ll")}</span>
                             </div>
                         </div>
                     </Col>
@@ -221,7 +221,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faPencilAlt} style={{ color: "white" }} />
+                                <FontAwesomeIcon icon={faPencilAlt} />
                             </Upload>
                         </Button>
                     </Col>
@@ -249,10 +249,10 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                                         <Link to={"/account/"}>Post</Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting">
-                                        <Link to={"/account/settings"}>About me</Link>
+                                        <Link to={"/account/my-profile"}>About me</Link>
                                     </Menu.Item>
                                     <Menu.Item key="me">
-                                        <Link to={"/account/my-resume"}>My Network</Link>
+                                        <Link to={"/account/my-network"}>My Network</Link>
                                     </Menu.Item>
                                 </Menu>
                             </div>

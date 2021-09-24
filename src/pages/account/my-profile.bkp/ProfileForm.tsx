@@ -9,7 +9,7 @@ import {
     getLogout,
     //   getProfile,
     //   postProfile,
-} from "./../../../repository/AuthRepo";
+} from "../../../repository/AuthRepo";
 // import { AxiosResponse } from "axios";
 
 interface Iprops {
