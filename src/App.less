@@ -1262,6 +1262,12 @@
 	.cardRecomen:hover {
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	}
+	.cardApplied {
+		width: 100% !important;
+	}
+	.cardApplied:hover {
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	}
 	.JobTitle {
 		font-size: 24px;
 	}
@@ -1460,6 +1466,52 @@
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
 			rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 	}
+	.btntabMyJob {
+		font-size: 12.6px;
+		font-family: "Open Sans";
+		border-radius: 6px;
+		padding: 5.6px 20px;
+		color: #53575e;
+		// border-color: #53575e;
+	}
+	.ant-tabs-top > .ant-tabs-nav::before,
+	.ant-tabs-top > div > .ant-tabs-nav::before {
+		border-style: none;
+	}
+	.ant-tabs-tab.ant-tabs-tab-active {
+		background-color: @primary-color;
+		box-sizing: border-box;
+		border-radius: 6px;
+		height: 34px;
+		margin-top: 12px;
+		.ant-btn > span {
+			color: white !important;
+		}
+		.ant-btn.ant-btn-ghost.btntabMyJob {
+			border-style: none !important;
+		}
+	}
+	.ant-tabs-ink-bar {
+		display: none;
+	}
+	.badgeApplied {
+		.ant-badge-count {
+			top: 24px;
+			right: 16px;
+			height: 31px;
+			width: 31px;
+			border-radius: 40px;
+			padding-top: 6px;
+		}
+	}
+	// .avatar-item {
+	// 	margin-right: 24px;
+	// }
+
+	// [class*="-col-rtl"] .avatar-item {
+	// 	margin-right: 0;
+	// 	margin-left: 24px;
+	// }
 }
 .page-job-detail {
 	position: relative;
