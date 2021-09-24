@@ -14,7 +14,11 @@ import SvgNotifJobAlert from "../../../assets/svg/notif-job-alert-settings.svg";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroller";
 import SvgLainnya from "../../../assets/svg/lainnya-icon.svg";
+import SvgApplicant from "../../../assets/svg/applicant-icon.svg";
+import SvgQuickView from "../../../assets/svg/quick-view-icon.svg";
 import AvaApplied from "../../../assets/image/avatar-applied.png";
+
+import Bookmark from "./my-jobs-component/Bookmark";
 
 
 const { Search } = Input;
@@ -72,7 +76,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Interview",
+        "status": "Applied",
 
       },
       {
@@ -84,7 +88,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "On Hold",
+        "status": "Applied",
 
       },
       {
@@ -96,7 +100,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Rejected",
+        "status": "Applied",
 
       },
       {
@@ -108,7 +112,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Rejected",
+        "status": "Applied",
 
       }
     ] as any[],
@@ -201,7 +205,8 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
         </Row>
         <Divider style={{ margin: '12px 0px', padding: 0, }} />
 
-        <Row style={{ backgroundColor: "honeydew" }}>
+        {/* <Row style={{ backgroundColor: "honeydew" }}> */}
+        <Row >
           {/* <Col > */}
           <Tabs defaultActiveKey="2" onChange={this.callback} tabBarExtraContent={
             <Link to={`/home`} >
@@ -221,7 +226,8 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
               All content
             </TabPane>
             <TabPane tab={<Button type="ghost" className="btntabMyJob">Applied</Button>} key="2">
-              <Row style={{ marginTop: 22, backgroundColor: "yellow" }} align="middle">
+              {/* <Row style={{ marginTop: 22, backgroundColor: "yellow" }} align="middle"> */}
+              <Row style={{ marginTop: 22, marginBottom: 30 }} align="middle">
                 <Col style={{ marginRight: 9 }}>
                   <img style={{ padding: 0, margin: 0, }}
                     src={SvgTime}
@@ -242,73 +248,88 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
                   }}
                   renderItem={(job: any, i: number) => (
                     <div>
-                      {/* `{console.log(job)}` */}
                       <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
-                        <Card style={{ width: '100%', borderRadius: 8 }} bordered={true} className="cardApplied">
+                        <Card style={{ borderRadius: 8, border: '0.1px solid #2C9BE6', }} bordered={true} className="cardApplied">
 
-                          <Row justify="space-between">
-                            {/* <Space size={50}> */}
-
-                            <Col span={5} style={{ backgroundColor: "green", }}>
-
+                          <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
+                            <Col span={4} >
                               <span className="avatar-item">
                                 <Badge count={1} className="badgeApplied">
                                   <Avatar shape="square" src={AvaApplied} size={131} />
                                 </Badge>
                               </span>
                             </Col>
-                            <Col span={1}></Col>
-                            <Col span={18} style={{ backgroundColor: "yellow" }}>
-                              <Row justify="space-between">
+                            <Col span={20} >
+                              <Row justify="space-between" >
                                 <Col>
-                                  <Row>
-                                    <Col>
-                                      <p>{job.Jobtitle}</p>
-                                    </Col>
-                                    <Col  >
-                                      <p>{job.company}</p>
-                                    </Col>
-                                    <Col  >
-                                      <p>{job.applicant}</p>
-                                    </Col>
-                                    <Col  >
-                                      <p>{job.position}</p>
-                                    </Col>
+                                  <Row align="middle">
+                                    <Space size={15}>
+                                      <Col>
+                                        <Text className="jobTitleList">{job.Jobtitle}</Text>
+                                      </Col>
+                                      <Col className="gapLine">|</Col>
+                                      <Col>
+                                        <Text>{job.company}</Text>
+                                      </Col>
+                                      <Col className="gapLine">|</Col>
+                                      <Col>
+                                        <Row>
+                                          <Col>
+                                            <img
+                                              src={SvgApplicant}
+                                              alt="SvgAaplicant"
+                                              height={10}
+                                              style={{ marginRight: 9, }}
+                                            />
+                                          </Col>
+                                          <Col>
+                                            <Text>{job.applicant}</Text>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                      <Col className="gapLine">|</Col>
+                                      <Col>
+                                        <Text>{job.position}</Text>
+                                      </Col>
+                                    </Space>
                                   </Row>
                                 </Col>
-                                <Col>Quick View</Col>
+                                <Col><Button type="link" block style={{ padding: 0, margin: 0, }}><img
+                                  src={SvgQuickView}
+                                  alt="jobalertsettings"
+                                  height={10}
+                                  style={{ marginRight: 9, }}
+                                />
+                                  Quick View</Button></Col>
                               </Row>
-                              <Divider style={{ margin: '2px 0px', padding: 0, }} />
-                              <Row>
+                              <Divider style={{ margin: '8px 0px', padding: 0, }} />
+                              <Row style={{ marginBottom: 9 }}>
                                 <Col>
-                                  Salary: <p>{job.salary}</p>
+                                  <Text style={{ fontWeight: 600, }}>Applied On</Text> <Text style={{ marginLeft: 15, marginRight: 15 }}>: </Text> {job.appliedOn}
+                                </Col>
+
+                              </Row>
+                              <Row style={{ marginBottom: 9 }}>
+                                <Col>
+                                  <Text style={{ fontWeight: 600 }}>Posted On</Text> <Text style={{ marginLeft: 21, marginRight: 15 }}>: </Text> {job.postedOn}
+                                </Col>
+                              </Row>
+                              <Row justify="space-between" style={{ marginBottom: 9 }}>
+                                <Col>
+                                  <Text style={{ fontWeight: 600 }}>Salary</Text> <Text style={{ marginLeft: 48, marginRight: 15, }}>: </Text>
+                                  <Text style={{ color: "#2C9BE6" }}>
+                                    {job.salary}
+                                  </Text>
                                 </Col>
                                 <Col>
-                                  {job.status === "Interview" ? (
-                                    <Row align="middle">
-                                      <Col style={{ marginRight: 3 }}>
-                                        <p className="listtitleMobile">Status : </p>
-                                      </Col>
-                                      <Col>
-                                        <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white", border: '0px' }} >{job.status}</Button>
-                                      </Col>
-                                    </Row>
-                                  ) : (
-                                    <Row align="middle">
-                                      <Col style={{ marginRight: 3 }}>
-                                        <p className="listtitleMobile">Status: </p>
-                                      </Col>
-                                      <Col>
-                                        <Button type="primary" className="btnmobilemylast" >{job.status}</Button>
-                                      </Col>
-                                    </Row>
-                                  )
-                                  }
+                                  <Row align="middle">
+                                    <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#EFEFEF", color: "#53575E", border: '0px' }} >{job.status}</Button>
+                                  </Row>
+
                                 </Col>
                               </Row>
 
                             </Col>
-                            {/* </Space> */}
                           </Row>
                         </Card>
                       </List.Item>
@@ -339,19 +360,10 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
               Closed Content
             </TabPane>
             <TabPane tab={<Button type="ghost" className="btntabMyJob">Bookmark</Button>} key="6">
-              Bookmark Content
+              <Bookmark />
             </TabPane>
-
           </Tabs>
-
-
         </Row>
-
-
-
-
-
-
       </div>
     );
   }
