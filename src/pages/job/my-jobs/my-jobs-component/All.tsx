@@ -1,9 +1,9 @@
 import { Col, Row, Typography, Divider, Button, Card, List, Space, Avatar, Badge, } from "antd";
+
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 
-import SvgBookmark from "../../../../assets/svg/bookmark-icon.svg";
 import InfiniteScroll from "react-infinite-scroller";
 import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
 import SvgApplicant from "../../../../assets/svg/applicant-icon.svg";
@@ -23,16 +23,16 @@ export interface JobState {
   hasMore: boolean;
   loading: boolean;
   scrolled: boolean;
-  bookmarkJob: any[];
+  allJobs: any[];
   pagination: any;
 }
 
-class Bookmark extends React.Component<JobProps, JobState> {
+class All extends React.Component<JobProps, JobState> {
   state = {
     hasMore: true,
     loading: false,
     scrolled: false,
-    bookmarkJob: [
+    allJobs: [
       {
         "id": 1,
         "Jobtitle": "Fashion Designer",
@@ -42,7 +42,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "Applied",
       },
       {
         "id": 2,
@@ -53,7 +53,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "Applied",
 
       },
       {
@@ -65,7 +65,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "Interview",
 
       },
       {
@@ -77,7 +77,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "On Hold",
 
       },
       {
@@ -89,7 +89,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "Rejected",
 
       },
       {
@@ -101,7 +101,43 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "appliedOn": "45 minutes ago",
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Bookmark",
+        "status": "Medical",
+
+      },
+      {
+        "id": 7,
+        "Jobtitle": "Fashion Designer",
+        "company": "Lorem Ipsum",
+        "applicant": "123 Applicant",
+        "position": "Full time",
+        "appliedOn": "45 minutes ago",
+        "postedOn": "5 hours ago",
+        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
+        "status": "On Boarding",
+
+      },
+      {
+        "id": 8,
+        "Jobtitle": "Fashion Designer",
+        "company": "Lorem Ipsum",
+        "applicant": "123 Applicant",
+        "position": "Full time",
+        "appliedOn": "45 minutes ago",
+        "postedOn": "5 hours ago",
+        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
+        "status": "Test",
+
+      },
+      {
+        "id": 9,
+        "Jobtitle": "Fashion Designer",
+        "company": "Lorem Ipsum",
+        "applicant": "123 Applicant",
+        "position": "Full time",
+        "appliedOn": "45 minutes ago",
+        "postedOn": "5 hours ago",
+        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
+        "status": "Completed",
 
       }
     ] as any[],
@@ -138,7 +174,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
 
   };
   render() {
-    const { bookmarkJob } = this.state;
+    const { allJobs } = this.state;
     return (
       <div >
         <Row justify="end">
@@ -156,20 +192,12 @@ class Bookmark extends React.Component<JobProps, JobState> {
           </Col>
         </Row>
         <Row style={{ marginTop: 22, marginBottom: 30 }} align="middle">
-          <Col style={{ marginRight: 9 }}>
-            <img style={{ padding: 0, margin: 0, }}
-              src={SvgBookmark}
-              alt="myLastappliedjob"
-              height={22}
-            />
-          </Col>
-          <Col>
-            <Text className="subtitlejob">Bookmark Job</Text>
-          </Col>
+
+          <Text className="subtitlejob">All Jobs</Text>
         </Row>
         <InfiniteScroll initialLoad={true} pageStart={0} loadMore={this.loadMore} hasMore={!this.state.loading && this.state.hasMore} useWindow={true} >
           <List
-            dataSource={bookmarkJob || []}
+            dataSource={allJobs || []}
             split={false}
             locale={{
               emptyText: <Card>No Post</Card>,
@@ -177,8 +205,7 @@ class Bookmark extends React.Component<JobProps, JobState> {
             renderItem={(job: any, i: number) => (
               <div>
                 <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
-                  <Card style={{ borderRadius: 8, }} bordered={true} className="cardApplied">
-
+                  <Card style={{ borderRadius: 8, border: '0.1px solid #2C9BE6', }} bordered={true} className="cardApplied">
                     <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
                       <Col xs={0} md={4} >
                         <span className="avatar-item">
@@ -254,13 +281,19 @@ class Bookmark extends React.Component<JobProps, JobState> {
                           </Col>
                           <Col>
                             <Row align="middle">
-                              <Button type="text" block style={{ padding: 0, margin: 0, }}><img
-                                src={SvgBookmark}
-                                alt="svgbookmark"
-                                height={14}
-                                style={{ marginRight: 9, }}
-                              />
-                                <Text>{job.status}</Text></Button>
+                              {
+                                job.status === "Applied" ? (
+                                  <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#EFEFEF", color: "#53575E", border: '0px' }} >{job.status}</Button>
+                                ) : job.status === "Interview" ? (
+                                  <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#639164", color: "white", border: '0px' }} >{job.status}</Button>
+                                ) : job.status === "Rejected" ? (
+                                  <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#FF0E0E", color: "white", border: '0px' }} >{job.status}</Button>
+                                ) : job.status === "Completed" ? (
+                                  <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#52c31b", color: "white", border: '0px' }} >{job.status}</Button>
+                                ) : (
+                                  <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#2C9BE6", color: "white", border: '0px' }} >{job.status}</Button>
+                                )
+                              }
                             </Row>
 
                           </Col>
@@ -298,5 +331,5 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Bookmark));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(All));
 
