@@ -33,6 +33,8 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
         bgProfile: "",
     };
     componentDidMount() {
+        this.getData();
+
         getBgProfile().then((res: AxiosResponse<any>) => {
             this.setState({ bgProfile: res.data });
         });

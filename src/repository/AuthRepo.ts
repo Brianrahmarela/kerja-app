@@ -2,7 +2,6 @@ import axios from "axios";
 import axiosCustom from "../config/Axios";
 
 import { AppConfig } from "../config/Config";
-import { store } from "../redux/ConfigureStore";
 
 export const postLogin = (payload: any) => {
     return axios.post(AppConfig.url.postLogin, payload);
@@ -17,10 +16,10 @@ export const postResetPassword = (payload: any) => {
     return axios.post(AppConfig.url.postResetPassword, payload);
 };
 export const getLogout = () => {
-    const state = store.getState();
+    const token = window.localStorage.getItem("token");
     return axiosCustom.get(AppConfig.url.getLogout, {
         headers: {
-            Authorization: "Bearer " + state.account.token,
+            Authorization: "Bearer " + token,
         },
     });
 };
