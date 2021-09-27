@@ -33,20 +33,21 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
         bgProfile: "",
     };
     componentDidMount() {
-        this.getData();
-
+        if (this.props.currentUser !== null) {
+            this.getData();
+        }
         getBgProfile().then((res: AxiosResponse<any>) => {
             this.setState({ bgProfile: res.data });
         });
     }
     componentDidUpdate(prevProps: any) {
-        if (this.props.currentUser !== prevProps.currentUser) {
+        if (prevProps.currentUser == null && this.props.currentUser !== prevProps.currentUser) {
             this.getData();
         }
     }
     getData() {
         const encodedId = encodeHashUserId(this.props.currentUser?.id);
-        console.log(encodedId);
+
         getHeaderPersonal(encodedId)
             .then((res: AxiosResponse<any>) => {
                 const { data } = res;
