@@ -1,9 +1,7 @@
 import { Col, Row, Typography, Divider, Button, Card, List, Space, Avatar, Badge, } from "antd";
-
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-
 import InfiniteScroll from "react-infinite-scroller";
 import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
 import SvgApplicant from "../../../../assets/svg/applicant-icon.svg";
@@ -12,13 +10,10 @@ import AvaApplied from "../../../../assets/image/avatar-applied.png";
 import SvgNotifJobAlert from "../../../../assets/svg/notif-job-alert-settings.svg";
 import { Link } from "react-router-dom";
 
-
 const { Text } = Typography;
-
 export interface JobProps {
   currentUser?: any;
 }
-
 export interface JobState {
   hasMore: boolean;
   loading: boolean;
@@ -26,7 +21,6 @@ export interface JobState {
   allJobs: any[];
   pagination: any;
 }
-
 class All extends React.Component<JobProps, JobState> {
   state = {
     hasMore: true,
@@ -54,7 +48,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Applied",
-
       },
       {
         "id": 3,
@@ -66,7 +59,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Interview",
-
       },
       {
         "id": 4,
@@ -78,7 +70,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "On Hold",
-
       },
       {
         "id": 5,
@@ -90,7 +81,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Rejected",
-
       },
       {
         "id": 6,
@@ -102,7 +92,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Medical",
-
       },
       {
         "id": 7,
@@ -114,7 +103,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "On Boarding",
-
       },
       {
         "id": 8,
@@ -126,7 +114,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Test",
-
       },
       {
         "id": 9,
@@ -138,7 +125,6 @@ class All extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Completed",
-
       }
     ] as any[],
 
@@ -170,16 +156,15 @@ class All extends React.Component<JobProps, JobState> {
         page: e,
       },
     });
-
-
   };
+
   render() {
     const { allJobs } = this.state;
     return (
       <div >
         <Row justify="end">
-          <Col xs={12} md={0}>
-            <Link to={`/home`} >
+          <Col xs={12} md={5} lg={0}>
+            <Link to={`/job/my-jobs-applied/job-alert-settings`} >
 
               <Button type="link" block style={{ padding: 0, margin: 0, }}><img
                 src={SvgNotifJobAlert}
@@ -207,15 +192,15 @@ class All extends React.Component<JobProps, JobState> {
                 <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
                   <Card style={{ borderRadius: 8, border: '0.1px solid #2C9BE6', }} bordered={true} className="cardApplied">
                     <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
-                      <Col xs={0} md={4} >
+                      <Col xs={0} md={5} lg={4}>
                         <span className="avatar-item">
                           <Badge count={1} className="badgeApplied">
-                            <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 91, lg: 131, xl: 131, xxl: 131 }}
+                            <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 117, lg: 131, xl: 131, xxl: 131 }}
                             />
                           </Badge>
                         </span>
                       </Col>
-                      <Col xs={24} md={20} >
+                      <Col xs={24} md={19} lg={20}>
                         <Row justify="space-between" >
                           {/* <Col xs={24} md={24} lg={18} style={{ backgroundColor: "yellow" }}> */}
                           <Col xs={24} md={24} lg={18} >
@@ -295,10 +280,8 @@ class All extends React.Component<JobProps, JobState> {
                                 )
                               }
                             </Row>
-
                           </Col>
                         </Row>
-
                       </Col>
                     </Row>
                   </Card>
