@@ -18,16 +18,13 @@ import SvgShare from "../../../assets/svg/share-icon.svg";
 import ImgRecomendation from "../../../assets/image/img-recomendation.png";
 import SvgLainnya from "../../../assets/svg/lainnya-icon.svg";
 
-
 import JobEvent from "./job-component/JobEvent";
 
 const { Search } = Input;
 const { Text } = Typography;
-
 export interface JobProps {
     currentUser?: any;
 }
-
 export interface JobState {
     hasMore: boolean;
     loading: boolean;
@@ -37,9 +34,7 @@ export interface JobState {
     pagination: any;
     valSearch: any;
 }
-
 class Job extends React.Component<JobProps, JobState> {
-
     state = {
         hasMore: true,
         loading: false,
@@ -135,7 +130,6 @@ class Job extends React.Component<JobProps, JobState> {
             salaryAbove20: "",
         },
         valSearch: "",
-
     };
     onSearch = (valSearch: string) => {
         console.log("val search:", valSearch);
@@ -201,8 +195,6 @@ class Job extends React.Component<JobProps, JobState> {
                     </Col>
                     <Col md={1}></Col>
                     <Col md={10} style={{ textAlign: "right" }}>
-                        {/* <FontAwesomeIcon icon={faBookmark} /> My Job */}
-
                         <Search
                             placeholder=""
                             allowClear
@@ -218,7 +210,6 @@ class Job extends React.Component<JobProps, JobState> {
                         <Row justify="space-around" style={{ marginBottom: 26 }} className="marginbtmmobile">
                             <Col xs={15} md={12}>
                                 <Row align="middle" >
-                                    {/* <Space size={9}> */}
                                     <Col style={{ marginRight: 9 }}>
                                         <img style={{ padding: 0, margin: 0, }}
                                             src={SvgTime}
@@ -229,17 +220,14 @@ class Job extends React.Component<JobProps, JobState> {
                                     <Col>
                                         <Text className="subtitlejob">My Last Applied Job </Text>
                                     </Col>
-                                    {/* </Space> */}
                                 </Row>
                             </Col>
                             <Col xs={9} md={12} style={{ textAlign: "right" }}>
                                 <Row align="middle" justify="end">
                                     <Col>
-
                                         <Link to={`/job/my-jobs-applied`} >  <Button type="primary" icon={<img src={SvgMyJob} alt="logokerjaapp" style={{ marginRight: 7, }} />} className="txtmyjob">
                                             My Jobs
                                         </Button></Link>
-
                                     </Col>
                                 </Row>
                             </Col>
@@ -253,26 +241,20 @@ class Job extends React.Component<JobProps, JobState> {
 
                                         {/* <Row justify="space-between" style={{ backgroundColor: "green" }}> */}
                                         <Row justify="space-between" >
-
                                             <Col xs={0} md={4} >
                                                 Job Title
-
                                             </Col>
                                             <Col xs={0} md={4} >
                                                 Company
-
                                             </Col>
                                             <Col xs={0} md={4} >
                                                 Applied On
-
                                             </Col>
                                             <Col xs={0} md={4} >
                                                 Position
-
                                             </Col>
                                             <Col xs={0} md={4} >
                                                 Status
-
                                             </Col>
                                         </Row>
                                     </Card>
@@ -284,44 +266,27 @@ class Job extends React.Component<JobProps, JobState> {
                                         }}
                                         renderItem={(job: any, i: number) => (
                                             <div>
-                                                {/* `{console.log(job)}` */}
                                                 <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
                                                     <Card style={{ width: "100%", fontFamily: "Open Sans", fontSize: 12, color: "#53575E" }} className="listmylastapplied">
                                                         <Row justify="space-between" >
                                                             <Col xs={0} md={4} >
-                                                                {/* <p>{job}</p> */}
                                                                 <p>{job.Jobtitle}</p>
-
                                                             </Col>
                                                             <Col xs={0} md={4} >
                                                                 <p>{job.company}</p>
-
                                                             </Col>
                                                             <Col xs={0} md={4} >
                                                                 <p>{job.appliedon}</p>
-
                                                             </Col>
                                                             <Col xs={0} md={4} >
                                                                 <p>{job.position}</p>
-
                                                             </Col>
                                                             <Col xs={0} md={4} >
                                                                 {job.status === "Interview" ? (
-
-
                                                                     <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white" }}>{job.status}</Button>
-
                                                                 ) : (
-
-
-
                                                                     <Button type="primary" className="btnmobilemylast">{job.status}</Button>
-
-
-                                                                )
-
-                                                                }
-
+                                                                )}
                                                             </Col>
 
                                                         </Row>
@@ -354,7 +319,6 @@ class Job extends React.Component<JobProps, JobState> {
                                         }}
                                         renderItem={(job: any, i: number) => (
                                             <div>
-                                                {/* `{console.log(job)}` */}
                                                 <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
                                                     <Card style={{ width: "100%", fontFamily: "Open Sans", color: "#53575E" }} className="listmylastapplied">
                                                         <Row justify="space-between" >
@@ -438,7 +402,6 @@ class Job extends React.Component<JobProps, JobState> {
                                                 height={5}
                                             />
                                         </Space>
-
                                     </Button>
                                 </InfiniteScroll>
                             </Col>
@@ -447,7 +410,6 @@ class Job extends React.Component<JobProps, JobState> {
                     <Col md={1} xl={1}></Col>
                     <Col md={7} xl={10}>
                         <div>
-                            {/* <FontAwesomeIcon icon={faFilter} style={{ marginRight: 10 }} /> */}
                             {/* Filter Pencarian */}
                             <Text className="subtitlejob">Recommendation Job</Text>
                         </div>
@@ -502,7 +464,6 @@ class Job extends React.Component<JobProps, JobState> {
                                                             <Row className="statusvalMobile">
                                                                 {jobRecomendation.status}
                                                             </Row>
-
                                                         </Col>
                                                     </Row>
                                                     <Row justify="start" style={{ color: '#53575E', fontSize: 10, }} align="top">
@@ -563,19 +524,12 @@ class Job extends React.Component<JobProps, JobState> {
                                             height={5}
                                         />
                                     </Space>
-
                                 </Button>
                             </InfiniteScroll>
-
                         </Row>
                     </Col>
                 </Row>
                 <JobEvent />
-                {/* <Row gutter={15} style={{ marginTop: 15 }} justify="start" align="middle">
-                    <Col>
-                        <Text style={{ fontSize: 18, color: "#53575E", fontWeight: 500 }}>Job Event</Text>
-                    </Col>
-                </Row> */}
             </div>
         );
     }

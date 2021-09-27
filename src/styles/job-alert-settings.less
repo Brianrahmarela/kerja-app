@@ -1,15 +1,4 @@
-.my-job-applied {
-	// silahkan tambahkan class disini
-	.JobTitle {
-		font-size: 24px;
-	}
-	.btntabMyJob {
-		font-size: 12.6px;
-		font-family: "Open Sans";
-		border-radius: 6px;
-		padding: 5.6px 20px;
-		color: #53575e;
-	}
+.job-alert-settings {
 	.subtitlejob {
 		font-size: 18px;
 		color: #53575e;
@@ -27,13 +16,13 @@
 			font-size: 18px;
 		}
 	}
-	.cardApplied {
+	.cardRelevant {
 		width: 1000px !important;
 	}
-	.cardApplied:hover {
+	.cardRelevant:hover {
 		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 	}
-	.badgeApplied {
+	.badgeRelevant {
 		.ant-badge-count {
 			top: 24px;
 			right: 16px;
@@ -60,21 +49,9 @@
 		border-radius: 6px;
 		font-size: 14px;
 	}
-
-	div.ant-tabs-tab.ant-tabs-tab-active .ant-btn {
-		background-color: @primary-color;
-		box-sizing: border-box;
-		border-radius: 6px;
-		height: 32px;
-		color: white !important;
-		border-style: none !important;
-		border-bottom: none !important;
-	}
-	.ant-tabs-ink-bar {
-		display: none;
-	}
-	.ant-tabs-top > .ant-tabs-nav::before,
-	.ant-tabs-top > div > .ant-tabs-nav::before {
-		border-style: none;
+	div #bordertab .ant-tabs-tab.ant-tabs-tab-active {
+		border-bottom: 3px solid @primary-color;
+		margin: 0;
+		padding: 0;
 	}
 }

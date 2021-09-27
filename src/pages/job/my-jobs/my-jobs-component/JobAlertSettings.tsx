@@ -2,21 +2,16 @@ import { faSearch, } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Tabs, Input, Row, Button, Card, PageHeader, Breadcrumb, Slider, Checkbox, Select, } from "antd";
 import { Formik } from "formik";
-
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-
 import { Link } from "react-router-dom";
-
 import RelevantJobs from '../my-jobs-component/RelevantJobs';
 
 const { TabPane } = Tabs;
-
 export interface JobProps {
   currentUser?: any;
 }
-
 export interface JobState {
   hasMore: boolean;
   loading: boolean;
@@ -25,7 +20,6 @@ export interface JobState {
   pagination: any;
   valSearch: any;
 }
-
 class JobAlertSettings extends React.Component<JobProps, JobState> {
   state = {
     hasMore: true,
@@ -41,7 +35,6 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
       salaryAbove20: "",
     },
     valSearch: "",
-
   };
   onSearch = (valSearch: string) => {
     console.log("val search:", valSearch);
@@ -89,12 +82,13 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
     //     });
     //   });
   };
+
   render() {
     // const { currentUser } = this.props;
     // const { appliedJobs } = this.state;
     // const { jobsRecomendation } = this.state;
     return (
-      <div className="job-page">
+      <div className="job-alert-settings">
         <PageHeader
           className="site-page-header"
           onBack={() => null}
@@ -102,21 +96,15 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
           subTitle={<Breadcrumb>
             <Breadcrumb.Item>
               <Link to={`/job/my-jobs-applied`} >My Jobs</Link>
-
             </Breadcrumb.Item>
             <Breadcrumb.Item >Jobs Alert Settings</Breadcrumb.Item>
           </Breadcrumb>}
           style={{ margin: "28px 0px 25.5px 0px", padding: 0 }}
         />
-
-
         <Row >
-          {/* <Row > */}
-          {/* <Col > */}
           <Tabs defaultActiveKey="1" onChange={this.callback}
             tabBarGutter={24} centered id="bordertab"
           >
-
             <TabPane tab="Jobs Alert" key="1" >
               <div style={{ marginTop: 15 }}>
                 <Card>
@@ -188,9 +176,6 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
               <RelevantJobs />
             </TabPane>
             <TabPane tab="Email Alert Settings" key="2">
-              {/* <Row style={{ marginTop: 22, backgroundColor: "yellow" }} align="middle"> */}
-
-
               email
             </TabPane>
 

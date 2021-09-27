@@ -2,7 +2,6 @@ import { Col, Row, Typography, Divider, Button, Card, List, Space, Avatar, Badge
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-
 import SvgBookmark from "../../../../assets/svg/bookmark-icon.svg";
 import InfiniteScroll from "react-infinite-scroller";
 import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
@@ -12,13 +11,10 @@ import AvaApplied from "../../../../assets/image/avatar-applied.png";
 import SvgNotifJobAlert from "../../../../assets/svg/notif-job-alert-settings.svg";
 import { Link } from "react-router-dom";
 
-
 const { Text } = Typography;
-
 export interface JobProps {
   currentUser?: any;
 }
-
 export interface JobState {
   hasMore: boolean;
   loading: boolean;
@@ -26,7 +22,6 @@ export interface JobState {
   bookmarkJob: any[];
   pagination: any;
 }
-
 class Bookmark extends React.Component<JobProps, JobState> {
   state = {
     hasMore: true,
@@ -54,7 +49,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Bookmark",
-
       },
       {
         "id": 3,
@@ -66,7 +60,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Bookmark",
-
       },
       {
         "id": 4,
@@ -78,7 +71,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Bookmark",
-
       },
       {
         "id": 5,
@@ -90,7 +82,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Bookmark",
-
       },
       {
         "id": 6,
@@ -102,7 +93,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
         "postedOn": "5 hours ago",
         "salary": "Rp. 3.000.000 - Rp. 5.000.000",
         "status": "Bookmark",
-
       }
     ] as any[],
 
@@ -134,17 +124,15 @@ class Bookmark extends React.Component<JobProps, JobState> {
         page: e,
       },
     });
-
-
   };
+
   render() {
     const { bookmarkJob } = this.state;
     return (
       <div >
         <Row justify="end">
-          <Col xs={12} md={0}>
-            <Link to={`/home`} >
-
+          <Col xs={12} md={5} lg={0}>
+            <Link to={`/job/my-jobs-applied/job-alert-settings`} >
               <Button type="link" block style={{ padding: 0, margin: 0, }}><img
                 src={SvgNotifJobAlert}
                 alt="jobalertsettings"
@@ -180,15 +168,15 @@ class Bookmark extends React.Component<JobProps, JobState> {
                   <Card style={{ borderRadius: 8, }} bordered={true} className="cardApplied">
 
                     <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
-                      <Col xs={0} md={4} >
+                      <Col xs={0} md={5} lg={4}>
                         <span className="avatar-item">
                           <Badge count={1} className="badgeApplied">
-                            <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 91, lg: 131, xl: 131, xxl: 131 }}
+                            <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 117, lg: 131, xl: 131, xxl: 131 }}
                             />
                           </Badge>
                         </span>
                       </Col>
-                      <Col xs={24} md={20} >
+                      <Col xs={24} md={19} lg={20}>
                         <Row justify="space-between" >
                           {/* <Col xs={24} md={24} lg={18} style={{ backgroundColor: "yellow" }}> */}
                           <Col xs={24} md={24} lg={18} >
@@ -221,7 +209,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
                               <Col xs={24} md={4} style={{ marginBottom: 5 }}>
                                 <Text>{job.position}</Text>
                               </Col>
-
                             </Row>
                           </Col>
                           {/* <Col md={4} lg={3} style={{ backgroundColor: "red" }}><Button type="link" block style={{ padding: 0, margin: 0, }}><img */}
@@ -238,7 +225,6 @@ class Bookmark extends React.Component<JobProps, JobState> {
                           <Col>
                             <Text style={{ fontWeight: 600, }}>Applied On</Text> <Text style={{ marginLeft: 15, marginRight: 15 }}>: </Text> {job.appliedOn}
                           </Col>
-
                         </Row>
                         <Row style={{ marginBottom: 5 }}>
                           <Col>
@@ -262,10 +248,8 @@ class Bookmark extends React.Component<JobProps, JobState> {
                               />
                                 <Text>{job.status}</Text></Button>
                             </Row>
-
                           </Col>
                         </Row>
-
                       </Col>
                     </Row>
                   </Card>
