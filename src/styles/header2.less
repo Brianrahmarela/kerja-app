@@ -1,0 +1,255 @@
+.header2 {
+    .mobilehidden {
+        height: 64px;
+        border-bottom: 0px transparent;
+        @media (min-width: 280px) {
+            display: none;
+            position: "fixed";
+        }
+        @media (min-width: 576px) {
+            display: block;
+        }
+    }
+    @media (max-width: 576px) {
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
+            border-bottom: 0 solid;
+        }
+    }
+    .ant-menu-item a {
+        color: rgba(0, 0, 0, 0.85);
+        // color: #686e7b;
+    }
+
+    .drawerhidden {
+        @media (min-width: 576px) {
+            display: none;
+        }
+    }
+
+    .btnmobile {
+        color: #2c9be6;
+        background: none;
+        border-style: none;
+        box-shadow: none;
+    }
+
+    .totopbtn {
+        height: 40px;
+        width: 40px;
+        align-items: center;
+        // line-height: "40px";
+        border-radius: 200px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        color: "#fff";
+        // text-align: "center";
+        // font-size: 14;
+    }
+    .ant-avatar {
+        background: none;
+    }
+    .logo {
+        float: left;
+        width: 125px;
+        height: 31px;
+        margin: 16px 24px 16px 0;
+    }
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+    .ant-col {
+        background-color: none;
+    }
+    .color-style {
+        background-color: blue;
+    }
+
+    .logo {
+        float: left;
+        width: 125px;
+        height: 31px;
+        margin: 16px 24px 16px 0;
+        background-color: transparent;
+    }
+    .logomobilehome {
+        float: left;
+        // transform: scale(1);
+        width: 109.91px;
+        height: 25.32px;
+        margin-top: 3px;
+        background-color: transparent;
+    }
+    .logomobilehomenotext {
+        width: 30px;
+        height: 30px;
+    }
+    .mobilehidden2 {
+        @media (min-width: 0px) {
+            display: none;
+            position: "fixed";
+        }
+        @media (min-width: 992px) {
+            display: block;
+        }
+    }
+
+    .btnmobile {
+        color: @primary-color;
+        background: none;
+        border-style: none;
+        box-shadow: none;
+        // margin-left: 40%;
+    }
+
+    @media (max-width: 768px) {
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+        .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
+            border-bottom: 0 solid !important;
+        }
+    }
+
+    .tablethidden2 {
+        @media (min-width: 678px) {
+            display: none;
+        }
+        @media (min-width: 992px) {
+            display: block;
+        }
+    }
+    .ant-menu-item-selected a:focus {
+        color: @primary-color !important;
+    }
+
+    .drawerhidden2 {
+        // @media (min-width: 768px) {
+        // 	display: none !important;
+        // }
+        @media (min-width: 0px) {
+            display: block;
+            position: "fixed";
+        }
+        @media (min-width: 992px) {
+            display: none;
+        }
+    }
+    .drawerhiddenlg {
+        @media (min-width: 768px) {
+            display: block;
+        }
+        @media (min-width: 992px) {
+            display: none !important;
+        }
+    }
+    // .ant-input-affix-wrapper > input.ant-input {
+    // 	background-color: transparent;
+    // }
+    // #searchbtn {
+    // 	border-radius: 8px;
+    // }
+    .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+        border-radius: 8px;
+    }
+
+    .search > div {
+        display: inline-block;
+        position: relative;
+    }
+    @media (min-width: 768px) {
+        .search {
+            display: none;
+            visibility: hidden;
+        }
+    }
+
+    .search > div:after {
+        content: "";
+        background: #686e7b;
+        width: 2px;
+        height: 8px;
+        position: absolute;
+        top: -1px;
+        right: -0px;
+        transform: rotate(135deg);
+    }
+
+    .search > div > input {
+        font-size: 12px;
+        background: transparent;
+        width: 21px;
+        height: 21px;
+        padding: 0 9px 0;
+        // padding: 4px 4px 4px 28px;
+
+        border: solid 2px #686e7b;
+        outline: none;
+        border-radius: 35px;
+        transition: width 0.5s;
+        position: absolute;
+        right: 0;
+        top: -17px;
+        bottom: 0;
+
+        &:focus,
+        &:hover {
+            border-color: #686e7b;
+            border-right-width: 2px !important;
+        }
+    }
+
+    .search > div > input::placeholder {
+        color: #686e7b;
+        opacity: 1;
+    }
+
+    .search > div > input::-ms-placeholder {
+        color: #686e7b;
+    }
+
+    .search > div > input::-ms-input-placeholder {
+        color: #686e7b;
+    }
+    .txtmyjob {
+        font-size: 16px;
+        line-height: 16px;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .search > div > input:focus {
+        width: 190px;
+        height: 32px;
+        background-color: white !important;
+        z-index: 1;
+        position: absolute;
+        right: -11px;
+        top: -22px;
+        bottom: 0;
+    }
+
+    .ant-menu-item {
+        padding: 0;
+    }
+
+    .svg-hover-menu:hover path {
+        fill: #2c9be6;
+    }
+
+    .svg-hover-submenu:hover path {
+        fill: #2c9be6;
+    }
+
+    .ant-menu-submenu-title:hover {
+        color: #2c9be6 !important;
+    }
+
+    .ant-menu-submenu-title .ant-menu-item-icon + span {
+        margin-left: 14px;
+    }
+
+    .svg-hover-menu-logout:hover path {
+        fill: #e83232 !important;
+    }
+    .svg-hover-menu-logout .ant-menu-item a:hover {
+        color: #e83232 !important;
+    }
+}

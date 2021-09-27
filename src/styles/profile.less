@@ -1,0 +1,69 @@
+.profile-header {
+    .bg-cover {
+        height: 30vh;
+        border-radius: 15px;
+        background-image: url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: relative;
+        &::before {
+            background-color: rgba(240, 240, 240, 0.6);
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+            height: 100%;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            z-index: -0;
+        }
+    }
+    .avatar-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .avatar-border {
+        position: absolute;
+        margin: auto;
+        bottom: -50px;
+        left: 0px;
+        right: 0px;
+        width: 150px;
+        height: 150px;
+        .ant-avatar {
+            border: 7px solid white;
+        }
+    }
+    .name-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .ant-menu-horizontal {
+        border-bottom: 0px;
+    }
+    .underline {
+        border-bottom: 1px solid #f0f0f0;
+    }
+}
+// .profile-page {
+// }
+// .profile-form {
+// 	.ant-form-item-control-input {
+// 	}
+// }
+// .profile-connection {
+// }
+.profile-page {
+    .floating-menu > li {
+        border: 1px solid @border-grey !important;
+        border-radius: 10px !important;
+    }
+    .floating-menu {
+        border-right: 0 transparent;
+        .ant-menu-sub.ant-menu-inline {
+            background-color: transparent;
+        }
+    }
+}

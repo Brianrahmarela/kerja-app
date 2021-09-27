@@ -13,7 +13,7 @@ class AccountRoute extends Component<IProps, IState> {
     }
     render() {
         return (
-            <div className="container">
+            <div className="container profile-page">
                 <MenuHeader />
                 <Router>
                     <Switch>
