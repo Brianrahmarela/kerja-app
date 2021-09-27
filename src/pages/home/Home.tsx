@@ -10,15 +10,23 @@ import Posts from "./posts/Posts";
 export interface HomeProps {
     isEdited?: boolean;
     setEditedPost?: (x: any) => void;
+    currentUser: any;
 }
 
-export interface HomeState {}
+export interface HomeState {
+    showUploader: boolean;
+    postType: string;
+}
 
 class Home extends React.Component<HomeProps, HomeState> {
-    componentDidMount() {
-        window.document.title = "Home | KerjaApp";
-    }
+    state = {
+        showUploader: false,
+        postType: "TEXT",
+    };
+
     render() {
+        const { currentUser } = this.props;
+
         return (
             <div className="home-page">
                 <Row gutter={15}>
@@ -49,53 +57,62 @@ class Home extends React.Component<HomeProps, HomeState> {
                             }}
                         >
                             <Row>
-                                <Col span={4} style={{ textAlign: "center" }}>
-                                    <Avatar size={65} src="http://localhost:7777/api/thrm-media/v1/file?forceImage=true&source-id=karirapp-bg-profile&id=rOBDR3xXzjv2jObwjqJgvL2o4b0YVa" />
+                                <Col xs={0} sm={4} style={{ textAlign: "center" }}>
+                                    <Avatar size={65} src={currentUser?.photo} />
                                 </Col>
-                                <Col span={20}>
+                                <Col xs={24} sm={20}>
                                     <Input style={{ height: 65, borderRadius: 10 }} placeholder="Write something..." readOnly />
                                     <Row justify="space-between" align="middle" style={{ padding: 20, paddingBottom: 0 }}>
                                         <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
-                                            }}
+                                            xs={0}
+                                            sm={8}
                                             onClick={() => {
                                                 this.setState({
                                                     showUploader: true,
                                                     postType: "MEDIA",
                                                 });
                                             }}
+                                            style={{ textAlign: "center" }}
                                         >
-                                            <Space>
+                                            <Space style={{ margin: "auto" }}>
                                                 <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+
                                                 <span>Foto/Gambar</span>
                                             </Space>
                                         </Col>
                                         <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
+                                            xs={8}
+                                            sm={0}
+                                            onClick={() => {
+                                                this.setState({
+                                                    showUploader: true,
+                                                    postType: "MEDIA",
+                                                });
                                             }}
+                                            style={{ textAlign: "center" }}
                                         >
-                                            <Space>
-                                                <FontAwesomeIcon icon={faVideo} style={{ fontSize: 20 }} />
+                                            <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+                                        </Col>
+
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
+                                            <Space style={{ margin: "auto" }}>
+                                                <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+
                                                 <span>Video</span>
                                             </Space>
                                         </Col>
-                                        <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Space>
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
+                                            <FontAwesomeIcon icon={faVideo} style={{ fontSize: 20 }} />
+                                        </Col>
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
+                                            <Space style={{ margin: "auto" }}>
                                                 <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: 20 }} />
+
                                                 <span>Write Articel</span>
                                             </Space>
+                                        </Col>
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
+                                            <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: 20 }} />
                                         </Col>
                                     </Row>
                                 </Col>
@@ -114,6 +131,7 @@ class Home extends React.Component<HomeProps, HomeState> {
 
 const mapStateToProps = (state: any) => ({
     isEdited: state.post.isEdited,
+    currentUser: state.account.currentUser,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

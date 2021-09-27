@@ -138,14 +138,7 @@ class Create extends React.Component<CreateProps, CreateState> {
                                         <Card>
                                             <Row>
                                                 <Col span={24}>
-                                                    <DefaultEditor
-                                                        value={""}
-                                                        style={{ height: 300 }}
-                                                        onChange={(e) => {
-                                                            const { target }: any = e;
-                                                            console.log(e);
-                                                        }}
-                                                    />
+                                                    <DefaultEditor value={""} style={{ height: 300 }} onChange={(e) => {}} />
                                                 </Col>
                                             </Row>
                                         </Card>

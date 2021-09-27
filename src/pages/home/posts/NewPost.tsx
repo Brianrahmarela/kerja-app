@@ -195,7 +195,7 @@ class NewPost extends React.Component<NewPostProps, NewPostState> {
                         <Col span={15}>
                             <Row align="middle">
                                 <Col flex={"70px"}>
-                                    <Avatar size={50} src={currentUser.photo} />
+                                    <Avatar size={50} src={currentUser?.photo || ""} />
                                 </Col>
                                 <Col flex={"auto"}>
                                     <Typography.Title level={5} style={{ marginBottom: 0 }}>
