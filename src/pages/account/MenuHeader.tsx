@@ -82,7 +82,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
         return (
             <div className="profile-header" style={{ marginBottom: 20, marginTop: 20 }}>
                 <Row className="bg-cover" style={{ backgroundImage: bgProfile ? `url(${bgProfile})` : "`url(https://images7.alphacoders.com/411/thumb-1920-411820.jpg)" }}>
-                    <Col span={6}>
+                    <Col xs={24} sm={6}>
                         <div className="avatar-wrapper">
                             <div className="avatar-border">
                                 <Avatar size={140} src={personalInfo?.photo} />
@@ -153,7 +153,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                             </div>
                         </div>
                     </Col>
-                    <Col span={10}>
+                    <Col xs={24} sm={10}>
                         <div className="name-wrapper">
                             <div style={{ position: "absolute", bottom: 15 }}>
                                 <Typography.Title level={2}>
@@ -163,7 +163,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                             </div>
                         </div>
                     </Col>
-                    <Col span={8} style={{ position: "relative" }}>
+                    <Col xs={24} sm={8} style={{ position: "relative" }}>
                         <Button type="link" style={{ position: "absolute", bottom: 15, right: 15 }}>
                             <Upload
                                 listType="picture"
@@ -230,7 +230,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                     </Col>
                 </Row>
                 <Row>
-                    <Col offset={5} span={8} className="underline">
+                    <Col {...{ sm: { offset: 5, span: 9 }, xs: { offset: 0, span: 12 } }} className="underline">
                         <Menu mode="horizontal">
                             <Menu.Item key="location" icon={<FontAwesomeIcon icon={faMapMarkerAlt} />}>
                                 {personalInfo?.region || "-"}
@@ -240,7 +240,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                             </Menu.Item>
                         </Menu>
                     </Col>
-                    <Col span={11} className="underline">
+                    <Col {...{ sm: { span: 10 }, xs: { span: 12 } }} className="underline">
                         <div
                             style={{
                                 width: "100%",

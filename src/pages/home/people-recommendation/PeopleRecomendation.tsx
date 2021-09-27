@@ -43,7 +43,7 @@ class PeopleRecommendation extends React.Component<PeopleRecommendationProps, Pe
                     header="People"
                     footer={
                         <>
-                            <Link to="">
+                            <Link to="/account/my-network">
                                 Lainnya <FontAwesomeIcon icon={faCaretDown} />
                             </Link>
                         </>

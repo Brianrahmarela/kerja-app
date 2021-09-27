@@ -11,19 +11,21 @@ class MyNetwork extends React.Component<MyNetworkProps, MyNetworkState> {
     render() {
         return (
             <>
-                <Row>
+                <Row className="my-network-page">
                     <Col span={24}>
                         <Tabs defaultActiveKey="1" centered>
                             <Tabs.TabPane tab="My Network" key="1">
-                                <Space>
-                                    <Button type="default">All Network</Button>
-                                    <Button type="default">Birthdays</Button>
-                                    <Button type="default">Work</Button>
-                                    <Button type="default">Highschool</Button>
-                                    <Button type="default">Current City</Button>
-                                    <Button type="default">Hometown</Button>
-                                    <Button type="default">Following</Button>
-                                </Space>
+                                <div className="category-network">
+                                    <Space>
+                                        <Button type="default">All Network</Button>
+                                        <Button type="default">Birthdays</Button>
+                                        <Button type="default">Work</Button>
+                                        <Button type="default">Highschool</Button>
+                                        <Button type="default">Current City</Button>
+                                        <Button type="default">Hometown</Button>
+                                        <Button type="default">Following</Button>
+                                    </Space>
+                                </div>
                                 <Card style={{ marginTop: 20 }}>
                                     <Row>
                                         <Col span={24} style={{ textAlign: "right" }}>
@@ -58,22 +60,23 @@ class MyNetwork extends React.Component<MyNetworkProps, MyNetworkState> {
                                                             </Button>,
                                                         ]}
                                                     >
-                                                        <Col flex={"100px"}>
+                                                        <Col xs={24} sm={6} md={5} lg={4} style={{ textAlign: "center", padding: 10 }}>
                                                             <Avatar
-                                                                size={65}
+                                                                size={100}
                                                                 src="http://localhost:7777/api/thrm-media/v1/file?forceImage=true&source-id=karirapp-bg-profile&id=rOBDR3xXzjv2jObwjqJgvL2o4b0YVa"
                                                             ></Avatar>
                                                         </Col>
                                                         <Col flex="auto">
                                                             <Typography.Title level={5}>Loreano Donald</Typography.Title>
                                                             <Space>
-                                                                <Typography.Text>Fashion Stylst di Shqueen</Typography.Text>|{" "}
+                                                                <Typography.Text className="job">Fashion Stylst di Shqueen</Typography.Text>
+                                                                <span className="space">|</span>
                                                                 <Typography.Text>
                                                                     <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: 5 }} />
                                                                     Fashion Stylst di Shqueen
                                                                 </Typography.Text>
                                                             </Space>
-                                                            <div>
+                                                            <div style={{ marginBottom: 15 }}>
                                                                 <Typography.Text className="grey-primary" style={{ fontSize: 12 }}>
                                                                     <FontAwesomeIcon icon={faUsers} style={{ marginRight: 5 }} />
                                                                     Diikuti oleh Deviana Anggun, Saga Human, Fira Saraswati, Kila Huiganies, Harold Lectar, and 40 other
