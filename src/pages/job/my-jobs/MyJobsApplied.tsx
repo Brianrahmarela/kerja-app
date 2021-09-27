@@ -210,7 +210,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
           {/* <Row > */}
           {/* <Col > */}
           <Tabs defaultActiveKey="2" onChange={this.callback} tabBarExtraContent={
-            <Link to={`/home`} style={{ backgroundColor: "yellow" }}>
+            <Link to={`/job/my-jobs-applied/job-alert-settings`} >
               <Row>
                 <Col xs={0} md={24}>
 
@@ -318,7 +318,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
                                 {/* <Col md={4} lg={3} style={{ backgroundColor: "red" }}><Button type="link" block style={{ padding: 0, margin: 0, }}><img */}
                                 <Col md={4} lg={3} ><Button type="link" block style={{ padding: 0, margin: 0, }}><img
                                   src={SvgQuickView}
-                                  alt="jobalertsettings"
+                                  alt="quickview"
                                   height={10}
                                   style={{ marginRight: 9, }}
                                 />

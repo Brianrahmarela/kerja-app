@@ -237,7 +237,7 @@ class Job extends React.Component<JobProps, JobState> {
                                     <Col>
 
                                         <Link to={`/job/my-jobs-applied`} >  <Button type="primary" icon={<img src={SvgMyJob} alt="logokerjaapp" style={{ marginRight: 7, }} />} className="txtmyjob">
-                                            My Job
+                                            My Jobs
                                         </Button></Link>
 
                                     </Col>

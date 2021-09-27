@@ -6,6 +6,7 @@ import Job from "./job/Job";
 import MyJobApplication from "./my-job-application/MyJobApplication";
 
 import MyJobsApplied from "./my-jobs/MyJobsApplied";
+import JobAlertSettings from "./my-jobs/my-jobs-component/JobAlertSettings";
 
 export interface JobRouteProps { }
 
@@ -22,6 +23,7 @@ class JobRoute extends React.Component<JobRouteProps, JobRouteState> {
                     <Route exact path="/job/my-job-application" component={MyJobApplication} />
 
                     <Route exact path="/job/my-jobs-applied" component={MyJobsApplied} />
+                    <Route exact path="/job/my-jobs-applied/job-alert-settings" component={JobAlertSettings} />
                 </Switch>
             </Router>
         );
