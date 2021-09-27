@@ -1,6 +1,6 @@
 import { faImages, faNewspaper, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Card, Col, Divider, Input, Row, Space, Typography } from "antd";
+import { Affix, Avatar, Card, Col, Divider, Input, Row, Space, Typography } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import PeopleRecommendation from "./people-recommendation/PeopleRecomendation";
@@ -23,11 +23,13 @@ class Home extends React.Component<HomeProps, HomeState> {
             <div className="home-page">
                 <Row gutter={15}>
                     <Col xs={0} sm={0} md={0} lg={7}>
-                        <Typography.Title level={4} className="blue-primary" style={{ marginTop: 12 }}>
-                            Rekomendasi
-                        </Typography.Title>
-                        <Divider style={{ marginBottom: 5 }}></Divider>
-                        <PeopleRecommendation />
+                        <Affix offsetTop={80}>
+                            <Typography.Title level={4} className="blue-primary" style={{ marginTop: 12 }}>
+                                Rekomendasi
+                            </Typography.Title>
+                            <Divider style={{ marginBottom: 5 }}></Divider>
+                            <PeopleRecommendation />
+                        </Affix>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={17}>
                         <Card
