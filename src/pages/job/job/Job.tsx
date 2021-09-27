@@ -104,7 +104,6 @@ class Job extends React.Component<JobProps, JobState> {
                 "status": "Magang",
                 "gaji": "Rp 1.000.000 - Rp 2.000.000",
                 "time": "3 days ago",
-
             },
             {
                 "id": 3,
@@ -114,7 +113,6 @@ class Job extends React.Component<JobProps, JobState> {
                 "status": "Magang",
                 "gaji": "Rp 5000.000 - Rp 1.000.000",
                 "time": "2 days ago",
-
             },
             {
                 "id": 4,
