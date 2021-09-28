@@ -1,12 +1,11 @@
-import { faSearch, } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Form, Tabs, Input, Row, Button, Card, PageHeader, Breadcrumb, Slider, Checkbox, Select, } from "antd";
+import { Form, Tabs, Input, Row, Button, Card, PageHeader, Breadcrumb, Slider, Checkbox, Select, AutoComplete } from "antd";
 import { Formik } from "formik";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import RelevantJobs from '../my-jobs-component/RelevantJobs';
+import { UserOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 export interface JobProps {
@@ -16,12 +15,11 @@ export interface JobState {
   hasMore: boolean;
   loading: boolean;
   scrolled: boolean;
-  // appliedJobs: any[];
   pagination: any;
-  valSearch: any;
+  valSearch: string[];
 }
 class JobAlertSettings extends React.Component<JobProps, JobState> {
-  state = {
+  state: JobState = {
     hasMore: true,
     loading: false,
     scrolled: false,
@@ -34,10 +32,16 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
       salary: "",
       salaryAbove20: "",
     },
-    valSearch: "",
+    valSearch: [],
   };
-  onSearch = (valSearch: string) => {
-    console.log("val search:", valSearch);
+  onSearch = (val: string) => {
+    console.log("val search:", val);
+    this.addSearch(val);
+  }
+  addSearch(val: string) {
+    this.setState((prevState) => ({
+      valSearch: [...(prevState.valSearch ?? []), val]
+    }));
   }
   componentDidMount() {
     window.document.title = "Job | KerjaApp";
@@ -58,34 +62,61 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
         page: e,
       },
     });
-
-    // getSearchJob(pagination)
-    //   .then((res: AxiosResponse<any>) => {
-    //     let newPostingList: any[] = res.data.content?.concat(appliedJobs) as any[];
-    //     newPostingList = newPostingList.sort((a: any, b: any) => moment(b.createdAt).diff(moment(a.createdAt)));
-    //     this.setState({
-    //       appliedJobs: newPostingList,
-    //       hasMore: newPostingList.length < res.data.total,
-    //       pagination: {
-    //         ...pagination,
-    //         total: res.data.total,
-    //       },
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     console.log(e.response);
-    //     this.setState({ hasMore: false });
-    //   })
-    //   .finally(() => {
-    //     this.setState({
-    //       loading: false,
-    //     });
-    //   });
   };
+  onClickHandle = (e: any) => {
+    this.setState({ valSearch: e });
+  };
+
+  renderTitle = (title: string) => (
+    <span>
+      {title}
+      <a
+        style={{ float: 'right' }}
+        href="https://www.google.com/search?q=antd"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        more
+      </a>
+    </span>
+  );
+
+  renderItem = (title: string, count: number) => ({
+    value: title,
+    label: (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        {title}
+        <span>
+          <UserOutlined /> {count}
+        </span>
+      </div>
+    ),
+  });
+
+  options = [
+    {
+      label: this.renderTitle('Libraries'),
+      options: [this.renderItem('AntDesign', 10000), this.renderItem('AntDesign UI', 10600)],
+    },
+    {
+      label: this.renderTitle('Solutions'),
+      options: [this.renderItem('AntDesign UI FAQ', 60100), this.renderItem('AntDesign FAQ', 30010)],
+    },
+    {
+      label: this.renderTitle('Articles'),
+      options: [this.renderItem('AntDesign design language', 100000)],
+    },
+  ];
 
   render() {
     // const { currentUser } = this.props;
-    // const { appliedJobs } = this.state;
+    const { valSearch } = this.state;
+    console.log('valsearch all: ', valSearch);
     // const { jobsRecomendation } = this.state;
     return (
       <div className="job-alert-settings">
@@ -131,7 +162,23 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
                       {({ values, handleBlur, handleChange, setFieldValue, errors, handleSubmit }) => (
                         <>
                           <Form.Item label="Posisi">
-                            <Input value={values.position} name="position" suffix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} placeholder="exp. Marketing Officer" />
+                            {/* <Input value={values.position} name="position" suffix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} placeholder="exp. Marketing Officer" /> */}
+                            <AutoComplete
+                              dropdownClassName="certain-category-search-dropdown"
+                              dropdownMatchSelectWidth={500}
+                              style={{ width: 250 }}
+                              options={this.options}
+                            >
+                              <Input.Search size="large" placeholder="input here" onSearch={this.onSearch} />
+                            </AutoComplete>
+                            {valSearch.map((tag: any) =>
+                            (
+                              <p>
+
+                                {tag}
+                              </p>
+                            )
+                            )}
                           </Form.Item>
                           <Form.Item label="Gaji">
                             <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />
