@@ -91,15 +91,17 @@ class MyNetwork extends React.Component<MyNetworkProps, MyNetworkState> {
                                 </Card>
                             </Tabs.TabPane>
                             <Tabs.TabPane tab="Network Request" key="2">
-                                <Space>
-                                    <Button type="default">All Network</Button>
-                                    <Button type="default">Birthdays</Button>
-                                    <Button type="default">Work</Button>
-                                    <Button type="default">Highschool</Button>
-                                    <Button type="default">Current City</Button>
-                                    <Button type="default">Hometown</Button>
-                                    <Button type="default">Following</Button>
-                                </Space>
+                                <div className="category-network">
+                                    <Space>
+                                        <Button type="default">All Network</Button>
+                                        <Button type="default">Birthdays</Button>
+                                        <Button type="default">Work</Button>
+                                        <Button type="default">Highschool</Button>
+                                        <Button type="default">Current City</Button>
+                                        <Button type="default">Hometown</Button>
+                                        <Button type="default">Following</Button>
+                                    </Space>
+                                </div>
                             </Tabs.TabPane>
                         </Tabs>
                     </Col>

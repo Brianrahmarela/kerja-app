@@ -1,21 +1,88 @@
-import { Card, Col, Form, Input, Row, Tag, Button } from "antd";
+import { Card, Col, Form, Input, Row, Tag, Button, message, DatePicker, Select, notification } from "antd";
+import { AxiosResponse } from "axios";
 import { Formik } from "formik";
+import moment from "moment";
 import React from "react";
-
+import { getPersonal, postPersonal } from "../../../../repository/WorkerRepo";
+import { countries } from "./../../../../assets/data/countries";
+import { regions } from "./../../../../assets/data/cities";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave } from "@fortawesome/free-solid-svg-icons";
 interface PersonalInfoProps {}
 
 interface PersonalInfoState {
     formData: any;
+    pageReady: boolean;
 }
 
 class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState> {
-    state = { formData: {} as any };
+    state = {
+        formData: {
+            firstName: "",
+            lastName: "",
+            placeOfBirth: "",
+            dateOfBirth: undefined,
+            gender: "",
+            email: "",
+            phoneNumber: "",
+            otherPhoneNumber: "",
+            nationality: "",
+            country: "",
+            region: "",
+            address: "",
+            province: "",
+            city: "",
+            relition: "",
+            website: "",
+            hobbies: "",
+            subdistrict: "",
+            postalcode: "",
+            identityType: "ID_CARD",
+            identityNo: "",
+        } as any,
+        pageReady: false,
+    };
     componentDidMount() {
-        console.log("focus");
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
+
+        getPersonal()
+            .then((res: AxiosResponse<any>) => {
+                const { data } = res;
+                const newData = {
+                    firstName: data.firstName || "",
+                    lastName: data.lastName || "",
+                    placeOfBirth: data.placeOfBirth || "",
+                    dateOfBirth: (data.dateOfBirth && data.dateOfBirth !== "0001-01-01T00:00:00Z" && moment(data.dateOfBirth)) || undefined,
+                    gender: data.gender || "",
+                    email: data.email || "",
+                    phoneNumber: data.phoneNumber || "",
+                    otherPhoneNumber: data.otherPhoneNumber || "",
+                    nationality: data.nationality || "",
+                    country: data.country || "",
+                    region: data.region || "",
+                    address: data.address || undefined,
+                    province: data.province || "",
+                    city: data.city || "",
+                    website: data.website || "",
+                    hobbies: (data.hobbies && data.hobbies.split(",")) || [],
+                    marritalStatus: data.marritalStatus || "",
+                    subdistrict: data.subdistrict || "",
+                    religion: data.religion || "",
+                    postalcode: data.postalcode || undefined,
+                    identityType: data.identityType || "ID_CARD",
+                    identityNo: data.identityNo || undefined,
+                };
+                this.setState({ formData: newData });
+            })
+            .catch((e: any) => {
+                message.error({ content: e.response?.data?.message || e.message || "-" });
+            })
+            .finally(() => {
+                this.setState({ pageReady: true });
+            });
     }
     render() {
         const { formData } = this.state;
@@ -23,48 +90,61 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
             <>
                 <Card>
                     <Form layout="vertical">
-                        <Formik initialValues={formData} onSubmit={() => {}}>
+                        <Formik
+                            enableReinitialize
+                            initialValues={formData}
+                            onSubmit={(values, { setSubmitting }) => {
+                                const payload: any = { ...values };
+                                console.log(values.dateOfBirth);
+                                payload.dateOfBirth = moment(values.dateOfBirth).toDate();
+                                payload.postalcode = values.postalcode ? Number(values.postalcode) : 0;
+                                payload.hobbies = values.hobbies.join(",");
+                                postPersonal(payload)
+                                    .then((res: any) => {
+                                        message.success("Saved");
+                                    })
+                                    .catch((e) => {
+                                        message.error(e.response?.data?.message || e.message || "-");
+                                    })
+                                    .finally(() => {
+                                        setSubmitting(false);
+                                    });
+                            }}
+                        >
                             {({ errors, touched, values, handleChange, handleBlur, setFieldValue, setFieldTouched, handleSubmit, isSubmitting, dirty }) => (
                                 <>
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
                                                 label="First Name"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                validateStatus={errors.firstName && touched.firstName ? "error" : ""}
+                                                help={errors.firstName && touched.firstName ? errors.firstName : null}
                                             >
-                                                <Input />
+                                                <Input name="firstName" value={values.firstName} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
-                                            <Form.Item
-                                                label="Last Name"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
+                                            <Form.Item label="Last Name" validateStatus={errors.lastName && touched.lastName ? "error" : ""} help={errors.lastName && touched.lastName ? errors.lastName : null}>
+                                                <Input name="lastName" value={values.lastName} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
-                                    <Row gutter={[20, 20]}>
-                                        <Col span={24}>
-                                            <Form.Item
-                                                label="Your Job Now"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
+
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
                                                 label="Date a Birth"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                validateStatus={errors.placeOfBirth && touched.placeOfBirth ? "error" : ""}
+                                                help={errors.placeOfBirth && touched.placeOfBirth ? errors.placeOfBirth : null}
                                             >
-                                                <Input />
+                                                <DatePicker
+                                                    value={values.dateOfBirth}
+                                                    onChange={(e) => {
+                                                        console.log(e);
+                                                        setFieldTouched("dateOfBirth", true);
+                                                        setFieldValue("dateOfBirth", e);
+                                                    }}
+                                                />
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
@@ -73,7 +153,7 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
-                                                <Input />
+                                                <Input name="placeOfBirth" value={values.placeOfBirth} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -84,7 +164,12 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
-                                                <Input />
+                                                <Input.Group compact>
+                                                    <Select value={62}>
+                                                        <Select.Option value={62}>+62</Select.Option>
+                                                    </Select>
+                                                    <Input name="phoneNumber" style={{ width: "80%" }} value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
+                                                </Input.Group>
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -95,27 +180,53 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
-                                                <Input />
+                                                <Select
+                                                    showSearch
+                                                    defaultValue={values.nationality}
+                                                    value={values.nationality}
+                                                    style={{ width: "100%" }}
+                                                    onChange={(e: any) => {
+                                                        setFieldValue("nationality", e);
+                                                        setFieldTouched("nationality");
+                                                    }}
+                                                    filterOption={(input, option: any) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                                                >
+                                                    <Select.Option value="">--:OPTION:--</Select.Option>
+                                                    {countries.map((val: string) => (
+                                                        <Select.Option key={val.toUpperCase()} value={val.toUpperCase()}>
+                                                            {val}
+                                                        </Select.Option>
+                                                    ))}
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
-                                            <Form.Item
-                                                label="Location"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
+                                            <Form.Item label="Location" validateStatus={errors.region && touched.region ? "error" : ""} help={errors.region && touched.region ? errors.region : null}>
+                                                <Select
+                                                    showSearch
+                                                    defaultValue={values.region}
+                                                    value={values.region}
+                                                    style={{ width: "100%" }}
+                                                    onChange={(e: any) => {
+                                                        setFieldValue("region", e);
+                                                        setFieldTouched("region");
+                                                    }}
+                                                    filterOption={(input, option: any) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                                                >
+                                                    <Select.Option value="">--:OPTION:--</Select.Option>
+                                                    {regions.map((val: string) => (
+                                                        <Select.Option key={val.toUpperCase()} value={val.toUpperCase()}>
+                                                            {val}
+                                                        </Select.Option>
+                                                    ))}
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item
-                                                label="Address"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
+                                            <Form.Item label="Address" validateStatus={errors.address && touched.address ? "error" : ""} help={errors.address && touched.address ? errors.address : null}>
+                                                <Input name="address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -123,10 +234,22 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                         <Col span={12}>
                                             <Form.Item
                                                 label="Relationship Status"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                validateStatus={errors.marritalStatus && touched.marritalStatus ? "error" : ""}
+                                                help={errors.marritalStatus && touched.marritalStatus ? errors.marritalStatus : null}
                                             >
-                                                <Input />
+                                                <Select
+                                                    value={values.marritalStatus}
+                                                    onChange={(e: any) => {
+                                                        setFieldValue("marritalStatus", e);
+                                                        setFieldTouched("marritalStatus");
+                                                    }}
+                                                >
+                                                    <Select.Option value="">--:OPTION:--</Select.Option>
+                                                    <Select.Option value="SINGLE">Single</Select.Option>
+                                                    <Select.Option value="MARRIED">Married</Select.Option>
+                                                    <Select.Option value="DIVORCED">Divorced</Select.Option>
+                                                    <Select.Option value="WIDOWED">Widowed</Select.Option>
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
@@ -135,7 +258,17 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
-                                                <Input />
+                                                <Select
+                                                    value={values.gender}
+                                                    onChange={(e: any) => {
+                                                        setFieldValue("gender", e);
+                                                        setFieldTouched("gender");
+                                                    }}
+                                                >
+                                                    <Select.Option value="">--:OPTION:--</Select.Option>
+                                                    <Select.Option value="MALE">Male</Select.Option>
+                                                    <Select.Option value="FEMALE">Female</Select.Option>
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -146,40 +279,46 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
-                                                <Input />
+                                                <Input name="address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                    <Row gutter={[20, 20]}>
+                                        <Col span={24}>
+                                            <Form.Item label="E-mail Link" validateStatus={errors.email && touched.email ? "error" : ""} help={errors.email && touched.email ? errors.email : null}>
+                                                <Input name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
                                             <Form.Item
-                                                label="E-mail Link"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                label="One of your Social Media Link"
+                                                validateStatus={errors.socialmedia && touched.socialmedia ? "error" : ""}
+                                                help={errors.socialmedia && touched.socialmedia ? errors.socialmedia : null}
                                             >
-                                                <Input />
+                                                <Input name="socialmedia" value={values.socialmedia} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item
-                                                label="Social Media Link"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                    <Row gutter={[20, 20]}>
-                                        <Col span={24}>
-                                            <Form.Item
-                                                label="Religion"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input />
+                                            <Form.Item label="Religion" validateStatus={errors.religion && touched.religion ? "error" : ""} help={errors.religion && touched.religion ? errors.religion : null}>
+                                                <Select
+                                                    value={values.religion}
+                                                    onChange={(e: any) => {
+                                                        setFieldValue("religion", e);
+                                                        setFieldTouched("religion");
+                                                    }}
+                                                >
+                                                    <Select.Option value="">--:OPTION:--</Select.Option>
+                                                    <Select.Option value="ISLAM">Islam</Select.Option>
+                                                    <Select.Option value="KATHOLIK">Katholik</Select.Option>
+                                                    <Select.Option value="NASRANI">Nasrani</Select.Option>
+                                                    <Select.Option value="HINDU">Hindu</Select.Option>
+                                                    <Select.Option value="BHUDA">Bhuda</Select.Option>
+                                                    <Select.Option value="KONGHUCU">Kong hu cu</Select.Option>
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -187,17 +326,44 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                         <Col span={24}>
                                             <Form.Item
                                                 label="Interest / Hobby"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                validateStatus={errors.hobbies && touched.hobbies ? "error" : ""}
+                                                help={errors.hobbies && touched.hobbies ? errors.hobbies : null}
                                             >
-                                                <Tag closable>Movies</Tag>
+                                                <Select
+                                                    mode="multiple"
+                                                    allowClear
+                                                    style={{ width: "100%" }}
+                                                    placeholder="Please select"
+                                                    defaultValue={values.hobbies}
+                                                    value={values.hobbies}
+                                                    onChange={(e) => {
+                                                        console.log(`selected ${e}`);
+                                                        setFieldValue("hobbies", e);
+                                                    }}
+                                                >
+                                                    <Select.Option key={1} value="asdf">
+                                                        asdf
+                                                    </Select.Option>
+                                                    <Select.Option key={2} value="de">
+                                                        srbe
+                                                    </Select.Option>
+                                                    <Select.Option key={3} value="gbe">
+                                                        sdfved
+                                                    </Select.Option>
+                                                    <Select.Option key={4} value="cxcv">
+                                                        eve
+                                                    </Select.Option>
+                                                </Select>
                                             </Form.Item>
                                         </Col>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
                                             <Form.Item>
-                                                <Button type="primary">Submit</Button>
+                                                <Button type="primary" loading={isSubmitting} onClick={() => handleSubmit()}>
+                                                    <FontAwesomeIcon icon={faSave} style={{ marginRight: 5 }} />
+                                                    Save
+                                                </Button>
                                             </Form.Item>
                                         </Col>
                                     </Row>
