@@ -238,7 +238,7 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
                             {/* <Row style={{ marginTop: 22, backgroundColor: "yellow" }} align="middle"> */}
                             <Row justify="end">
                                 <Col xs={12} md={0}>
-                                    <Link to={`/home`}>
+                                    <Link to={`/job/my-jobs-applied/job-alert-settings`}>
                                         <Button type="link" block style={{ padding: 0, margin: 0 }}>
                                             <img src={SvgNotifJobAlert} alt="jobalertsettings" height={16} style={{ marginRight: 9 }} />
                                             Job Alert Settings

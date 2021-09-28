@@ -33,46 +33,58 @@
 		}
 	}
 	.jobTitleList {
-		font-size: 18px;
-		color: #53575e;
-		font-family: "Open Sans";
-		font-weight: 600;
+		font-size: 20px;
+		color: @primary-color;
+		font-family: "Poppins";
+		font-weight: 400;
 	}
-	// .gapLine {
-	// 	font-size: 20px;
-	// 	font-weight: 100;
-	// }
-	// .btnmobilemylast {
-	// 	padding: 0px 8px;
-	// 	margin: 0;
-	// 	color: "white";
-	// 	border-radius: 6px;
-	// 	font-size: 14px;
-	// }
-	// div #bordertab .ant-tabs-tab.ant-tabs-tab-active {
-	// 	border-bottom: 3px solid @primary-color;
-	// 	margin: 0;
-	// 	padding: 0;
-	// }
-	// .certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
-	// 	color: #666;
-	// 	font-weight: bold;
-	// }
+	.gapLine {
+		font-size: 20px;
+		font-weight: 100;
+		@media (min-width: 280px) {
+			display: none;
+		}
+		@media (min-width: 768px) {
+			display: block;
+		}
+	}
+	.footerList {
+		font-family: "Poppins";
+		font-size: 13px;
+	}
 
-	// .certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
-	// 	border-bottom: 1px solid #f6f6f6;
-	// }
-
-	// .certain-category-search-dropdown .ant-select-dropdown-menu-item {
-	// 	padding-left: 16px;
-	// }
-
-	// .certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
-	// 	text-align: center;
-	// 	cursor: default;
-	// }
-
-	// .certain-category-search-dropdown .ant-select-dropdown-menu {
-	// 	max-height: 300px;
-	// }
+	.ant-tabs-tab-btn {
+		font-size: 16px;
+		color: #8e9094;
+		@media (min-width: 280px) {
+			font-size: 14.5px;
+		}
+		@media (min-width: 768px) {
+			font-size: 16px;
+		}
+	}
+	.ant-tabs-tab {
+		padding: 5px 0;
+	}
+	.ant-tabs-ink-bar {
+		border-bottom: 3px solid @primary-color;
+	}
+	.ant-tabs-top > .ant-tabs-nav::before,
+	.ant-tabs-top > div > .ant-tabs-nav::before {
+		display: none;
+	}
+	.savebtn {
+		border-radius: 7px;
+		font-family: "Open Sans";
+		font-size: 18px;
+		line-height: 18px;
+		text-align: center;
+	}
+	.savebtn:hover {
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	}
+	.imgList {
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		border-radius: 50%;
+	}
 }

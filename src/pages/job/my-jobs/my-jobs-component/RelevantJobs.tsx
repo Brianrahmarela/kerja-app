@@ -1,13 +1,16 @@
-import { Col, Row, Typography, Divider, Button, Card, List, Space, Avatar, Badge, } from "antd";
+import { Col, Row, Typography, Button, Card, List, Space, Avatar, } from "antd";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroller";
 import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
-import SvgApplicant from "../../../../assets/svg/applicant-icon.svg";
-import SvgQuickView from "../../../../assets/svg/quick-view-icon.svg";
-import AvaApplied from "../../../../assets/image/avatar-applied.png";
+import ImgLovely from "../../../../assets/image/lovely.svg";
+import SvgLocGrey from "../../../../assets/svg/location-grey.svg";
+import ImgSalvadore from "../../../../assets/image/salvadore.svg";
+import ImgColin from "../../../../assets/image/colin.svg";
 import SvgFilter from "../../../../assets/svg/filter-icon.svg";
+import SvgSaved from "../../../../assets/svg/saved-icon.svg";
+import SvgShare from "../../../../assets/svg/share-icon.svg";
 
 const { Text } = Typography;
 export interface JobProps {
@@ -28,103 +31,34 @@ class RelevantJobs extends React.Component<JobProps, JobState> {
     relevantJobs: [
       {
         "id": 1,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Applied",
+        "Jobtitle": "Pattern Maker",
+        "company": "Lovely Prom Indonesia",
+        "address": "Jl. Pisangan Baru Tengah, Jakarta Timur, DKI Jakarta",
+        "status": "Magang / Paruh Waktu",
+        "gaji": "",
+        "image": `${ImgLovely}`,
+        "waktu": "Diposting 2 jam yang lalu"
       },
       {
         "id": 2,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Applied",
+        "Jobtitle": "Fashion Journalist",
+        "company": "Salvadore Salie",
+        "address": "Jl. Kebon Kacang Raya Blok E35 No.9, Jakarta Pusat, DKI Jakarta",
+        "status": "Penuh waktu / Kontrak",
+        "gaji": "Rp 4.000.000 - Rp 6.000.000",
+        "image": `${ImgSalvadore}`,
+        "waktu": "Diposting kemarin"
       },
       {
         "id": 3,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Interview",
+        "Jobtitle": "Merchandiser",
+        "company": "Colin Fashion",
+        "address": "Jl. Menteng Atas Dalam No.23, Jakarta Selatan, DKI Jakarta",
+        "status": "Penuh waktu / Kontrak",
+        "gaji": "Rp 3.500.000 - Rp 6.000.000",
+        "image": `${ImgColin}`,
+        "waktu": "Diposting kemarin"
       },
-      {
-        "id": 4,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "On Hold",
-      },
-      {
-        "id": 5,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Rejected",
-      },
-      {
-        "id": 6,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Medical",
-      },
-      {
-        "id": 7,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "On Boarding",
-      },
-      {
-        "id": 8,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Test",
-      },
-      {
-        "id": 9,
-        "Jobtitle": "Fashion Designer",
-        "company": "Lorem Ipsum",
-        "applicant": "123 Applicant",
-        "position": "Full time",
-        "appliedOn": "45 minutes ago",
-        "postedOn": "5 hours ago",
-        "salary": "Rp. 3.000.000 - Rp. 5.000.000",
-        "status": "Completed",
-      }
     ] as any[],
 
     pagination: {
@@ -156,11 +90,18 @@ class RelevantJobs extends React.Component<JobProps, JobState> {
     });
   };
 
+  handleClickArsip = (e: any) => {
+    console.log("Arsip Value Clicked! ", e);
+  }
+  handleClickBagikan = (e: any) => {
+    console.log("Bagikan Value Clicked! ", e);
+  }
+
   render() {
     const { relevantJobs } = this.state;
     return (
       <div >
-        <Row style={{ marginTop: 22, marginBottom: 30 }} align="middle">
+        <Row style={{ marginTop: 63.5, marginBottom: 30 }} align="middle">
           <Col style={{ marginRight: 9 }}>
             <img style={{ padding: 0, margin: 0, }}
               src={SvgFilter}
@@ -184,80 +125,138 @@ class RelevantJobs extends React.Component<JobProps, JobState> {
                 <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%", }}>
                   <Card style={{ borderRadius: 8, }} bordered={true} className="cardRelevant">
                     <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
-                      <Col xs={0} md={4} >
-                        <span className="avatar-item">
-                          <Badge count={1} className="badgeRelevant">
-                            <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 91, lg: 131, xl: 131, xxl: 131 }}
-                            />
-                          </Badge>
-                        </span>
-                      </Col>
+
+                      {/* <Col xs={24} md={20} style={{ backgroundColor: "honeydew" }}> */}
                       <Col xs={24} md={20} >
                         <Row justify="space-between" >
                           {/* <Col xs={24} md={24} lg={18} style={{ backgroundColor: "yellow" }}> */}
                           <Col xs={24} md={24} lg={18} >
                             <Row align="middle" >
-
-                              <Col xs={24} md={7} style={{ marginRight: 15, marginBottom: 5 }}>
+                              <Col xs={24} md={24} style={{ marginRight: 15, marginBottom: 2 }}>
                                 <Text className="jobTitleList">{job.Jobtitle}</Text>
                               </Col>
-                              <Col className="gapLine" xs={0} md={1}>|</Col>
-                              <Col xs={24} md={4} style={{ marginBottom: 5 }}>
-                                <Text>{job.company}</Text>
-                              </Col>
-                              <Col className="gapLine" xs={0} md={1}>|</Col>
-                              <Col xs={24} md={5} style={{ marginBottom: 5 }}>
-                                <Row>
-                                  <Col>
-                                    <img
-                                      src={SvgApplicant}
-                                      alt="SvgAaplicant"
-                                      height={10}
-                                      style={{ marginRight: 9, }}
-                                    />
-                                  </Col>
-                                  <Col >
-                                    <Text>{job.applicant}</Text>
-                                  </Col>
-                                </Row>
-                              </Col>
-                              <Col className="gapLine" xs={0} md={1}>|</Col>
-                              <Col xs={24} md={4} style={{ marginBottom: 5 }}>
-                                <Text>{job.position}</Text>
-                              </Col>
                             </Row>
                           </Col>
-                          {/* <Col md={4} lg={3} style={{ backgroundColor: "red" }}><Button type="link" block style={{ padding: 0, margin: 0, }}><img */}
-                          <Col md={4} lg={3} ><Button type="link" block style={{ padding: 0, margin: 0, }}><img
-                            src={SvgQuickView}
-                            alt="quickview"
-                            height={10}
-                            style={{ marginRight: 9, }}
-                          />
-                            Quick View</Button></Col>
                         </Row>
-                        <Divider style={{ margin: '15px 0px', padding: 0, }} />
-                        <Row style={{ marginBottom: 5 }}>
-                          <Col>
-                            <Text style={{ fontWeight: 600, }}>Applied On</Text> <Text style={{ marginLeft: 15, marginRight: 15 }}>: </Text> {job.appliedOn}
+                        <Row style={{ marginBottom: 10 }}>
+                          <Col style={{ fontSize: 15 }}>
+                            {job.company}
                           </Col>
                         </Row>
-                        <Row style={{ marginBottom: 5 }}>
-                          <Col>
-                            <Text style={{ fontWeight: 600 }}>Posted On</Text> <Text style={{ marginLeft: 20, marginRight: 15 }}>: </Text> {job.postedOn}
+                        {/* <Space size={3} direction="vertical"> */}
+
+                        {/* <Row style={{ marginBottom: 8, backgroundColor: "teal" }}> */}
+                        <Row style={{ marginBottom: 8, }}>
+                          <Col style={{ marginRight: 9, }}>
+                            <img style={{ padding: 0, margin: 0, }}
+                              src={SvgLocGrey}
+                              alt="share"
+                              height={14.6}
+                              className="imgList"
+                            /></Col>
+                          {/* <Col xs={21} md={22} style={{ marginRight: 9, backgroundColor: "grey" }}> */}
+                          <Col xs={21} md={22} style={{ marginRight: 9, }}>
+                            {job.address}
                           </Col>
                         </Row>
-                        <Row justify="space-between" style={{ marginBottom: 5 }}>
-                          <Col style={{ marginBottom: 15 }}>
-                            <Text style={{ fontWeight: 600 }}>Salary</Text> <Text style={{ marginLeft: 49, marginRight: 15, }}>: </Text>
-                            <Text style={{ color: "#2C9BE6" }}>
-                              {job.salary}
+                        <Row justify="space-between" style={{ marginBottom: 6 }}>
+                          <Col>
+                            <Text style={{}}>Status Pekerjaan : </Text>
+                            <Text style={{ color: "#2C9BE6", fontWeight: 600 }}>
+                              {job.status}
                             </Text>
                           </Col>
+                        </Row>
+                        <Row style={{ marginBottom: 18 }}>
+                          {
+                            job.gaji === "" ? (
+                              <Col>
+                                {job.gaji}
+                              </Col>
+                            ) : (
+                              <Col>
+                                <Text >Gaji</Text> : {job.gaji}
+                              </Col>
+                            )
+                          }
+                        </Row>
+                        {/* </Space> */}
+
+                      </Col>
+                      {/* <Col xs={0} md={3} style={{ backgroundColor: "green" }}> */}
+                      <Col xs={0} md={3} >
+                        <Row justify="end">
                           <Col>
-                            <Row align="middle">
-                              <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#EFEFEF", color: "#53575E", border: '0px' }} >{job.status}</Button>
+
+                            <Avatar shape="square" src={job.image} className="imgList" size={{ xs: 0, sm: 0, md: 81, lg: 89, xl: 89, xxl: 89 }}
+                            />
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                    {/* <Row justify="end" style={{ backgroundColor: "yellow" }}> */}
+                    <Row justify="end">
+                      <Col xs={24} md={8} lg={6} style={{ marginBottom: 5, }} >
+
+                        <Row justify="end" >
+                          <Button type="link" block style={{ margin: 0, padding: 0 }}>
+                            <Row justify="end">
+
+                              <Col>
+                                <Text>{job.waktu}</Text>
+                              </Col>
                             </Row>
+                          </Button>
+
+                        </Row>
+                      </Col>
+
+                      <Col xs={6} md={4} lg={3} style={{ marginLeft: 12 }}>
+                        <Row justify="space-between">
+                          <Col className="gapLine" >
+                            <Row justify="center">
+                              |
+                            </Row>
+                          </Col>
+                          <Col>
+                            <Button type="link" block onClick={this.handleClickArsip} style={{ margin: 0, padding: 0 }}>
+                              <Row justify="end">
+                                <Col>
+                                  <img src={SvgSaved} alt="SvgAaplicant" height={14} style={{ marginRight: 9 }} />
+                                </Col>
+                                <Col>
+                                  <Text>Arsip</Text>
+                                </Col>
+                              </Row>
+                            </Button>
+                          </Col>
+                          <Col>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={9} md={4} lg={3}>
+                        <Row justify="end">
+                          <Col className="gapLine" md={1}>
+                            <Row justify="start">
+                              |
+                            </Row>
+                          </Col>
+                          <Col md={20}>
+                            <Button type="link" block onClick={this.handleClickBagikan} style={{ margin: 0, padding: 0 }}>
+                              <Row justify="end">
+                                <Col>
+                                  <img src={SvgShare} alt="SvgAaplicant" height={14} style={{ marginRight: 9 }} />
+
+                                </Col>
+                                <Col>
+                                  <Text className="footerList">Bagikan</Text>
+
+                                </Col>
+                              </Row>
+                            </Button>
+
+                          </Col>
+                          <Col>
                           </Col>
                         </Row>
                       </Col>

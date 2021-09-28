@@ -1,11 +1,10 @@
-import { Form, Tabs, Input, Row, Button, Card, PageHeader, Breadcrumb, Slider, Checkbox, Select, AutoComplete } from "antd";
+import { Form, Tabs, Tag, Input, Row, Button, Card, PageHeader, Breadcrumb, Slider, Checkbox, Select, AutoComplete, InputNumber, Col } from "antd";
 import { Formik } from "formik";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import RelevantJobs from '../my-jobs-component/RelevantJobs';
-import { UserOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 export interface JobProps {
@@ -16,7 +15,9 @@ export interface JobState {
   loading: boolean;
   scrolled: boolean;
   pagination: any;
-  valSearch: string[];
+  posisiValue: string[];
+  gajiValue: number;
+  lokasiValue: string[];
 }
 class JobAlertSettings extends React.Component<JobProps, JobState> {
   state: JobState = {
@@ -32,17 +33,34 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
       salary: "",
       salaryAbove20: "",
     },
-    valSearch: [],
+    posisiValue: [],
+    gajiValue: 500000,
+    lokasiValue: [],
   };
   onSearch = (val: string) => {
-    console.log("val search:", val);
+    console.log("val Posisi:", val);
     this.addSearch(val);
+    // this.clearSearch();
   }
   addSearch(val: string) {
     this.setState((prevState) => ({
-      valSearch: [...(prevState.valSearch ?? []), val]
+      posisiValue: [...(prevState.posisiValue ?? []), val],
     }));
   }
+  onSearchLokasi = (val: string) => {
+    console.log("val Lokasi:", val);
+    this.addSearchLokasi(val);
+  }
+  addSearchLokasi(val: string) {
+    this.setState((prevState) => ({
+      lokasiValue: [...(prevState.lokasiValue ?? []), val],
+    }));
+  }
+  onChange = (value: any) => {
+    this.setState({
+      gajiValue: value,
+    });
+  };
   componentDidMount() {
     window.document.title = "Job | KerjaApp";
   }
@@ -63,16 +81,12 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
       },
     });
   };
-  onClickHandle = (e: any) => {
-    this.setState({ valSearch: e });
-  };
-
   renderTitle = (title: string) => (
     <span>
       {title}
       <a
         style={{ float: 'right' }}
-        href="https://www.google.com/search?q=antd"
+        href="/jobs"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -80,44 +94,61 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
       </a>
     </span>
   );
-
-  renderItem = (title: string, count: number) => ({
+  renderItem = (title: string) => ({
     value: title,
     label: (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div>
         {title}
-        <span>
-          <UserOutlined /> {count}
-        </span>
+      </div>
+    ),
+  });
+  log(e: any) {
+    console.log(e);
+  }
+  options = [
+    {
+      label: this.renderTitle('Pencarian Populer'),
+      options: [this.renderItem('Staff'), this.renderItem('Fashion Designer'), this.renderItem('Manager'), this.renderItem('Senior Merchandiser'), this.renderItem('Pattern Maker'), this.renderItem('Marketing'),],
+    },
+  ];
+  renderTitleLokasi = (title: string) => (
+    <span>
+      {title}
+      <a
+        style={{ float: 'right' }}
+        href="/jobs"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        more
+      </a>
+    </span>
+  );
+  renderItemLokasi = (title: string) => ({
+    value: title,
+    label: (
+      <div>
+        {title}
       </div>
     ),
   });
 
-  options = [
+  optionsLokasi = [
     {
-      label: this.renderTitle('Libraries'),
-      options: [this.renderItem('AntDesign', 10000), this.renderItem('AntDesign UI', 10600)],
-    },
-    {
-      label: this.renderTitle('Solutions'),
-      options: [this.renderItem('AntDesign UI FAQ', 60100), this.renderItem('AntDesign FAQ', 30010)],
-    },
-    {
-      label: this.renderTitle('Articles'),
-      options: [this.renderItem('AntDesign design language', 100000)],
+      label: this.renderTitleLokasi('Lokasi Populer'),
+      options: [this.renderItem('Jakarta'), this.renderItem('Bogor'), this.renderItem('Bekasi'), this.renderItem('Tangerang'), this.renderItem('Depok'), this.renderItem('Bandung'),],
     },
   ];
 
   render() {
     // const { currentUser } = this.props;
-    const { valSearch } = this.state;
-    console.log('valsearch all: ', valSearch);
-    // const { jobsRecomendation } = this.state;
+    const { posisiValue } = this.state;
+    console.log('posisiValue: ', posisiValue);
+    const { gajiValue } = this.state;
+    console.log('gajiValue slider: ', gajiValue);
+    const { lokasiValue } = this.state;
+    console.log('lokasiValue: ', lokasiValue);
+
     return (
       <div className="job-alert-settings">
         <PageHeader
@@ -132,12 +163,12 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
           </Breadcrumb>}
           style={{ margin: "28px 0px 25.5px 0px", padding: 0 }}
         />
-        <Row >
+        <Row style={{ outline: 'none', borderStyle: 'none' }}>
           <Tabs defaultActiveKey="1" onChange={this.callback}
-            tabBarGutter={24} centered id="bordertab"
+            tabBarGutter={24} centered
           >
             <TabPane tab="Jobs Alert" key="1" >
-              <div style={{ marginTop: 15 }}>
+              <div style={{ marginTop: 15, }}>
                 <Card>
                   <Form layout="vertical">
                     <Formik
@@ -162,39 +193,95 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
                       {({ values, handleBlur, handleChange, setFieldValue, errors, handleSubmit }) => (
                         <>
                           <Form.Item label="Posisi">
-                            {/* <Input value={values.position} name="position" suffix={<FontAwesomeIcon icon={faSearch} />} onBlur={handleBlur} onChange={handleChange} placeholder="exp. Marketing Officer" /> */}
+                            {/* <Input value={values.position} name="position" onBlur={handleBlur} onChange={handleChange} placeholder="exp. Marketing Officer" /> */}
                             <AutoComplete
                               dropdownClassName="certain-category-search-dropdown"
                               dropdownMatchSelectWidth={500}
-                              style={{ width: 250 }}
                               options={this.options}
                             >
-                              <Input.Search size="large" placeholder="input here" onSearch={this.onSearch} />
+                              <Input.Search size="middle" placeholder="exp. Marketing Officer" onSearch={this.onSearch} name="position" onBlur={handleBlur} />
                             </AutoComplete>
-                            {valSearch.map((tag: any) =>
-                            (
-                              <p>
+                            <Row style={{ marginTop: 16 }}>
 
-                                {tag}
-                              </p>
-                            )
-                            )}
+                              {posisiValue.map((tag: any, i) =>
+                              (
+                                <Tag closable onClose={this.log} key={i}>
+                                  {tag}
+                                </Tag>
+                              )
+                              )}
+                            </Row>
                           </Form.Item>
                           <Form.Item label="Gaji">
-                            <Slider defaultValue={3000000} step={1000000} min={0} max={20000000} />
+                            {/* <Slider defaultValue={5000000} step={1000000} min={0} max={30000000} /> */}
+                            <Row>
+                              <Col span={24}>
+                                <Slider
+                                  defaultValue={500000}
+
+                                  step={1000000} min={0} max={60000000}
+                                  onChange={this.onChange}
+                                  value={typeof gajiValue === 'number' ? gajiValue : 0}
+                                // style={{ color: "red" }}
+                                />
+                              </Col>
+                              <Col span={24}>
+                                <InputNumber
+                                  min={1}
+                                  max={60000000}
+                                  style={{ width: 100 }}
+                                  value={gajiValue}
+                                  onChange={this.onChange}
+                                />
+                              </Col>
+                            </Row>
                           </Form.Item>
                           <Form.Item>
-                            <Checkbox
-                              checked={values.salaryAbove20 === "true"}
+                            {
+                              gajiValue > 30000000 ? (
+                                <Checkbox
+                                  checked={true}
+                                  onChange={this.onChange}
+                                >
+                                  Diatas 30jt
+                                </Checkbox>
+                              ) : (
+                                <Checkbox
+                                  checked={false}
+                                // onChange={this.onChange}
+                                >
+                                  Diatas 30jt
+                                </Checkbox>
+                              )
+                            }
+                            {/* <Checkbox
+                              checked={values.salaryAbove30 === "true"}
                               onChange={(e) => {
-                                setFieldValue("salaryAbove:20", e.target.checked);
+                                setFieldValue("salaryAbove:30", e.target.checked);
                               }}
                             >
-                              Diatas 20jt
-                            </Checkbox>
+                              Diatas 30jt
+                            </Checkbox> */}
                           </Form.Item>
                           <Form.Item label="Lokasi">
-                            <Input value={values.location} name="location" onBlur={handleBlur} onChange={handleChange}></Input>
+                            {/* <Input value={values.location} name="location" onBlur={handleBlur} onChange={handleChange}></Input> */}
+                            <AutoComplete
+                              dropdownClassName="certain-category-search-dropdown"
+                              dropdownMatchSelectWidth={500}
+                              options={this.optionsLokasi}
+                            >
+                              <Input.Search size="middle" placeholder="DKI Jakarta" onSearch={this.onSearchLokasi} name="lokasi" onBlur={handleBlur} />
+                            </AutoComplete>
+                            <Row style={{ marginTop: 16 }}>
+
+                              {lokasiValue.map((tag: any, i) =>
+                              (
+                                <Tag closable onClose={this.log} key={i}>
+                                  {tag}
+                                </Tag>
+                              )
+                              )}
+                            </Row>
                           </Form.Item>
                           <Form.Item label="Status Pekerjaan">
                             <Select
@@ -210,8 +297,8 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
                             </Select>
                           </Form.Item>
                           <Form.Item style={{ textAlign: "right" }}>
-                            <Button type="primary" onClick={() => handleSubmit()}>
-                              Cari
+                            <Button type="primary" onClick={() => handleSubmit()} className="savebtn">
+                              Save
                             </Button>
                           </Form.Item>
                         </>
