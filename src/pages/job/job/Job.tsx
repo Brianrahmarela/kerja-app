@@ -44,12 +44,6 @@ class Job extends React.Component<JobProps, JobState> {
         pagination: {
             page: 1,
             total: 0,
-            position: "",
-            location: "",
-            status: "",
-            salary: "",
-            salaryAbove20: "",
-            size: 4,
         },
         valSearch: "",
     };
@@ -58,6 +52,7 @@ class Job extends React.Component<JobProps, JobState> {
     };
     componentDidMount() {
         window.document.title = "Job | KerjaApp";
+        this.loadMore(1);
     }
     loadMore = (e: any) => {
         // const { pagination, jobs, jobsRecomendation } = this.state;
@@ -70,7 +65,6 @@ class Job extends React.Component<JobProps, JobState> {
             pagination: {
                 ...pagination,
                 page: e,
-                size: 4,
             },
         });
 
@@ -147,171 +141,144 @@ class Job extends React.Component<JobProps, JobState> {
                             </Col>
                         </Row>
                         <Row style={{ marginTop: 15 }}>
-                            <Col md={24}>
+                            <Col span={24}>
                                 {/* TABLET & DESKTOP  */}
-                                <InfiniteScroll initialLoad={true} pageStart={0} loadMore={this.loadMore} hasMore={!this.state.loading && this.state.hasMore} useWindow={true} className="mobilehiddenmylast">
-                                    <Card className="titlemylastapplied">
-                                        <Row justify="space-between">
-                                            <Col xs={0} md={4}>
-                                                Job Title
-                                            </Col>
-                                            <Col xs={0} md={4}>
-                                                Company
-                                            </Col>
-                                            <Col xs={0} md={4}>
-                                                Applied On
-                                            </Col>
-                                            <Col xs={0} md={4}>
-                                                Position
-                                            </Col>
-                                            <Col xs={0} md={4}>
-                                                Status
-                                            </Col>
-                                        </Row>
-                                    </Card>
-                                    <List
-                                        dataSource={jobApplications || []}
-                                        split={false}
-                                        locale={{
-                                            emptyText: <Card>No Post</Card>,
-                                        }}
-                                        renderItem={(job: any, i: number) => (
-                                            <div>
-                                                <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
-                                                    <Card style={{ width: "100%", fontFamily: "Open Sans", fontSize: 12, color: "#53575E" }} className="listmylastapplied">
-                                                        <Row justify="space-between">
-                                                            <Col xs={0} md={4}>
-                                                                <p>{job.jobName}</p>
-                                                            </Col>
-                                                            <Col xs={0} md={4}>
-                                                                <p>{job.companyName}</p>
-                                                            </Col>
-                                                            <Col xs={0} md={4}>
-                                                                <p>{moment(job.createdAt).format("ll")}</p>
-                                                            </Col>
-                                                            <Col xs={0} md={4}>
-                                                                <p>{job.positionLevel}</p>
-                                                            </Col>
-                                                            <Col xs={0} md={4}>
-                                                                {job.status === "Interview" ? (
-                                                                    <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white" }}>
-                                                                        {job.status}
-                                                                    </Button>
-                                                                ) : (
-                                                                    <Button type="primary" className="btnmobilemylast">
-                                                                        {job.status}
-                                                                    </Button>
-                                                                )}
-                                                            </Col>
-                                                        </Row>
-                                                    </Card>
-                                                </List.Item>
-                                            </div>
-                                        )}
-                                    >
-                                        {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />}
-                                    </List>
-                                    <Button type="link" block style={{ marginBottom: 49, marginTop: 22 }}>
-                                        <Space size={9} style={{ color: "#53575E" }}>
-                                            Lainnya
-                                            <img style={{ padding: 0, margin: 0 }} src={SvgLainnya} alt="share" height={5} />
-                                        </Space>
-                                    </Button>
-                                </InfiniteScroll>
-
-                                {/* MOBILE VIEW */}
-                                <InfiniteScroll initialLoad={true} pageStart={0} loadMore={this.loadMore} hasMore={!this.state.loading && this.state.hasMore} useWindow={true} className="mobileshowmylast">
-                                    <List
-                                        dataSource={jobApplications || []}
-                                        split={false}
-                                        locale={{
-                                            emptyText: <Card>No Post</Card>,
-                                        }}
-                                        renderItem={(job: any, i: number) => (
-                                            <div>
-                                                <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
-                                                    <Card style={{ width: "100%", fontFamily: "Open Sans", color: "#53575E" }} className="listmylastapplied">
-                                                        <Row justify="space-between">
-                                                            <Col xs={24} md={4}>
-                                                                <Row>
-                                                                    <Col>
-                                                                        <p className="listtitleMobile">Job Title :</p>
+                                <Card className="titlemylastapplied">
+                                    <Row justify="space-between">
+                                        <Col xs={0} md={4}>
+                                            Job Title
+                                        </Col>
+                                        <Col xs={0} md={4}>
+                                            Company
+                                        </Col>
+                                        <Col xs={0} md={4}>
+                                            Applied On
+                                        </Col>
+                                        <Col xs={0} md={4}>
+                                            Position
+                                        </Col>
+                                        <Col xs={0} md={4}>
+                                            Status
+                                        </Col>
+                                    </Row>
+                                </Card>
+                                <List
+                                    footer={
+                                        this.state.hasMore && (
+                                            <Button type="link" block style={{ marginBottom: 49, marginTop: 22 }}>
+                                                <Space size={9} style={{ color: "#53575E" }}>
+                                                    Lainnya
+                                                    <img style={{ padding: 0, margin: 0 }} src={SvgLainnya} alt="share" height={5} />
+                                                </Space>
+                                            </Button>
+                                        )
+                                    }
+                                    dataSource={jobApplications || []}
+                                    split={false}
+                                    locale={{
+                                        emptyText: <Card>No Post</Card>,
+                                    }}
+                                    renderItem={(job: any, i: number) => (
+                                        <>
+                                            <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
+                                                <Card style={{ width: "100%", fontFamily: "Open Sans", fontSize: 12, color: "#53575E" }} className="listmylastapplied">
+                                                    <Row justify="space-between">
+                                                        <Col xs={0} md={4}>
+                                                            <p>{job.jobName}</p>
+                                                        </Col>
+                                                        <Col xs={0} md={4}>
+                                                            <p>{job.companyName}</p>
+                                                        </Col>
+                                                        <Col xs={0} md={4}>
+                                                            <p>{moment(job.createdAt).format("ll")}</p>
+                                                        </Col>
+                                                        <Col xs={0} md={4}>
+                                                            <p>{job.positionLevel}</p>
+                                                        </Col>
+                                                        <Col xs={0} md={4}>
+                                                            {job.status === "Interview" ? (
+                                                                <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white" }}>
+                                                                    {job.status}
+                                                                </Button>
+                                                            ) : (
+                                                                <Button type="primary" className="btnmobilemylast">
+                                                                    {job.status}
+                                                                </Button>
+                                                            )}
+                                                        </Col>
+                                                        <Col xs={24} md={0}>
+                                                            <Row>
+                                                                <Col>
+                                                                    <p className="listtitleMobile">Job Title :</p>
+                                                                </Col>
+                                                                <Col>
+                                                                    <p> {job.jobName}</p>
+                                                                </Col>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col xs={24} md={0}>
+                                                            <Row>
+                                                                <Col>
+                                                                    <p className="listtitleMobile">Company :</p>
+                                                                </Col>
+                                                                <Col>
+                                                                    <p> {job.companyName}</p>
+                                                                </Col>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col xs={24} md={0}>
+                                                            <Row>
+                                                                <Col>
+                                                                    <p className="listtitleMobile">Applied On :</p>
+                                                                </Col>
+                                                                <Col>
+                                                                    <p> {moment(job.createdAt).format("ll")}</p>
+                                                                </Col>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col xs={24} md={0}>
+                                                            <Row>
+                                                                <Col>
+                                                                    <p className="listtitleMobile">Position :</p>
+                                                                </Col>
+                                                                <Col>
+                                                                    <p> {job.positionLevel}</p>
+                                                                </Col>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col xs={24} md={0}>
+                                                            {job.status === "Interview" ? (
+                                                                <Row align="middle">
+                                                                    <Col style={{ marginRight: 3 }}>
+                                                                        <p className="listtitleMobile">Status : </p>
                                                                     </Col>
                                                                     <Col>
-                                                                        <p> {job.jobName}</p>
-                                                                    </Col>
-                                                                </Row>
-                                                            </Col>
-                                                            <Col xs={24} md={4}>
-                                                                <Row>
-                                                                    <Col>
-                                                                        <p className="listtitleMobile">Company :</p>
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <p> {job.companyName}</p>
-                                                                    </Col>
-                                                                </Row>
-                                                            </Col>
-                                                            <Col xs={24} md={4}>
-                                                                <Row>
-                                                                    <Col>
-                                                                        <p className="listtitleMobile">Applied On :</p>
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <p> {moment(job.createdAt).format("ll")}</p>
-                                                                    </Col>
-                                                                </Row>
-                                                            </Col>
-                                                            <Col xs={24} md={4}>
-                                                                <Row>
-                                                                    <Col>
-                                                                        <p className="listtitleMobile">Position :</p>
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <p> {job.positionLevel}</p>
+                                                                        <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white", border: "0px" }}>
+                                                                            {job.status}
+                                                                        </Button>
                                                                     </Col>
                                                                 </Row>
-                                                            </Col>
-                                                            <Col xs={24} md={4}>
-                                                                {job.status === "Interview" ? (
-                                                                    <Row align="middle">
-                                                                        <Col style={{ marginRight: 3 }}>
-                                                                            <p className="listtitleMobile">Status : </p>
-                                                                        </Col>
-                                                                        <Col>
-                                                                            <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "green", color: "white", border: "0px" }}>
-                                                                                {job.status}
-                                                                            </Button>
-                                                                        </Col>
-                                                                    </Row>
-                                                                ) : (
-                                                                    <Row align="middle">
-                                                                        <Col style={{ marginRight: 3 }}>
-                                                                            <p className="listtitleMobile">Status: </p>
-                                                                        </Col>
-                                                                        <Col>
-                                                                            <Button type="primary" className="btnmobilemylast">
-                                                                                {job.status}
-                                                                            </Button>
-                                                                        </Col>
-                                                                    </Row>
-                                                                )}
-                                                            </Col>
-                                                        </Row>
-                                                    </Card>
-                                                </List.Item>
-                                            </div>
-                                        )}
-                                    >
-                                        {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />}
-                                    </List>
-                                    <Button type="link" block style={{ marginBottom: 49, marginTop: 22 }}>
-                                        <Space size={9} style={{ color: "#53575E" }}>
-                                            Lainnya
-                                            <img style={{ padding: 0, margin: 0 }} src={SvgLainnya} alt="share" height={5} />
-                                        </Space>
-                                    </Button>
-                                </InfiniteScroll>
+                                                            ) : (
+                                                                <Row align="middle">
+                                                                    <Col style={{ marginRight: 3 }}>
+                                                                        <p className="listtitleMobile">Status: </p>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <Button type="primary" className="btnmobilemylast">
+                                                                            {job.status}
+                                                                        </Button>
+                                                                    </Col>
+                                                                </Row>
+                                                            )}
+                                                        </Col>
+                                                    </Row>
+                                                </Card>
+                                            </List.Item>
+                                        </>
+                                    )}
+                                >
+                                    {this.state.loading && this.state.hasMore && <Spin indicator={<FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />} />}
+                                </List>
                             </Col>
                         </Row>
                     </Col>

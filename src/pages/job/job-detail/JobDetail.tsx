@@ -132,7 +132,7 @@ class JobDetail extends React.Component<JobDetailProps, JobDetailState> {
     render() {
         const { organization } = this.state;
         return (
-            <div className="page-job-detail" style={{ marginTop: 20 }}>
+            <div className="page-job-detail">
                 <Row>
                     <Col>
                         <Breadcrumb>

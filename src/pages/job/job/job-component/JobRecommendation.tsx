@@ -9,6 +9,7 @@ import SvgPlace from "../../../assets/svg/place-icon.svg";
 import SvgSaved from "../../../../assets/svg/saved-icon.svg";
 import SvgShare from "../../../../assets/svg/share-icon.svg";
 import { getSearchJob } from "../../../../repository/JobRepo";
+import { encodeHashUserId } from "../../../../config/Util";
 var CurrencyFormat = require("react-currency-format");
 const { Text } = Typography;
 
@@ -99,7 +100,7 @@ class JobRecommendation extends React.Component<JobRecommendationProps, JobRecom
                     renderItem={(jobRecomendation: any, i: number) => (
                         <List.Item key={i}>
                             <Card style={{ width: "100%" }}>
-                                <Row justify="space-between">
+                                <Row justify="space-between" onClick={() => (window.location.hash = "/job/job-detail/" + encodeHashUserId(jobRecomendation.id))} style={{ cursor: "pointer" }}>
                                     <Col xs={20} md={19}>
                                         <Row className="jobtitleMobile">{jobRecomendation.jobName}</Row>
                                         <Row className="jobrecomenMobile">{jobRecomendation.organization.name}</Row>
