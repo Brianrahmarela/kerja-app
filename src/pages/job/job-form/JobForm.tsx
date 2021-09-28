@@ -49,7 +49,7 @@ class JobForm extends React.Component<JobFormProps, JobFormState> {
     render() {
         const jobid = this.props.match.params.jobid;
         return (
-            <div className="page-job-form" style={{ marginTop: 20 }}>
+            <div className="page-job-form">
                 <Row>
                     <Col>
                         <Breadcrumb>

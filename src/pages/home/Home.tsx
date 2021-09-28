@@ -63,34 +63,14 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 <Col xs={24} sm={20}>
                                     <Input style={{ height: 65, borderRadius: 10 }} placeholder="Write something..." readOnly />
                                     <Row justify="space-between" align="middle" style={{ padding: 20, paddingBottom: 0 }}>
-                                        <Col
-                                            xs={0}
-                                            sm={8}
-                                            onClick={() => {
-                                                this.setState({
-                                                    showUploader: true,
-                                                    postType: "MEDIA",
-                                                });
-                                            }}
-                                            style={{ textAlign: "center" }}
-                                        >
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
                                             <Space style={{ margin: "auto" }}>
                                                 <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
 
                                                 <span>Foto/Gambar</span>
                                             </Space>
                                         </Col>
-                                        <Col
-                                            xs={8}
-                                            sm={0}
-                                            onClick={() => {
-                                                this.setState({
-                                                    showUploader: true,
-                                                    postType: "MEDIA",
-                                                });
-                                            }}
-                                            style={{ textAlign: "center" }}
-                                        >
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
                                             <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
                                         </Col>
 

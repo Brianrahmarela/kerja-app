@@ -58,6 +58,8 @@ export default class PersonalForm extends Component<IProps, IState> {
                     address: data.address || undefined,
                     province: data.province || "",
                     city: data.city || "",
+                    website: data.website || "",
+                    hobbies: data.hobbies || "",
                     subdistrict: data.subdistrict || "",
                     postalcode: data.postalcode || undefined,
                     identityType: data.identityType || "ID_CARD",

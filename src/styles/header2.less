@@ -252,4 +252,55 @@
     .svg-hover-menu-logout .ant-menu-item a:hover {
         color: #e83232 !important;
     }
+    width: 100%;
+    background-color: white;
+    min-height: 64px;
+    margin: auto;
+    .logo-wrapper {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        min-height: 64px;
+        span {
+            font-family: @fabada;
+        }
+        .text-logo {
+            @media (max-width: 992px) {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+}
+.app-header {
+    width: 100%;
+    background-color: white;
+    min-height: 64px;
+    margin: auto;
+    .logo-wrapper {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        span {
+            font-family: @fabada;
+        }
+        .text-logo {
+            @media (max-width: 992px) {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+    .logo-wrapper-no-auth {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        span {
+            font-family: @fabada;
+            @media (max-width: 600px) {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
 }

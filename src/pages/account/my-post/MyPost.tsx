@@ -1,6 +1,6 @@
 import { faComment, faImages, faNewspaper, faShare, faThumbsUp, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Col, Divider, Input, Row, Space, Typography } from "antd";
+import { Affix, Avatar, Button, Card, Col, Divider, Input, Row, Space, Typography } from "antd";
 import { AxiosResponse } from "axios";
 import React from "react";
 import { connect } from "react-redux";
@@ -61,43 +61,45 @@ class MyPost extends React.Component<MyPostProps, MyPostState> {
         return (
             <>
                 <Row gutter={[20, 20]}>
-                    <Col span={8}>
-                        <Card>
-                            <Row align="middle" justify="center">
-                                <Col span={8} style={{ marginTop: 15 }}>
-                                    <Avatar size={100} src={currentUser?.photo} />
-                                </Col>
-                            </Row>
-                            <Row align="middle" justify="center">
-                                <Col span={24} style={{ textAlign: "center", marginTop: 20 }}>
-                                    <Typography.Title level={5}>
-                                        {currentUser?.firstName} {currentUser?.lastName}
-                                    </Typography.Title>
-                                    <Typography.Text>
-                                        {personalInfo?.jobTitle} di {personalInfo?.company}
-                                    </Typography.Text>
-                                    <div style={{ marginTop: 20 }}>
-                                        <Typography.Text className="blue-primary" style={{ fontSize: 18 }}>
-                                            {personalInfo?.posts} Posts
+                    <Col xs={0} sm={8}>
+                        <Affix offsetTop={80}>
+                            <Card>
+                                <Row align="middle" justify="center">
+                                    <Col span={8} style={{ marginTop: 15 }}>
+                                        <Avatar size={100} src={currentUser?.photo} />
+                                    </Col>
+                                </Row>
+                                <Row align="middle" justify="center">
+                                    <Col span={24} style={{ textAlign: "center", marginTop: 20 }}>
+                                        <Typography.Title level={5}>
+                                            {currentUser?.firstName} {currentUser?.lastName}
+                                        </Typography.Title>
+                                        <Typography.Text>
+                                            {personalInfo?.jobTitle} di {personalInfo?.company}
                                         </Typography.Text>
-                                    </div>
-                                    <Divider />
-                                    <Space>
-                                        <Button type="text" icon={<FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: 5 }} />}>
-                                            {personalInfo?.likes || 0}
-                                        </Button>
-                                        <Button type="text" icon={<FontAwesomeIcon icon={faComment} style={{ marginRight: 5 }} />}>
-                                            {personalInfo?.comments || 0}
-                                        </Button>
-                                        <Button type="text" icon={<FontAwesomeIcon icon={faShare} style={{ marginRight: 5 }} />}>
-                                            {personalInfo?.shared || 0}
-                                        </Button>
-                                    </Space>
-                                </Col>
-                            </Row>
-                        </Card>
+                                        <div style={{ marginTop: 20 }}>
+                                            <Typography.Text className="blue-primary" style={{ fontSize: 18 }}>
+                                                {personalInfo?.posts} Posts
+                                            </Typography.Text>
+                                        </div>
+                                        <Divider />
+                                        <Space>
+                                            <Button type="text" icon={<FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: 5 }} />}>
+                                                {personalInfo?.likes || 0}
+                                            </Button>
+                                            <Button type="text" icon={<FontAwesomeIcon icon={faComment} style={{ marginRight: 5 }} />}>
+                                                {personalInfo?.comments || 0}
+                                            </Button>
+                                            <Button type="text" icon={<FontAwesomeIcon icon={faShare} style={{ marginRight: 5 }} />}>
+                                                {personalInfo?.shared || 0}
+                                            </Button>
+                                        </Space>
+                                    </Col>
+                                </Row>
+                            </Card>
+                        </Affix>
                     </Col>
-                    <Col span={16}>
+                    <Col xs={24} sm={16}>
                         <Card
                             style={{ marginBottom: 20 }}
                             onClick={() => {
@@ -121,41 +123,36 @@ class MyPost extends React.Component<MyPostProps, MyPostState> {
                                 <Col span={20}>
                                     <Input style={{ height: 65, borderRadius: 10 }} placeholder="Write something..." readOnly />
                                     <Row justify="space-between" align="middle" style={{ padding: 20, paddingBottom: 0 }}>
-                                        <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Space>
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
+                                            <Space style={{ margin: "auto" }}>
                                                 <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+
                                                 <span>Foto/Gambar</span>
                                             </Space>
                                         </Col>
-                                        <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Space>
-                                                <FontAwesomeIcon icon={faVideo} style={{ fontSize: 20 }} />
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
+                                            <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+                                        </Col>
+
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
+                                            <Space style={{ margin: "auto" }}>
+                                                <FontAwesomeIcon icon={faImages} style={{ fontSize: 20 }} />
+
                                                 <span>Video</span>
                                             </Space>
                                         </Col>
-                                        <Col
-                                            style={{
-                                                verticalAlign: "middle",
-                                                alignContent: "center",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Space>
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
+                                            <FontAwesomeIcon icon={faVideo} style={{ fontSize: 20 }} />
+                                        </Col>
+                                        <Col xs={0} sm={8} style={{ textAlign: "center" }}>
+                                            <Space style={{ margin: "auto" }}>
                                                 <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: 20 }} />
+
                                                 <span>Write Articel</span>
                                             </Space>
+                                        </Col>
+                                        <Col xs={8} sm={0} style={{ textAlign: "center" }}>
+                                            <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: 20 }} />
                                         </Col>
                                     </Row>
                                 </Col>

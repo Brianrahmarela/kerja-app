@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider } from "antd";
 import { Link } from "react-router-dom";
-import logoHeader from "../assets/svg/logo-kerjaapp.svg";
 import logoMobile from "../assets/svg/logo-mobile.svg";
 import HamburgerIcon from "../assets/svg/hamburger-icon.svg";
 import IconNotif from "../assets/svg/header-notification.svg";
@@ -14,6 +13,7 @@ import SvgMyWork from "../assets/svg/SvgMyWork";
 import SvgLogOut from "../assets/svg/SvgLogOut";
 import SearchIcon from "../assets/svg/search-icon-header.svg";
 import LogoHeaderMobile from "../assets/svg/logo-header.svg";
+import logo from "./../assets/svg/logo-header.svg";
 import { getLogout } from "../repository/AuthRepo";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
@@ -78,18 +78,19 @@ export class HeaderV2 extends Component<IProps, TopMenuState> {
                     <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]} className="mobilehidden2">
                         <Row justify="space-between">
                             <Col md={10} lg={8} xl={8} xxl={8} style={{ marginLeft: 26 }}>
-                                <Row>
-                                    <Col md={9} lg={10} xl={10}>
-                                        <Menu.Item key="1">
-                                            <Link to="/home">
-                                                <Avatar shape="square" size="large" icon={<img src={logoHeader} alt="logokerjaapp" />} className="logo" />
-                                            </Link>
-                                        </Menu.Item>
+                                <Row gutter={20}>
+                                    <Col xs={12}>
+                                        <Link to="/home" className="logo-wrapper">
+                                            <img alt="logo" src={logo} style={{ width: 40, height: 40, marginRight: 5 }} />
+                                            <span className="blue-primary" style={{ fontSize: 30, lineHeight: 0.5, fontWeight: 500 }}>
+                                                KerjaApp
+                                            </span>
+                                        </Link>
                                     </Col>
-                                    <Col md={10} lg={14} xl={14}>
-                                        <Menu.Item key="2">
-                                            <Input placeholder="Cari Pekerjaan" prefix={<img src={SearchIcon} alt="share" height={19} />} style={{ borderRadius: 5 }} onChange={this.onChangeHandle} />
-                                        </Menu.Item>
+                                    <Col xs={12}>
+                                        <div style={{ display: "block" }}>
+                                            <Input placeholder="Cari Pekerjaan" prefix={<img src={SearchIcon} alt="share" height={19} />} onChange={this.onChangeHandle} />
+                                        </div>
                                     </Col>
                                 </Row>
                             </Col>

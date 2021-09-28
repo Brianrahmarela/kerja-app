@@ -13,7 +13,7 @@ interface IProps {
     path: string;
     setCurrentUser: (x: any) => void;
 }
-interface IState { }
+interface IState {}
 class LayoutApp extends Component<IProps, IState> {
     componentDidMount() {
         getMe().then((res: AxiosResponse<any>) => {
@@ -32,7 +32,7 @@ class LayoutApp extends Component<IProps, IState> {
                 <Layout className="dashboard">
                     {/* <Header location={this.props.path} /> */}
                     <HeaderV2 />
-                    <Layout.Content className="body" style={{ marginTop: 50 }}>
+                    <Layout.Content className="body">
                         <Route {...rest} render={(props) => <Component {...props} />} />
                     </Layout.Content>
                 </Layout>

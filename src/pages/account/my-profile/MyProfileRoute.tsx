@@ -14,7 +14,7 @@ class MyProfileRoute extends React.Component<MyProfileRouteProps, MyProfileRoute
         return (
             <>
                 <Row className="profile-page" gutter={[20, 20]}>
-                    <Col span={8}>
+                    <Col xs={0} sm={0} md={8}>
                         <Affix offsetTop={80}>
                             <Menu defaultSelectedKeys={["1"]} defaultOpenKeys={["sub1"]} mode="inline" theme="light" inlineCollapsed={false} className="floating-menu">
                                 <Menu.Item key="personal">
@@ -82,7 +82,73 @@ class MyProfileRoute extends React.Component<MyProfileRouteProps, MyProfileRoute
                             </Menu>
                         </Affix>
                     </Col>
-                    <Col span={16}>
+                    <Col xs={24} sm={24} md={0}>
+                        <Menu defaultSelectedKeys={["1"]} defaultOpenKeys={["sub1"]} mode="inline" theme="light" inlineCollapsed={false} className="floating-menu">
+                            <Menu.Item key="personal">
+                                <Link to="/account/my-profile">Personal</Link>
+                            </Menu.Item>
+                            <Menu.SubMenu
+                                key="sub1"
+                                title="Work Profile"
+                                onTitleClick={() => {
+                                    window.location.hash = "#/account/my-profile/work";
+                                }}
+                            >
+                                <Menu.Item
+                                    key="biografi"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=biografi";
+                                    }}
+                                >
+                                    Biografi
+                                </Menu.Item>
+                                <Menu.Item
+                                    key="appreciation"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=appreciation";
+                                    }}
+                                >
+                                    Appreciation
+                                </Menu.Item>
+                                <Menu.Item
+                                    key="experience"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=experience";
+                                    }}
+                                >
+                                    Experience
+                                </Menu.Item>
+                                <Menu.Item
+                                    key="education"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=education";
+                                    }}
+                                >
+                                    Education
+                                </Menu.Item>
+                                <Menu.Item
+                                    key="skill"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=skill";
+                                    }}
+                                >
+                                    Skills
+                                </Menu.Item>
+                                <Menu.Item
+                                    key="organization"
+                                    onClick={() => {
+                                        window.location.hash = "#/account/my-profile/work?section=organization";
+                                    }}
+                                >
+                                    Organization
+                                </Menu.Item>
+                            </Menu.SubMenu>
+                            <Menu.Item key="3">
+                                <Link to="/account/my-profile/builder">Resume Builder</Link>
+                            </Menu.Item>
+                        </Menu>
+                    </Col>
+                    <Col xs={24} sm={24} md={16}>
                         <Router>
                             <Switch>
                                 <Switch>
