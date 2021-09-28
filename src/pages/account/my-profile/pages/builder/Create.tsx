@@ -23,7 +23,7 @@ class Create extends React.Component<CreateProps, CreateState> {
                 <Row>
                     <Col span={24}>
                         <Form layout="vertical">
-                            <Formik initialValues={{ firstName: "" }} onSubmit={() => {}}>
+                            <Formik initialValues={{ firstName: "", lastName: "" }} onSubmit={() => {}}>
                                 {({ errors, touched, values, handleChange, handleBlur, setFieldValue, setFieldTouched, handleSubmit, isSubmitting, dirty }) => (
                                     <div>
                                         <Card>
@@ -54,8 +54,8 @@ class Create extends React.Component<CreateProps, CreateState> {
                                                 <Col span={12}>
                                                     <Form.Item
                                                         label="Last Name"
-                                                        validateStatus={errors.firstName && touched.firstName ? "error" : ""}
-                                                        help={errors.firstName && touched.firstName ? errors.firstName : null}
+                                                        validateStatus={errors.lastName && touched.lastName ? "error" : ""}
+                                                        help={errors.lastName && touched.lastName ? errors.lastName : null}
                                                     >
                                                         <Input bordered={false} readOnly value={"asdf"} suffix={<Checkbox checked />} />
                                                     </Form.Item>
