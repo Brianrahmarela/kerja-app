@@ -1,26 +1,20 @@
-import { faCircleNotch, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Card, Image, Col, Input, List, Row, Space, Spin, Typography, Divider } from "antd";
+import { Button, Card, Col, Input, List, Row, Space, Spin, Typography } from "antd";
 import { AxiosResponse } from "axios";
 import moment from "moment";
 import React from "react";
 import { withTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroller";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getMyApplicationJob, getSearchJob } from "../../../repository/JobRepo";
+import { getMyApplicationJob } from "../../../repository/JobRepo";
 import SvgTime from "../../../assets/svg/time.svg";
 import SvgMyJob from "../../../assets/svg/my-job.svg";
-import SvgPlace from "../../../assets/svg/place-icon.svg";
-import SvgSaved from "../../../assets/svg/saved-icon.svg";
-import SvgShare from "../../../assets/svg/share-icon.svg";
-import ImgRecomendation from "../../../assets/image/img-recomendation.png";
 import SvgLainnya from "../../../assets/svg/lainnya-icon.svg";
 
 import JobEvent from "./job-component/JobEvent";
 import JobRecommendation from "./job-component/JobRecommendation";
-var CurrencyFormat = require("react-currency-format");
 
 const { Search } = Input;
 const { Text } = Typography;

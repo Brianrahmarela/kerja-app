@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Layout, Menu, Drawer, Avatar, Button, Row, Col, Input, Badge, Image, Typography, Space, Divider } from "antd";
 import { Link } from "react-router-dom";
-import logoHeader from "../assets/svg/logo-kerjaapp.svg";
 import logoMobile from "../assets/svg/logo-mobile.svg";
 import HamburgerIcon from "../assets/svg/hamburger-icon.svg";
 import IconNotif from "../assets/svg/header-notification.svg";

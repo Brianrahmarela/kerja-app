@@ -1,14 +1,12 @@
-import { Button, Card, Image, Col, List, Row, Space, Typography, Divider } from "antd";
+import { Button, Card, Image, Col, Row, Space, Typography, Divider } from "antd";
 import React from "react";
 import { withTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroller";
 import { connect } from "react-redux";
 import SvgPlace from "../../../../assets/svg/place-icon.svg";
 import SvgSaved from "../../../../assets/svg/saved-icon.svg";
 import SvgShare from "../../../../assets/svg/share-icon.svg";
 import Banner1 from "../../../../assets/image/banner1-job-event.png";
 import SvgCalendar from "../../../../assets/svg/calendar-icon.svg";
-import SvgLainnya from "../../../../assets/svg/lainnya-icon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 

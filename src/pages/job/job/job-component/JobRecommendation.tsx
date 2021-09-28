@@ -1,11 +1,10 @@
-import { faCaretDown, faCaretRight, faCircleNotch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCaretRight, faCircleNotch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Button, Card, Col, Divider, List, Row, Space, Spin, Typography } from "antd";
 import { AxiosResponse } from "axios";
 import moment from "moment";
 import React from "react";
 
-import SvgPlace from "../../../assets/svg/place-icon.svg";
 import SvgSaved from "../../../../assets/svg/saved-icon.svg";
 import SvgShare from "../../../../assets/svg/share-icon.svg";
 import { getSearchJob } from "../../../../repository/JobRepo";
