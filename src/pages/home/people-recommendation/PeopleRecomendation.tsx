@@ -1,4 +1,4 @@
-import { faCaretDown, faCaretRight, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCaretRight, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Button, Card, Col, List, Row } from "antd";
 import { AxiosResponse } from "axios";
