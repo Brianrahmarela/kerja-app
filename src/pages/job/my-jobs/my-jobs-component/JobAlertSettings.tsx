@@ -5,6 +5,7 @@ import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import RelevantJobs from '../my-jobs-component/RelevantJobs';
+import EmailAlertSettings from '../my-jobs-component/EmailAlertSettings';
 
 const { TabPane } = Tabs;
 export interface JobProps {
@@ -164,7 +165,7 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
           style={{ margin: "28px 0px 25.5px 0px", padding: 0 }}
         />
         <Row style={{ outline: 'none', borderStyle: 'none' }}>
-          <Tabs defaultActiveKey="1" onChange={this.callback}
+          <Tabs defaultActiveKey="2" onChange={this.callback}
             tabBarGutter={24} centered
           >
             <TabPane tab="Jobs Alert" key="1" >
@@ -310,7 +311,7 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
               <RelevantJobs />
             </TabPane>
             <TabPane tab="Email Alert Settings" key="2">
-              email
+              <EmailAlertSettings />
             </TabPane>
 
           </Tabs>
