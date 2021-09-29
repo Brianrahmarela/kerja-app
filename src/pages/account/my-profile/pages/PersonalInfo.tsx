@@ -9,6 +9,7 @@ import { regions } from "./../../../../assets/data/cities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { hobbies } from "./../../../../assets/data/hobbies";
+import * as yup from "yup";
 interface PersonalInfoProps {}
 
 interface PersonalInfoState {
@@ -95,6 +96,20 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                         <Formik
                             enableReinitialize
                             initialValues={formData}
+                            validationSchema={yup.object().shape({
+                                firstName: yup.string().required("This field is required"),
+                                lastName: yup.string().required("This field is required"),
+                                placeOfBirth: yup.string().required("This field is required"),
+                                dateOfBirth: yup.string().required("This field is required"),
+                                gender: yup.string().required("This field is required"),
+                                email: yup.string().email().required("This field is required"),
+                                phoneNumber: yup.string().required("This field is required"),
+                                country: yup.string().required("This field is required"),
+                                address: yup.string().required("This field is required"),
+                                city: yup.string().required("This field is required"),
+                                marritalStatus: yup.string().required("This field is required"),
+                                religion: yup.string().required("This field is required"),
+                            })}
                             onSubmit={(values, { setSubmitting }) => {
                                 const payload: any = { ...values };
                                 console.log(values.dateOfBirth);
@@ -118,7 +133,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="First Name"
+                                                label={
+                                                    <>
+                                                        First Name<span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.firstName && touched.firstName ? "error" : ""}
                                                 help={errors.firstName && touched.firstName ? errors.firstName : null}
                                             >
@@ -126,7 +145,15 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
-                                            <Form.Item label="Last Name" validateStatus={errors.lastName && touched.lastName ? "error" : ""} help={errors.lastName && touched.lastName ? errors.lastName : null}>
+                                            <Form.Item
+                                                label={
+                                                    <>
+                                                        Last Name<span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.lastName && touched.lastName ? "error" : ""}
+                                                help={errors.lastName && touched.lastName ? errors.lastName : null}
+                                            >
                                                 <Input name="lastName" value={values.lastName} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
@@ -135,7 +162,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="Date a Birth"
+                                                label={
+                                                    <>
+                                                        Date a Birth <span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.placeOfBirth && touched.placeOfBirth ? "error" : ""}
                                                 help={errors.placeOfBirth && touched.placeOfBirth ? errors.placeOfBirth : null}
                                             >
@@ -151,7 +182,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                         </Col>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="Place of Birth"
+                                                label={
+                                                    <>
+                                                        Place of Birth <span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
@@ -162,7 +197,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
                                             <Form.Item
-                                                label="Telephone"
+                                                label={
+                                                    <>
+                                                        Telephone <span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
@@ -178,9 +217,13 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="Country"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                label={
+                                                    <>
+                                                        Country <span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.country && touched.country ? "error" : ""}
+                                                help={errors.country && touched.country ? errors.country : null}
                                             >
                                                 <Select
                                                     showSearch
@@ -203,15 +246,23 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
-                                            <Form.Item label="Location" validateStatus={errors.region && touched.region ? "error" : ""} help={errors.region && touched.region ? errors.region : null}>
+                                            <Form.Item
+                                                label={
+                                                    <>
+                                                        Location <span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.city && touched.city ? "error" : ""}
+                                                help={errors.city && touched.city ? errors.city : null}
+                                            >
                                                 <Select
                                                     showSearch
-                                                    defaultValue={values.region}
-                                                    value={values.region}
+                                                    defaultValue={values.city}
+                                                    value={values.city}
                                                     style={{ width: "100%" }}
                                                     onChange={(e: any) => {
-                                                        setFieldValue("region", e);
-                                                        setFieldTouched("region");
+                                                        setFieldValue("city", e);
+                                                        setFieldTouched("city");
                                                     }}
                                                     filterOption={(input, option: any) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                                 >
@@ -227,7 +278,15 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item label="Address" validateStatus={errors.address && touched.address ? "error" : ""} help={errors.address && touched.address ? errors.address : null}>
+                                            <Form.Item
+                                                label={
+                                                    <>
+                                                        Address <span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.address && touched.address ? "error" : ""}
+                                                help={errors.address && touched.address ? errors.address : null}
+                                            >
                                                 <Input name="address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
@@ -235,7 +294,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     <Row gutter={[20, 20]}>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="Relationship Status"
+                                                label={
+                                                    <>
+                                                        Relationship Status <span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.marritalStatus && touched.marritalStatus ? "error" : ""}
                                                 help={errors.marritalStatus && touched.marritalStatus ? errors.marritalStatus : null}
                                             >
@@ -256,7 +319,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                         </Col>
                                         <Col span={12}>
                                             <Form.Item
-                                                label="Gender"
+                                                label={
+                                                    <>
+                                                        Gender <span className="required">*</span>
+                                                    </>
+                                                }
                                                 validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
                                                 help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
                                             >
@@ -287,7 +354,15 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item label="E-mail Link" validateStatus={errors.email && touched.email ? "error" : ""} help={errors.email && touched.email ? errors.email : null}>
+                                            <Form.Item
+                                                label={
+                                                    <>
+                                                        E-mail <span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.email && touched.email ? "error" : ""}
+                                                help={errors.email && touched.email ? errors.email : null}
+                                            >
                                                 <Input name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
@@ -305,7 +380,15 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item label="Religion" validateStatus={errors.religion && touched.religion ? "error" : ""} help={errors.religion && touched.religion ? errors.religion : null}>
+                                            <Form.Item
+                                                label={
+                                                    <>
+                                                        Religion <span className="required">*</span>
+                                                    </>
+                                                }
+                                                validateStatus={errors.religion && touched.religion ? "error" : ""}
+                                                help={errors.religion && touched.religion ? errors.religion : null}
+                                            >
                                                 <Select
                                                     value={values.religion}
                                                     onChange={(e: any) => {
