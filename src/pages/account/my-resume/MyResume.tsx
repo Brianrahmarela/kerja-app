@@ -36,6 +36,7 @@ class MyResume extends Component<Iprops, IState> {
                             <Route exact path="/account/my-resume/job-wish" component={JobWish} />
                             <Route exact path="/account/my-resume/personal-info" component={Personal} />
                             <Route exact path="/account/my-resume/privacy-setting" component={PrivacySetting} />
+                            <Route exact path="/account/my-resume/old" component={MyResume} />
                         </Switch>
                     </Router>
                 </Col>

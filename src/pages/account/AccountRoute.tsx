@@ -4,6 +4,7 @@ import MenuHeader from "./MenuHeader";
 import MyNetwork from "./my-network/MyNetwork";
 import MyPost from "./my-post/MyPost";
 import MyProfileRoute from "./my-profile/MyProfileRoute";
+import MyResume from "./my-resume/MyResume";
 
 interface IProps {}
 interface IState {}
@@ -21,6 +22,7 @@ class AccountRoute extends Component<IProps, IState> {
                             <Route exact path="/account" component={MyPost} />
                             <Route path="/account/my-profile" component={MyProfileRoute} />
                             <Route path="/account/my-network" component={MyNetwork} />
+                            <Route path="/account/my-resume" component={MyResume} />
                         </Switch>
                     </Switch>
                 </Router>

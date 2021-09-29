@@ -82,7 +82,14 @@ export class HeaderV2 extends Component<IProps, TopMenuState> {
                                     <Col xs={12}>
                                         <Link to="/home" className="logo-wrapper">
                                             <img alt="logo" src={logo} style={{ width: 40, height: 40, marginRight: 5 }} />
-                                            <span className="blue-primary" style={{ fontSize: 30, lineHeight: 0.5, fontWeight: 500 }}>
+                                            <span
+                                                className="blue-primary text-logo "
+                                                style={{
+                                                    fontSize: 24,
+                                                    lineHeight: 0.5,
+                                                    fontWeight: 500,
+                                                }}
+                                            >
                                                 KerjaApp
                                             </span>
                                         </Link>
@@ -149,7 +156,7 @@ export class HeaderV2 extends Component<IProps, TopMenuState> {
                                                         />
                                                     </Link>
                                                 </Menu.Item>
-                                                <Menu.Item key="avatar">
+                                                <Menu.Item key="avatar" className="menu-name">
                                                     <Link to="/account">
                                                         <Text style={{ color: "#2b9be6", fontFamily: "Poppins", fontWeight: 400, fontSize: 15 }}>Hi, {currentUser?.firstName}</Text>
                                                     </Link>

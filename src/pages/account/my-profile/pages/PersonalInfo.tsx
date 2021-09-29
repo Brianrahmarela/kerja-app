@@ -8,6 +8,7 @@ import { countries } from "./../../../../assets/data/countries";
 import { regions } from "./../../../../assets/data/cities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { hobbies } from "./../../../../assets/data/hobbies";
 interface PersonalInfoProps {}
 
 interface PersonalInfoState {
@@ -70,6 +71,7 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                     hobbies: (data.hobbies && data.hobbies.split(",")) || [],
                     marritalStatus: data.marritalStatus || "",
                     subdistrict: data.subdistrict || "",
+                    socialmedia: data.socialmedia || "",
                     religion: data.religion || "",
                     postalcode: data.postalcode || undefined,
                     identityType: data.identityType || "ID_CARD",
@@ -341,18 +343,11 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                         setFieldValue("hobbies", e);
                                                     }}
                                                 >
-                                                    <Select.Option key={1} value="asdf">
-                                                        asdf
-                                                    </Select.Option>
-                                                    <Select.Option key={2} value="de">
-                                                        srbe
-                                                    </Select.Option>
-                                                    <Select.Option key={3} value="gbe">
-                                                        sdfved
-                                                    </Select.Option>
-                                                    <Select.Option key={4} value="cxcv">
-                                                        eve
-                                                    </Select.Option>
+                                                    {hobbies.map((v: any, i: number) => (
+                                                        <Select.Option key={i} value={v}>
+                                                            {v}
+                                                        </Select.Option>
+                                                    ))}
                                                 </Select>
                                             </Form.Item>
                                         </Col>
