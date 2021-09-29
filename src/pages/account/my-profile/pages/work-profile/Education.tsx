@@ -86,7 +86,7 @@ class Education extends React.Component<EducationProps, EducationState> {
                         </Col>
                     </Row>
 
-                    <Skeleton active loading={pageReady == false} title>
+                    <Skeleton active loading={pageReady === false} title>
                         <List
                             itemLayout="horizontal"
                             loadMore={

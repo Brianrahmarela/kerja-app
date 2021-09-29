@@ -506,6 +506,3 @@ class Experience extends React.Component<ExperienceProps, ExperienceState> {
 }
 
 export default Experience;
-function ReactHtmlParser(jobDescription: any) {
-    throw new Error("Function not implemented.");
-}
