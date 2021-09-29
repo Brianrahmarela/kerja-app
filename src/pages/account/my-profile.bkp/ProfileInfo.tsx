@@ -32,24 +32,7 @@ class ProfileForm extends Component<Iprops, IState> {
             confirmPassword: "",
         },
     };
-    componentDidMount() {
-        // getProfile()
-        //   .then((res: AxiosResponse<any>) => {
-        //     this.setState({
-        //       formData: res.data,
-        //     });
-        //   })
-        //   .catch((error) => {
-        //     Modal.error({
-        //       title: `${this.props.t?.("notif.failed")}`,
-        //       // content : error.response.data.message
-        //       content: error.response?.data?.message || error.message || "-",
-        //     });
-        //   })
-        //   .finally(() => {
-        //     this.setState({ pageReady: true });
-        //   });
-    }
+
     render() {
         // if (this.state.pageReady === false) {
         //     return (
