@@ -324,8 +324,8 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                                         Gender <span className="required">*</span>
                                                     </>
                                                 }
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
+                                                validateStatus={errors.gender && touched.gender ? "error" : ""}
+                                                help={errors.gender && touched.gender ? errors.gender : null}
                                             >
                                                 <Select
                                                     value={values.gender}
@@ -343,12 +343,8 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                     </Row>
                                     <Row gutter={[20, 20]}>
                                         <Col span={24}>
-                                            <Form.Item
-                                                label="Website Link"
-                                                validateStatus={errors.newPassword && touched.newPassword ? "error" : ""}
-                                                help={errors.newPassword && touched.newPassword ? errors.newPassword : null}
-                                            >
-                                                <Input name="address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
+                                            <Form.Item label="Website Link" validateStatus={errors.website && touched.website ? "error" : ""} help={errors.website && touched.website ? errors.website : null}>
+                                                <Input name="website" value={values.website} onChange={handleChange} onBlur={handleBlur} />
                                             </Form.Item>
                                         </Col>
                                     </Row>
