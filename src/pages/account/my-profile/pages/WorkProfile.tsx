@@ -3,6 +3,7 @@ import Appreciation from "./work-profile/Appreciation";
 import Biografi from "./work-profile/Biografi";
 import Education from "./work-profile/Education";
 import Experience from "./work-profile/Experience";
+import Language from "./work-profile/Language";
 import Organization from "./work-profile/Organization";
 import Skill from "./work-profile/Skill";
 
@@ -47,6 +48,7 @@ class WorkProfile extends React.Component<WorkProfileProps, WorkProfileState> {
                 <Education />
                 <Experience />
                 <Skill />
+                <Language />
                 <Organization />
             </>
         );
