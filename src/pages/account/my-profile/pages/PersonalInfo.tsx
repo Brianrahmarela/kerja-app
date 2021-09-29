@@ -227,12 +227,12 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                             >
                                                 <Select
                                                     showSearch
-                                                    defaultValue={values.nationality}
-                                                    value={values.nationality}
+                                                    defaultValue={values.country}
+                                                    value={values.country}
                                                     style={{ width: "100%" }}
                                                     onChange={(e: any) => {
-                                                        setFieldValue("nationality", e);
-                                                        setFieldTouched("nationality");
+                                                        setFieldValue("country", e);
+                                                        setFieldTouched("country");
                                                     }}
                                                     filterOption={(input, option: any) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                                 >
