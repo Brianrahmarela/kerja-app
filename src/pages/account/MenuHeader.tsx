@@ -233,7 +233,7 @@ class MenuHeader extends React.Component<MenuHeaderProps, MenuHeaderState> {
                     <Col {...{ sm: { offset: 5, span: 9 }, xs: { offset: 0, span: 12 } }} className="underline">
                         <Menu mode="horizontal">
                             <Menu.Item key="location" icon={<FontAwesomeIcon icon={faMapMarkerAlt} />}>
-                                {personalInfo?.region || "-"}
+                                {personalInfo?.country || "-"}
                             </Menu.Item>
                             <Menu.Item key="follower" icon={<FontAwesomeIcon icon={faUsers} />}>
                                 {personalInfo?.follower || 0} follower

@@ -90,11 +90,13 @@ class Education extends React.Component<EducationProps, EducationState> {
                         <List
                             itemLayout="horizontal"
                             loadMore={
-                                <div style={{ width: "100%", textAlign: "center", padding: 5 }}>
-                                    <Button type="text" size="small">
-                                        Lainnya <FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: 5 }} />
-                                    </Button>
-                                </div>
+                                educations.length > 5 ? (
+                                    <div style={{ width: "100%", textAlign: "center", padding: 5 }}>
+                                        <Button type="text" size="small">
+                                            Lainnya <FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: 5 }} />
+                                        </Button>
+                                    </div>
+                                ) : null
                             }
                             dataSource={educations}
                             renderItem={(item: any, i: number) => (

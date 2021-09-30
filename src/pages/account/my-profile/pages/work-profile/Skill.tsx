@@ -96,19 +96,19 @@ class Skill extends React.Component<SkillProps, SkillState> {
                     </Row>
                     <Row gutter={[20, 20]} style={{ marginTop: 20 }}>
                         <Skeleton active loading={pageReady === false}>
-                            {beginner && (
+                            {beginner.length > 0 && (
                                 <Col span={24} style={{ padding: 10 }}>
                                     <Typography.Title level={5}>BEGINNER</Typography.Title>
                                     <Typography.Text>{beginner.join(", ")}</Typography.Text>
                                 </Col>
                             )}
-                            {intermediate && (
+                            {intermediate.length > 0 && (
                                 <Col span={24} style={{ padding: 10 }}>
                                     <Typography.Title level={5}>INTERMEDIATE</Typography.Title>
                                     <Typography.Text>{intermediate}</Typography.Text>
                                 </Col>
                             )}
-                            {advance && (
+                            {advance.length > 0 && (
                                 <Col span={24} style={{ padding: 10 }}>
                                     <Typography.Title level={5}>ADVANCE</Typography.Title>
                                     <Typography.Text>{advance}</Typography.Text>
