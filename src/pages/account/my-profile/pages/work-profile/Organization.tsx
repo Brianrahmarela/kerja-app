@@ -1,4 +1,4 @@
-import { faMapMarkerAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Button, Card, Col, Form, Input, Modal, Row, Skeleton, Space, Typography } from "antd";
 import { AxiosResponse } from "axios";

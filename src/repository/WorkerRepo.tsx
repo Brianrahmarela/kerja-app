@@ -16,9 +16,9 @@ export const getPersonal = () => {
         },
     });
 };
-export const getBiografy = () => {
+export const getBiography = () => {
     const token = window.localStorage.getItem("token");
-    return axios.get(AppConfig.url.getBiografy, {
+    return axios.get(AppConfig.url.getBiography, {
         headers: {
             Authorization: "Bearer " + token,
         },
@@ -50,9 +50,9 @@ export const postPersonal = (payload: any) => {
         },
     });
 };
-export const postBiografy = (payload: any) => {
+export const postBiography = (payload: any) => {
     const token = window.localStorage.getItem("token");
-    return axios.post(AppConfig.url.postBiografy, payload, {
+    return axios.post(AppConfig.url.postBiography, payload, {
         headers: {
             Authorization: "Bearer " + token,
         },

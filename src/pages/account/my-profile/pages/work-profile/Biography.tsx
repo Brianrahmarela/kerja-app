@@ -5,25 +5,23 @@ import { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import React from "react";
 import { hobbies } from "../../../../../assets/data/hobbies";
-import { getBiografy, postBiografy } from "../../../../../repository/WorkerRepo";
+import { getBiography, postBiography } from "../../../../../repository/WorkerRepo";
 var CurrencyFormat = require("react-currency-format");
 
-interface BiografyProps {}
+interface BiographyProps {}
 
-interface BiografyState {
+interface BiographyState {
     showForm: boolean;
     pageReady: boolean;
     location: string;
-    hobby: string;
     formData: any;
 }
 
-class Biografy extends React.Component<BiografyProps, BiografyState> {
+class Biography extends React.Component<BiographyProps, BiographyState> {
     state = {
         showForm: false,
         pageReady: false,
         location: "",
-        hobby: "",
         formData: {
             description: "",
             currency: "IDR",
@@ -41,7 +39,7 @@ class Biografy extends React.Component<BiografyProps, BiografyState> {
     }
     getData() {
         this.setState({ pageReady: false });
-        getBiografy()
+        getBiography()
             .then((res: AxiosResponse<any>) => {
                 const { data } = res;
                 const formData = {
@@ -71,7 +69,7 @@ class Biografy extends React.Component<BiografyProps, BiografyState> {
                 <Card id="biografi">
                     <Row justify="space-between">
                         <Col span={20}>
-                            <Typography.Title level={4}>Biografy</Typography.Title>
+                            <Typography.Title level={4}>Biography</Typography.Title>
                         </Col>
                         <Col span={4} style={{ textAlign: "right" }}>
                             <Button
@@ -122,7 +120,7 @@ class Biografy extends React.Component<BiografyProps, BiografyState> {
         );
     }
     renderForm() {
-        const { showForm, location, hobby, formData } = this.state;
+        const { showForm, location, formData } = this.state;
         return (
             <>
                 <Form layout="vertical">
@@ -134,7 +132,7 @@ class Biografy extends React.Component<BiografyProps, BiografyState> {
                             payload.preferedLocation = values.preferedLocation.join(",");
                             payload.hobbies = values.hobbies.join(",");
                             console.log(payload);
-                            postBiografy(payload)
+                            postBiography(payload)
                                 .then((res: AxiosResponse<any>) => {
                                     this.getData();
                                     this.setState({
@@ -409,4 +407,4 @@ class Biografy extends React.Component<BiografyProps, BiografyState> {
     }
 }
 
-export default Biografy;
+export default Biography;
