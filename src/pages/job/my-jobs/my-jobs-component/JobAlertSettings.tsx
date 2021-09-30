@@ -165,7 +165,7 @@ class JobAlertSettings extends React.Component<JobProps, JobState> {
           style={{ margin: "28px 0px 25.5px 0px", padding: 0 }}
         />
         <Row style={{ outline: 'none', borderStyle: 'none' }}>
-          <Tabs defaultActiveKey="2" onChange={this.callback}
+          <Tabs defaultActiveKey="1" onChange={this.callback}
             tabBarGutter={24} centered
           >
             <TabPane tab="Jobs Alert" key="1" >

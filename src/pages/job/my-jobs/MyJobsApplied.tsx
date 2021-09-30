@@ -265,83 +265,85 @@ class MyJobsApplied extends React.Component<JobProps, JobState> {
                                         <div>
                                             <List.Item key={job.id} style={{ padding: 0, marginBottom: 15, width: "100%" }}>
                                                 <Card style={{ borderRadius: 8, border: "0.1px solid #2C9BE6" }} bordered={true} className="cardApplied">
-                                                    <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
-                                                        <Col xs={0} md={4}>
-                                                            <span className="avatar-item">
-                                                                <Badge count={1} className="badgeApplied">
-                                                                    <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 91, lg: 131, xl: 131, xxl: 131 }} />
-                                                                </Badge>
-                                                            </span>
-                                                        </Col>
-                                                        <Col xs={24} md={20}>
-                                                            <Row justify="space-between">
-                                                                {/* <Col xs={24} md={24} lg={18} style={{ backgroundColor: "yellow" }}> */}
-                                                                <Col xs={24} md={24} lg={18}>
-                                                                    <Row align="middle">
-                                                                        <Col xs={24} md={7} style={{ marginRight: 15, marginBottom: 5 }}>
-                                                                            <Text className="jobTitleList">{job.Jobtitle}</Text>
-                                                                        </Col>
-                                                                        <Col className="gapLine" xs={0} md={1}>
-                                                                            |
-                                                                        </Col>
-                                                                        <Col xs={24} md={4} style={{ marginBottom: 5 }}>
-                                                                            <Text>{job.company}</Text>
-                                                                        </Col>
-                                                                        <Col className="gapLine" xs={0} md={1}>
-                                                                            |
-                                                                        </Col>
-                                                                        <Col xs={24} md={5} style={{ marginBottom: 5 }}>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                    <img src={SvgApplicant} alt="SvgAaplicant" height={10} style={{ marginRight: 9 }} />
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <Text>{job.applicant}</Text>
-                                                                                </Col>
-                                                                            </Row>
-                                                                        </Col>
-                                                                        <Col className="gapLine" xs={0} md={1}>
-                                                                            |
-                                                                        </Col>
-                                                                        <Col xs={24} md={4} style={{ marginBottom: 5 }}>
-                                                                            <Text>{job.position}</Text>
-                                                                        </Col>
-                                                                    </Row>
-                                                                </Col>
-                                                                {/* <Col md={4} lg={3} style={{ backgroundColor: "red" }}><Button type="link" block style={{ padding: 0, margin: 0, }}><img */}
-                                                                <Col md={4} lg={3}>
-                                                                    <Button type="link" block style={{ padding: 0, margin: 0 }}>
-                                                                        <img src={SvgQuickView} alt="quickview" height={10} style={{ marginRight: 9 }} />
-                                                                        Quick View
-                                                                    </Button>
-                                                                </Col>
-                                                            </Row>
-                                                            <Divider style={{ margin: "15px 0px", padding: 0 }} />
-                                                            <Row style={{ marginBottom: 5 }}>
-                                                                <Col>
-                                                                    <Text style={{ fontWeight: 600 }}>Applied On</Text> <Text style={{ marginLeft: 15, marginRight: 15 }}>: </Text> {job.appliedOn}
-                                                                </Col>
-                                                            </Row>
-                                                            <Row style={{ marginBottom: 5 }}>
-                                                                <Col>
-                                                                    <Text style={{ fontWeight: 600 }}>Posted On</Text> <Text style={{ marginLeft: 20, marginRight: 15 }}>: </Text> {job.postedOn}
-                                                                </Col>
-                                                            </Row>
-                                                            <Row justify="space-between" style={{ marginBottom: 5 }}>
-                                                                <Col style={{ marginBottom: 15 }}>
-                                                                    <Text style={{ fontWeight: 600 }}>Salary</Text> <Text style={{ marginLeft: 49, marginRight: 15 }}>: </Text>
-                                                                    <Text style={{ color: "#2C9BE6" }}>{job.salary}</Text>
-                                                                </Col>
-                                                                <Col>
-                                                                    <Row align="middle">
-                                                                        <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#EFEFEF", color: "#53575E", border: "0px" }}>
-                                                                            {job.status}
+                                                    <Link to={"/job/my-jobs-applied/job-detail/:jobid"}>
+                                                        <Row justify="space-between" style={{ fontFamily: "Open Sans" }}>
+                                                            <Col xs={0} md={4}>
+                                                                <span className="avatar-item">
+                                                                    <Badge count={1} className="badgeApplied">
+                                                                        <Avatar shape="square" src={AvaApplied} size={{ xs: 0, sm: 91, md: 91, lg: 131, xl: 131, xxl: 131 }} />
+                                                                    </Badge>
+                                                                </span>
+                                                            </Col>
+                                                            <Col xs={24} md={20}>
+                                                                <Row justify="space-between">
+                                                                    {/* <Col xs={24} md={24} lg={18} style={{ backgroundColor: "yellow" }}> */}
+                                                                    <Col xs={24} md={24} lg={18}>
+                                                                        <Row align="middle">
+                                                                            <Col xs={24} md={7} style={{ marginRight: 15, marginBottom: 5 }}>
+                                                                                <Text className="jobTitleList">{job.Jobtitle}</Text>
+                                                                            </Col>
+                                                                            <Col className="gapLine" xs={0} md={1}>
+                                                                                |
+                                                                            </Col>
+                                                                            <Col xs={24} md={4} style={{ marginBottom: 5 }}>
+                                                                                <Text>{job.company}</Text>
+                                                                            </Col>
+                                                                            <Col className="gapLine" xs={0} md={1}>
+                                                                                |
+                                                                            </Col>
+                                                                            <Col xs={24} md={5} style={{ marginBottom: 5 }}>
+                                                                                <Row>
+                                                                                    <Col>
+                                                                                        <img src={SvgApplicant} alt="SvgAaplicant" height={10} style={{ marginRight: 9 }} />
+                                                                                    </Col>
+                                                                                    <Col>
+                                                                                        <Text>{job.applicant}</Text>
+                                                                                    </Col>
+                                                                                </Row>
+                                                                            </Col>
+                                                                            <Col className="gapLine" xs={0} md={1}>
+                                                                                |
+                                                                            </Col>
+                                                                            <Col xs={24} md={4} style={{ marginBottom: 5 }}>
+                                                                                <Text>{job.position}</Text>
+                                                                            </Col>
+                                                                        </Row>
+                                                                    </Col>
+                                                                    {/* <Col md={4} lg={3} style={{ backgroundColor: "red" }}><Button type="link" block style={{ padding: 0, margin: 0, }}><img */}
+                                                                    <Col md={4} lg={3}>
+                                                                        <Button type="link" block style={{ padding: 0, margin: 0 }}>
+                                                                            <img src={SvgQuickView} alt="quickview" height={10} style={{ marginRight: 9 }} />
+                                                                            Quick View
                                                                         </Button>
-                                                                    </Row>
-                                                                </Col>
-                                                            </Row>
-                                                        </Col>
-                                                    </Row>
+                                                                    </Col>
+                                                                </Row>
+                                                                <Divider style={{ margin: "15px 0px", padding: 0 }} />
+                                                                <Row style={{ marginBottom: 5 }}>
+                                                                    <Col>
+                                                                        <Text style={{ fontWeight: 600 }}>Applied On</Text> <Text style={{ marginLeft: 15, marginRight: 15 }}>: </Text> {job.appliedOn}
+                                                                    </Col>
+                                                                </Row>
+                                                                <Row style={{ marginBottom: 5 }}>
+                                                                    <Col>
+                                                                        <Text style={{ fontWeight: 600 }}>Posted On</Text> <Text style={{ marginLeft: 20, marginRight: 15 }}>: </Text> {job.postedOn}
+                                                                    </Col>
+                                                                </Row>
+                                                                <Row justify="space-between" style={{ marginBottom: 5 }}>
+                                                                    <Col style={{ marginBottom: 15 }}>
+                                                                        <Text style={{ fontWeight: 600 }}>Salary</Text> <Text style={{ marginLeft: 49, marginRight: 15 }}>: </Text>
+                                                                        <Text style={{ color: "#2C9BE6" }}>{job.salary}</Text>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <Row align="middle">
+                                                                            <Button type="default" className="btnmobilemylast" style={{ backgroundColor: "#EFEFEF", color: "#53575E", border: "0px" }}>
+                                                                                {job.status}
+                                                                            </Button>
+                                                                        </Row>
+                                                                    </Col>
+                                                                </Row>
+                                                            </Col>
+                                                        </Row>
+                                                    </Link>
                                                 </Card>
                                             </List.Item>
                                         </div>
