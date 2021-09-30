@@ -1,21 +1,52 @@
-import { faMapMarkerAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, Col, Form, Input, Modal, Row, Space, Typography } from "antd";
+import { Avatar, Button, Card, Col, Form, Input, Modal, Row, Skeleton, Space, Typography } from "antd";
+import { AxiosResponse } from "axios";
 import { Formik } from "formik";
+import moment from "moment";
 import React from "react";
+import { getOrganizations } from "../../../../../repository/WorkerRepo";
 
 interface OrganizationProps {}
 
 interface OrganizationState {
     showForm: boolean;
+    pageReady: boolean;
+    organizations: any[];
 }
 
 class Organization extends React.Component<OrganizationProps, OrganizationState> {
     state = {
         showForm: false,
+        pageReady: false,
+        organizations: [] as any[],
     };
+    componentDidMount() {
+        this.getData();
+    }
+    getData() {
+        this.setState({ pageReady: false });
+        getOrganizations()
+            .then((res: AxiosResponse<any>) => {
+                const ordered = res.data
+                    .sort((a: any, b: any) => {
+                        return moment(a.joinDate).isAfter(b.joinDate) ? -1 : 1;
+                    })
+                    .map((a: any) => {
+                        a.editMode = false;
+                        return a;
+                    });
+                this.setState({
+                    organizations: ordered,
+                });
+            })
+            .catch((error) => {})
+            .finally(() => {
+                this.setState({ pageReady: true });
+            });
+    }
     render() {
-        const { showForm } = this.state;
+        const { showForm, pageReady, organizations } = this.state;
         return (
             <>
                 <Card id="organization" style={{ marginTop: 20 }}>
@@ -36,85 +67,31 @@ class Organization extends React.Component<OrganizationProps, OrganizationState>
                         </Col>
                     </Row>
                     <Row gutter={[20, 20]}>
-                        <Col span={12}>
-                            <Row>
-                                <Col span={3}>
-                                    <Avatar size={64} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                </Col>
-                                <Col span={21}>
-                                    <Space>
-                                        <Typography.Text strong>Institute Kesenian Jakarta</Typography.Text>
-                                        <Typography.Text> 2014 - 2016</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <Typography.Text>Magister Of Art</Typography.Text>|<Typography.Text>Fashion Design (Fashion Stylist)</Typography.Text>|<Typography.Text>3.40 / 4.00</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                        <Typography.Text> Jakarta, Indonesia</Typography.Text> |<Typography.Text>Fashion, Industry</Typography.Text>
-                                    </Space>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col span={12}>
-                            <Row>
-                                <Col span={3}>
-                                    <Avatar size={64} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                </Col>
-                                <Col span={21}>
-                                    <Space>
-                                        <Typography.Text strong>Institute Kesenian Jakarta</Typography.Text>
-                                        <Typography.Text> 2014 - 2016</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <Typography.Text>Magister Of Art</Typography.Text>|<Typography.Text>Fashion Design (Fashion Stylist)</Typography.Text>|<Typography.Text>3.40 / 4.00</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                        <Typography.Text> Jakarta, Indonesia</Typography.Text> |<Typography.Text>Fashion, Industry</Typography.Text>
-                                    </Space>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col span={12}>
-                            <Row>
-                                <Col span={3}>
-                                    <Avatar size={64} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                </Col>
-                                <Col span={21}>
-                                    <Space>
-                                        <Typography.Text strong>Institute Kesenian Jakarta</Typography.Text>
-                                        <Typography.Text> 2014 - 2016</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <Typography.Text>Magister Of Art</Typography.Text>|<Typography.Text>Fashion Design (Fashion Stylist)</Typography.Text>|<Typography.Text>3.40 / 4.00</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                        <Typography.Text> Jakarta, Indonesia</Typography.Text> |<Typography.Text>Fashion, Industry</Typography.Text>
-                                    </Space>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col span={12}>
-                            <Row>
-                                <Col span={3}>
-                                    <Avatar size={64} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                </Col>
-                                <Col span={21}>
-                                    <Space>
-                                        <Typography.Text strong>Institute Kesenian Jakarta</Typography.Text>
-                                        <Typography.Text> 2014 - 2016</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <Typography.Text>Magister Of Art</Typography.Text>|<Typography.Text>Fashion Design (Fashion Stylist)</Typography.Text>|<Typography.Text>3.40 / 4.00</Typography.Text>
-                                    </Space>
-                                    <Space>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                        <Typography.Text> Jakarta, Indonesia</Typography.Text> |<Typography.Text>Fashion, Industry</Typography.Text>
-                                    </Space>
-                                </Col>
-                            </Row>
+                        <Col span={24}>
+                            <Skeleton active loading={pageReady === false} title>
+                                {organizations.map((v: any, i: number) => (
+                                    <Row style={{ marginBottom: 15 }}>
+                                        <Col span={3}>
+                                            <Avatar size={50} src={v.logo} />
+                                        </Col>
+                                        <Col span={21}>
+                                            <div>
+                                                <Space>
+                                                    <Typography.Text strong>{v.name}</Typography.Text>
+                                                    <Typography.Text>
+                                                        {" "}
+                                                        {moment(v.joinDate).format("YYYY")} - {(v.present && "present") || moment(v.endDate).format("YYYY")}
+                                                    </Typography.Text>
+                                                </Space>
+                                            </div>
+
+                                            <Space>
+                                                <Typography.Text>{v.membership}</Typography.Text>
+                                            </Space>
+                                        </Col>
+                                    </Row>
+                                ))}
+                            </Skeleton>
                         </Col>
                     </Row>
                 </Card>

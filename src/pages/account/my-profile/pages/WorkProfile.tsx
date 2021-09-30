@@ -1,6 +1,6 @@
 import React from "react";
 import Appreciation from "./work-profile/Appreciation";
-import Biografi from "./work-profile/Biografi";
+import Biography from "./work-profile/Biography";
 import Education from "./work-profile/Education";
 import Experience from "./work-profile/Experience";
 import Language from "./work-profile/Language";
@@ -43,7 +43,7 @@ class WorkProfile extends React.Component<WorkProfileProps, WorkProfileState> {
     render() {
         return (
             <>
-                <Biografi />
+                <Biography />
                 <Appreciation />
                 <Education />
                 <Experience />

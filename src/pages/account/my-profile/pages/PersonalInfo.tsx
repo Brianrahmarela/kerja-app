@@ -112,7 +112,7 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 const payload: any = { ...values };
-                                console.log(values.dateOfBirth);
+                                console.log(values);
                                 payload.dateOfBirth = moment(values.dateOfBirth).toDate();
                                 payload.postalcode = values.postalcode ? Number(values.postalcode) : 0;
                                 payload.hobbies = values.hobbies.join(",");
@@ -249,7 +249,7 @@ class PersonalInfo extends React.Component<PersonalInfoProps, PersonalInfoState>
                                             <Form.Item
                                                 label={
                                                     <>
-                                                        Location <span className="required">*</span>
+                                                        City <span className="required">*</span>
                                                     </>
                                                 }
                                                 validateStatus={errors.city && touched.city ? "error" : ""}

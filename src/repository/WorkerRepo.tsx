@@ -16,6 +16,16 @@ export const getPersonal = () => {
         },
     });
 };
+
+export const getBiography = () => {
+    const token = window.localStorage.getItem("token");
+    return axios.get(AppConfig.url.getBiography, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
+
 export const getHeaderPersonal = (encodedId: string) => {
     console.log(encodedId);
     const token = window.localStorage.getItem("token");
@@ -42,10 +52,34 @@ export const postPersonal = (payload: any) => {
         },
     });
 };
+export const postBiography = (payload: any) => {
+    const token = window.localStorage.getItem("token");
+    return axios.post(AppConfig.url.postBiography, payload, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
 
 export const getPositionTitles = (keyword: string) => {
     const token = window.localStorage.getItem("token");
     return axios.get(AppConfig.url.getPositionTitle + "?q=" + keyword, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
+export const getOrganizations = () => {
+    const token = window.localStorage.getItem("token");
+    return axios.get(AppConfig.url.getOrganizations, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
+export const postOrganization = (payload: any) => {
+    const token = window.localStorage.getItem("token");
+    return axios.post(AppConfig.url.postOrganization, payload, {
         headers: {
             Authorization: "Bearer " + token,
         },

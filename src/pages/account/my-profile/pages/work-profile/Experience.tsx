@@ -94,30 +94,34 @@ class Experience extends React.Component<ExperienceProps, ExperienceState> {
                     </Row>
                     <Skeleton active loading={pageReady === false} title>
                         <Timeline style={{ marginTop: 20 }}>
-                            {experiences.map((v: any, i: number) => (
-                                <Timeline.Item dot={<Avatar size={35} src={""} />}>
-                                    <div style={{ paddingLeft: 20 }}>
-                                        <Space>
-                                            <Typography.Text strong>{v.positionTitle}</Typography.Text>
-                                            <Typography.Text> 1 thn, 6 bulan</Typography.Text>
-                                        </Space>
-                                        <Space>
-                                            <Typography.Text>{v.organizationName}</Typography.Text>|<Typography.Text>Full time</Typography.Text>|
-                                            <Typography.Text>
-                                                {moment(v.joinDate).format("MMM YYYY")} - {(v.isPresent && "Present") || moment(v.endDate).format("MMM YYYY")}
-                                            </Typography.Text>
-                                            |
-                                            <Typography.Text>
-                                                {v.currency} {v.monthlySalary} / month
-                                            </Typography.Text>
-                                        </Space>
-                                        <Space>
-                                            <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                            <Typography.Text> {v.country}</Typography.Text> |<Typography.Text>{v.specializationName}</Typography.Text>
-                                        </Space>
-                                    </div>
-                                </Timeline.Item>
-                            ))}
+                            {experiences.map((v: any, i: number) => {
+                                const joindate = moment(v.joinDate);
+                                const enddate = v.isPresent ? moment() : moment(v.endDate);
+                                return (
+                                    <Timeline.Item dot={<Avatar size={35} src={""} />}>
+                                        <div style={{ paddingLeft: 20 }}>
+                                            <Space>
+                                                <Typography.Text strong>{v.positionTitle}</Typography.Text>
+                                                <Typography.Text>{joindate.diff(enddate, "years") + " year " + joindate.diff(enddate, "months") + " month"}</Typography.Text>
+                                            </Space>
+                                            <Space>
+                                                <Typography.Text>{v.organizationName}</Typography.Text>|<Typography.Text>Full time</Typography.Text>|
+                                                <Typography.Text>
+                                                    {moment(v.joinDate).format("MMM YYYY")} - {(v.isPresent && "Present") || moment(v.endDate).format("MMM YYYY")}
+                                                </Typography.Text>
+                                                |
+                                                <Typography.Text>
+                                                    {v.currency} {v.monthlySalary} / month
+                                                </Typography.Text>
+                                            </Space>
+                                            <Space>
+                                                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                                                <Typography.Text> {v.country}</Typography.Text> |<Typography.Text>{v.specializationName}</Typography.Text>
+                                            </Space>
+                                        </div>
+                                    </Timeline.Item>
+                                );
+                            })}
                         </Timeline>
                         {experiences.length > 5 && (
                             <div style={{ width: "100%", textAlign: "center", padding: 5 }}>
