@@ -135,50 +135,76 @@ export class MyResume extends Component<MyResumeProps, MyResumeState>  {
           <Row className="title-container">
             <Text className="title-paragraph">Informasi Lainnya</Text>
           </Row>
-          <Row gutter={[0, 24]} className="list-container" justify="space-between">
+          <Row className="list-container" justify="space-between">
             {
               informasiLainnya.map((item) => (
                 <>
-                  <Col style={{ backgroundColor: "white", width: 250 }}>
-                    <Row style={{ backgroundColor: "yellow", color: '#53575E', fontFamily: 'Poppins', fontSize: 15, fontWeight: 500 }}>
+                  <Col style={{ width: 250 }}>
+                    <Row style={{ color: '#53575E', fontFamily: 'Poppins', fontSize: 15, fontWeight: 500 }}>
                       <Col span={24}>
                         {item.title}
                       </Col>
                     </Row>
                     <Row >
-                      {Array.isArray(item.keterangan) ? item.keterangan.map((value: string, idx: number) => (
-                        <ul key={idx}>
-                          <li>
+                      <ul style={{ margin: '0px 0px 0px 20px', padding: '2px 0px 38px 0px' }} key={item.id}>
+                        {Array.isArray(item.keterangan) ? item.keterangan.map((value: string, idx: number) => (
+                          <li style={{ paddingBottom: 4 }}>
                             {value}
                           </li>
-                        </ul>
-                      )) : (
-                        <ul key={item.id}>
-                          <li>
+                        )) : (
+                          <li >
                             {item.keterangan}
                           </li>
-                        </ul>
-                      )}
+                        )}
+                      </ul>
                     </Row>
                   </Col>
                 </>
               ))
             }
           </Row>
+          <Divider style={{ margin: "48px 0px 0px 0px", padding: 0 }} />
+          <Row className="list-container">
+            <Text style={{ fontFamily: 'Poppins', fontSize: 15, color: "#53575E", fontWeight: 500 }}>Attached Files :</Text>
+          </Row>
+          <Row style={{ marginTop: 19, marginBottom: 0 }} align="middle" className="attach-container">
+            <Link to={`/job/my-jobs-applied/job-alert-settings`}>
+              <Row align="middle">
+                <Col >
+                  <Button type="link" block style={{ padding: 0, margin: 0 }}>
+                    <img src={SvgFiles} alt="svgfiles" height={16} style={{ marginRight: 9, }} />
+                    SKCK.PDF
+                  </Button>
+                </Col>
+              </Row>
+            </Link>
+          </Row>
+          <Row style={{ marginTop: 0, marginBottom: 0 }} align="middle" className="attach-container">
+            <Link to={`/job/my-jobs-applied/job-alert-settings`}>
+              <Row align="middle">
+                <Col >
+                  <Button type="link" block style={{ padding: 0, margin: 0 }}>
+                    <img src={SvgFiles} alt="svgfiles" height={16} style={{ marginRight: 9, }} />
+                    Transkrip Nilai.PDF
+                  </Button>
+                </Col>
+              </Row>
+            </Link>
+          </Row>
+          <Row style={{ marginTop: 0, marginBottom: 39 }} align="middle" className="attach-container">
+            <Link to={`/job/my-jobs-applied/job-alert-settings`}>
+              <Row align="middle">
+                <Col >
+                  <Button type="link" block style={{ padding: 0, margin: 0 }}>
+                    <img src={SvgFiles} alt="svgfiles" height={16} style={{ marginRight: 9, }} />
+                    Ijazah. PDF
+                  </Button>
+                </Col>
+              </Row>
+            </Link>
+          </Row>
         </Card>
-        <Divider style={{ margin: "48px 0px 19px 0px", padding: 0 }} />
-        <Row>
-          <Text className="subtitlejob">Attached Files :</Text>
 
-        </Row>
-        <Row style={{ marginTop: 22, marginBottom: 30 }} align="middle">
-          <Col style={{ marginRight: 9 }}>
-            <img style={{ padding: 0, margin: 0 }} src={SvgFiles} alt="myLastappliedjob" height={22} />
-          </Col>
-          <Col>
-            <Text>SKCK.PDF</Text>
-          </Col>
-        </Row>
       </div>
     )
   }
