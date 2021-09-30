@@ -16,6 +16,7 @@ export const getPersonal = () => {
         },
     });
 };
+
 export const getBiography = () => {
     const token = window.localStorage.getItem("token");
     return axios.get(AppConfig.url.getBiography, {
@@ -24,6 +25,7 @@ export const getBiography = () => {
         },
     });
 };
+
 export const getHeaderPersonal = (encodedId: string) => {
     console.log(encodedId);
     const token = window.localStorage.getItem("token");
