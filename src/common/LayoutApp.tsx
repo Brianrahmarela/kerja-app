@@ -13,7 +13,7 @@ interface IProps {
     path: string;
     setCurrentUser: (x: any) => void;
 }
-interface IState {}
+interface IState { }
 class LayoutApp extends Component<IProps, IState> {
     componentDidMount() {
         getMe().then((res: AxiosResponse<any>) => {
@@ -22,11 +22,11 @@ class LayoutApp extends Component<IProps, IState> {
     }
     render() {
         const token = window.localStorage.getItem("token");
-        const expiredAt = window.localStorage.getItem("expiredAt");
-        console.log(Number(expiredAt), moment().valueOf());
-        if (!token || Number(expiredAt) < moment().valueOf()) {
-            window.location.hash = "/login";
-        }
+        // const expiredAt = window.localStorage.getItem("expiredAt");
+        // console.log(Number(expiredAt), moment().valueOf());
+        // if (!token || Number(expiredAt) < moment().valueOf()) {
+        //     window.location.hash = "/login";
+        // }
         const { ...rest } = this.props;
         return (
             <>
