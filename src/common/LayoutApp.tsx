@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { AxiosResponse } from "axios";
-import moment from "moment";
+// import moment from "moment";
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ class LayoutApp extends Component<IProps, IState> {
         });
     }
     render() {
-        const token = window.localStorage.getItem("token");
+        // const token = window.localStorage.getItem("token");
         // const expiredAt = window.localStorage.getItem("expiredAt");
         // console.log(Number(expiredAt), moment().valueOf());
         // if (!token || Number(expiredAt) < moment().valueOf()) {
